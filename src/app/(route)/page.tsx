@@ -3,5 +3,5 @@ export default function Root() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>rootpage</div>
     </main>
-  );
+  )
 }

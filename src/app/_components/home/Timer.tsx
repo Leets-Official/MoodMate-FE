@@ -1,5 +1,5 @@
 const Timer = () => {
-  return <div>Timer</div>;
-};
+  return <div>Timer</div>
+}
 
-export default Timer;
+export default Timer
