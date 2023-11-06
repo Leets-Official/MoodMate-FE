@@ -9,7 +9,7 @@ interface ResponseMessage {
   message: string
 }
 
-/** 소셜 로그인 응답 데이터 */
+/** 소셜로그인 응답 데이터 */
 interface ResponseLogin {
   accessToken: string
   refreshTokce: string
