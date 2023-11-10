@@ -8,10 +8,9 @@ interface InputProps {
   onClick: () => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   className: string
-  onSubmit: () => void
 }
 
-const inputSort = (sort: string) => {
+const getInputSort = (sort: string) => {
   switch (sort) {
     case 'info':
       return {
@@ -36,21 +35,16 @@ const Input = ({
   onClick,
   onChange,
   className,
-  onSubmit,
 }: InputProps) => {
   return (
-    <section>
-      <form onSubmit={onSubmit}>
-        <input
-          value={textValue}
-          placeholder={placeholder}
-          onFocus={onFocus}
-          onClick={onClick}
-          onChange={onChange}
-          className={`${className} ${inputSort(sort).input}`}
-        />
-      </form>
-    </section>
+    <input
+      value={textValue}
+      placeholder={placeholder}
+      onFocus={onFocus}
+      onClick={onClick}
+      onChange={onChange}
+      className={`${className} ${getInputSort(sort).input}`}
+    />
   )
 }
 
