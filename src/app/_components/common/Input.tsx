@@ -1,6 +1,7 @@
 import React from 'react'
 
 interface InputProps {
+  sort: string
   textValue: string
   placeholder: string
   onFocus: () => void
@@ -10,7 +11,25 @@ interface InputProps {
   onSubmit: () => void
 }
 
+const inputSort = (sort: string) => {
+  switch (sort) {
+    case 'info':
+      return {
+        input: 'w-[312px] h-[39px]',
+      }
+    case 'chat':
+      return {
+        input: 'w-[312px] h-[45px]',
+      }
+    default:
+      return {
+        input: 'w-full h-full',
+      }
+  }
+}
+
 const Input = ({
+  sort = 'default',
   textValue,
   placeholder,
   onFocus,
@@ -28,7 +47,7 @@ const Input = ({
           onFocus={onFocus}
           onClick={onClick}
           onChange={onChange}
-          className={className}
+          className={`${className} ${inputSort(sort).input}`}
         />
       </form>
     </section>
