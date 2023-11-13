@@ -39,6 +39,7 @@ const NormalButton = ({
   const isButtonDisabled =
     isDisabled !== undefined ? isDisabled : inputValue === null
 
+  // 버튼 비동기 작업을 위해 비동기로 처리
   const handleButtonClick = useRecoilCallback(
     () => async (event: MouseEvent<HTMLButtonElement>) => {
       if (onClick && !isButtonDisabled) {
