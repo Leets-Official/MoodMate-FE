@@ -7,6 +7,7 @@ interface NormalButtonProps {
   onClick: () => void
   buttonType: 'large' | 'small'
   className: string
+  isDisabled?: boolean
 }
 
 const getButtonStyles = (buttonType: 'large' | 'small', isEnabled: boolean) => {
@@ -32,23 +33,18 @@ const NormalButton = ({
   buttonText,
   buttonType,
   className,
+  isDisabled,
 }: NormalButtonProps) => {
   const inputValue = useRecoilValue(inputValueState)
-  const isButtonDisabled = inputValue === null
+  const isButtonDisabled =
+    isDisabled !== undefined ? isDisabled : inputValue === null
 
   const handleButtonClick = useRecoilCallback(
-    ({ snapshot }) =>
-      async (event: MouseEvent<HTMLButtonElement>) => {
-        const inputValueSnapshot = snapshot.getLoadable(inputValueState)
-        if (
-          onClick &&
-          !isButtonDisabled &&
-          inputValueSnapshot.state === 'hasValue' &&
-          inputValueSnapshot.contents !== null
-        ) {
-          onClick()
-        }
-      },
+    () => async (event: MouseEvent<HTMLButtonElement>) => {
+      if (onClick && !isButtonDisabled) {
+        onClick()
+      }
+    },
   )
 
   const buttonStyles = getButtonStyles(buttonType, !isButtonDisabled)
