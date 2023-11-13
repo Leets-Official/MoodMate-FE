@@ -1,43 +1,28 @@
 import { MouseEvent } from 'react'
-import { useRecoilState } from 'recoil'
 import { inputValueState } from '@/_atom/input'
+import { useRecoilValue, useRecoilCallback } from 'recoil'
 
 interface NormalButtonProps {
   buttonText: string
   onClick: () => void
-  buttonType: 'next' | 'yes' | 'no'
+  buttonType: 'large' | 'small'
+  className: string
 }
 
-const getButtonStyles = (
-  buttonType: 'next' | 'yes' | 'no',
-  inputValue: string | null,
-) => {
+const getButtonStyles = (buttonType: 'large' | 'small', isEnabled: boolean) => {
+  const baseStyles = isEnabled ? 'bg-orange-500' : 'bg-gray-400'
   switch (buttonType) {
-    case 'next':
+    case 'large':
       return {
-        button: inputValue
-          ? 'bg-orange-500 hover:bg-orange-700 rounded-md p-2'
-          : 'bg-gray-300',
-        span: 'text-white',
+        button: `w-[312px] h-[48px] ${baseStyles}`,
       }
-    case 'yes':
+    case 'small':
       return {
-        button: inputValue
-          ? 'bg-orange-500 hover:bg-orange-700 rounded-md p-2'
-          : 'bg-gray-300',
-        span: 'text-white',
-      }
-    case 'no':
-      return {
-        button: inputValue
-          ? 'bg-orange-500 hover:bg-orange-700 rounded-md p-2'
-          : 'bg-gray-300',
-        span: 'text-white',
+        button: `w-[96px] h-[36px] ${baseStyles}`,
       }
     default:
       return {
-        button: 'bg-gray-300 rounded-md p-2',
-        span: 'text-white-500',
+        button: 'w-full h-full bg-gray-400',
       }
   }
 }
@@ -46,23 +31,34 @@ const NormalButton = ({
   onClick,
   buttonText,
   buttonType,
+  className,
 }: NormalButtonProps) => {
-  const [inputValue] = useRecoilState(inputValueState)
+  const inputValue = useRecoilValue(inputValueState)
+  const isButtonDisabled = inputValue === null
 
-  const handleButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
-    if (onClick && inputValue) {
-      onClick()
-    }
-  }
+  const handleButtonClick = useRecoilCallback(
+    ({ snapshot }) =>
+      async (event: MouseEvent<HTMLButtonElement>) => {
+        const inputValueSnapshot = snapshot.getLoadable(inputValueState)
+        if (
+          onClick &&
+          !isButtonDisabled &&
+          inputValueSnapshot.state === 'hasValue' &&
+          inputValueSnapshot.contents !== null
+        ) {
+          onClick()
+        }
+      },
+  )
 
-  const buttonStyles = getButtonStyles(buttonType, inputValue)
+  const buttonStyles = getButtonStyles(buttonType, !isButtonDisabled)
 
   return (
     <button
       type="button"
-      className={`w-full h-full ${buttonStyles.button} ${buttonStyles.span}`}
+      className={`w-full h-full ${buttonStyles.button} ${className}`}
       onClick={handleButtonClick}
-      disabled={!inputValue}
+      disabled={isButtonDisabled}
     >
       {buttonText}
     </button>
