@@ -1,4 +1,13 @@
-interface ChatMessage {
+interface ChatMessageSend {
+  roomId: number
+  senderId: number
+  message: string
+}
+
+interface ChatMessageGet {
+  roomId: number
+  messageId: number
   content: string
-  created_at: string
+  senderId: number
+  sendTime: string
 }
