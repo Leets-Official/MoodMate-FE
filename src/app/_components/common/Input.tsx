@@ -1,11 +1,13 @@
+'use-client'
+
 import React from 'react'
 
 interface InputProps {
   sort: string
   textValue: string
   placeholder: string
-  onFocus: () => void
-  onClick: () => void
+  onFocus?: () => void
+  onClick?: () => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   className: string
 }
