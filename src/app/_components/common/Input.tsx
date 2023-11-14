@@ -8,7 +8,7 @@ interface InputProps {
   placeholder: string
   onFocus?: () => void
   onClick?: () => void
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   className: string
 }
 

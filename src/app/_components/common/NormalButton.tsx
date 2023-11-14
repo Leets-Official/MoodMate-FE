@@ -4,7 +4,7 @@ import { inputValueState } from '@/_atom/input'
 
 interface NormalButtonProps {
   buttonText: string
-  onClick: () => void
+  onClick?: () => void
   buttonType: 'next' | 'yes' | 'no'
 }
 
