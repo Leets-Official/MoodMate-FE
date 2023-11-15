@@ -1,25 +1,23 @@
 'use client'
 
 import NormalButton from '@/_components/common/NormalButton'
-import Link from 'next/link'
 import { KAKAO_AUTH_URL } from '@/_lib/kakao'
 import React from 'react'
+import Icons from '@/_components/common/Icons'
 
 export default function Login() {
-  const onLoginhandler = () => {
-    // const code = new URL(window.location.href).searchParams.get('code')
-    console.log('로그인 시작')
+  const handleLogin = () => {
+    window.location.href = KAKAO_AUTH_URL
   }
   return (
-    <div>
-      <Link href={KAKAO_AUTH_URL}>
-        <NormalButton
-          buttonText="카카오로 3초만에 로그인"
-          buttonType="large"
-          onClick={onLoginhandler}
-          className="bg-yellow-400 text-black"
-        />
-      </Link>
+    <div className="flex flex-col">
+      <p className="mx-auto text-blue-600 mb-60 mt-52">로고</p>
+      <NormalButton
+        buttonText="카카오로 로그인"
+        buttonType="large"
+        onClick={handleLogin}
+        className="bg-[#FEE500] text-[15px] text-black mx-auto rounded-[8px] hover:bg-amber-300"
+      />
     </div>
   )
 }
