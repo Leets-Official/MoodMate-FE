@@ -53,7 +53,11 @@ const NormalButton = ({
   return (
     <button
       type="button"
+<<<<<<< HEAD
       className={`${buttonStyles.button} ${className}`}
+=======
+      className={`w-full h-full ${buttonStyles.button} ${className}`}
+>>>>>>> develop
       onClick={handleButtonClick}
       disabled={isButtonDisabled}
     >
