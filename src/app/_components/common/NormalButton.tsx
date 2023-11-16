@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react'
-import { inputValueState } from '@/_atom/input'
+import { inputValueState } from '../../_atom/input'
 import { useRecoilValue, useRecoilCallback } from 'recoil'
 
 interface NormalButtonProps {
@@ -53,11 +53,7 @@ const NormalButton = ({
   return (
     <button
       type="button"
-<<<<<<< HEAD
       className={`${buttonStyles.button} ${className}`}
-=======
-      className={`w-full h-full ${buttonStyles.button} ${className}`}
->>>>>>> develop
       onClick={handleButtonClick}
       disabled={isButtonDisabled}
     >
