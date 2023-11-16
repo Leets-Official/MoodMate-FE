@@ -73,15 +73,15 @@ export const DEPARTMENT_LIST = [
   '방사선학과',
   '물리치료학과',
   '응급구조학과',
-]
+] as const
 
-export const MOODE_LIST = ['']
+export const MOOD_LIST = [''] as const
 
 export const NICK_NAME_PAGE = {
   GREETINGS: '가입을 축하드려요!\n어떻게 불러드리면 될까요?',
-  WRNING: '닉네임은 한번 정하면 수정할 수 없어요!',
+  WRNINGS: '닉네임은 한번 정하면 수정할 수 없어요!',
   INPUTBOX: '닉네임을 입력하세요.',
-  GUID: '5글자 이내로 입력해주세요.',
+  GUIDE: '5글자 이내로 입력해주세요.',
 } as const
 
 export const GENDER_PAGE = {
@@ -100,13 +100,13 @@ export const MY_AGE_PAGE = {
 
 export const MY_DEPARTMENT_PAGE = {
   GREETINGS: '무디에게 학과를 알려주세요!',
-  GUIDE: '학과를 선택하세요.',
+  WANINGS: '학과를 선택하세요.',
   DEPARTMENT_LIST,
 } as const
 
 export const MY_KEYWORD_PAGE = {
   GREETINGS: '무디에게 여러분을 소개해주세요!',
-  GUIDE: '여러분을 나타내는 키워드를 3개 선택해주세요.',
+  WANINGS: '여러분을 나타내는 키워드를 3개 선택해주세요.',
   KEYWORD_LIST: [
     '인기짱',
     '고양이',
@@ -142,7 +142,7 @@ export const MATCHING_DEPARTMENT_PAGE = {
   DIFF_DEPT: '다른 학과가 좋아요!',
 } as const
 
-export const DATE_MOODE_PAGE = {
+export const DATE_MOOD_PAGE = {
   GREETING: '무디와 어떤 데이트를 하고 싶나요?',
-  MOODE_LIST,
+  MOOD_LIST,
 } as const
