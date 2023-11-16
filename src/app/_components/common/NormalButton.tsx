@@ -23,7 +23,7 @@ const getButtonStyles = (buttonType: 'large' | 'small', isEnabled: boolean) => {
       }
     default:
       return {
-        button: 'w-full h-full bg-gray-400',
+        button: 'w-full h-full',
       }
   }
 }
