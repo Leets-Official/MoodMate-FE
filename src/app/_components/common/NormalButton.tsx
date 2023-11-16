@@ -23,7 +23,7 @@ const getButtonStyles = (buttonType: 'large' | 'small', isEnabled: boolean) => {
       }
     default:
       return {
-        button: 'w-full h-full bg-gray-400',
+        button: 'w-full h-full',
       }
   }
 }
@@ -53,7 +53,7 @@ const NormalButton = ({
   return (
     <button
       type="button"
-      className={`w-full h-full ${buttonStyles.button} ${className}`}
+      className={`${buttonStyles.button} ${className}`}
       onClick={handleButtonClick}
       disabled={isButtonDisabled}
     >
