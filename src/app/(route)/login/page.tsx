@@ -15,7 +15,7 @@ export default function Login() {
         buttonText="카카오로 로그인"
         buttonType="large"
         onClick={handleLogin}
-        className="bg-[#FEE500] text-[15px] text-black mx-auto rounded-[8px] hover:bg-amber-300"
+        className="bg-[#FEE500] text-[15px] text-black mx-auto rounded-[8px] hover:bg-amber-400"
       />
     </div>
   )
