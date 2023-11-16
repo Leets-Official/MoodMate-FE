@@ -1,7 +1,7 @@
 /** 채팅방 내역 불러오기 응답 데이터 */
-interface ResponseChatHistory {
-  user: UserInfo
-  full_message: ChatMessage[]
+interface ResponseChatEnter {
+  roomId: number
+  chatList: ChatMessageGet[]
 }
 
 /** 메세지 받아오기 응답 데이터 */
