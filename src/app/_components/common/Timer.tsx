@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect } from 'react'
 
 interface TimerProps {
@@ -5,10 +7,10 @@ interface TimerProps {
 }
 
 const Timer = ({ targetHour }: TimerProps) => {
-  const [timeLeft, setTimeLeft] = useState(0)
+  const [timeLeft, setTimeLeft] = useState<number>(0)
 
   useEffect(() => {
-    function calculateTimeUntilNextTargetHour() {
+    const calculateTimeUntilNextTargetHour = () => {
       const now = new Date()
       const targetTime = new Date(
         now.getFullYear(),
