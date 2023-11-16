@@ -5,6 +5,7 @@ const ChatList = () => {
     <div>
       <ChatItem type="YOU" />
       <ChatItem type="ME" />
+      <ChatItem type="YOU" />
     </div>
   )
 }

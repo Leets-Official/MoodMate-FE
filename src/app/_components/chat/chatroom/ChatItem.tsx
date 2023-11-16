@@ -5,7 +5,11 @@ interface ChatItemProps {
   type: 'YOU' | 'ME'
 }
 
-const ex = ['하이하이?', 'ㅋㅋㅋㅋㅋㅋㅋㅋㅋ']
+const ex = [
+  'ㅋㅋㅌㅋㅋㅋㅋㅋㅋㅋ?',
+  'ㅋㅋㅊㅋㅋㅋㅋㅋㅋㅋ',
+  'ㅎㅎㅎ...ㅎㅎ.ㅎ..ㅎ....',
+]
 
 const ChatItem = ({ type }: ChatItemProps) => {
   return (
@@ -18,6 +22,7 @@ const ChatItem = ({ type }: ChatItemProps) => {
             <p className="text-[12px]">사랑스러운 무디</p>
             <Message msg="하이루방가방가" type={type} />
             <Message msg="ㅎㅇㅎㅇ" type={type} />
+            <Message msg="반갑습니다....." type={type} />
           </div>
         </div>
       )}

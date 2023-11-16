@@ -1,11 +1,9 @@
-import ChatContainer from '@/_components/chat/containers/ChatContainer'
-import ChatInputContainer from '@/_components/chat/containers/ChatInputContainer'
+import ChatPreviewContainer from '@/_components/chat/containers/ChatPreviewContainer'
 
 export default function ChatPage() {
   return (
     <section className="flex flex-col h-screen">
-      <ChatContainer />
-      <ChatInputContainer />
+      <ChatPreviewContainer />
     </section>
   )
 }
