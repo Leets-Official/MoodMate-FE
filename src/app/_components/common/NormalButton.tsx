@@ -1,29 +1,43 @@
 import { MouseEvent } from 'react'
-import { inputValueState } from '../../_atom/input'
-import { useRecoilValue, useRecoilCallback } from 'recoil'
+import { useRecoilState } from 'recoil'
+import { inputValueState } from '@/_atom/input'
 
 interface NormalButtonProps {
   buttonText: string
   onClick: () => void
-  buttonType: 'large' | 'small'
-  className: string
-  isDisabled?: boolean
+  buttonType: 'next' | 'yes' | 'no'
 }
 
-const getButtonStyles = (buttonType: 'large' | 'small', isEnabled: boolean) => {
-  const baseStyles = isEnabled ? 'bg-orange-500' : 'bg-gray-400'
+const getButtonStyles = (
+  buttonType: 'next' | 'yes' | 'no',
+  inputValue: string | null,
+) => {
   switch (buttonType) {
-    case 'large':
+    case 'next':
       return {
-        button: `w-[312px] h-[48px] ${baseStyles}`,
+        button: inputValue
+          ? 'bg-orange-500 hover:bg-orange-700 rounded-md p-2'
+          : 'bg-gray-300',
+        span: 'text-white',
       }
-    case 'small':
+    case 'yes':
       return {
-        button: `w-[96px] h-[36px] ${baseStyles}`,
+        button: inputValue
+          ? 'bg-orange-500 hover:bg-orange-700 rounded-md p-2'
+          : 'bg-gray-300',
+        span: 'text-white',
+      }
+    case 'no':
+      return {
+        button: inputValue
+          ? 'bg-orange-500 hover:bg-orange-700 rounded-md p-2'
+          : 'bg-gray-300',
+        span: 'text-white',
       }
     default:
       return {
-        button: 'w-full h-full bg-gray-400',
+        button: 'bg-gray-300 rounded-md p-2',
+        span: 'text-white-500',
       }
   }
 }
@@ -32,30 +46,23 @@ const NormalButton = ({
   onClick,
   buttonText,
   buttonType,
-  className,
-  isDisabled,
 }: NormalButtonProps) => {
-  const inputValue = useRecoilValue(inputValueState)
-  const isButtonDisabled =
-    isDisabled !== undefined ? isDisabled : inputValue === null
+  const [inputValue] = useRecoilState(inputValueState)
 
-  // 버튼 비동기 작업을 위해 비동기로 처리
-  const handleButtonClick = useRecoilCallback(
-    () => async (event: MouseEvent<HTMLButtonElement>) => {
-      if (onClick && !isButtonDisabled) {
-        onClick()
-      }
-    },
-  )
+  const handleButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
+    if (onClick && inputValue) {
+      onClick()
+    }
+  }
 
-  const buttonStyles = getButtonStyles(buttonType, !isButtonDisabled)
+  const buttonStyles = getButtonStyles(buttonType, inputValue)
 
   return (
     <button
       type="button"
-      className={`${buttonStyles.button} ${className}`}
+      className={`w-full h-full ${buttonStyles.button} ${buttonStyles.span}`}
       onClick={handleButtonClick}
-      disabled={isButtonDisabled}
+      disabled={!inputValue}
     >
       {buttonText}
     </button>

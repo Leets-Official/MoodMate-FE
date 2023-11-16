@@ -8,7 +8,8 @@ interface InputProps {
   placeholder: string
   onFocus?: () => void
   onClick?: () => void
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onEnterPress?: () => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   className: string
 }
 
@@ -35,15 +36,23 @@ const Input = ({
   placeholder,
   onFocus,
   onClick,
+  onEnterPress,
   onChange,
   className,
 }: InputProps) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && onEnterPress) {
+      onEnterPress()
+    }
+  }
+
   return (
     <input
       value={textValue}
       placeholder={placeholder}
       onFocus={onFocus}
       onClick={onClick}
+      onKeyPress={handleKeyPress}
       onChange={onChange}
       className={`${className} ${getInputSort(sort).input}`}
     />
