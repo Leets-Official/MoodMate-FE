@@ -6,11 +6,9 @@ export default function ChatLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>
-        <Header chat />
-        {children}
-      </body>
-    </html>
+    <main>
+      <Header chat />
+      {children}
+    </main>
   )
 }
