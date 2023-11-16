@@ -45,10 +45,15 @@ const Timer = ({ targetHour }: TimerProps) => {
   const seconds = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0')
 
   return (
-    <div>
-      <p>
+    <div className="mx-auto">
+      <p className="text-[40px] font-bold text-[#333333]">
         {hours} : {minutes} : {seconds}
       </p>
+      <div className="flex text-[#b3b3b3] -mt-2 mx-auto">
+        <p className="mx-6">hrs</p>
+        <p className="mx-6">min</p>
+        <p className="mx-6">sec</p>
+      </div>
     </div>
   )
 }
