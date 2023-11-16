@@ -75,7 +75,7 @@ export const DEPARTMENT_LIST = [
   '응급구조학과',
 ] as const
 
-export const MOOD_LIST = [''] as const
+export const MOOD_LIST = ['활기찬', '풍부한', '이색적인', '유쾌한'] as const
 
 export const NICK_NAME_PAGE = {
   GREETINGS: '가입을 축하드려요!\n어떻게 불러드리면 될까요?',
