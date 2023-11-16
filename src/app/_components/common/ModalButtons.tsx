@@ -1,3 +1,4 @@
+import React from 'react'
 import NormalButton from './NormalButton'
 
 interface ModalButtonsProps {
