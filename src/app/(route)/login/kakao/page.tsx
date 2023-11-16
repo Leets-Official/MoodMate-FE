@@ -11,7 +11,7 @@ const LoginHandler = () => {
       // @ts-ignore
       setCode(codeURL)
     }
-  },[])
+  }, [])
   return <div>{code && <p>{code}</p>}</div>
 }
 
