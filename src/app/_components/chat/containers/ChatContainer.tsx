@@ -1,4 +1,4 @@
-import ChatList from '../components/ChatList'
+import ChatList from '../chatroom/ChatList'
 
 const ChatContainer = () => {
   return (
