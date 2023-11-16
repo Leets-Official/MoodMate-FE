@@ -3,7 +3,6 @@
 import NormalButton from '@/_components/common/NormalButton'
 import { KAKAO_AUTH_URL } from '@/_lib/kakao'
 import React from 'react'
-import Icons from '@/_components/common/Icons'
 
 export default function Login() {
   const handleLogin = () => {
