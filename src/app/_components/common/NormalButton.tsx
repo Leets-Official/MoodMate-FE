@@ -1,17 +1,16 @@
 import { MouseEvent } from 'react'
-import { inputValueState } from '@/_atom/input'
-import { useRecoilValue, useRecoilCallback } from 'recoil'
 
 interface NormalButtonProps {
   buttonText: string
   onClick: () => void
   buttonType: 'large' | 'small'
   className: string
-  isDisabled?: boolean
+  isActive: boolean
+  color: string
 }
 
-const getButtonStyles = (buttonType: 'large' | 'small', isEnabled: boolean) => {
-  const baseStyles = isEnabled ? 'bg-orange-500' : 'bg-gray-400'
+const getButtonStyles = (buttonType: 'large' | 'small', color: string) => {
+  const baseStyles = `bg-${color}-500`
   switch (buttonType) {
     case 'large':
       return {
@@ -23,7 +22,7 @@ const getButtonStyles = (buttonType: 'large' | 'small', isEnabled: boolean) => {
       }
     default:
       return {
-        button: 'w-full h-full bg-gray-400',
+        button: 'w-full h-full',
       }
   }
 }
@@ -33,29 +32,23 @@ const NormalButton = ({
   buttonText,
   buttonType,
   className,
-  isDisabled,
+  isActive,
+  color,
 }: NormalButtonProps) => {
-  const inputValue = useRecoilValue(inputValueState)
-  const isButtonDisabled =
-    isDisabled !== undefined ? isDisabled : inputValue === null
+  const handleButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
+    if (onClick && !isActive) {
+      onClick()
+    }
+  }
 
-  // 버튼 비동기 작업을 위해 비동기로 처리
-  const handleButtonClick = useRecoilCallback(
-    () => async (event: MouseEvent<HTMLButtonElement>) => {
-      if (onClick && !isButtonDisabled) {
-        onClick()
-      }
-    },
-  )
-
-  const buttonStyles = getButtonStyles(buttonType, !isButtonDisabled)
+  const buttonStyles = getButtonStyles(buttonType, color)
 
   return (
     <button
       type="button"
       className={`${buttonStyles.button} ${className}`}
       onClick={handleButtonClick}
-      disabled={isButtonDisabled}
+      disabled={!isActive}
     >
       {buttonText}
     </button>
