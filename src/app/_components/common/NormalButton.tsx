@@ -8,7 +8,6 @@ interface NormalButtonProps {
   buttonType: 'large' | 'small'
   className: string
   isActive: boolean
-  selected?: boolean
   color: string
 }
 
@@ -36,7 +35,6 @@ const NormalButton = ({
   buttonType,
   className,
   isActive,
-  selected,
   color,
 }: NormalButtonProps) => {
   const buttonStyles = getButtonStyles(buttonType, color)
