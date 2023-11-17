@@ -5,10 +5,5 @@ export default function ChatLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <main>
-      <Header chat />
-      {children}
-    </main>
-  )
+  return <main>{children}</main>
 }
