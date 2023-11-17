@@ -1,3 +1,5 @@
+'use client'
+
 import { MouseEvent } from 'react'
 
 interface NormalButtonProps {
@@ -6,6 +8,7 @@ interface NormalButtonProps {
   buttonType: 'large' | 'small'
   className: string
   isActive: boolean
+  selected?: boolean
   color: string
 }
 
@@ -33,21 +36,24 @@ const NormalButton = ({
   buttonType,
   className,
   isActive,
+  selected,
   color,
 }: NormalButtonProps) => {
-  const handleButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
-    if (onClick && !isActive) {
-      onClick()
-    }
-  }
+  // const handleButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
+  //   if (onClick && !isActive) {
+  //     onClick()
+  //   }
+  // }
 
   const buttonStyles = getButtonStyles(buttonType, color)
 
   return (
     <button
       type="button"
-      className={`${buttonStyles.button} ${className}`}
-      onClick={handleButtonClick}
+      className={`${buttonStyles.button} ${className} ${
+        selected ? 'bg-neutral-800' : 'bg-neutral-200'
+      }`}
+      onClick={onClick}
       disabled={!isActive}
     >
       {buttonText}
