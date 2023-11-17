@@ -1,5 +1,3 @@
-import Header from '@/_components/layout/Header'
-
 export default function ChatLayout({
   children,
 }: {
