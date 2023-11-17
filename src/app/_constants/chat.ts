@@ -5,12 +5,12 @@ export const CHAT_INPUT = {
 export const END_CHAT_MODAL = {
   TITLE: '다시 한 번 생각해봐요!',
   SUB_TITLE: '다시 돌아올 수 없어요',
-  OPTION_YES: '그만할래요!',
-  OPTION_NO: '계속할래요!',
+  CONFIRM: '나갈래요!',
+  CANCEL: '안 나갈래요',
 } as const
 
 export const NEW_MATCHING_MODAL = {
   TITLE: '새로운 매칭을 시작해볼까요?',
-  OPTION_YES: '계속할래요!',
-  OPTION_NO: '그만할래요!',
+  CONFIRM: '계속할래요!',
+  CANCEL: '그만할래요!',
 } as const
