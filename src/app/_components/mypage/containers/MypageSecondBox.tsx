@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Keyword from '@/_components/information/Keyword'
 import Icons from '@/_components/common/Icons'
 import { rightarrow } from '@/_ui/IconsPath'
+import NormalButton from '@/_components/common/NormalButton'
 
 const MypageSecondBox = () => {
   const [visible, setVisible] = useState<boolean>(false)
@@ -14,14 +15,16 @@ const MypageSecondBox = () => {
         <div>
           <div className="flex">
             <Icons name={rightarrow} />
-            <button
-              type="button"
+            <NormalButton
+              buttonText="키워드"
               onClick={() => {
                 setVisible(!visible)
               }}
-            >
-              키워드
-            </button>
+              buttonType="small"
+              className="ml-3"
+              color=""
+              isActive
+            />
           </div>
           {visible && Keyword()}
           <p id="content">content2</p>
@@ -32,5 +35,4 @@ const MypageSecondBox = () => {
     </section>
   )
 }
-
 export default MypageSecondBox
