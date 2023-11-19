@@ -146,3 +146,11 @@ export const DATE_MOOD_PAGE = {
   GREETING: '무디와 어떤 데이트를 하고 싶나요?',
   MOOD_LIST,
 } as const
+
+export const PROGRESS_BAR = {
+  MAX: 8,
+} as const
+
+export const INPUT_NICKNAME = {
+  MAX: 5,
+} as const
