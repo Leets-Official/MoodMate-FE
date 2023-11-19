@@ -1,14 +1,10 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import ChatPreview from '../chatlist/ChatPreview'
 
-const ChatPreviewContainer = () => {
-  const [userId, setUserId] = useState<number>(0) // 초깃값 0?
-  useEffect(() => {
-    const user = localStorage.getItem('userId')
-    user && setUserId(() => Number(user))
-  }, [])
+interface ChatPreviewContainerProps {
+  userId: number
+}
+
+const ChatPreviewContainer = ({ userId }: ChatPreviewContainerProps) => {
   return (
     <section className="bg-neutral-300 w-full h-full flex justify-center pt-[34px]">
       <ChatPreview
