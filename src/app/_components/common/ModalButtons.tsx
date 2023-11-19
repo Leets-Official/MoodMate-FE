@@ -49,4 +49,4 @@ const ModalButtons = ({
   )
 }
 
-export default React.memo(ModalButtons)
+export default ModalButtons
