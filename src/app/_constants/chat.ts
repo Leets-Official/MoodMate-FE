@@ -14,3 +14,8 @@ export const NEW_MATCHING_MODAL = {
   CONFIRM: '계속할래요!',
   CANCEL: '그만할래요!',
 } as const
+
+export const CHAT_SIZE = {
+  PREVIEW: 1,
+  ROOM: 20,
+} as const

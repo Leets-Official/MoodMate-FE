@@ -21,5 +21,6 @@ export const getMessages = async (
     return response
   } catch (e: any) {
     console.log('채팅 기록 가져오기 에러 : ', e.message)
+    throw e
   }
 }
