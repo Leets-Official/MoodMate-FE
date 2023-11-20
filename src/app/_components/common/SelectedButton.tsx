@@ -1,71 +1,35 @@
 import Image from 'next/image'
+import { BUTTON_TYPE, BUTTON_STYLE } from '@/_constants'
 
 interface SelectedButtonProps {
   buttonText: string
-  buttonType: 'gender' | 'keyword' | 'major' | 'mood'
+  buttonType: keyof typeof BUTTON_TYPE
   isActive: boolean
   color: string
   onClick: () => void
-  imgSrc: string
+  imgSrc?: string
   imgSize?: string
-}
-
-interface ButtonStyles {
-  buttontype: string
-  color: string
-}
-
-const getButtonStyles = ({ buttontype, color }: ButtonStyles) => {
-  const baseStyles = `bg-${color}-500`
-  switch (buttontype) {
-    case 'gender':
-      return {
-        button: `w-[148px] h-[166px] ${baseStyles}`,
-      }
-    case 'keyword':
-      return {
-        button: `${baseStyles}`,
-      }
-    case 'mood':
-      return {
-        button: `w-[148px] h-[166px] ${baseStyles}`,
-      }
-    default:
-      return {
-        button: 'w-full h-full',
-      }
-  }
 }
 
 const SelectedButton = ({
   buttonText,
-  buttonType,
+  buttonType = 'default',
   isActive,
   color,
   onClick,
   imgSrc,
   imgSize,
 }: SelectedButtonProps) => {
-  const handleButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    if (onClick && !isActive) {
-      onClick()
-    }
-  }
-
-  const buttonStyles = getButtonStyles({ buttontype: buttonType, color })
+  const buttonStyles = BUTTON_STYLE[buttonType](color)
 
   return (
     <button
       type="button"
-      className={buttonStyles.button}
-      onClick={handleButtonClick}
+      className={buttonStyles}
+      onClick={onClick}
       disabled={!isActive}
     >
-      {(buttonType === 'gender' || buttonType === 'mood') && (
-        <Image src={imgSrc} alt="" className={imgSize} />
-      )}
+      {imgSrc && <Image src={imgSrc} alt="" className={imgSize} />}
       {buttonText}
     </button>
   )
