@@ -1,13 +1,13 @@
-import MypageFirstBox from '@/_components/mypage/containers/MypageFirstBox'
-import MypageSecondBox from '@/_components/mypage/containers/MypageSecondBox'
-import MypageThirdBox from '@/_components/mypage/containers/MypageThirdBox'
+import MypageFirstBoxContatiner from '@/_components/mypage/containers/MypageFirstBoxContatiner'
+import MypageSecondBoxContainer from '@/_components/mypage/containers/MypageSecondBoxContainer'
+import MypageThirdBoxContainer from '@/_components/mypage/containers/MypageThirdBoxContainer'
 
 export default function MypagePage() {
   return (
     <div>
-      <MypageFirstBox />
-      <MypageSecondBox />
-      <MypageThirdBox />
+      <MypageFirstBoxContatiner />
+      <MypageSecondBoxContainer />
+      <MypageThirdBoxContainer />
     </div>
   )
 }
