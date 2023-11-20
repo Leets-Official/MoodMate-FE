@@ -154,3 +154,11 @@ export const PROGRESS_BAR = {
 export const INPUT_NICKNAME = {
   MAX: 5,
 } as const
+
+export const BUTTON_TYPE = {
+  gender: 'gender',
+  keyword: 'keyword',
+  major: 'major',
+  mood: 'mood',
+  default: 'default',
+} as const
