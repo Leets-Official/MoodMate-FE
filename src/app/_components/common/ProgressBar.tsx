@@ -1,13 +1,10 @@
 import { useRecoilValue } from 'recoil'
 import { currentQuestionState } from '@/_atom/progress'
+import { PROGRESS_BAR } from '@/_constants/info'
 
-interface ProgressBarProps {
-  total: number
-  color: string
-}
-
-const ProgressBar = ({ total, color }: ProgressBarProps) => {
+const ProgressBar = (color: string) => {
   const current = useRecoilValue(currentQuestionState)
+  const total = PROGRESS_BAR.MAX
   const percentage = (current / total) * 100
 
   return (
