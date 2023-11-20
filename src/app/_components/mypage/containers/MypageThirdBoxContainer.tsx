@@ -2,7 +2,7 @@ import React from 'react'
 import Icons from '@/_components/common/Icons'
 import { logout } from '@/_ui/IconsPath'
 
-const MypageThirdBox = () => {
+const MypageThirdBoxContainer = () => {
   return (
     <section className="ml-6 mt-4">
       <p className="text-[12px] text-[#808080]">로그인</p>
@@ -14,4 +14,4 @@ const MypageThirdBox = () => {
   )
 }
 
-export default MypageThirdBox
+export default MypageThirdBoxContainer
