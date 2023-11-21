@@ -1,12 +1,18 @@
 const Keyword = () => {
-  const keywords = ['키워드1', '키워드2', '키워드3']
+  const keywords = [
+    { title: '키워드1', key: 'first' },
+    { title: '키워드2', key: 'second' },
+    { title: '키워드3', key: 'third' },
+  ]
   return (
     <div className="flex text-[14px] ml-3 my-2">
-      {keywords.map(function (a, i) {
+      {keywords.map((keyword, i) => {
         return (
-          // eslint-disable-next-line react/jsx-key
-          <p className="px-5 py-1.5 rounded-[18px] mr-2 bg-[#666666] text-white">
-            {keywords[i]}
+          <p
+            key={keyword.key}
+            className="px-5 py-1.5 rounded-[18px] mr-2 bg-[#666666] text-white"
+          >
+            {keyword.title}
           </p>
         )
       })}
