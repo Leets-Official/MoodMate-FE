@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-export default function Home() {
+const RangeBar = () => {
   const fixedMinPrice = 0
   const fixedMaxPrice = 100000
   const priceGap = 10000
@@ -75,3 +75,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default RangeBar
