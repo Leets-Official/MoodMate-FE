@@ -8,5 +8,5 @@ interface ChatMessageGet {
   content: string
   senderId: number
   sendTime: string
-  isRead: boolean
+  isRead: number
 }
