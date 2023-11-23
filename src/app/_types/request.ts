@@ -14,12 +14,13 @@ interface RequestMoodyInfo {
   age_max: number
 }
 
-/** 채팅방 번호 */
+/** 채팅방 기록 가져오기 */
 interface RequestChatHistory {
-  room_no: number
+  roomId: number
+  userId: number
 }
 
-/** 채팅 내용 */
-interface RequestChatContent extends RequestChatHistory {
-  content: string
+/** 채팅 메시지 보내기 */
+interface RequestChatSendMessage extends RequestChatHistory {
+  content: string | null // 예외처리
 }
