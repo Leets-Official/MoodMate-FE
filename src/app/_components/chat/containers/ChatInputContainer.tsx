@@ -11,13 +11,20 @@ const ChatInputContainer = () => {
   const { sendMessage } = useWebSocket()
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputVal((prev) => e.target.value)
+    setInputVal(() => e.target.value)
   }
 
   const handleSendMessage = () => {
-    if (inputVal) {
-      sendMessage(1, inputVal) // roomId 일단 1로.
+    const message = {
+      roomId: 1,
+      userId: 1,
+      content: inputVal,
+    }
+    if (message.content) {
+      sendMessage(message)
       setInputVal('')
+    } else {
+      alert('메시지를 입력해주세요.')
     }
   }
 

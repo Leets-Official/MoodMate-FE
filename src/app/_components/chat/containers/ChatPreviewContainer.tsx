@@ -7,11 +7,11 @@ interface ChatPreviewContainerProps {
 }
 
 const ChatPreviewContainer = ({ userId }: ChatPreviewContainerProps) => {
-  const { isLoading, isError, chatHistory, isSuccess } = useChatQuery(
-    userId,
-    CHAT_SIZE.PREVIEW,
-    1,
-  )
+  // const { isLoading, isError, chatHistory, isSuccess } = useChatQuery(
+  //   userId,
+  //   CHAT_SIZE.PREVIEW,
+  //   1,
+  // )
   return (
     <section className="bg-neutral-300 w-full h-full flex justify-center pt-[34px]">
       <ChatPreview
