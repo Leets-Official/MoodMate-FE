@@ -27,10 +27,13 @@ const useWebSocket = () => {
     setClient(stompClient)
   }, [])
 
-  const sendMessage = (roomId: number, message: string) => {
-    console.log(roomId, message)
+  const sendMessage = (message: RequestChatSendMessage) => {
+    console.log(message)
     if (client && client.connected) {
-      client.publish({ destination: `/pub/chat/${roomId}`, body: message }) // send로 되는지 확인
+      client.publish({
+        destination: `/pub/chat/`,
+        body: JSON.stringify(message),
+      })
     }
   }
 
