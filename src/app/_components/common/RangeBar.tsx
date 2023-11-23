@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Range, getTrackBackground } from 'react-range'
+import { Range } from 'react-range'
 
 const STEP = 1
 const MIN = 4
@@ -17,7 +17,7 @@ const RangeBar = ({ type }: RangeBarProps) => {
   )
 
   return (
-    <div className="w-70% h-10 flex items-center">
+    <div className="w-3/10 mx-auto">
       <Range
         step={STEP}
         min={MIN}
@@ -44,7 +44,8 @@ const RangeBar = ({ type }: RangeBarProps) => {
               ...props.style,
               height: '20px',
               width: '20px',
-              backgroundColor: '#999',
+              backgroundColor: '#333',
+              borderRadius: '50%',
             }}
           />
         )}
