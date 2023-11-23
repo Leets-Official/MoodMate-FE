@@ -1,12 +1,29 @@
 import ChatItem from './ChatItem'
 
-const ChatList = () => {
+interface ChatListProps {
+  userId: number
+  chatHistory: ChatMessageGet[]
+}
+
+const ChatList = ({ userId, chatHistory }: ChatListProps) => {
   return (
-    <div>
-      <ChatItem type="YOU" />
-      <ChatItem type="ME" />
-      <ChatItem type="YOU" />
-    </div>
+    <>
+      {chatHistory.map((chat, idx) => {
+        return chat.senderId !== userId ? (
+          <ChatItem
+            key={chat.messageId}
+            type="YOU"
+            chat={chat}
+            newSender={
+              idx === 0 ||
+              (idx > 0 && chatHistory[idx - 1].senderId !== chat.senderId)
+            }
+          />
+        ) : (
+          <ChatItem key={chat.messageId} type="ME" chat={chat} />
+        )
+      })}
+    </>
   )
 }
 
