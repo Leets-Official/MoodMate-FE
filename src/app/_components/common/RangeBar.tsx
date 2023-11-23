@@ -1,77 +1,54 @@
 'use client'
 
 import { useState } from 'react'
+import { Range, getTrackBackground } from 'react-range'
 
-const RangeBar = () => {
-  const fixedMinPrice = 0
-  const fixedMaxPrice = 100000
-  const priceGap = 10000
+const STEP = 1
+const MIN = 4
+const MAX = 94
 
-  const [rangeMinValue, setRangeMinValue] = useState(fixedMinPrice)
-  const [rangeMaxValue, setRangeMaxValue] = useState(fixedMaxPrice)
-  const [rangeMinPercent, setRangeMinPercent] = useState(0)
-  const [rangeMaxPercent, setRangeMaxPercent] = useState(0)
+type RangeBarProps = {
+  type: 'single' | 'range'
+}
 
-  const priceRangeMinValueHandler = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setRangeMinValue(parseInt(e.target.value))
-  }
-
-  const priceRangeMaxValueHandler = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setRangeMaxValue(parseInt(e.target.value))
-  }
-
-  const twoRangeHandler = () => {
-    if (rangeMaxValue - rangeMinValue < priceGap) {
-      setRangeMaxValue((rangeMinValue) => rangeMinValue + priceGap)
-      setRangeMinValue((rangeMaxValue) => rangeMaxValue - priceGap)
-    } else {
-      setRangeMinPercent(() => (rangeMinValue / fixedMaxPrice) * 100)
-      setRangeMaxPercent(() => 100 - (rangeMaxValue / fixedMaxPrice) * 100)
-    }
-  }
+const RangeBar = ({ type }: RangeBarProps) => {
+  const [values, setValues] = useState<number[]>(
+    type === 'single' ? [MIN] : [MIN, MAX],
+  )
 
   return (
-    <div>
-      <div className="relative h-1 w-160 rounded-full bg-gray-300">
-        <div
-          style={{
-            left: `${rangeMinPercent}%`,
-            right: `${rangeMaxPercent}%`,
-          }}
-          className="absolute h-1 rounded-full bg-gray-500"
-        />
-      </div>
-
-      <div className="relative">
-        <input
-          type="range"
-          min={fixedMinPrice}
-          max={fixedMaxPrice - priceGap}
-          step="1000"
-          value={rangeMinValue}
-          onChange={(e) => {
-            priceRangeMinValueHandler(e)
-            twoRangeHandler()
-          }}
-          className="absolute top-[-9px] h-1.5 w-full appearance-none bg-transparent pointer-events-none"
-        />
-        <input
-          type="range"
-          min={fixedMinPrice + priceGap}
-          max={fixedMaxPrice}
-          step="1000"
-          value={rangeMaxValue}
-          onChange={(e) => {
-            priceRangeMaxValueHandler(e)
-            twoRangeHandler()
-          }}
-          className="absolute top-[-9px] h-1.5 w-full appearance-none bg-transparent pointer-events-none"
-        />
-      </div>
+    <div className="w-70% h-10 flex items-center">
+      <Range
+        step={STEP}
+        min={MIN}
+        max={MAX}
+        values={values}
+        onChange={(values) => setValues(values)}
+        renderTrack={({ props, children }) => (
+          <div
+            {...props}
+            style={{
+              ...props.style,
+              height: '6px',
+              width: '100%',
+              backgroundColor: '#ccc',
+            }}
+          >
+            {children}
+          </div>
+        )}
+        renderThumb={({ props }) => (
+          <div
+            {...props}
+            style={{
+              ...props.style,
+              height: '20px',
+              width: '20px',
+              backgroundColor: '#999',
+            }}
+          />
+        )}
+      />
     </div>
   )
 }
