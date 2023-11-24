@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 import { realTimeMessagesState } from '@/_atom/chat'
 import { CompatClient, Stomp } from '@stomp/stompjs'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
+=======
+import StompJs from 'stompjs'
+import { Client } from '@stomp/stompjs'
+import { useCallback, useState } from 'react'
+>>>>>>> 3f934cb (:heavy_plus_sign: [chore] : stompjs 설치 (수정중))
 import SockJS from 'sockjs-client'
 
 const useWebsocket = (roomId: number) => {
