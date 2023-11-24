@@ -36,7 +36,8 @@ var example = {
     },
     {
       messageId: 4,
-      content: 'hello',
+      content:
+        '안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕',
       senderId: 1,
       sendTime: '2023-01-01T00:00:00Z',
       isRead: 1,
@@ -46,13 +47,12 @@ var example = {
       content: 'hello',
       senderId: 1,
       sendTime: '2023-01-01T00:00:00Z',
-      isRead: 1,
+      isRead: 0,
     },
   ],
 }
 
 const ChatRoomContainer = ({ userId }: ChatRoomContainerProps) => {
-  const [myChatList, setMyChatList] = useRecoilState(MyChatListState)
   // const { isLoading, isError, chatHistory, isSuccess } = useChatQuery(
   //   userId,
   //   CHAT_SIZE.ROOM,
@@ -60,7 +60,7 @@ const ChatRoomContainer = ({ userId }: ChatRoomContainerProps) => {
   // )
   return (
     <section className="h-[82%] py-5 px-3">
-      {/* <ChatList chatHistory={chatHistory} /> */}
+      {/* <ChatList userId={userId} chatHistory={chatHistory} /> */}
       <ChatList userId={userId} chatHistory={example.chatList} />
     </section>
   )
