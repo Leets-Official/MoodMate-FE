@@ -10,7 +10,7 @@ const Keyword = () => {
         return (
           <p
             key={keyword.key}
-            className="px-5 py-1.5 rounded-[18px] mr-2 bg-[#666666] text-white"
+            className="px-5 py-1.5 rounded-[18px] mr-2 bg-[#FFE5E7] text-[#FC4F59] border border-[#FC4F59]"
           >
             {keyword.title}
           </p>
