@@ -1,29 +1,61 @@
+import { extractTimeFromDate } from '@/utils/date'
+
 interface MessageProps {
   msg: string
   type: 'YOU' | 'ME'
+  time: string
+  isRead: number
 }
 
-const Message = ({ msg, type }: MessageProps) => {
+const getMessageStyle = (type: string) => {
+  switch (type) {
+    case 'YOU':
+      return {
+        box: 'bg-white',
+        tail: 'left-0 ml-[-10px] mb-1 w-0 h-0 border-t-[4px] border-t-transparent border-r-[14px] border-r-white',
+        time: 'right-[-60px]',
+        read: '',
+      }
+    case 'ME':
+      return {
+        box: 'bg-[#D6D6D6]',
+        tail: 'right-0 mr-[-10px] mb-1 w-0 h-0 border-t-[4px] border-t-transparent border-l-[14px] border-l-[#D6D6D6]',
+        time: 'left-[-60px] ',
+        read: '',
+      }
+    default:
+      return {
+        box: '',
+        tail: '',
+        time: '',
+        read: '',
+      }
+  }
+}
+
+const Message = ({ msg, type, time, isRead }: MessageProps) => {
   return (
-    <div className="relative bg-[#666] px-[5px] py-[7px] rounded-lg">
-      {type === 'YOU' && (
-        <>
-          <p className="text-white text-xs">{msg}</p>
-          <div className="absolute bottom-0 left-0 ml-[-10px] mb-1 w-0 h-0 border-t-[4px] border-t-transparent border-r-[14px] border-r-[#666] border-b-[5px] border-b-transparent" />
-          <p className="absolute text-xs text-[#666] right-[-60px] bottom-0">
-            오전 12:29
-          </p>
-        </>
-      )}
-      {type === 'ME' && (
-        <>
-          <p className="text-white text-xs">{msg}</p>
-          <div className="absolute bottom-0 right-0 mr-[-10px] mb-1 w-0 h-0 border-t-[4px] border-t-transparent border-l-[14px] border-l-[#666] border-b-[5px] border-b-transparent" />
-          <p className="absolute text-xs text-[#666] left-[-60px] bottom-0">
-            오전 12:29
-          </p>
-        </>
-      )}
+    <div
+      className={`${
+        getMessageStyle(type).box
+      } relative bg-white border border-black px-[8px] py-[7px] rounded-lg`}
+    >
+      <p className={`text-black text-xs`}>{msg}</p>
+      <div
+        className={`absolute bottom-0 border-black border-b-[5px] border-b-transparent ${
+          getMessageStyle(type).tail
+        }`}
+      />
+      <div>
+        <div
+          className={`absolute text-xs text-[#B0B0B0] bottom-0 leading-[0.8] ${
+            getMessageStyle(type).time
+          }`}
+        >
+          <p className="text-xs text-[#7C7C7C] ">{isRead === 0 && '1'}</p>
+          <p>{extractTimeFromDate(time)}</p>
+        </div>
+      </div>
     </div>
   )
 }
