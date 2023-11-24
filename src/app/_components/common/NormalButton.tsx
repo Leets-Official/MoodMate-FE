@@ -12,7 +12,7 @@ interface NormalButtonProps {
 }
 
 const getButtonStyles = (buttonType: 'large' | 'small', color: string) => {
-  const baseStyles = `bg-${color}-500`
+  const baseStyles = `bg-${color}`
   switch (buttonType) {
     case 'large':
       return {
