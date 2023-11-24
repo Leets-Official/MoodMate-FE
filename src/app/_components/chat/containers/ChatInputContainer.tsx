@@ -5,9 +5,12 @@ import Icons from '@/_components/common/Icons'
 import { send } from '@/_ui/IconsPath'
 import useWebSocket from '@/_hooks/useWebSocket'
 import Input from '../../common/Input'
+import { useRecoilState } from 'recoil'
+import { MyChatListState } from '@/_atom/chat'
 
 const ChatInputContainer = () => {
   const [inputVal, setInputVal] = useState<string | null>(null)
+  const [myChatList, setMyChatList] = useRecoilState(MyChatListState)
   const { sendMessage } = useWebSocket()
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
