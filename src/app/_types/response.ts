@@ -1,6 +1,6 @@
 /** 채팅방 내역 불러오기 응답 데이터 */
-interface ResponseChatEnter {
-  roomId: number
+interface ResponseChatGet {
+  userId: number
   chatList: ChatMessageGet[]
 }
 

@@ -1,13 +1,12 @@
 interface ChatMessageSend {
-  roomId: number
-  senderId: number
-  message: string
+  userId: number
+  content: string
 }
 
 interface ChatMessageGet {
-  roomId: number
   messageId: number
   content: string
   senderId: number
   sendTime: string
+  isRead: boolean
 }
