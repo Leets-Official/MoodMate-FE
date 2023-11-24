@@ -5,7 +5,7 @@ const TimerFirstText = () => {
   return (
     <section className="mx-auto text-center">
       <p className="text-[12px] text-[#919191]">{TIMER_GUIDE.TITLE}</p>
-      <p className="mt-3 text-[21px] text-[#5A5A5A] font-bold">
+      <p className="text-[21px] text-[#FC4F59] font-extrabold">
         {TIMER_GUIDE.SUB_TITLE}
       </p>
     </section>
