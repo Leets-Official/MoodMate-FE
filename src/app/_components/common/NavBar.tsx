@@ -5,15 +5,15 @@ import { bio, chat, deactivation } from '@/_ui/IconsPath'
 
 const NavBar = () => {
   return (
-    <div className="transform fixed bottom-0 left-1/2 -translate-x-1/2">
-      <div className="w-[378px] h-[140px] shadow-xl rounded-[88px] flex justify-between rotate-180">
-        <div className="ml-14 mb-12 rotate-180">
+    <div className="w-full transform fixed bottom-0 left-1/2 -translate-x-1/2">
+      <div className="pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between bg-[#E6E6E6]">
+        <div className="ml-16">
           <Icons name={bio} />
         </div>
-        <div className="rotate-180 translate-y-24 bg-[#DADADA] rounded-full w-[72px] h-[72px]">
+        <div className="bg-[#FEB3B8] rounded-full w-[72px] h-[72px] -mt-16">
           <Icons name={chat} className="ml-6 mt-6" />
         </div>
-        <div className="rotate-180 mr-14 mb-12">
+        <div className="mr-16">
           <Icons name={deactivation} />
         </div>
       </div>
