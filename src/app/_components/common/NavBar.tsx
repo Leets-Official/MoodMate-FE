@@ -1,5 +1,3 @@
-'use client'
-
 import Icons from '@/_components/common/Icons'
 import { bio, chat, deactivation, whitechat } from '@/_ui/IconsPath'
 
