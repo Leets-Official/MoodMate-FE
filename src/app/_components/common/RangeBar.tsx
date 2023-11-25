@@ -11,7 +11,7 @@ type RangeBarProps = {
 
 const RangeBar = ({ type }: RangeBarProps) => {
   const [values, setValues] = useState<number[]>(
-    type === 'single' ? [MIN, MIN] : [MIN, MAX],
+    type === 'single' ? [MIN] : [MIN, MAX],
   )
 
   return (
@@ -36,18 +36,20 @@ const RangeBar = ({ type }: RangeBarProps) => {
             {children}
           </div>
         )}
-        renderThumb={({ props }) => (
-          <div
-            {...props}
-            className="h-5 w-5 bg-black rounded-full flex items-center justify-center"
-          >
-            {type === 'single' && (
-              <div className="absolute top-[-25px] text-white text-sm font-sans p-1 bg-black">
-                {props['aria-valuenow'].toString().slice(-2)}
-              </div>
-            )}
-          </div>
-        )}
+        renderThumb={({ props, index }) =>
+          type === 'range' || index === 0 ? (
+            <div
+              {...props}
+              className="h-5 w-5 bg-black rounded-full flex items-center justify-center"
+            >
+              {type === 'single' && (
+                <div className="absolute top-[-25px] text-white text-sm font-sans p-1 bg-black">
+                  {props['aria-valuenow'].toString().slice(-2)}
+                </div>
+              )}
+            </div>
+          ) : null
+        }
       />
       {type === 'range' && values.length > 1 && (
         <div className="absolute top-[calc(50%-25px)] left-1/2 transform -translate-x-1/2 text-white text-sm font-sans p-1 bg-black">
