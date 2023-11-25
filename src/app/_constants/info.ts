@@ -162,3 +162,4 @@ export const BUTTON_TYPE = {
   mood: 'mood',
   default: 'default',
 } as const
+
