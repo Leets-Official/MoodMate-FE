@@ -8,38 +8,43 @@ interface TextProps {
 const getTextStyle = (type: string) => {
   switch (type) {
     case 'BEFORE':
-      return (
-        <div className="mt-7 flex justify-center items-center text-center flex-col mx-auto">
-          <p className="pt-6 text-[#333333] font-bold bg-[#FFE5E7] w-[221px] h-[74px] rounded-[30px]">
-            {BEFORE_TIMER_GUIDE.DESCRIPTION}
-          </p>
-          <div
-            className="w-0 h-0
-  border-l-[10px] border-l-transparent
-  border-t-[15px] border-t-[#FFE5E7]
-  border-r-[10px] border-r-transparent"
-          />
-        </div>
-      )
+      return {
+        text: 'pt-6 text-[#333333] bg-[#FFE5E7]',
+        triangle: 'border-t-[#FFE5E7]',
+        match: BEFORE_TIMER_GUIDE.DESCRIPTION,
+      }
     case 'AFTER':
-      return (
-        <div className="mt-7 flex justify-center items-center text-center flex-col mx-auto pt-7 text-[#FFFFFF] font-bold bg-[#FD8188] w-[221px] h-[74px] rounded-[30px]">
-          <p>{AFTER_TIMER_GUIDE.DESCRIPTION_ONE}</p>
-          <p className="mb-3.5">{AFTER_TIMER_GUIDE.DESCRIPTION_TWO}</p>
-          <div
-            className="w-0 h-0
-  border-l-[10px] border-l-transparent
-  border-t-[15px] border-t-[#FD8188]
-  border-r-[10px] border-r-transparent"
-          />
-        </div>
-      )
+      return {
+        text: 'pt-7 text-[#FFFFFF] bg-[#FD8188]',
+        triangle: 'border-t-[#FD8188]',
+        match: AFTER_TIMER_GUIDE.DESCRIPTION,
+      }
     default:
-      return <p>디폴트</p>
+      return {
+        text: '',
+        triangle: '',
+        match: '',
+      }
   }
 }
 const TimerMiddleText = ({ type }: TextProps) => {
-  return <section>{getTextStyle(type)}</section>
+  return (
+    <div className="mt-7 flex justify-center items-center text-center flex-col mx-auto">
+      <p
+        className={`${
+          getTextStyle(type).text
+        } font-bold w-[221px] h-[74px] rounded-[30px]`}
+      >
+        {getTextStyle(type).match}
+      </p>
+      <div
+        className={`w-0 h-0
+  border-l-[10px] border-l-transparent
+  border-t-[15px] ${getTextStyle(type).triangle}
+  border-r-[10px] border-r-transparent`}
+      />
+    </div>
+  )
 }
 
 export default TimerMiddleText
