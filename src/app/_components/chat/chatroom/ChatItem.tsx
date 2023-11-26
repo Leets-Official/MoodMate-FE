@@ -1,5 +1,6 @@
 import Bio from '@/_components/common/Bio'
 import Message from './Message'
+import { extractTimeFromDate } from '@/utils/date'
 
 interface ChatItemProps {
   newSender?: boolean
@@ -16,14 +17,14 @@ const ChatItem = ({ newSender, type, chat }: ChatItemProps) => {
           {newSender ? (
             <>
               <Bio />
-              <div className=" flex flex-col max-w-[150px] ">
+              <div className=" flex flex-col max-w-[200px] ">
                 <div className="text-xs line-clamp-1 ">
                   <p>사랑스러운 무디</p>
                 </div>
                 <Message
                   msg={content}
                   type={type}
-                  time={createdAt}
+                  time={extractTimeFromDate(createdAt)}
                   isRead={isRead}
                 />
               </div>
@@ -35,7 +36,7 @@ const ChatItem = ({ newSender, type, chat }: ChatItemProps) => {
                 <Message
                   msg={content}
                   type={type}
-                  time={createdAt}
+                  time={extractTimeFromDate(createdAt)}
                   isRead={isRead}
                 />
               </div>
@@ -49,7 +50,7 @@ const ChatItem = ({ newSender, type, chat }: ChatItemProps) => {
             <Message
               msg={content}
               type={type}
-              time={createdAt}
+              time={extractTimeFromDate(createdAt)}
               isRead={isRead}
             />
           </div>

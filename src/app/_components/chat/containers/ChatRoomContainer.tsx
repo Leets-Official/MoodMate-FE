@@ -4,7 +4,7 @@ import ChatList from '../chatroom/ChatList'
 import { useChatQuery } from '@/_hooks/useChatQuery'
 import { CHAT_SIZE } from '@/_constants/chat'
 import { useRecoilState } from 'recoil'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { realTimeMessagesState } from '@/_atom/chat'
 
 interface ChatRoomContainerProps {
@@ -62,10 +62,18 @@ const ChatRoomContainer = ({ userId }: ChatRoomContainerProps) => {
     CHAT_SIZE.ROOM,
     1,
   )
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    }
+  }, [realTimeMessages])
+
   console.log(realTimeMessages)
 
   return (
-    <section className="h-[82%] py-5 px-3">
+    <section className="h-[82%] py-5 px-3 overflow-scroll" ref={scrollRef}>
       {/* <ChatList userId={userId} chatHistory={chatHistory} /> */}
       <ChatList userId={userId} chatHistory={example.chatList} />
       <ChatList userId={userId} chatHistory={realTimeMessages} />
