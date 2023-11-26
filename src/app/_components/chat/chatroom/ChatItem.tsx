@@ -4,15 +4,15 @@ import Message from './Message'
 interface ChatItemProps {
   newSender?: boolean
   type: 'YOU' | 'ME'
-  chat: ChatMessageGet
+  chat: ChatMessageFromServer | ChatMessageFromClient
 }
 
 const ChatItem = ({ newSender, type, chat }: ChatItemProps) => {
-  const { content, sendTime, isRead } = chat
+  const { content, createdAt, isRead } = chat
   return (
     <>
       {type === 'YOU' && (
-        <div className="flex gap-3 mb-3">
+        <div className="flex gap-3 mb-2">
           {newSender ? (
             <>
               <Bio />
@@ -23,7 +23,7 @@ const ChatItem = ({ newSender, type, chat }: ChatItemProps) => {
                 <Message
                   msg={content}
                   type={type}
-                  time={sendTime}
+                  time={createdAt}
                   isRead={isRead}
                 />
               </div>
@@ -35,7 +35,7 @@ const ChatItem = ({ newSender, type, chat }: ChatItemProps) => {
                 <Message
                   msg={content}
                   type={type}
-                  time={sendTime}
+                  time={createdAt}
                   isRead={isRead}
                 />
               </div>
@@ -49,7 +49,7 @@ const ChatItem = ({ newSender, type, chat }: ChatItemProps) => {
             <Message
               msg={content}
               type={type}
-              time={sendTime}
+              time={createdAt}
               isRead={isRead}
             />
           </div>

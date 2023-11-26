@@ -18,15 +18,15 @@ const useWebsocket = (roomId: number) => {
       console.log(frame)
       console.log('연결됨!', frame)
       client.subscribe(`/sub/chat/${roomId}`, (res) => {
-        const receivedMessage = { ...JSON.parse(res.body) }
+        const receivedMessage = {
+          ...JSON.parse(res.body),
+          isRead: 0,
+          messageId: new Date().toISOString(),
+          createdAt: new Date().toISOString(),
+        }
 
         console.log('메시지 : ', receivedMessage)
-        // messageId: number
-        // content: string
-        // senderId: number
-        // sendTime: string
-        // isRead: number
-        setRealTimeMessages((prev) => [...prev, receivedMessage.chatList])
+        setRealTimeMessages((prev) => [...prev, receivedMessage])
       })
     })
 

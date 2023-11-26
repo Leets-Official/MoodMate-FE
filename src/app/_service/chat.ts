@@ -1,11 +1,10 @@
-import { cookies } from 'next/headers'
-
+/** 채팅 내역 가져오기 */
 export const getMessages = async (
   userId: number,
   size: number,
   page: number,
 ) => {
-  const token = cookies().get('access_token')
+  // const token = cookies().get('access_token')
   const params = new URLSearchParams({
     userId: userId.toString(),
     size: size.toString(),
@@ -15,7 +14,7 @@ export const getMessages = async (
     const response = await fetch(`/chat?${params.toString()}`, {
       headers: {
         'Content-Type': 'application/json',
-        authorization: 'Bearer ' + (token?.value || ''),
+        // authorization: 'Bearer ' + (token?.value || ''),
       },
     }).then<ResponseChatGet>((res) => res.json())
     return response

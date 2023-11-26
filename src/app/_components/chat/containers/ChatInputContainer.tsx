@@ -28,12 +28,15 @@ const ChatInputContainer = ({ roomId }: ChatInputContainerProps) => {
       roomId: 1,
       userId: 1,
       content: inputVal.trim(),
+      isRead: 1, //서버 처리?
+      createdAt: new Date().toISOString(),
     }
 
     if (inputVal.trim() === '') {
       alert('메시지를 입력해주세요.')
       return
     }
+    setRealTimeMessages((prev) => [...prev, messageTosend])
     sendMessage(messageTosend)
     setInputVal('')
   }
