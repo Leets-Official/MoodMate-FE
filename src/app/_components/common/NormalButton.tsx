@@ -37,13 +37,26 @@ const NormalButton = ({
   isActive,
   color,
 }: NormalButtonProps) => {
+<<<<<<< HEAD
+=======
+  const handleButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
+    if (onClick && !isActive) {
+      onClick()
+    }
+  }
+
+>>>>>>> e582bfb (:recycle:[refactor]: 버튼 컴포넌트 상태 관리 수정)
   const buttonStyles = getButtonStyles(buttonType, color)
 
   return (
     <button
       type="button"
       className={`${buttonStyles.button} ${className}`}
+<<<<<<< HEAD
       onClick={onClick}
+=======
+      onClick={handleButtonClick}
+>>>>>>> e582bfb (:recycle:[refactor]: 버튼 컴포넌트 상태 관리 수정)
       disabled={!isActive}
     >
       {buttonText}
