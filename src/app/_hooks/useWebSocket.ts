@@ -1,58 +1,53 @@
-import StompJs from 'stompjs'
-import { Client } from '@stomp/stompjs'
-import { useCallback, useState } from 'react'
+import { realTimeMessagesState } from '@/_atom/chat'
+import { CompatClient, Stomp } from '@stomp/stompjs'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import SockJS from 'sockjs-client'
 
-const useWebSocket = () => {
-  const [client, setClient] = useState<Client | null>(null)
+const useWebsocket = (roomId: number) => {
+  const [stompClient, setstompClient] = useState<CompatClient | null>(null)
+  const [realTimeMessages, setRealTimeMessages] = useRecoilState(
+    realTimeMessagesState,
+  )
 
-  const connect = useCallback((roomId: number) => {
-    const sockJs = new SockJS('/chat')
-    const stomp = StompJs.over(sockJs)
-    const stompClient = new Client({
-      webSocketFactory: () => sockJs,
-      onConnect: (frame) => {
-        console.log('연결됨!', frame)
-        stompClient
-          .subscribe(
-            `/sub/chat/${roomId}`,
-            (res) => {
-              console.log(`/sub/chat/${roomId} 메시지 : `, JSON.parse(res.body))
-            },
-            {}, //header token 설정
-          )
-          .unsubscribe()
-      },
-      onDisconnect: () => {
-        console.log('연결 해제!')
-      },
-      onStompError: (frame) => {
-        console.error('Broker reported error:', frame.headers.message)
-        console.error('Additional details:', frame.body)
-      },
+  useEffect(() => {
+    const socket = new SockJS('http://localhost:8080/chat') // endpoint 확인
+    const client = Stomp.over(socket)
+
+    client.connect({}, (frame: string) => {
+      console.log(frame)
+      console.log('연결됨!', frame)
+      client.subscribe(`/sub/chat/${roomId}`, (res) => {
+        const receivedMessage = { ...JSON.parse(res.body) }
+
+        console.log('메시지 : ', receivedMessage)
+        // messageId: number
+        // content: string
+        // senderId: number
+        // sendTime: string
+        // isRead: number
+        setRealTimeMessages((prev) => [...prev, receivedMessage.chatList])
+      })
     })
-    stompClient.activate()
-    setClient(stompClient)
-  }, [])
+
+    client.activate()
+    setstompClient(client)
+
+    return () => {
+      if (client && client.connected) {
+        client.disconnect()
+      }
+    }
+  }, [roomId])
 
   const sendMessage = (message: RequestChatSendMessage) => {
     console.log(message)
-    if (client && client.connected) {
-      client.publish({
-        //send?
-        destination: `/pub/chat/`,
-        body: JSON.stringify(message),
-      })
+    if (stompClient?.connected && message) {
+      stompClient.send(`/pub/chat/`, {}, JSON.stringify(message))
     }
   }
 
-  const disconnect = useCallback(() => {
-    if (client && client.connected) {
-      client.deactivate()
-    }
-  }, [client])
-
-  return { connect, sendMessage, disconnect }
+  return { sendMessage }
 }
 
-export default useWebSocket
+export default useWebsocket
