@@ -17,37 +17,37 @@ var example = {
     {
       messageId: 1,
       content: 'hello',
-      senderId: 1,
-      sendTime: '2023-01-01T00:00:00Z',
+      userId: 1,
+      createdAt: '2023-01-01T00:01:00Z',
       isRead: 1,
     },
     {
       messageId: 2,
       content: 'hello',
-      senderId: 1,
-      sendTime: '2023-01-01T00:00:00Z',
+      userId: 1,
+      createdAt: '2023-01-01T00:02:00Z',
       isRead: 1,
     },
     {
       messageId: 3,
       content: 'hi',
-      senderId: 2,
-      sendTime: '2023-01-01T00:10:00Z',
+      userId: 2,
+      createdAt: '2023-01-02T00:10:00Z',
       isRead: 1,
     },
     {
       messageId: 4,
       content:
         '안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕',
-      senderId: 1,
-      sendTime: '2023-01-01T00:00:00Z',
+      userId: 1,
+      createdAt: '2023-01-02T00:11:00Z',
       isRead: 1,
     },
     {
       messageId: 5,
       content: 'hello',
-      senderId: 1,
-      sendTime: '2023-01-01T00:00:00Z',
+      userId: 1,
+      createdAt: '2023-01-02T00:19:00Z',
       isRead: 0,
     },
   ],
@@ -62,17 +62,13 @@ const ChatRoomContainer = ({ userId }: ChatRoomContainerProps) => {
     CHAT_SIZE.ROOM,
     1,
   )
-  useEffect(() => {
-    if (isSuccess && chatHistory) {
-      setRealTimeMessages(chatHistory.chatList)
-    }
-    console.log(realTimeMessages)
-  }, [isSuccess])
+  console.log(realTimeMessages)
 
   return (
     <section className="h-[82%] py-5 px-3">
       {/* <ChatList userId={userId} chatHistory={chatHistory} /> */}
       <ChatList userId={userId} chatHistory={example.chatList} />
+      <ChatList userId={userId} chatHistory={realTimeMessages} />
     </section>
   )
 }

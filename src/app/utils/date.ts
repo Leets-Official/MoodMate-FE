@@ -13,3 +13,12 @@ export const extractTimeFromDate = (dateString: string) => {
     .padStart(2, '0')}:${minutes}`
   return formattedTime
 }
+
+export const displayNewDate = (dateString: string) => {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  })
+}
