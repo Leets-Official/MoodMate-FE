@@ -3,8 +3,9 @@
 import ChatList from '../chatroom/ChatList'
 import { useChatQuery } from '@/_hooks/useChatQuery'
 import { CHAT_SIZE } from '@/_constants/chat'
-import { MyChatListState } from '@/_atom/chat'
 import { useRecoilState } from 'recoil'
+import { useEffect } from 'react'
+import { realTimeMessagesState } from '@/_atom/chat'
 
 interface ChatRoomContainerProps {
   userId: number
@@ -53,11 +54,21 @@ var example = {
 }
 
 const ChatRoomContainer = ({ userId }: ChatRoomContainerProps) => {
-  // const { isLoading, isError, chatHistory, isSuccess } = useChatQuery(
-  //   userId,
-  //   CHAT_SIZE.ROOM,
-  //   1, <-- 페이지네이션
-  // )
+  const [realTimeMessages, setRealTimeMessages] = useRecoilState(
+    realTimeMessagesState,
+  )
+  const { isLoading, isError, chatHistory, isSuccess } = useChatQuery(
+    userId,
+    CHAT_SIZE.ROOM,
+    1,
+  )
+  useEffect(() => {
+    if (isSuccess && chatHistory) {
+      setRealTimeMessages(chatHistory.chatList)
+    }
+    console.log(realTimeMessages)
+  }, [isSuccess])
+
   return (
     <section className="h-[82%] py-5 px-3">
       {/* <ChatList userId={userId} chatHistory={chatHistory} /> */}

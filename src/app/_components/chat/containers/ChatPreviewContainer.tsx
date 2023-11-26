@@ -3,10 +3,14 @@ import ChatPreview from '../chatlist/ChatPreview'
 import { CHAT_SIZE } from '@/_constants/chat'
 
 interface ChatPreviewContainerProps {
+  roomId: number
   userId: number
 }
 
-const ChatPreviewContainer = ({ userId }: ChatPreviewContainerProps) => {
+const ChatPreviewContainer = ({
+  userId,
+  roomId,
+}: ChatPreviewContainerProps) => {
   // const { isLoading, isError, chatHistory, isSuccess } = useChatQuery(
   //   userId,
   //   CHAT_SIZE.PREVIEW,
@@ -15,6 +19,7 @@ const ChatPreviewContainer = ({ userId }: ChatPreviewContainerProps) => {
   return (
     <section className="bg-neutral-300 w-full h-full flex justify-center pt-[34px]">
       <ChatPreview
+        roomId={roomId}
         userId={userId}
         nickname="사랑스러운 무디"
         count={1}
