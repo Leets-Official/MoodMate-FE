@@ -51,7 +51,7 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
         <ModalPortal nodeName="exitPortal">
           <ModalOutside
             onClose={onCloseExitModal}
-            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-lg shadow-sm py-10"
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
           >
             <ModalContent
               subject={openExitModal ? END_CHAT_MODAL : NEW_MATCHING_MODAL}
