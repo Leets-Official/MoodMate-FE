@@ -3,8 +3,16 @@ import React from 'react'
 
 const TimerMiddleText = () => {
   return (
-    <section className="text-center mx-auto mt-5 bg-[#313131] px-10 py-5 text-white rounded-[30px]">
-      <p>{BEFORE_TIMER_GUIDE.DESCRIPTION}</p>
+    <section className="mt-7 flex justify-center items-center text-center flex-col mx-auto">
+      <p className="pt-6 text-[#333333] font-bold bg-[#FFE5E7] w-[221px] h-[74px] rounded-[30px]">
+        {BEFORE_TIMER_GUIDE.DESCRIPTION}
+      </p>
+      <div
+        className="w-0 h-0
+  border-l-[10px] border-l-transparent
+  border-t-[15px] border-t-[#FFE5E7]
+  border-r-[10px] border-r-transparent"
+      />
     </section>
   )
 }
