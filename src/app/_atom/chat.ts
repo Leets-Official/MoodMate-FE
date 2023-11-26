@@ -1,6 +1,11 @@
 import { atom } from 'recoil'
 
-export const MyChatListState = atom<string[] | null>({
-  key: 'MyChatListState',
-  default: null,
+export const realTimeMessagesState = atom<ChatMessageGet[]>({
+  key: 'realTimeMessages',
+  default: [],
+})
+
+export const messageState = atom<string[]>({
+  key: 'messageState',
+  default: [],
 })

@@ -2,6 +2,7 @@ import Bio from '@/_components/common/Bio'
 import Link from 'next/link'
 
 interface ChatPreviewProps {
+  roomId: number
   userId: number
   nickname: string
   lastMessage: string
@@ -10,6 +11,7 @@ interface ChatPreviewProps {
 }
 
 const ChatPreview = ({
+  roomId,
   userId,
   nickname,
   lastMessage,
@@ -18,7 +20,7 @@ const ChatPreview = ({
 }: ChatPreviewProps) => {
   return (
     <section className="bg-white h-[80px] w-[80%] rounded-2xl ">
-      <Link href={`/chat/room/${userId}`}>
+      <Link href={`/chat/room/${userId}/${roomId}`}>
         <div className="flex justify-center items-center flex-row gap-4 h-full">
           <Bio />
           <div className="flex flex-col w-[180px]  bg-white">
