@@ -18,7 +18,7 @@ const getMessageStyle = (type: string) => {
       }
     case 'ME':
       return {
-        box: 'bg-[#D6D6D6]',
+        box: 'bg-[#D6D6D6] ',
         tail: 'right-0 mr-[-10px] mb-1 w-0 h-0 border-t-[4px] border-t-transparent border-l-[14px] border-l-[#D6D6D6]',
         time: 'left-[-60px] ',
         read: '',
@@ -38,7 +38,7 @@ const Message = ({ msg, type, time, isRead }: MessageProps) => {
     <div
       className={`${
         getMessageStyle(type).box
-      } relative bg-white border border-black px-[8px] py-[7px] rounded-lg`}
+      } relative bg-white border border-black px-[8px] py-[7px] rounded-lg mb-1.5`}
     >
       <p className={`text-black text-xs`}>{msg}</p>
       <div
