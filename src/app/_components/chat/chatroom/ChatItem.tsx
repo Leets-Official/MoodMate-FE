@@ -3,7 +3,7 @@ import Message from './Message'
 import { extractTimeFromDate } from '@/utils/date'
 
 interface ChatItemProps {
-  user?: UserInChat
+  user?: SimpleUser
   newSender?: boolean
   type: 'YOU' | 'ME'
   chat: ChatMessageFromServer

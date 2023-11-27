@@ -1,7 +1,14 @@
-interface UserInfo {
+interface SimpleUser {
+  gender: 'MALE' | 'FEMALE'
   nickname: string
-  gender?: '남' | '여'
+}
+
+interface UserInfo extends SimpleUser {
   age: number
   keywords: string[]
   department: string
+}
+
+interface PartnerInfo extends UserInfo {
+  mood: string
 }
