@@ -159,3 +159,11 @@ export const DATE_MOODE_PAGE = {
   GREETING: '무디와 어떤 데이트를 하고 싶나요?',
   MOOD_LIST,
 } as const
+
+export const BUTTON_TYPE = {
+  GENDER: 'GENDER',
+  KEYWORD: 'KEYWORD',
+  MAJOR: 'MAJOR',
+  MOOD: 'MOOD',
+  DEFAULT: 'DEFAULT',
+} as const
