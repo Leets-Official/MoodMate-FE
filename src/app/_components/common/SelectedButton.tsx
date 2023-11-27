@@ -13,7 +13,7 @@ interface SelectedButtonProps {
 
 const SelectedButton = ({
   buttonText,
-  buttonType = 'default',
+  buttonType = 'DEFAULT',
   isActive,
   color,
   onClick,
