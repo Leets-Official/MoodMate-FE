@@ -17,6 +17,7 @@
     "@types/sockjs-client": "^1.5.4",
     "@types/stompjs": "^2.3.8",
     "autoprefixer": "10.4.16",
+    "axios": "^1.6.2",
     "eslint-config-next": "14.0.1",
     "eslint-plugin-prettier": "^5.0.1",
     "next": "14.0.1",
