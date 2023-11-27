@@ -1,19 +1,49 @@
-import { BEFORE_TIMER_GUIDE } from '@/_constants/main'
+import { AFTER_TIMER_GUIDE, BEFORE_TIMER_GUIDE } from '@/_constants/main'
 import React from 'react'
 
-const TimerMiddleText = () => {
+interface TextProps {
+  type: 'BEFORE' | 'AFTER'
+}
+
+const getTextStyle = (type: string) => {
+  switch (type) {
+    case 'BEFORE':
+      return {
+        text: 'pt-6 text-[#333333] bg-[#FFE5E7]',
+        triangle: 'border-t-[#FFE5E7]',
+        match: BEFORE_TIMER_GUIDE.DESCRIPTION,
+      }
+    case 'AFTER':
+      return {
+        text: 'pt-7 text-[#FFFFFF] bg-[#FD8188]',
+        triangle: 'border-t-[#FD8188]',
+        match: AFTER_TIMER_GUIDE.DESCRIPTION,
+      }
+    default:
+      return {
+        text: '',
+        triangle: '',
+        match: '',
+      }
+  }
+}
+const TimerMiddleText = ({ type }: TextProps) => {
   return (
-    <section className="mt-7 flex justify-center items-center text-center flex-col mx-auto">
-      <p className="pt-6 text-[#333333] font-bold bg-[#FFE5E7] w-[221px] h-[74px] rounded-[30px]">
-        {BEFORE_TIMER_GUIDE.DESCRIPTION}
+    <div className="mt-7 flex justify-center items-center text-center flex-col mx-auto">
+      <p
+        className={`${
+          getTextStyle(type).text
+        } font-bold w-[221px] h-[74px] rounded-[30px]`}
+      >
+        {getTextStyle(type).match}
       </p>
       <div
-        className="w-0 h-0
+        className={`w-0 h-0
   border-l-[10px] border-l-transparent
-  border-t-[15px] border-t-[#FFE5E7]
-  border-r-[10px] border-r-transparent"
+  border-t-[15px] ${getTextStyle(type).triangle}
+  border-r-[10px] border-r-transparent`}
       />
-    </section>
+    </div>
   )
 }
 
