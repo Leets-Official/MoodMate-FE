@@ -3,7 +3,7 @@ import ChatItem from './ChatItem'
 import ChatDate from './ChatDate'
 
 interface ChatListProps {
-  user?: UserInChat
+  user?: SimpleUser
   userId: number
   chatHistory: ChatMessageFromServer[]
 }
