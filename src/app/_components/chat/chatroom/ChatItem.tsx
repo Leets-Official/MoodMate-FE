@@ -5,7 +5,7 @@ import { extractTimeFromDate } from '@/utils/date'
 interface ChatItemProps {
   newSender?: boolean
   type: 'YOU' | 'ME'
-  chat: ChatMessageFromServer | ChatMessageFromClient
+  chat: ChatMessageFromServer
 }
 
 const ChatItem = ({ newSender, type, chat }: ChatItemProps) => {

@@ -20,7 +20,7 @@ const useWebsocket = (roomId: number) => {
       client.subscribe(`/sub/chat/${roomId}`, (res) => {
         const receivedMessage = {
           ...JSON.parse(res.body),
-          isRead: 0,
+          isRead: true,
           messageId: new Date().toISOString(),
           createdAt: new Date().toISOString(),
         }
@@ -40,7 +40,7 @@ const useWebsocket = (roomId: number) => {
     }
   }, [roomId])
 
-  const sendMessage = (message: RequestChatSendMessage) => {
+  const sendMessage = (message: ChatMessageFromClient) => {
     console.log(message)
     if (stompClient?.connected && message) {
       stompClient.send(`/pub/chat/`, {}, JSON.stringify(message))
