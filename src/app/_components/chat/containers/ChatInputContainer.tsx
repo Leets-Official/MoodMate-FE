@@ -10,9 +10,10 @@ import { realTimeMessagesState } from '@/_atom/chat'
 
 interface ChatInputContainerProps {
   roomId: number
+  userId: number
 }
 
-const ChatInputContainer = ({ roomId }: ChatInputContainerProps) => {
+const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
   const [inputVal, setInputVal] = useState<string>('')
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
@@ -25,18 +26,24 @@ const ChatInputContainer = ({ roomId }: ChatInputContainerProps) => {
 
   const handleSendMessage = () => {
     const messageTosend = {
-      roomId: 1,
-      userId: 1,
+      roomId: roomId,
+      userId: userId,
       content: inputVal.trim(),
-      isRead: 1, //서버 처리?
-      createdAt: new Date().toISOString(),
     }
 
     if (inputVal.trim() === '') {
       alert('메시지를 입력해주세요.')
       return
     }
-    setRealTimeMessages((prev) => [...prev, messageTosend])
+    const messageToStore = {
+      messageId: String(new Date().toISOString()),
+      content: inputVal.trim(),
+      userId: userId,
+      createdAt: String(new Date().toISOString()),
+      isRead: true,
+    }
+
+    setRealTimeMessages((prev) => [...prev, messageToStore])
     sendMessage(messageTosend)
     setInputVal('')
   }

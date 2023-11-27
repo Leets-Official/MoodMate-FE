@@ -1,7 +1,7 @@
 /** 채팅방 내역 불러오기 응답 데이터 */
 interface ResponseChatGet {
   userId: number
-  chatList: ChatMessageGet[]
+  chatList: ChatMessageFromServer[]
 }
 
 /** 메세지 받아오기 응답 데이터 */
