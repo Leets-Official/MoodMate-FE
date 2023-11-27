@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import NormalButton from './NormalButton'
 
 interface ModalButtonsProps {
@@ -13,6 +14,17 @@ const ModalButtons = ({
   confirmText,
   cancelText,
 }: ModalButtonsProps) => {
+  const [isSelected, setIsSelected] = useState<boolean>(false)
+
+  const onConfirmHandler = () => {
+    setIsSelected((prev) => !prev)
+    onConfirm()
+  }
+
+  const onCancelHandler = () => {
+    setIsSelected((prev) => !prev)
+    onCancel()
+  }
   return (
     <div className="flex flex-row w-full gap-2">
       <NormalButton
@@ -20,7 +32,8 @@ const ModalButtons = ({
         buttonType="small"
         className="rounded-lg"
         color=""
-        onClick={onCancel}
+        onClick={onCancelHandler}
+        selected={isSelected}
         isActive
       />
       <NormalButton
@@ -28,7 +41,8 @@ const ModalButtons = ({
         buttonType="small"
         className="rounded-lg"
         color=""
-        onClick={onConfirm}
+        onClick={onConfirmHandler}
+        selected={isSelected}
         isActive
       />
     </div>
