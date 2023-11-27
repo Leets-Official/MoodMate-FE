@@ -11,3 +11,8 @@ interface ChatMessageFromServer {
   createdAt: string
   isRead: boolean
 }
+
+interface UserInChat {
+  gender: 'MALE' | 'FEMALE'
+  nickname: string
+}
