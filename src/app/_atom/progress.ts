@@ -1,6 +1,8 @@
 import { atom } from 'recoil'
 
-export const currentQuestionState = atom({
+type QuestionState = number
+
+export const currentQuestionState = atom<QuestionState>({
   key: 'currentQuestionState',
   default: 0,
 })
