@@ -1,21 +1,23 @@
 'use client'
 
 import NormalButton from '@/_components/common/NormalButton'
-import { KAKAO_AUTH_URL } from '@/_lib/kakao'
+import { GOOGLE_AUTH_URL } from '@/_lib/google'
 import React from 'react'
 
 export default function Login() {
   const handleLogin = () => {
-    window.location.href = KAKAO_AUTH_URL
+    window.location.href = GOOGLE_AUTH_URL
   }
   return (
     <div className="flex flex-col">
       <p className="mx-auto text-blue-600 mb-60 mt-52">로고</p>
       <NormalButton
-        buttonText="카카오로 로그인"
+        buttonText="Google 게정으로 로그인"
         buttonType="large"
         onClick={handleLogin}
-        className="bg-[#FEE500] text-[15px] text-black mx-auto rounded-[8px] hover:bg-amber-400"
+        className="text-[15px] text-black mx-auto rounded-[8px] shadow shadow-gray-500"
+        color=""
+        isActive
       />
     </div>
   )
