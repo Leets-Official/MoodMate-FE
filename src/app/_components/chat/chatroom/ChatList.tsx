@@ -4,7 +4,7 @@ import ChatDate from './ChatDate'
 
 interface ChatListProps {
   userId: number
-  chatHistory: ChatMessageFromServer[] | ChatMessageFromClient[]
+  chatHistory: ChatMessageFromServer[] | ChatMessageFromServer[]
 }
 
 const ChatList = ({ userId, chatHistory }: ChatListProps) => {
