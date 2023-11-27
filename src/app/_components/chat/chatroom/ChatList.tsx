@@ -3,11 +3,12 @@ import ChatItem from './ChatItem'
 import ChatDate from './ChatDate'
 
 interface ChatListProps {
+  user?: UserInChat
   userId: number
-  chatHistory: ChatMessageFromServer[] | ChatMessageFromServer[]
+  chatHistory: ChatMessageFromServer[]
 }
 
-const ChatList = ({ userId, chatHistory }: ChatListProps) => {
+const ChatList = ({ userId, user, chatHistory }: ChatListProps) => {
   let prevDate: string | null = null
   return (
     <>
@@ -16,10 +17,10 @@ const ChatList = ({ userId, chatHistory }: ChatListProps) => {
         let displayDate: boolean | null = null
 
         if (messageDate !== prevDate) {
-          console.log(messageDate, '----', prevDate)
           displayDate = true
           prevDate = messageDate
         }
+
         return (
           <>
             {displayDate && <ChatDate date={messageDate} />}
@@ -29,6 +30,7 @@ const ChatList = ({ userId, chatHistory }: ChatListProps) => {
                   key={idx}
                   type="YOU"
                   chat={chat}
+                  user={user}
                   newSender={
                     idx === 0 ||
                     (idx > 0 && chatHistory[idx - 1].userId !== chat.userId)
@@ -36,7 +38,7 @@ const ChatList = ({ userId, chatHistory }: ChatListProps) => {
                 />
               </>
             ) : (
-              <ChatItem key={idx} type="ME" chat={chat} />
+              <ChatItem key={idx} type="ME" chat={chat} user={user} />
             )}
           </>
         )
