@@ -7,15 +7,15 @@ export const getMessages = async (
   page: number,
 ) => {
   try {
-    const response = await api.get('/chat', {
-      params: {
-        userId: userId.toString(),
-        size: size.toString(),
-        page: page.toString(),
-      },
-    })
-
-    return response.data
+    return await api
+      .get('/chat', {
+        params: {
+          userId: userId.toString(),
+          size: size.toString(),
+          page: page.toString(),
+        },
+      })
+      .then((res) => res.data)
   } catch (e: any) {
     console.log('채팅 기록 가져오기 에러 : ', e.message)
     throw e
