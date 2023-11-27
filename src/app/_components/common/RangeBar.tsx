@@ -1,35 +1,37 @@
-import { useState } from 'react'
 import { Range } from 'react-range'
-
-const STEP = 1
-const MIN = 1994
-const MAX = 2004
+import { RANGE_BAR_AGE } from '@/_constants'
 
 type RangeBarProps = {
   type: 'single' | 'range'
+  values: number[]
+  onChange: (values: number[]) => void
 }
 
-const RangeBar = ({ type }: RangeBarProps) => {
-  const [values, setValues] = useState<number[]>(
-    type === 'single' ? [MIN] : [MIN, MAX],
-  )
-
+const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
   return (
     <div className="h-screen flex items-center justify-center">
       <Range
-        step={STEP}
-        min={MIN}
-        max={MAX}
+        step={RANGE_BAR_AGE.STEP}
+        min={RANGE_BAR_AGE.MIN}
+        max={RANGE_BAR_AGE.MAX}
         values={values}
-        onChange={(values) => setValues(values)}
+        onChange={(values) => onChange(values)}
         renderTrack={({ props, children }) => (
           <div {...props} className="h-1.5 w-full bg-gray-300 rounded-full">
             {type === 'range' && (
               <div
                 className="absolute h-1.5 rounded-full bg-black"
                 style={{
-                  width: `${((values[1] - values[0]) / (MAX - MIN)) * 100}%`,
-                  left: `${((values[0] - MIN) / (MAX - MIN)) * 100}%`,
+                  width: `${
+                    ((values[1] - values[0]) /
+                      (RANGE_BAR_AGE.MAX - RANGE_BAR_AGE.MIN)) *
+                    100
+                  }%`,
+                  left: `${
+                    ((values[0] - RANGE_BAR_AGE.MIN) /
+                      (RANGE_BAR_AGE.MAX - RANGE_BAR_AGE.MIN)) *
+                    100
+                  }%`,
                 }}
               />
             )}
