@@ -1,16 +1,20 @@
 'use client'
 
-import { back, deactivation, hamburger } from '@/_ui/IconsPath'
+import { back, hamburger, quit } from '@/_ui/IconsPath'
 import { useState } from 'react'
 import { END_CHAT_MODAL, NEW_MATCHING_MODAL } from '@/_constants/chat'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import ModalPortal from '../common/ModalPortal'
-import ModalOutside from '../common/ModalOutside'
-import ModalContent from '../common/ModalContent'
+import ModalPortal from '../common/modal/ModalPortal'
+import ModalOutside from '../common/modal/ModalOutside'
+import ModalContent from '../common/modal/ModalContent'
 import Icons from '../common/Icons'
 
-const ChatHeader = () => {
+interface ChatHeaderProps {
+  userId: number
+}
+
+const ChatHeader = ({ userId }: ChatHeaderProps) => {
   const [openExitModal, setOpenExitModal] = useState<boolean>(false)
   const [openMatchModal, setOpenMatchModal] = useState<boolean>(false)
   const router = useRouter()
@@ -18,6 +22,12 @@ const ChatHeader = () => {
   const onOpenMatchModal = () => {
     setOpenExitModal((prev) => !prev)
     setOpenMatchModal((prev) => !prev)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const onCloseExitModal = () => {
+    setOpenExitModal(false)
+    document.body.style.overflow = 'unset'
   }
 
   const onConfirmNewMatch = () => {
@@ -32,36 +42,21 @@ const ChatHeader = () => {
     <section className="flex items-center justify-between w-full h-[47px] px-[26px]">
       <Icons name={back} onClick={() => router.back()} />
       <div className="flex flex-row items-center justify-center gap-3 cursor-pointer">
-        <Icons name={deactivation} onClick={() => setOpenExitModal(true)} />
-        {/* 상대방 id 가져오기. 임시 1 */}
-        <Link href={`/chat/partner-info/${1}`}>
+        <Icons name={quit} onClick={() => setOpenExitModal(true)} />
+        <Link href={`/chat/partner-info/${userId}`}>
           <Icons name={hamburger} />
         </Link>
       </div>
-      {openExitModal && (
+      {(openExitModal || openMatchModal) && (
         <ModalPortal nodeName="exitPortal">
           <ModalOutside
-            onClose={() => setOpenExitModal(false)}
-            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-lg shadow-sm py-10"
+            onClose={onCloseExitModal}
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
           >
             <ModalContent
-              subject={END_CHAT_MODAL}
-              onConfirm={onOpenMatchModal}
-              onCancel={() => setOpenExitModal(false)}
-            />
-          </ModalOutside>
-        </ModalPortal>
-      )}
-      {openMatchModal && (
-        <ModalPortal nodeName="exitPortal">
-          <ModalOutside
-            onClose={() => setOpenExitModal(false)}
-            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-lg shadow-sm py-10"
-          >
-            <ModalContent
-              subject={NEW_MATCHING_MODAL}
-              onConfirm={onConfirmNewMatch}
-              onCancel={onCancelNewMatch}
+              subject={openExitModal ? END_CHAT_MODAL : NEW_MATCHING_MODAL}
+              onConfirm={openExitModal ? onOpenMatchModal : onConfirmNewMatch}
+              onCancel={openExitModal ? onCloseExitModal : onCancelNewMatch}
             />
           </ModalOutside>
         </ModalPortal>

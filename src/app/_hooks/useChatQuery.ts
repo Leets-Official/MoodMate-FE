@@ -1,3 +1,5 @@
+'use client'
+
 import { getMessages } from '@/_service/chat'
 import { useQuery } from '@tanstack/react-query'
 

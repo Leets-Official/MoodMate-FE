@@ -3,22 +3,42 @@
 import { ChangeEvent, useState } from 'react'
 import Icons from '@/_components/common/Icons'
 import { send } from '@/_ui/IconsPath'
-import useWebSocket from '@/_hooks/useWebSocket'
 import Input from '../../common/Input'
+import { useRecoilState } from 'recoil'
+import useWebsocket from '@/_hooks/useWebSocket'
+import { realTimeMessagesState } from '@/_atom/chat'
 
-const ChatInputContainer = () => {
-  const [inputVal, setInputVal] = useState<string | null>(null)
-  const { sendMessage } = useWebSocket()
+interface ChatInputContainerProps {
+  roomId: number
+}
+
+const ChatInputContainer = ({ roomId }: ChatInputContainerProps) => {
+  const [inputVal, setInputVal] = useState<string>('')
+  const [realTimeMessages, setRealTimeMessages] = useRecoilState(
+    realTimeMessagesState,
+  )
+  const { sendMessage } = useWebsocket(roomId)
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputVal((prev) => e.target.value)
+    setInputVal(() => e.target.value)
   }
 
   const handleSendMessage = () => {
-    if (inputVal) {
-      sendMessage(1, inputVal) // roomId 일단 1로.
-      setInputVal('')
+    const messageTosend = {
+      roomId: 1,
+      userId: 1,
+      content: inputVal.trim(),
+      isRead: 1, //서버 처리?
+      createdAt: new Date().toISOString(),
     }
+
+    if (inputVal.trim() === '') {
+      alert('메시지를 입력해주세요.')
+      return
+    }
+    setRealTimeMessages((prev) => [...prev, messageTosend])
+    sendMessage(messageTosend)
+    setInputVal('')
   }
 
   return (

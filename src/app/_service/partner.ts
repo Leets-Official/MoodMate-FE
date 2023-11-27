@@ -1,21 +1,16 @@
 import { parseCookies } from 'nookies'
 
-/** 채팅 내역 가져오기 */
-export const getMessages = async (
-  userId: number,
-  size: number,
-  page: number,
-) => {
+/** 상대방 정보 가져오기 */
+export const getPartnerInfo = async (userId: number) => {
   const cookies = parseCookies()
   const access_token = cookies.access_token
 
   const params = new URLSearchParams({
     userId: userId.toString(),
-    size: size.toString(),
-    page: page.toString(),
   })
+
   try {
-    const response = await fetch(`/chat?${params.toString()}`, {
+    const response = await fetch(`/chat/partner?${params.toString()}`, {
       headers: {
         'Content-Type': 'application/json',
         // authorization: 'Bearer ' + access_token,
