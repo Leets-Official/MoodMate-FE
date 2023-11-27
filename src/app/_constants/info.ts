@@ -156,10 +156,10 @@ export const INPUT_NICKNAME = {
 } as const
 
 export const BUTTON_TYPE = {
-  gender: 'gender',
-  keyword: 'keyword',
-  major: 'major',
-  mood: 'mood',
-  default: 'default',
+  GENDER: 'GENDER',
+  KEYWORD: 'KEYWORD',
+  MAJOR: 'MAJOR',
+  MOOD: 'MOOD',
+  DEFAULT: 'DEFAULT',
 } as const
 
