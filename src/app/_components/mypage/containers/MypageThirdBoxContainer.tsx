@@ -7,7 +7,7 @@ const MypageThirdBoxContainer = () => {
     <section className="ml-6 mt-4">
       <p className="text-[12px] text-[#808080]">로그인</p>
       <div className="mt-4 flex">
-        <Icons name={logout} className="mt-1" />
+        <Icons name={logout} />
         <p className="text-[16px] ml-2.5">로그아웃</p>
       </div>
     </section>
