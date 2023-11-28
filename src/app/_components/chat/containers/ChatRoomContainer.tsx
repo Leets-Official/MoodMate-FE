@@ -11,6 +11,7 @@ import { data } from 'autoprefixer'
 
 interface ChatRoomContainerProps {
   userId: number
+  roomId: number
 }
 
 // var example = {
@@ -40,7 +41,7 @@ interface ChatRoomContainerProps {
 //   ],
 // }
 
-const ChatRoomContainer = ({ userId }: ChatRoomContainerProps) => {
+const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [scrollHeight, setScrollHeight] = useState(0)
   const topDivRef = useRef<HTMLDivElement>(null)
@@ -55,7 +56,7 @@ const ChatRoomContainer = ({ userId }: ChatRoomContainerProps) => {
     data, // 형태 맞는지 재확인
     isFetchingNextPage,
     status,
-  } = useInfiniteChatQuery(userId, CHAT_SIZE.ROOM)
+  } = useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
 
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {

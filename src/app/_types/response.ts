@@ -4,7 +4,7 @@ interface ResponseChatGet {
     gender: 'MALE' | 'FEMALE'
     nickname: string
   }
-  pagable: {
+  pageable: {
     size: number
     page: number
     totalPages: number
