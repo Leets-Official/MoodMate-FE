@@ -1,6 +1,14 @@
-/** 채팅방 내역 불러오기 응답 데이터 */
+/** 채팅 내역 불러오기 응답 데이터 */
 interface ResponseChatGet {
-  userId: number
+  user: {
+    gender: 'MALE' | 'FEMALE'
+    nickname: string
+  }
+  pageable: {
+    size: number
+    page: number
+    totalPages: number
+  }
   chatList: ChatMessageFromServer[]
 }
 

@@ -3,23 +3,28 @@ import Message from './Message'
 import { extractTimeFromDate } from '@/utils/date'
 
 interface ChatItemProps {
+  user?: SimpleUser
   newSender?: boolean
   type: 'YOU' | 'ME'
   chat: ChatMessageFromServer
 }
 
-const ChatItem = ({ newSender, type, chat }: ChatItemProps) => {
-  const { content, createdAt, isRead } = chat
+const ChatItem = ({
+  newSender,
+  type,
+  chat: { content, createdAt, isRead },
+  user,
+}: ChatItemProps) => {
   return (
     <>
       {type === 'YOU' && (
         <div className="flex gap-3 mb-2">
           {newSender ? (
             <>
-              <Bio />
+              {user?.gender && <Bio gender={user.gender} size="SMALL" />}
               <div className=" flex flex-col max-w-[200px] ">
                 <div className="text-xs line-clamp-1 ">
-                  <p>사랑스러운 무디</p>
+                  <p>{user?.nickname}</p>
                 </div>
                 <Message
                   msg={content}

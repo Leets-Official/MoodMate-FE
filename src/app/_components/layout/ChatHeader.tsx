@@ -9,6 +9,7 @@ import ModalPortal from '../common/modal/ModalPortal'
 import ModalOutside from '../common/modal/ModalOutside'
 import ModalContent from '../common/modal/ModalContent'
 import Icons from '../common/Icons'
+import { patchQuitChat } from '@/_service/chat'
 
 interface ChatHeaderProps {
   userId: number
@@ -30,12 +31,17 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
     document.body.style.overflow = 'unset'
   }
 
-  const onConfirmNewMatch = () => {
+  const onConfirmNewMatch = async () => {
     console.log('채팅 종료 & 재매칭 ')
+    await patchQuitChat(userId)
+    // 예외처리
+    router.push('/main') //메인 렌더링 되면서 채팅방 안 들어가지는지 확인
   }
 
-  const onCancelNewMatch = () => {
+  const onCancelNewMatch = async () => {
     console.log('채팅종료만. 재매칭은 x')
+    await patchQuitChat(userId)
+    //비활성화 코드 추가
   }
 
   return (

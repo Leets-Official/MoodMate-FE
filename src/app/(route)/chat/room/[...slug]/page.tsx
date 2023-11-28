@@ -14,7 +14,7 @@ export default function ChatRoomPage({ params }: ChatRoomPageProps) {
   return (
     <section className="flex flex-col h-screen">
       <ChatHeader userId={Number(userId)} />
-      <ChatRoomContainer userId={Number(userId)} />
+      <ChatRoomContainer userId={Number(userId)} roomId={Number(roomId)} />
       <ChatInputContainer userId={Number(userId)} roomId={Number(roomId)} />
     </section>
   )
