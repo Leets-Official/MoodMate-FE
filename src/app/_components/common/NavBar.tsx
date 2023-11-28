@@ -1,6 +1,7 @@
+'use client'
+
 import Icons from '@/_components/common/Icons'
 import { bio, chat, deactivation, whitechat } from '@/_ui/IconsPath'
-import { router } from 'next/client'
 import { useRouter } from 'next/navigation'
 
 interface TextProps {
