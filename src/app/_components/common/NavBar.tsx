@@ -54,7 +54,7 @@ const NavBar = ({ type }: TextProps) => {
           />
         </div>
         <div className="mr-16">
-          <Icons name={bio} onClick={() => router.push("/mypage")}/>
+          <Icons name={bio} onClick={() => router.push('/mypage')} />
         </div>
       </div>
     </div>
