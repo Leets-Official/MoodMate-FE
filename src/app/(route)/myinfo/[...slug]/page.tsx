@@ -10,5 +10,5 @@ interface MyinfoPageProps {
 export default function MyinfoPage({ params }: MyinfoPageProps) {
   const pageNumber = params.slug
 
-  return <div>MyinfoPage</div>
+  return <section>MyinfoPage</section>
 }
