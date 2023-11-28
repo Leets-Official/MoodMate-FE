@@ -1,18 +1,13 @@
-'use client'
-
-import { MouseEvent } from 'react'
-
 interface NormalButtonProps {
   buttonText: string
   onClick: () => void
   buttonType: 'large' | 'small'
   className: string
   isActive: boolean
-  color: string
 }
 
-const getButtonStyles = (buttonType: 'large' | 'small', color: string) => {
-  const baseStyles = `bg-${color}`
+const getButtonStyles = (buttonType: 'large' | 'small', className: string) => {
+  const baseStyles = `${className}`
   switch (buttonType) {
     case 'large':
       return {
@@ -35,14 +30,13 @@ const NormalButton = ({
   buttonType,
   className,
   isActive,
-  color,
 }: NormalButtonProps) => {
-  const buttonStyles = getButtonStyles(buttonType, color)
+  const buttonStyles = getButtonStyles(buttonType, className)
 
   return (
     <button
       type="button"
-      className={`${buttonStyles.button} ${className}`}
+      className={`${buttonStyles.button}`}
       onClick={onClick}
       disabled={!isActive}
     >
