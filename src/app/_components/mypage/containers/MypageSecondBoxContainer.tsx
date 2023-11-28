@@ -14,26 +14,26 @@ const MypageSecondBoxContainer = () => {
   return (
     <section className="flex flex-col">
       <p className="ml-6 mt-4 text-[12px] text-[#808080]">내가 고른 항목</p>
-      <div className="ml-6 mt-">
+      <div className="ml-6">
         <InfoDetail
           titleText="키워드"
           component={Keyword()}
-          className="-ml-2"
+          className=""
         />
         <InfoDetail
           titleText="무디 나이"
           component={MoodyAge()}
-          className="-ml-0"
+          className="ml-2"
         />
         <InfoDetail
           titleText="선호 조건 선택"
           component={Department()}
-          className="ml-4"
+          className="ml-6"
         />
         <InfoDetail
           titleText="데이트 무드"
           component={DateMood()}
-          className="ml-2"
+          className="ml-4"
         />
       </div>
       <div className="w-auto h-2 bg-[#E6E6E6] mt-6" />
