@@ -17,7 +17,7 @@ const ChatItem = ({ newSender, type, chat, user }: ChatItemProps) => {
         <div className="flex gap-3 mb-2">
           {newSender ? (
             <>
-              <Bio gender={user?.gender} />
+              {user?.gender && <Bio gender={user.gender} size="SMALL" />}
               <div className=" flex flex-col max-w-[200px] ">
                 <div className="text-xs line-clamp-1 ">
                   <p>{user?.nickname}</p>
