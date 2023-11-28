@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from 'react'
 import { realTimeMessagesState } from '@/_atom/chat'
 import { useInfiniteChatQuery } from '@/_hooks/useInfiniteChatQuery'
 import { useIntersectionObserver } from '@/_hooks/useIntersectionObserver'
-import { data } from 'autoprefixer'
 
 interface ChatRoomContainerProps {
   userId: number
@@ -88,34 +87,27 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       containerRef.current.scrollTop = scrollTop
       setScrollHeight(containerRef.current.scrollHeight)
     }
-    console.log(data) //콘솔 확인
-  }, [data]) // deps맞는지 확인.
+    console.log(data?.pages) //콘솔 확인
+  }, [data?.pages]) // deps맞는지 확인.
 
   return (
     <section className="h-[82%] py-5 px-3 overflow-scroll" ref={scrollRef}>
       <div ref={topDivRef} />
-      {status === 'error' ? (
-        <p>error</p> // 에러처리
+      {isFetchingNextPage ? (
+        <p>로딩중...</p> // 로딩 처리
       ) : (
-        <>
-          {isFetchingNextPage ? (
-            <p>로딩중...</p> // 로딩 처리
-          ) : (
-            !hasNextPage && <p>처음 채팅!</p>
-          )}
-          {data?.pages.map((pageData) => {
-            return (
-              <ChatList
-                userId={userId}
-                user={pageData.user}
-                chatHistory={pageData.chatList}
-              />
-            )
-          })}
-          {/* <ChatList userId={userId} chatHistory={example.chatList} /> */}
-          <ChatList userId={userId} chatHistory={realTimeMessages} />
-        </>
+        !hasNextPage && <p>처음 채팅!</p>
       )}
+      {data?.pages.map((pageData) => {
+        return (
+          <ChatList
+            userId={userId}
+            user={pageData.user}
+            chatHistory={pageData.chatList}
+          />
+        )
+      })}
+      <ChatList userId={userId} chatHistory={realTimeMessages} />
     </section>
   )
 }

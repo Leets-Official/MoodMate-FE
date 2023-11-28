@@ -1,3 +1,5 @@
+'use client'
+
 import { useChatQuery } from '@/_hooks/useChatQuery'
 import ChatPreview from '../chatlist/ChatPreview'
 import { CHAT_SIZE } from '@/_constants/chat'
@@ -11,7 +13,7 @@ const ChatPreviewContainer = ({
   userId,
   roomId,
 }: ChatPreviewContainerProps) => {
-  const { isLoading, isError, chatHistory, isSuccess } = useChatQuery(
+  const { isLoading, isError, chatHistory } = useChatQuery(
     userId,
     roomId,
     CHAT_SIZE.PREVIEW,

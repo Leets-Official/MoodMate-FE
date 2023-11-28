@@ -13,7 +13,7 @@ const Keyword = ({ keywords }: KeywordProps) => {
       {keywords.map((keyword, i) => {
         return (
           <p
-            key={i}
+            key={keyword}
             className="px-5 py-1.5 rounded-[18px] mr-2 bg-[#FFE5E7] text-[#FC4F59] border border-[#FC4F59]"
           >
             {keyword}
