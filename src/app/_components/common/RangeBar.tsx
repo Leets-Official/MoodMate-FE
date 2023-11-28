@@ -39,7 +39,8 @@ const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
           </div>
         )}
         renderThumb={({ props, index }) =>
-          type === 'range' || index === 0 ? (
+          type === 'range' ||
+          (index === 0 && (
             <div
               {...props}
               className="h-5 w-5 bg-black rounded-full flex items-center justify-center"
@@ -50,7 +51,7 @@ const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
                 </div>
               )}
             </div>
-          ) : null
+          ))
         }
       />
       {type === 'range' && values.length > 1 && (
