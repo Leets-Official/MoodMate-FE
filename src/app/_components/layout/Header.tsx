@@ -5,7 +5,12 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Icons from '../common/Icons'
 
-const Header = ({ chat }: { chat?: boolean }) => {
+interface HeaderProps {
+  chat?: boolean
+  partner?: boolean
+}
+
+const Header = ({ chat, partner }: HeaderProps) => {
   const router = useRouter()
 
   return (
@@ -16,9 +21,11 @@ const Header = ({ chat }: { chat?: boolean }) => {
         <Icons name={back} onClick={() => router.back()} />
       )}
       <div className="flex flex-row items-center justify-center gap-3">
-        <Link href="/main">
-          <Icons name={home} />
-        </Link>
+        {!partner && (
+          <Link href="/main">
+            <Icons name={home} />
+          </Link>
+        )}
       </div>
     </section>
   )

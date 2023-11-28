@@ -9,6 +9,7 @@ import ModalPortal from '../common/modal/ModalPortal'
 import ModalOutside from '../common/modal/ModalOutside'
 import ModalContent from '../common/modal/ModalContent'
 import Icons from '../common/Icons'
+import { patchQuitChat } from '@/_service/chat'
 
 interface ChatHeaderProps {
   userId: number
@@ -30,8 +31,13 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
     document.body.style.overflow = 'unset'
   }
 
-  const onConfirmNewMatch = () => {
+  const onConfirmNewMatch = async () => {
     console.log('채팅 종료 & 재매칭 ')
+    try {
+      const response = await patchQuitChat(userId)
+    } catch (e) {
+      throw e
+    }
   }
 
   const onCancelNewMatch = () => {
