@@ -2,7 +2,7 @@ interface MessageProps {
   msg: string
   type: 'YOU' | 'ME'
   time: string
-  isRead: number
+  isRead: boolean
 }
 
 const getMessageStyle = (type: string) => {
@@ -50,7 +50,7 @@ const Message = ({ msg, type, time, isRead }: MessageProps) => {
             getMessageStyle(type).time
           }`}
         >
-          <p className="text-xs text-[#7C7C7C]">{isRead === 0 && '1'}</p>
+          <p className="text-xs text-[#7C7C7C]">{isRead === false && 1}</p>
           <p>{time}</p>
         </div>
       </div>

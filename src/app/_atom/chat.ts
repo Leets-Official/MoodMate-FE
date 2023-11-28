@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-export const realTimeMessagesState = atom<ChatMessageFromClient[]>({
+export const realTimeMessagesState = atom<ChatMessageFromServer[]>({
   key: 'realTimeMessages',
   default: [],
 })
