@@ -9,6 +9,7 @@ interface ResponseChatGet {
     page: number
     totalPages: number
   }
+
   chatList: ChatMessageFromServer[]
 }
 

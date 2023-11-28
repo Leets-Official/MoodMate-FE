@@ -46,7 +46,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const [scrollHeight, setScrollHeight] = useState(0)
   const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
   )
