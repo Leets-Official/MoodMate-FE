@@ -14,11 +14,10 @@ export const useChatQuery = (
     isLoading,
     isError,
     data: chatHistory,
-    isSuccess,
   } = useQuery<ResponseChatGet, Error>({
     queryKey,
     queryFn: () => getMessages(userId, roomId, size, page),
   })
 
-  return { isLoading, isError, chatHistory, isSuccess }
+  return { isLoading, isError, chatHistory }
 }

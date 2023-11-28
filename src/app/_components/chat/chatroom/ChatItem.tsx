@@ -9,8 +9,12 @@ interface ChatItemProps {
   chat: ChatMessageFromServer
 }
 
-const ChatItem = ({ newSender, type, chat, user }: ChatItemProps) => {
-  const { content, createdAt, isRead } = chat
+const ChatItem = ({
+  newSender,
+  type,
+  chat: { content, createdAt, isRead },
+  user,
+}: ChatItemProps) => {
   return (
     <>
       {type === 'YOU' && (

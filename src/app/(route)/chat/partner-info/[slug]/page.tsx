@@ -6,12 +6,10 @@ interface PartnerInfoPageProps {
   }
 }
 
-export default function PartnerInfoPage({
-  params: slug,
-}: PartnerInfoPageProps) {
+export default function PartnerInfoPage({ params }: PartnerInfoPageProps) {
   return (
     <div>
-      <ChatPartnerInfoContainer userId={Number(slug)} />
+      <ChatPartnerInfoContainer userId={Number(params.slug)} />
     </div>
   )
 }
