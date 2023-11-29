@@ -3,15 +3,15 @@
 import ErrorpageFirstContainer from '@/_components/errorpage/containers/ErrorpageFirstContainer'
 import ErrorpageSecondContainer from '@/_components/errorpage/containers/ErrorpageSecondContainer'
 
-const error = () => {
+const Error = () => {
   return (
-    <div>
+    <section>
       <div className="w-full h-screen flex items-center justify-center" />
       {/* 에러 캐릭터 필요! */}
       <ErrorpageFirstContainer />
       <ErrorpageSecondContainer />
-    </div>
+    </section>
   )
 }
 
-export default error
+export default Error

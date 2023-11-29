@@ -3,10 +3,10 @@ import NotfoundpageSecondContainer from '@/_components/notfoundpage/containers/N
 
 export default function NotFound() {
   return (
-    <div>
+    <section>
       {/* 에러 캐릭터 필요! */}
       <NotfoundpageFirstContainer />
       <NotfoundpageSecondContainer />
-    </div>
+    </section>
   )
 }
