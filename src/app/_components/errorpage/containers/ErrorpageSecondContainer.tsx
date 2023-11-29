@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const NotfoundpageSecondContainer = () => {
+const ErrorpageSecondContainer = () => {
   return (
     <div className="flex text-center">
       <Link
@@ -13,4 +13,4 @@ const NotfoundpageSecondContainer = () => {
   )
 }
 
-export default NotfoundpageSecondContainer
+export default ErrorpageSecondContainer

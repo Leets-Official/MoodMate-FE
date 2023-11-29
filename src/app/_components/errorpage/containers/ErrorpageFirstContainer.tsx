@@ -1,6 +1,6 @@
-import { NETWORK } from '@/_constants/notfound'
+import { NETWORK } from '@/_constants/errors'
 
-const NotfoundpageFirstContainer = () => {
+const ErrorpageFirstContainer = () => {
   return (
     <div className="flex flex-col text-center mt-48">
       <p className="text-[20px] font-semibold">{NETWORK.TITLE}</p>
@@ -10,4 +10,4 @@ const NotfoundpageFirstContainer = () => {
   )
 }
 
-export default NotfoundpageFirstContainer
+export default ErrorpageFirstContainer
