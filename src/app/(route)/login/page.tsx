@@ -16,7 +16,6 @@ export default function Login() {
         buttonType="large"
         onClick={handleLogin}
         className="text-[15px] text-black mx-auto rounded-[8px] shadow shadow-gray-500"
-        color=""
         isActive
       />
     </div>

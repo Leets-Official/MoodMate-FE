@@ -1,4 +1,3 @@
-import React from 'react'
 import Icons from '@/_components/common/Icons'
 import { logout } from '@/_ui/IconsPath'
 

@@ -29,7 +29,6 @@ const InfoDetail = ({ titleText, component, className }: InfoDetailProps) => {
           }}
           buttonType="small"
           className={className}
-          color="white"
           isActive
         />
       </div>
