@@ -20,7 +20,6 @@ const InactiveFirstText = () => {
         buttonType="large"
         className="bg-[#FC4F59] text-white text-[14px] w-[312px] h-[48px] rounded-[8px] mt-20"
         isActive
-        color=""
       />
       <NormalButton
         buttonText="매칭 다시 시작하기"
@@ -28,7 +27,6 @@ const InactiveFirstText = () => {
         buttonType="large"
         className="bg-[#D6D6D6] text-[14px] w-[312px] h-[48px] rounded-[8px] mt-3"
         isActive
-        color=""
       />
     </div>
   )
