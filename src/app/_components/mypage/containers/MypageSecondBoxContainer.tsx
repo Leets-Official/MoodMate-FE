@@ -1,10 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
 import Keyword from '@/_components/information/Keyword'
-import Icons from '@/_components/common/Icons'
-import { downarrow, rightarrow } from '@/_ui/IconsPath'
-import NormalButton from '@/_components/common/NormalButton'
 import MoodyAge from '@/_components/information/MoodyAge'
 import Department from '@/_components/information/Department'
 import DateMood from '@/_components/information/DateMood'
