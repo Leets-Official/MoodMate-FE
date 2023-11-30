@@ -6,6 +6,7 @@ import Keyword from './Keyword'
 import MoodyAge from '@/_components/information/MoodyAge'
 import SameDept from './SameDept'
 import Mood from './Mood'
+import NotFound from '@/not-found'
 
 interface MyinfoPageComponentsProps {
   slug: string
@@ -32,6 +33,6 @@ export default function MyinfoPageComponents({
     case '8':
       return <Mood />
     default:
-      return <div>notfound</div>
+      return <NotFound />
   }
 }
