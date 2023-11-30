@@ -1,7 +1,11 @@
 import { atom } from 'recoil'
 
-// eslint-disable-next-line import/prefer-default-export
+interface inputValueState {
+  inputValue: string
+}
 export const inputValueState = atom({
   key: 'inputValueState',
-  default: '',
+  default: {
+    inputValue: '',
+  },
 })
