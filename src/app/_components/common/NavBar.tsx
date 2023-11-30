@@ -33,7 +33,7 @@ const getTextStyle = (type: string) => {
 const NavBar = ({ type }: TextProps) => {
   const router = useRouter()
   return (
-    <div className="w-full transform fixed bottom-0 left-1/2 -translate-x-1/2 ">
+    <div className="transform fixed bottom-0 left-1/2 -translate-x-1/2 w-[378px]">
       <div
         className={`${
           getTextStyle(type).box
