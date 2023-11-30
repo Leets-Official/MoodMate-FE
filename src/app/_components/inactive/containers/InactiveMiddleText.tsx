@@ -22,7 +22,7 @@ const InactiveFirstText = () => {
         isActive
       />
       <NormalButton
-        buttonText="매칭 다시 시작하기"
+        buttonText="마이페이지로 돌아가기"
         onClick={moveToMypage}
         buttonType="large"
         className="bg-[#D6D6D6] text-[14px] w-[312px] h-[48px] rounded-[8px] mt-3"
