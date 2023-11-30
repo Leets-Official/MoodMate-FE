@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="w-[360px] h-[800px] mx-auto">
+      <body className="h-full mobile:w-full desktop:w-[360px] desktop:mx-auto">
         <RecoilProvider>
           <QueryProvider>{children}</QueryProvider>
         </RecoilProvider>
