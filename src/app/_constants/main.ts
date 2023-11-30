@@ -9,3 +9,7 @@ export const AFTER_TIMER_GUIDE = {
   DESCRIPTION: '무디와 함께',
   DESCRIPTIONTWO: '메리크리스마스!!',
 } as const
+export const INACTIVE_BUTTON = {
+  REMATCH: '매칭 다시 시작하기',
+  GOMAIN: '마이페이지로 돌아가기',
+} as const
