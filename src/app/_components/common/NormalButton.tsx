@@ -1,13 +1,9 @@
-import Link from 'next/link'
-
 interface NormalButtonProps {
   buttonText: string
   onClick: () => void
   buttonType: 'large' | 'small'
   className: string
   isActive: boolean
-  to?: string
-  useLink?: boolean
 }
 
 const getButtonStyles = (buttonType: 'large' | 'small', className: string) => {
@@ -27,34 +23,24 @@ const getButtonStyles = (buttonType: 'large' | 'small', className: string) => {
   }
 }
 
-// 'use client' and imports...
-
 const NormalButton = ({
   onClick,
   buttonText,
   buttonType,
   className,
   isActive,
-  to,
-  useLink,
 }: NormalButtonProps) => {
   const buttonStyles = getButtonStyles(buttonType, className)
 
-  const ButtonComponent = (
+  return (
     <button
       type="button"
       className={`${buttonStyles.button}`}
-      onClick={useLink ? undefined : onClick}
+      onClick={onClick}
       disabled={!isActive}
     >
       {buttonText}
     </button>
-  )
-
-  return useLink && to ? (
-    <Link href={to}>{ButtonComponent}</Link>
-  ) : (
-    ButtonComponent
   )
 }
 
