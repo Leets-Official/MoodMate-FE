@@ -7,15 +7,14 @@ interface NormalButtonProps {
 }
 
 const getButtonStyles = (buttonType: 'large' | 'small', className: string) => {
-  const baseStyles = `${className}`
   switch (buttonType) {
     case 'large':
       return {
-        button: `w-[312px] h-[48px] ${baseStyles}`,
+        button: `w-[312px] h-[48px] ${className}`,
       }
     case 'small':
       return {
-        button: `w-[96px] h-[36px] ${baseStyles}`,
+        button: `w-[96px] h-[36px] ${className}`,
       }
     default:
       return {
