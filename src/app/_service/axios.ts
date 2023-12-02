@@ -31,35 +31,33 @@ api.interceptors.request.use(
   },
 )
 
-// api.interceptors.response.use(
-//   (response) => {
-//     return response //유효한 토큰일 때
-//   },
-//   async (error) => {
-//     //유효하지 않은 액세스토큰일 때
-//     const originalRequest = error.config
-//     const refreshToken = getRefreshToken()
-//     if (
-//       // 401맞는지 확인
-//       error.response.status === 401 &&
-//       originalRequest &&
-//       !error.config.__isRetryRequest &&
-//       refreshToken
-//     ) {
-//       try {
-//         const newAccessToken = await axios.post(
-//           `${process.env.NEXT_PUBLIC_SERVER_URL}/users/refresh`,
-//           {
-//             refreshToken: refreshToken,
-//           },
-//         )
-//         setCookie(null, 'accessToken', newAccessToken.data.accessToken, {
-//           maxAge: 3 * 60 * 60,
-//           path: '/',
-//         })
-//       } catch (e) {}
-//     }
-//   },
-// )
+api.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  async (error) => {
+    const originalRequest = error.config
+    const refreshToken = getRefreshToken()
+    if (
+      error.response.status === 401 &&
+      originalRequest &&
+      !error.config.__isRetryRequest &&
+      refreshToken
+    ) {
+      try {
+        const newAccessToken = await axios.post(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/users/refresh`,
+          {
+            refreshToken: refreshToken,
+          },
+        )
+        setCookie(null, 'accessToken', newAccessToken.data.accessToken, {
+          maxAge: 3 * 60 * 60,
+          path: '/',
+        })
+      } catch (e) {}
+    }
+  },
+)
 
 export default api
