@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-// import { getToken } from '@/_service/oauth'
+import { getUserToken } from '@/_service/oauth'
 
 const OauthPage = () => {
   const [code, setCode] = useState(null)
@@ -16,13 +16,13 @@ const OauthPage = () => {
   useEffect(() => {
     if (code) {
       try {
-        // getToken(code)
+        getUserToken(code)
       } catch (error) {
         console.error('getToken 함수 호출 중 오류 발생', error)
       }
     }
   }, [code])
-  return <div>{code && <p>{code}</p>}</div>
+  return null
 }
 
 export default OauthPage
