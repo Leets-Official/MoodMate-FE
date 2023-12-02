@@ -1,21 +1,27 @@
 import { setCookie } from 'nookies'
 import api from './axios'
 
-const getUserToken = async () => {
+export const getUserToken = async (code: string) => {
   try {
-    const response = await api.get('/users/login').then((res) => res.data)
-    const access_token = response.access_token
-    const refresh_token = response.refresh_token
-    setCookie(null, 'access_token', 'access', {
+    const response = await api
+      .get('/users/login', {
+        params: {
+          kakaoAccessToken: code.toString(),
+        },
+      })
+      .then((res) => res.data)
+    const { accessToken } = response
+    const { refreshToken } = response
+    setCookie(null, 'accessToken', accessToken, {
       maxAge: 3 * 60 * 60,
       path: '/',
     })
-    setCookie(null, 'refresh_token', 'refresh', {
+    setCookie(null, 'refreshToken', refreshToken, {
       maxAge: 3 * 24 * 60 * 60,
       path: '/',
     })
-  } catch (e: any) {
-    console.log('유저 토큰 가져오기 에러 : ', e.message)
-    throw e
+  } catch (error) {
+    console.log('유저 토큰 가져오기 에러 : ', error)
+    throw error
   }
 }

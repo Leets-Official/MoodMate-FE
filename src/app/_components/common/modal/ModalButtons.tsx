@@ -31,7 +31,6 @@ const ModalButtons = ({
         buttonText={cancelText}
         buttonType="small"
         className="rounded-lg text-[14px]"
-        color="neutral-500"
         onClick={onCancel}
         isActive
       />
@@ -39,7 +38,6 @@ const ModalButtons = ({
         buttonText={confirmText}
         buttonType="small"
         className="rounded-lg  text-[14px]"
-        color="neutral-300"
         onClick={onConfirm}
         isActive
       />
