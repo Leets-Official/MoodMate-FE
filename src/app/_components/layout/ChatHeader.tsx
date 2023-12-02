@@ -10,15 +10,28 @@ import ModalOutside from '../common/modal/ModalOutside'
 import ModalContent from '../common/modal/ModalContent'
 import Icons from '../common/Icons'
 import { patchQuitChat } from '@/_service/chat'
+import { useMutation } from '@tanstack/react-query'
 
 interface ChatHeaderProps {
   userId: number
 }
 
 const ChatHeader = ({ userId }: ChatHeaderProps) => {
+  const router = useRouter()
   const [openExitModal, setOpenExitModal] = useState<boolean>(false)
   const [openMatchModal, setOpenMatchModal] = useState<boolean>(false)
-  const router = useRouter()
+  const newMatchMutation = useMutation({
+    mutationFn: patchQuitChat,
+    onSuccess: () => {
+      router.push('/main') //메인 렌더링 되면서 채팅방 안 들어가지는지 확인
+    },
+  })
+  const noMatchMutation = useMutation({
+    mutationFn: patchQuitChat,
+    onSuccess: () => {
+      // 비활성화 api 추가
+    },
+  })
 
   const onOpenMatchModal = () => {
     setOpenExitModal((prev) => !prev)
@@ -33,15 +46,12 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
 
   const onConfirmNewMatch = async () => {
     console.log('채팅 종료 & 재매칭 ')
-    await patchQuitChat(userId)
-    // 예외처리
-    router.push('/main') //메인 렌더링 되면서 채팅방 안 들어가지는지 확인
+    newMatchMutation.mutate()
   }
 
   const onCancelNewMatch = async () => {
     console.log('채팅종료만. 재매칭은 x')
-    await patchQuitChat(userId)
-    //비활성화 코드 추가
+    noMatchMutation.mutate()
   }
 
   return (
