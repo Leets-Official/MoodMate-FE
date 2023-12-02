@@ -3,9 +3,13 @@
 import Icons from '@/_components/common/Icons'
 import { bio, chat, deactivation, whitechat } from '@/_ui/IconsPath'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 interface TextProps {
   type: 'BEFORE' | 'AFTER'
+  roomId: number
+  userId: number
+  roomActive: boolean
 }
 
 const getTextStyle = (type: string) => {
@@ -30,7 +34,7 @@ const getTextStyle = (type: string) => {
       }
   }
 }
-const NavBar = ({ type }: TextProps) => {
+const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
   const router = useRouter()
   return (
     <div className="transform fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
@@ -47,11 +51,13 @@ const NavBar = ({ type }: TextProps) => {
             getTextStyle(type).chat
           } rounded-full w-[72px] h-[72px] -mt-16`}
         >
-          <Icons
-            name={getTextStyle(type).chating}
-            className="ml-6 mt-6"
-            onClick={() => router.push('/chat/partnerinfo')}
-          />
+          <Link href={`/chat/room/${userId}/${roomId}`}>
+            <Icons
+              name={getTextStyle(type).chating}
+              className="ml-6 mt-6"
+              onClick={() => router.push('/chat/partnerinfo')}
+            />
+          </Link>
         </div>
         <div className="mr-16">
           <Icons name={bio} onClick={() => router.push("/mypage")}/>

@@ -55,7 +55,7 @@ const MainPage = ({ type }: MatchProps) => {
       <Timer targetHour={getBGStyle(updatedType).targetHour} />
       <TimerMiddleText type={updatedType} />
       <p className="p-9 mx-auto text-center">로고</p>
-      <NavBar type={updatedType} />
+      <NavBar type={updatedType} roomId={data.roomId} userId={data.userId} roomActive={data.roomActive}/>
     </div>
   )
 }
