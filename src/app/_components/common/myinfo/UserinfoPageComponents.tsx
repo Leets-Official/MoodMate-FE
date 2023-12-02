@@ -3,21 +3,22 @@ import Gender from './Gender'
 import Myage from './Myage'
 import Department from './Department'
 import Keyword from './Keyword'
-import MoodyAge from '@/_components/information/MoodyAge'
+import MoodyAge from './MoodyAge'
 import SameDept from './SameDept'
 import Mood from './Mood'
 import NotFound from '@/not-found'
 
-interface MyinfoPageComponentsProps {
+interface UserinfoPageComponentsProps {
   slug: string
 }
 
-export default function MyinfoPageComponents({
+export default function UserinfoPageComponents({
   slug,
-}: MyinfoPageComponentsProps) {
-  switch (slug) {
+}: UserinfoPageComponentsProps) {
+  const pageNum = slug[0]
+  switch (pageNum) {
     case '1':
-      return <Nickname />
+      return <Nickname pageNum={pageNum} />
     case '2':
       return <Gender />
     case '3':
