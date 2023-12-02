@@ -44,16 +44,18 @@ const MainPage = ({ type }: MatchProps) => {
   if (isError || !data) {
     return <div>Error...</div>
   }
+  const { roomActive } = data
+  const updatedType = roomActive ? 'AFTER' : 'BEFORE'
   return (
-    <div className={`${getBGStyle(type).background} flex flex-col`}>
-      <p className={`${getBGStyle(type).logo} p-10 mx-auto text-center`}>
+    <div className={`${getBGStyle(updatedType).background} flex flex-col`}>
+      <p className={`${getBGStyle(updatedType).logo} p-10 mx-auto text-center`}>
         moodmate
       </p>
-      <TimerFirstText type={type} />
-      <Timer targetHour={getBGStyle(type).targetHour} />
-      <TimerMiddleText type={type} />
+      <TimerFirstText type={updatedType} />
+      <Timer targetHour={getBGStyle(updatedType).targetHour} />
+      <TimerMiddleText type={updatedType} />
       <p className="p-9 mx-auto text-center">로고</p>
-      <NavBar type={type} />
+      <NavBar type={updatedType} />
     </div>
   )
 }
