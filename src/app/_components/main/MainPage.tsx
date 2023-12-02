@@ -1,10 +1,11 @@
 'use client'
 
 import Timer from '@/_components/common/Timer'
-import React from 'react'
+import React, { useEffect } from 'react'
 import TimerFirstText from '@/_components/timer/containers/TimerFirstText'
 import TimerMiddleText from '@/_components/timer/containers/TimerMiddleText'
 import NavBar from '@/_components/common/NavBar'
+import { useMainQuery } from '@/_hooks/useMainQuery'
 
 interface MatchProps {
   type: 'BEFORE' | 'AFTER'
@@ -33,6 +34,16 @@ const getBGStyle = (type: string) => {
   }
 }
 const MainPage = ({ type }: MatchProps) => {
+  const { isLoading, isError, data } = useMainQuery()
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+  if (isError || !data) {
+    return <div>Error...</div>
+  }
   return (
     <div className={`${getBGStyle(type).background} flex flex-col`}>
       <p className={`${getBGStyle(type).logo} p-10 mx-auto text-center`}>
