@@ -22,3 +22,12 @@ interface ResponseLogin {
   accessToken: string
   refreshTokce: string
 }
+
+/** 메인페이지 응답 데이터 */
+interface ResponseMain {
+  userId: number
+  userGender: string
+  userMatchActive: boolean
+  roomId: number | -1
+  roomActive: boolean
+}
