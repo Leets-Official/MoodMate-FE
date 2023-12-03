@@ -15,6 +15,10 @@ const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL, // server url 변경!
 })
 
+export const loginApi = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_SERVER_URL, // server url 변경!
+})
+
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     // const token = getAccessToken()
