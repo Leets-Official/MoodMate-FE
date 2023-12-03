@@ -43,12 +43,12 @@ const getTextStyle = (type: string) => {
 }
 
 const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
-  const router = useRouter()
+  const route = useRouter()
   const [openModal, setOpenModal] = useState<boolean>(false)
   const inactiveMutation = useMutation({
     mutationFn: patchInactiveMain,
     onSuccess: () => {
-      // 코드작성해야함..
+      route.push('/main')
     },
   })
   const onOpenModal = () => {
@@ -61,7 +61,7 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
     inactiveMutation.mutate()
   }
   return (
-    <div className="-z-10 fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
+    <div className="-z-10 translate-y-[30px] fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
       <div
         className={`${
           getTextStyle(type).box
@@ -79,12 +79,12 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
             <Icons
               name={getTextStyle(type).chating}
               className="ml-6 mt-6"
-              onClick={() => router.push('/chat/partnerinfo')}
+              onClick={() => route.push('/chat/partnerinfo')}
             />
           </Link>
         </div>
         <div className="mr-16">
-          <Icons name={bio} onClick={() => router.push('/mypage')} />
+          <Icons name={bio} onClick={() => route.push('/mypage')} />
         </div>
       </div>
       {openModal && (
