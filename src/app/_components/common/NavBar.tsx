@@ -4,6 +4,13 @@ import Icons from '@/_components/common/Icons'
 import { bio, chat, deactivation, whitechat } from '@/_ui/IconsPath'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { useState } from 'react'
+import ModalPortal from '@/_components/common/modal/ModalPortal'
+import ModalOutside from '@/_components/common/modal/ModalOutside'
+import ModalContent from '@/_components/common/modal/ModalContent'
+import { INACTIVE_MODAL } from '@/_constants'
+import { useMutation } from '@tanstack/react-query'
+import { patchInactiveMain } from '@/_service/main'
 
 interface TextProps {
   type: 'BEFORE' | 'AFTER'
@@ -34,17 +41,34 @@ const getTextStyle = (type: string) => {
       }
   }
 }
+
 const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
   const router = useRouter()
+  const [openModal, setOpenModal] = useState<boolean>(false)
+  const inactiveMutation = useMutation({
+    mutationFn: patchInactiveMain,
+    onSuccess: () => {
+      // 코드작성해야함..
+    },
+  })
+  const onOpenModal = () => {
+    setOpenModal((prev) => !prev)
+    document.body.style.overflow = 'hidden'
+  }
+  const onCloseModal = () => {
+    setOpenModal(false)
+    document.body.style.overflow = 'unset'
+    inactiveMutation.mutate()
+  }
   return (
-    <div className="transform fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
+    <div className="-z-10 fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
       <div
         className={`${
           getTextStyle(type).box
         } pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between`}
       >
         <div className="ml-16">
-          <Icons name={deactivation} onClick={() => router.push('/비활성화')} />
+          <Icons name={deactivation} onClick={() => setOpenModal(true)} />
         </div>
         <div
           className={`${
@@ -60,9 +84,23 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
           </Link>
         </div>
         <div className="mr-16">
-          <Icons name={bio} onClick={() => router.push("/mypage")}/>
+          <Icons name={bio} onClick={() => router.push('/mypage')} />
         </div>
       </div>
+      {openModal && (
+        <ModalPortal nodeName="mainPortal">
+          <ModalOutside
+            onClose={() => setOpenModal(false)}
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
+          >
+            <ModalContent
+              subject={INACTIVE_MODAL}
+              onConfirm={onOpenModal}
+              onCancel={onCloseModal}
+            />
+          </ModalOutside>
+        </ModalPortal>
+      )}
     </div>
   )
 }

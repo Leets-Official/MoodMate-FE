@@ -13,3 +13,10 @@ export const INACTIVE_BUTTON = {
   REMATCH: '매칭 다시 시작하기',
   GOMAIN: '마이페이지로 돌아가기',
 } as const
+
+export const INACTIVE_MODAL = {
+  TITLE: '무디를 비활성화 할까요?',
+  SUB_TITLE: '비활성화 하면 매칭이 중단돼요',
+  CONFIRM: '싫어요!',
+  CANCEL: '좋아요!',
+} as const

@@ -36,7 +36,7 @@ const getBGStyle = (type: string) => {
 const MainPage = ({ type }: MatchProps) => {
   const { isLoading, isError, data } = useMainQuery()
   useEffect(() => {
-    console.log(data)
+    console.log(data?.mainPageResponse)
   }, [data])
   if (isLoading) {
     return <div>Loading...</div>
@@ -44,7 +44,7 @@ const MainPage = ({ type }: MatchProps) => {
   if (isError || !data) {
     return <div>Error...</div>
   }
-  const { roomActive } = data
+  const { roomActive, roomId, userId } = data.mainPageResponse
   const updatedType = roomActive ? 'AFTER' : 'BEFORE'
   return (
     <div className={`${getBGStyle(updatedType).background} flex flex-col`}>
@@ -55,7 +55,12 @@ const MainPage = ({ type }: MatchProps) => {
       <Timer targetHour={getBGStyle(updatedType).targetHour} />
       <TimerMiddleText type={updatedType} />
       <p className="p-9 mx-auto text-center">로고</p>
-      <NavBar type={updatedType} roomId={data.roomId} userId={data.userId} roomActive={data.roomActive}/>
+      <NavBar
+        type={updatedType}
+        roomId={roomId}
+        userId={userId}
+        roomActive={roomActive}
+      />
     </div>
   )
 }

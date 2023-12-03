@@ -22,7 +22,7 @@ api.interceptors.request.use(
     // if (token) {
     //   // eslint-disable-next-line no-param-reassign
     // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjMsImVtYWlsIjoiYWhjaGphbmdAbmF2ZXIuY29tIiwic3ViIjoiMyIsImV4cCI6MTcwMTQ5ODM5NH0.n-n5T3nHspoj3TPuhpc6clHBFdSMbv81xzXt-VKZQEA`
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjEsImVtYWlsIjoiYWhjaGphbmdAbmF2ZXIuY29tIiwic3ViIjoiMSIsImV4cCI6MTcwMTU5Mzg2NX0.Q_CBhIMiT-3YorWpw-4PsypxZXBMVr1VRIgFnKlIj8U`
     // }
     return config
   },
