@@ -2,11 +2,12 @@
 
 import Header from '@/_components/layout/Header'
 import ProgressBar from '@/_components/common/ProgressBar'
+import { PROGRESS_BAR } from '@/_constants'
 
 interface ProgressBarProps {
   children: React.ReactNode
   params: {
-    slug: number
+    slug: keyof typeof PROGRESS_BAR
   }
 }
 
