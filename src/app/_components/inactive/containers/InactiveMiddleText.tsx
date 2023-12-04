@@ -4,12 +4,17 @@ import React from 'react'
 import NormalButton from '@/_components/common/NormalButton'
 import { useRouter } from 'next/navigation'
 import { INACTIVE_BUTTON } from '@/_constants'
+import { useMutation } from '@tanstack/react-query'
+import { patchInactiveMain } from '@/_service/main'
 
 const InactiveFirstText = () => {
   const route = useRouter()
-  const rematching = () => {
-    route.push('/main')
-  }
+  const inactiveMutation = useMutation({
+    mutationFn: patchInactiveMain,
+    onSuccess: () => {
+      window.location.reload()
+    },
+  })
   const moveToMypage = () => {
     route.push('/mypage')
   }
@@ -17,7 +22,7 @@ const InactiveFirstText = () => {
     <div className="flex flex-col items-center">
       <NormalButton
         buttonText={INACTIVE_BUTTON.REMATCH}
-        onClick={rematching}
+        onClick={() => inactiveMutation.mutate()}
         buttonType="large"
         className="bg-[#FC4F59] text-white text-[14px] w-[312px] h-[48px] rounded-[8px] mt-20"
         isActive
