@@ -4,7 +4,10 @@ import NormalButton from '@/_components/common/NormalButton'
 
 export default function Login() {
   const handleLogin = () => {
-    window.location.href = process.env.NEXT_PUBLIC_GOOGLE_AUTH_URL
+    const googleAuthUrl = process.env.NEXT_PUBLIC_GOOGLE_AUTH_URL
+    if (googleAuthUrl) {
+      window.location.href = googleAuthUrl
+    }
   }
   return (
     <div className="flex flex-col">
