@@ -16,8 +16,20 @@ const config: Config = {
       screens: {
         desktop: '700px',
       },
+      colors: {
+        primary: '#FC4F59',
+        secondary: '#B3B3B3',
+        zeropink: '#FFF3F4',
+        onepink: '#FFE5E7',
+        twopink: '#FEB3B8',
+        threepink: '#FD8188',
+        darkgray: '#333333',
+        lightgray: '#E6E6E6',
+        white: '#FFFFFF',
+      },
     },
   },
+  // eslint-disable-next-line global-require
   plugins: [require('tailwind-scrollbar-hide')],
 }
 export default config

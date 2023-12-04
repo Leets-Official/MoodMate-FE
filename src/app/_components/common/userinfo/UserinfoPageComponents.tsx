@@ -12,9 +12,7 @@ interface UserinfoPageComponentsProps {
   slug: string
 }
 
-export default function UserinfoPageComponents({
-  slug,
-}: UserinfoPageComponentsProps) {
+const UserinfoPageComponents = ({ slug }: UserinfoPageComponentsProps) => {
   const pageNum = slug[0]
   switch (pageNum) {
     case '1':
@@ -37,3 +35,5 @@ export default function UserinfoPageComponents({
       return <NotFound />
   }
 }
+
+export default UserinfoPageComponents

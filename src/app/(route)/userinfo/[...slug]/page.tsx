@@ -1,3 +1,5 @@
+'use client'
+
 import UserinfoPageComponents from '@/_components/common/userinfo/UserinfoPageComponents'
 
 interface UserinfoPageProps {
@@ -10,7 +12,7 @@ export default function UserinfoPage({ params }: UserinfoPageProps) {
   const pageNumber = params.slug
 
   return (
-    <section>
+    <section className="flex items-center justify-center ">
       <UserinfoPageComponents slug={pageNumber} />
     </section>
   )
