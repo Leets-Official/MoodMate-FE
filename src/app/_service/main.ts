@@ -9,3 +9,13 @@ export const mainInfo = async () => {
     throw error
   }
 }
+
+/** 매칭 비활성화 */
+export const patchInactiveMain = async () => {
+  try {
+    return await api.patch('/users/match').then((res) => res.data)
+  } catch (error) {
+    console.log('매칭 비활성화 에러 : ', error)
+    throw error
+  }
+}

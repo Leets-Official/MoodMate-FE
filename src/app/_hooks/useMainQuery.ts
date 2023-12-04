@@ -5,9 +5,9 @@ import { mainInfo } from '@/_service/main'
 
 export const useMainQuery = () => {
   const queryKey = ['main']
-  const { isLoading, isError, data } = useQuery<ResponseChatGet, Error>({
+  const { isLoading, isError, data } = useQuery<ResponseMain, Error>({
     queryKey,
-    queryFn: () => mainInfo(),
+    queryFn: mainInfo,
   })
 
   return { isLoading, isError, data }
