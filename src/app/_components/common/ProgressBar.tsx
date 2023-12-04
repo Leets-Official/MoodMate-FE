@@ -10,8 +10,8 @@ const ProgressBar = ({ current }: ProgressBarProps) => {
   const currentText = PROGRESS_BAR[current]
 
   return (
-    <div className="flex flex-col items-center justify-center mt-[43px]">
-      <div className="w-[312px] bg-[#E6E6E6] h-[10px] mb-4 rounded-full">
+    <div className="flex flex-col items-center justify-center">
+      <div className="w-[312px] bg-[#E6E6E6] h-[10px] mb-[9px] rounded-full">
         <div
           className={'h-full bg-[#FC4F59] rounded-full'}
           style={{ width: `${percentage}%` }}

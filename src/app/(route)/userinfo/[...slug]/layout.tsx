@@ -1,6 +1,6 @@
 'use client'
 
-import Header from '@/_components/layout/Header'
+import BackHeader from '@/_components/layout/BackHeader'
 import ProgressBar from '@/_components/common/ProgressBar'
 import { PROGRESS_BAR } from '@/_constants'
 
@@ -13,8 +13,8 @@ interface ProgressBarProps {
 
 export default function MyinfoLayout({ children, params }: ProgressBarProps) {
   return (
-    <main>
-      <Header />
+    <main className="flex flex-col items-center">
+      <BackHeader slug={params.slug} />
       <ProgressBar current={params.slug} />
       {children}
     </main>

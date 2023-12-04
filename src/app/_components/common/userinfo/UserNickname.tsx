@@ -37,12 +37,14 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
 
   return (
     <div>
-      <div className="mt-[35px] mb-[201px]">
-        <div className="text-darkgray text-bold">
-          {NICK_NAME_PAGE.GREETINGS1}
+      <div className="mt-[35px] mb-[168px]">
+        <div className="text-darkgray font-bold text-2xl font-sans">
+          <div>{NICK_NAME_PAGE.GREETINGS1}</div>
+          <div>{NICK_NAME_PAGE.GREETINGS2}</div>
         </div>
-        <div>{NICK_NAME_PAGE.GREETINGS2}</div>
-        <div>{NICK_NAME_PAGE.WRNINGS}</div>
+        <div className="mt-[10px] text-secondary font-medium text-base font-sans">
+          {NICK_NAME_PAGE.WRNINGS}
+        </div>
       </div>
       <div className="w-[312px] h-[55px]">
         <Input
@@ -50,7 +52,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
           textValue={inputValue}
           placeholder={NICK_NAME_PAGE.INPUTBOX}
           onChange={handleInputChange}
-          className={` placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[130px]`}
+          className={`w-[240px] placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[30px]`}
         />
         <span className="text-[12px] text-secondary">{inputCount}</span>
         <div
@@ -60,14 +62,16 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
               : inputStyles.defaultStyles
           }`}
         ></div>
-        <div>{NICK_NAME_PAGE.GUIDE}</div>
+        <div className="text-secondary font-normal text-xs font-notosans mt-[8px] text-right">
+          {NICK_NAME_PAGE.GUIDE}
+        </div>
       </div>
 
       <NormalButton
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`mt-[160px] rounded-md ${
+        className={`mt-[160px] mb-[103px] rounded-md ${
           inputValue.length > 0
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles
