@@ -22,12 +22,11 @@ export const loginApi = axios.create({
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    const token = getAccessToken()
-    console.log('ddddddddd', token)
-    if (token) {
-      // eslint-disable-next-line no-param-reassign
-      config.headers.Authorization = `Bearer ${token}`
-    }
+    // const token = getAccessToken()
+    // if (token) {
+    // eslint-disable-next-line no-param-reassign
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjQsImVtYWlsIjoiZXVuenp6enp6MUBuYXZlci5jb20iLCJzdWIiOiI0IiwiZXhwIjoxNzAxNzA0MTc0fQ.dTGgE9WwIxcAv26XOIGT0xD4e_nMCWF3zJI-PDHtXlw`
+    // }
     return config
   },
   (error) => {
