@@ -12,7 +12,7 @@ const InactiveFirstText = () => {
   const inactiveMutation = useMutation({
     mutationFn: patchInactiveMain,
     onSuccess: () => {
-      route.push('/main')
+      window.location.reload()
     },
   })
   const moveToMypage = () => {
