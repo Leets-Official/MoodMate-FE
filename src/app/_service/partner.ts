@@ -11,8 +11,8 @@ export const getPartnerInfo = async (userId: number) => {
         },
       })
       .then((res) => res.data)
-  } catch (e: any) {
-    console.log('파트너 인포 가져오기 에러 : ', e.message)
-    throw e
+  } catch (error) {
+    console.log('파트너 인포 가져오기 에러 : ', error)
+    throw error
   }
 }

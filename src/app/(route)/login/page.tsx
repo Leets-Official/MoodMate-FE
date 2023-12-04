@@ -1,11 +1,10 @@
 'use client'
 
 import NormalButton from '@/_components/common/NormalButton'
-import { GOOGLE_AUTH_URL } from '@/_lib/google'
 
 export default function Login() {
   const handleLogin = () => {
-    window.location.href = GOOGLE_AUTH_URL
+    window.location.href = process.env.NEXT_PUBLIC_GOOGLE_AUTH_URL
   }
   return (
     <div className="flex flex-col">
