@@ -49,7 +49,7 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
     mutationFn: patchInactiveMain,
     onSuccess: () => {
       // route.push('/main')
-지    },
+    },
   })
   const onOpenModal = () => {
     setOpenModal((prev) => !prev)
