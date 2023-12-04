@@ -1,7 +1,7 @@
 import { Range } from 'react-range'
 import { RANGE_BAR_AGE } from '@/_constants'
 
-type RangeBarProps = {
+interface RangeBarProps {
   type: 'single' | 'range'
   values: number[]
   onChange: (values: number[]) => void

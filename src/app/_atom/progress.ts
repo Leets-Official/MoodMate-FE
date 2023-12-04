@@ -1,8 +1,12 @@
 import { atom } from 'recoil'
 
-type QuestionState = number
+interface QuestionState {
+  current: number
+}
 
 export const currentQuestionState = atom<QuestionState>({
   key: 'currentQuestionState',
-  default: 0,
+  default: {
+    current: 0,
+  },
 })

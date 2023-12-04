@@ -25,6 +25,7 @@ const config: Config = {
         threepink: '#FD8188',
         darkgray: '#333333',
         lightgray: '#E6E6E6',
+        white: '#FFFFFF',
       },
     },
   },

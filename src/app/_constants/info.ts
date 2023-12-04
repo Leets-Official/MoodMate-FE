@@ -78,14 +78,16 @@ export const DEPARTMENT_LIST = [
 export const MOOD_LIST = ['활기찬', '풍부한', '이색적인', '유쾌한'] as const
 
 export const NICK_NAME_PAGE = {
-  GREETINGS: '가입을 축하드려요!\n어떻게 불러드리면 될까요?',
+  GREETINGS1: '가입을 축하드려요!',
+  GREETINGS2: '어떻게 불러드리면 될까요?',
   WRNINGS: '닉네임은 한번 정하면 수정할 수 없어요!',
   INPUTBOX: '닉네임을 입력하세요.',
   GUIDE: '5글자 이내로 입력해주세요.',
 } as const
 
 export const GENDER_PAGE = {
-  GREETINGS: '안녕하세요!\n무디에게 성별을 알려주세요.',
+  GREETINGS1: '안녕하세요!',
+  GREETINGS2: '무디에게 성별을 알려주세요.',
   MALE: '남자 무디',
   FEMALE: '여자 무디',
 } as const
@@ -161,4 +163,10 @@ export const BUTTON_TYPE = {
   MAJOR: 'MAJOR',
   MOOD: 'MOOD',
   DEFAULT: 'DEFAULT',
+} as const
+
+export const RANGE_BAR_AGE = {
+  MIN: 1994,
+  MAX: 2004,
+  STEP: 1,
 } as const
