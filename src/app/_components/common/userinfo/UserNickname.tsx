@@ -3,6 +3,8 @@ import Input from '../Input'
 import NormalButton from '../NormalButton'
 import { useRouter } from 'next/navigation'
 import { NICK_NAME_PAGE, INPUT_NICKNAME } from '@/_constants'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { userInfoState } from '@/_atom/userinfo'
 
 interface UserNicknameProps {
   pageNum: string
@@ -10,8 +12,10 @@ interface UserNicknameProps {
 
 const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const route = useRouter()
-  const [inputValue, setInputValue] = useState('')
-  const [inputCount, setinputCount] = useState('0/5')
+  const [nickname, setNickname] = useRecoilState(userInfoState)
+  const userInfo = useRecoilValue(userInfoState)
+  const [inputValue, setInputValue] = useState(userInfo.nickname)
+  const [inputCount, setinputCount] = useState(`${inputValue.length}/5`)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(0, INPUT_NICKNAME.MAX)
@@ -22,6 +26,10 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   }
 
   const nextRoute = () => {
+    setNickname((prevNickname) => ({
+      ...prevNickname,
+      nickname: inputValue,
+    }))
     route.push(`/userinfo/${parseInt(pageNum) + 1}`)
   }
 
