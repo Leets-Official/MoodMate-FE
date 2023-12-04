@@ -16,7 +16,7 @@ const api = axios.create({
 })
 
 export const loginApi = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_SERVER_URL, // server url 변경!
+  baseURL: 'https://leets.moodmate.site/', // server url 변경!
 })
 
 api.interceptors.request.use(

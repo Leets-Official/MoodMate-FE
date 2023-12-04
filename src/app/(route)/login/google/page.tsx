@@ -1,28 +1,24 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getUserToken } from '@/_service/oauth'
+import { useLoginQuery } from '@/_hooks/useLoginQuery'
+import React, { useEffect } from 'react'
 
 const OauthPage = () => {
-  const [code, setCode] = useState(null)
+  const { isLoading, isError, data } = useLoginQuery()
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const codeURL = new URL(window.location.href).searchParams.get('code')
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      setCode(codeURL)
-    }
-  }, [])
-  useEffect(() => {
-    if (code) {
-      try {
-        getUserToken(code)
-      } catch (error) {
-        console.error('getToken 함수 호출 중 오류 발생', error)
-      }
-    }
-  }, [code])
-  return null
+    console.log(data)
+  })
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+  if (isError || !data) {
+    return <div>Error...</div>
+  }
+  return (
+    <div>
+      <p>dd</p>
+    </div>
+  )
 }
 
 export default OauthPage
