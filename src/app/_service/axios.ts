@@ -1,29 +1,33 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
 import { parseCookies, setCookie } from 'nookies'
+import { GOOGLE_LOGIN } from '@/_lib/google'
 
 const getAccessToken = () => {
   const cookies = parseCookies()
-  return cookies.access_token
+  return cookies.accessToken
 }
 
 const getRefreshToken = () => {
   const cookies = parseCookies()
-  return cookies.refresh_token
+  return cookies.refreshToken
 }
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL, // server url 변경!
 })
 
+export const loginApi = axios.create({
+  baseURL: GOOGLE_LOGIN,
+})
+
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    // const token = getAccessToken()
-    //
-    // if (token) {
-    //   // eslint-disable-next-line no-param-reassign
-    // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjIsImVtYWlsIjoibW9vZG1hdGUyMDIzQGdtYWlsLmNvbSIsInN1YiI6IjIiLCJleHAiOjE3MDE2ODg1Mjh9.g6Z7dRRAeZja7-JZQyTeccKk7u_y0K3Nt-atpROlGiw`
-    // }
+    const token = getAccessToken()
+    console.log('ddddddddd', token)
+    if (token) {
+      // eslint-disable-next-line no-param-reassign
+      config.headers.Authorization = `Bearer ${token}`
+    }
     return config
   },
   (error) => {
@@ -48,7 +52,7 @@ api.interceptors.response.use(
         const newAccessToken = await axios.post(
           `${process.env.NEXT_PUBLIC_SERVER_URL}/users/refresh`,
           {
-            refreshToken: refreshToken,
+            refreshToken,
           },
         )
         setCookie(null, 'accessToken', newAccessToken.data.accessToken, {
