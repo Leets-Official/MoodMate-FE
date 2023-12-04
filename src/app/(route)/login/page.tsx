@@ -2,7 +2,6 @@
 
 import NormalButton from '@/_components/common/NormalButton'
 import { GOOGLE_AUTH_URL } from '@/_lib/google'
-import React from 'react'
 
 export default function Login() {
   const handleLogin = () => {

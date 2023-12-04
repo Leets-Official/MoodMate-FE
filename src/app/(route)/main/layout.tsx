@@ -10,5 +10,10 @@ export default function MainLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <main>{children}</main>
+  return (
+    <main>
+      <div id="mainPortal" />
+      {children}
+    </main>
+  )
 }

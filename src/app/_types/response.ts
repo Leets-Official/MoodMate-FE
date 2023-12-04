@@ -25,9 +25,11 @@ interface ResponseLogin {
 
 /** 메인페이지 응답 데이터 */
 interface ResponseMain {
-  userId: number
-  userGender: string
-  userMatchActive: boolean
-  roomId: number | -1
-  roomActive: boolean
+  mainPageResponse: {
+    userId: number
+    userGender: string
+    userMatchActive: boolean
+    roomId: number | -1
+    roomActive: boolean
+  }
 }
