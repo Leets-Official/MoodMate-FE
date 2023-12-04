@@ -1,14 +1,15 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
 import { parseCookies, setCookie } from 'nookies'
+import { GOOGLE_LOGIN } from '@/_lib/google'
 
 const getAccessToken = () => {
   const cookies = parseCookies()
-  return cookies.access_token
+  return cookies.accessToken
 }
 
 const getRefreshToken = () => {
   const cookies = parseCookies()
-  return cookies.refresh_token
+  return cookies.refreshToken
 }
 
 const api = axios.create({
@@ -16,18 +17,17 @@ const api = axios.create({
 })
 
 export const loginApi = axios.create({
-  baseURL: 'https://leets.moodmate.site/', // server url 변경!
+  baseURL: GOOGLE_LOGIN,
 })
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    // const token = getAccessToken()
-    //
-    // if (token) {
-    //   // eslint-disable-next-line no-param-reassign
-    // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjEsImVtYWlsIjoiYWhjaGphbmdAbmF2ZXIuY29tIiwic3ViIjoiMSIsImV4cCI6MTcwMTU5Mzg2NX0.Q_CBhIMiT-3YorWpw-4PsypxZXBMVr1VRIgFnKlIj8U`
-    // }
+    const token = getAccessToken()
+    console.log('ddddddddd', token)
+    if (token) {
+      // eslint-disable-next-line no-param-reassign
+      config.headers.Authorization = `Bearer ${token}`
+    }
     return config
   },
   (error) => {
@@ -52,7 +52,7 @@ api.interceptors.response.use(
         const newAccessToken = await axios.post(
           `${process.env.NEXT_PUBLIC_SERVER_URL}/users/refresh`,
           {
-            refreshToken: refreshToken,
+            refreshToken,
           },
         )
         setCookie(null, 'accessToken', newAccessToken.data.accessToken, {
