@@ -1,4 +1,4 @@
-import UserinfoPageComponents from '@/_components/common/myinfo/MyinfoPageComponents'
+import UserinfoPageComponents from '@/_components/common/userinfo/UserinfoPageComponents'
 
 interface UserinfoPageProps {
   params: {
