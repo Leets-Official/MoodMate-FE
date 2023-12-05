@@ -1,6 +1,8 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
 import { parseCookies, setCookie } from 'nookies'
 
+const x = document.cookie
+console.log('x', x)
 const getAccessToken = () => {
   const cookies = parseCookies()
   return cookies.accessToken
@@ -22,9 +24,10 @@ export const loginApi = axios.create({
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     const token = getAccessToken()
+    console.log('token', token)
     if (token) {
       // eslint-disable-next-line no-param-reassign
-      config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjIsImVtYWlsIjoibW9vZG1hdGUyMDIzQGdtYWlsLmNvbSIsInN1YiI6IjIiLCJleHAiOjE3MDE3NjAwMDJ9.tcAN6SfjU5akWC56FSNvjs_TD-EmJ-LwkYhDSSiyPyc`
+      config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjIsImVtYWlsIjoibW9vZG1hdGUyMDIzQGdtYWlsLmNvbSIsInN1YiI6IjIiLCJleHAiOjE3MDE3NjI0MDF9.VaxeP6QcX9sInMWntnpuxASEnDgm08pYdzMG_od1cbk`
     }
     return config
   },
@@ -43,6 +46,7 @@ api.interceptors.response.use(
     if (
       error.response.status === 401 &&
       originalRequest &&
+      // eslint-disable-next-line no-underscore-dangle
       !error.config.__isRetryRequest &&
       refreshToken
     ) {
@@ -57,7 +61,9 @@ api.interceptors.response.use(
           maxAge: 3 * 60 * 60,
           path: '/',
         })
-      } catch (e) {}
+      } catch (e) {
+        /* empty */
+      }
     }
   },
 )
