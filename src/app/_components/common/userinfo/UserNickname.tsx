@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { NICK_NAME_PAGE, INPUT_NICKNAME } from '@/_constants'
 import Input from '../Input'
 import NormalButton from '../NormalButton'
+import { useRouter } from 'next/navigation'
+import { NICK_NAME_PAGE, INPUT_NICKNAME } from '@/_constants'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { userInfoState } from '@/_atom/userinfo'
 
 interface UserNicknameProps {
   pageNum: string
@@ -10,8 +12,10 @@ interface UserNicknameProps {
 
 const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const route = useRouter()
-  const [inputValue, setInputValue] = useState('')
-  const [inputCount, setinputCount] = useState('0/5')
+  const [nickname, setNickname] = useRecoilState(userInfoState)
+  const userInfo = useRecoilValue(userInfoState)
+  const [inputValue, setInputValue] = useState(userInfo.nickname)
+  const [inputCount, setinputCount] = useState(`${inputValue.length}/5`)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(0, INPUT_NICKNAME.MAX)
@@ -22,7 +26,11 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   }
 
   const nextRoute = () => {
-    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+    setNickname((prevNickname) => ({
+      ...prevNickname,
+      nickname: inputValue,
+    }))
+    route.push(`/userinfo/${parseInt(pageNum) + 1}`)
   }
 
   const inputStyles = {
@@ -37,12 +45,14 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
 
   return (
     <div>
-      <div className="mt-[35px] mb-[201px]">
-        <div className="text-darkgray text-bold">
-          {NICK_NAME_PAGE.GREETINGS1}
+      <div className="mt-[35px] mb-[168px]">
+        <div className="text-darkgray font-bold text-2xl font-sans">
+          <div>{NICK_NAME_PAGE.GREETINGS1}</div>
+          <div>{NICK_NAME_PAGE.GREETINGS2}</div>
         </div>
-        <div>{NICK_NAME_PAGE.GREETINGS2}</div>
-        <div>{NICK_NAME_PAGE.WRNINGS}</div>
+        <div className="mt-[10px] text-secondary font-medium text-base font-sans">
+          {NICK_NAME_PAGE.WRNINGS}
+        </div>
       </div>
       <div className="w-[312px] h-[55px]">
         <Input
@@ -50,7 +60,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
           textValue={inputValue}
           placeholder={NICK_NAME_PAGE.INPUTBOX}
           onChange={handleInputChange}
-          className={` placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[130px]`}
+          className={`w-[240px] placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[30px]`}
         />
         <span className="text-[12px] text-secondary">{inputCount}</span>
         <div
@@ -59,15 +69,17 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
               ? inputStyles.activeStyles
               : inputStyles.defaultStyles
           }`}
-        />
-        <div>{NICK_NAME_PAGE.GUIDE}</div>
+        ></div>
+        <div className="text-secondary font-normal text-xs font-notosans mt-[8px] text-right">
+          {NICK_NAME_PAGE.GUIDE}
+        </div>
       </div>
 
       <NormalButton
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`mt-[160px] rounded-md ${
+        className={`mt-[160px] mb-[103px] rounded-md ${
           inputValue.length > 0
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles
