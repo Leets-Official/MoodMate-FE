@@ -46,30 +46,30 @@ api.interceptors.response.use(
     return response
   },
   async (error) => {
-    const originalRequest = error.config
-    const refreshToken = getRefreshToken()
-    if (
-      error.response.status === 401 &&
-      originalRequest &&
-      // eslint-disable-next-line no-underscore-dangle
-      !error.config.__isRetryRequest &&
-      refreshToken
-    ) {
-      try {
-        const newAccessToken = await axios.post(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/users/refresh`,
-          {
-            refreshToken,
-          },
-        )
-        setCookie(null, 'accessToken', newAccessToken.data.accessToken, {
-          maxAge: 3 * 60 * 60,
-          path: '/',
-        })
-      } catch (e) {
-        /* empty */
-      }
-    }
+    // const originalRequest = error.config
+    // const refreshToken = getRefreshToken()
+    // if (
+    //   error.response.status === 401 &&
+    //   originalRequest &&
+    //   // eslint-disable-next-line no-underscore-dangle
+    //   !error.config.__isRetryRequest &&
+    //   refreshToken
+    // ) {
+    //   try {
+    //     const newAccessToken = await axios.post(
+    //       `${process.env.NEXT_PUBLIC_SERVER_URL}/users/refresh`,
+    //       {
+    //         refreshToken,
+    //       },
+    //     )
+    //     setCookie(null, 'accessToken', newAccessToken.data.accessToken, {
+    //       // maxAge: 3 * 60 * 60,
+    //       path: '/',
+    //     })
+    //   } catch (e) {
+    //     /* empty */
+    //   }
+    // }
   },
 )
 
