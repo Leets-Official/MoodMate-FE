@@ -1,7 +1,5 @@
 'use client'
 
-import NormalButton from '@/_components/common/NormalButton'
-import { GOOGLE_AUTH_URL } from '@/_lib/google'
 import Image from 'next/image'
 import google from '@/_ui/illustration/common/login/google.png'
 import loginImage from '@/_ui/illustration/common/login/login.png'
@@ -9,7 +7,7 @@ import { LOGIN_PAGE } from '@/_constants/login'
 
 export default function Login() {
   const handleLogin = () => {
-    window.location.href = GOOGLE_AUTH_URL
+    window.location.href = `${process.env.GOOGLE_LOGIN}oauth/login/google`
   }
   return (
     <div className="flex flex-col">

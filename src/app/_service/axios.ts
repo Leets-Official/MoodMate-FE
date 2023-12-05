@@ -1,6 +1,5 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
 import { parseCookies, setCookie } from 'nookies'
-import { GOOGLE_LOGIN } from '@/_lib/google'
 
 const getAccessToken = () => {
   const cookies = parseCookies()
@@ -17,7 +16,7 @@ const api = axios.create({
 })
 
 export const loginApi = axios.create({
-  baseURL: GOOGLE_LOGIN,
+  baseURL: process.env.GOOGLE_LOGIN,
 })
 
 api.interceptors.request.use(
