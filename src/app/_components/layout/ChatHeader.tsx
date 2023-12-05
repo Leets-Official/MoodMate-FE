@@ -5,12 +5,12 @@ import { useState } from 'react'
 import { END_CHAT_MODAL, NEW_MATCHING_MODAL } from '@/_constants/chat'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { patchQuitChat } from '@/_service/chat'
+import { useMutation } from '@tanstack/react-query'
 import ModalPortal from '../common/modal/ModalPortal'
 import ModalOutside from '../common/modal/ModalOutside'
 import ModalContent from '../common/modal/ModalContent'
 import Icons from '../common/Icons'
-import { patchQuitChat } from '@/_service/chat'
-import { useMutation } from '@tanstack/react-query'
 
 interface ChatHeaderProps {
   userId: number
@@ -23,7 +23,7 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
   const newMatchMutation = useMutation({
     mutationFn: patchQuitChat,
     onSuccess: () => {
-      router.push('/main') //메인 렌더링 되면서 채팅방 안 들어가지는지 확인
+      router.push('/main') // 메인 렌더링 되면서 채팅방 안 들어가지는지 확인
     },
   })
   const noMatchMutation = useMutation({

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Input from '../Input'
-import NormalButton from '../NormalButton'
 import { useRouter } from 'next/navigation'
 import { NICK_NAME_PAGE, INPUT_NICKNAME } from '@/_constants'
+import Input from '../Input'
+import NormalButton from '../NormalButton'
 
 interface UserNicknameProps {
   pageNum: string
@@ -22,7 +22,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   }
 
   const nextRoute = () => {
-    route.push(`/userinfo/${parseInt(pageNum) + 1}`)
+    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
   }
 
   const inputStyles = {
@@ -59,7 +59,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
               ? inputStyles.activeStyles
               : inputStyles.defaultStyles
           }`}
-        ></div>
+        />
         <div>{NICK_NAME_PAGE.GUIDE}</div>
       </div>
 
