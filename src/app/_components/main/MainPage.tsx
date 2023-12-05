@@ -9,6 +9,7 @@ import { useMainQuery } from '@/_hooks/useMainQuery'
 import Image from 'next/image'
 import beforeMatch from '@/_ui/illustration/common/main/beforeMatch.png'
 import beforeMatchOn from '@/_ui/illustration/common/main/beforeMatchOn.png'
+import Loading from '@/_components/common/Loading'
 
 interface MatchProps {
   type: 'BEFORE' | 'AFTER'
@@ -42,7 +43,7 @@ const MainPage = ({ type }: MatchProps) => {
     console.log(data?.mainPageResponse)
   }, [data])
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Loading />
   }
   if (isError || !data) {
     return <div>Error...</div>
@@ -60,7 +61,7 @@ const MainPage = ({ type }: MatchProps) => {
       <Image
         src={beforeMatchOn}
         alt="beforeMatchOn"
-        className="w-[156px] mx-auto -mb-16 mt-16 desktop:mt-4"
+        className="w-[156px] mx-auto mt-16 desktop:mt-4"
       />
       <Image src={beforeMatch} alt="beforeMatch" />
       <NavBar

@@ -21,11 +21,11 @@ export const loginApi = axios.create({
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    // const token = getAccessToken()
-    // if (token) {
-    // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjIsImVtYWlsIjoibW9vZG1hdGUyMDIzQGdtYWlsLmNvbSIsInN1YiI6IjIiLCJleHAiOjE3MDE3NjAwMDJ9.tcAN6SfjU5akWC56FSNvjs_TD-EmJ-LwkYhDSSiyPyc`
-    // }
+    const token = getAccessToken()
+    if (token) {
+      // eslint-disable-next-line no-param-reassign
+      config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjIsImVtYWlsIjoibW9vZG1hdGUyMDIzQGdtYWlsLmNvbSIsInN1YiI6IjIiLCJleHAiOjE3MDE3NjAwMDJ9.tcAN6SfjU5akWC56FSNvjs_TD-EmJ-LwkYhDSSiyPyc`
+    }
     return config
   },
   (error) => {
