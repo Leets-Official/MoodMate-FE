@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Input from '../Input'
-import NormalButton from '../NormalButton'
 import { useRouter } from 'next/navigation'
 import { NICK_NAME_PAGE, INPUT_NICKNAME } from '@/_constants'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { userInfoState } from '@/_atom/userinfo'
+import NormalButton from '../NormalButton'
+import Input from '../Input'
 
 interface UserNicknameProps {
   pageNum: string
@@ -30,7 +30,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
       ...prevNickname,
       nickname: inputValue,
     }))
-    route.push(`/userinfo/${parseInt(pageNum) + 1}`)
+    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
   }
 
   const inputStyles = {
@@ -60,7 +60,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
           textValue={inputValue}
           placeholder={NICK_NAME_PAGE.INPUTBOX}
           onChange={handleInputChange}
-          className={`w-[240px] placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[30px]`}
+          className="w-[240px] placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[30px]"
         />
         <span className="text-[12px] text-secondary">{inputCount}</span>
         <div
@@ -69,7 +69,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
               ? inputStyles.activeStyles
               : inputStyles.defaultStyles
           }`}
-        ></div>
+        />
         <div className="text-secondary font-normal text-xs font-notosans mt-[8px] text-right">
           {NICK_NAME_PAGE.GUIDE}
         </div>

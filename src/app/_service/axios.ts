@@ -1,8 +1,7 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
 import { parseCookies, setCookie } from 'nookies'
+import Cookies from 'js-cookie'
 
-const x = document.cookie
-console.log('x', x)
 const getAccessToken = () => {
   const cookies = parseCookies()
   return cookies.accessToken
@@ -23,12 +22,17 @@ export const loginApi = axios.create({
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    const token = getAccessToken()
-    console.log('token', token)
-    if (token) {
-      // eslint-disable-next-line no-param-reassign
-      config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjIsImVtYWlsIjoibW9vZG1hdGUyMDIzQGdtYWlsLmNvbSIsInN1YiI6IjIiLCJleHAiOjE3MDE3NjI0MDF9.VaxeP6QcX9sInMWntnpuxASEnDgm08pYdzMG_od1cbk`
-    }
+    // const token = getAccessToken()
+    const accessToken = Cookies.get('accessToken')
+    const refreshToken = Cookies.get('refreshToken')
+
+    console.log('access', accessToken)
+    console.log('refresh', refreshToken)
+
+    // if (token) {
+    // eslint-disable-next-line no-param-reassign
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjIsImVtYWlsIjoibW9vZG1hdGUyMDIzQGdtYWlsLmNvbSIsInN1YiI6IjIiLCJleHAiOjE3MDE3NjI0MDF9.VaxeP6QcX9sInMWntnpuxASEnDgm08pYdzMG_od1cbk`
+    // }
     return config
   },
   (error) => {

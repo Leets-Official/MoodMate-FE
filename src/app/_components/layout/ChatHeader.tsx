@@ -36,12 +36,12 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
   const onOpenMatchModal = () => {
     setOpenExitModal((prev) => !prev)
     setOpenMatchModal((prev) => !prev)
-    document.body.style.overflow = 'hidden'
+    // document.body.style.overflow = 'hidden'
   }
 
   const onCloseExitModal = () => {
     setOpenExitModal(false)
-    document.body.style.overflow = 'unset'
+    // document.body.style.overflow = 'unset'
   }
 
   const onConfirmNewMatch = async () => {

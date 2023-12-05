@@ -53,11 +53,11 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
   })
   const onOpenModal = () => {
     setOpenModal((prev) => !prev)
-    document.body.style.overflow = 'hidden'
+    // document.body.style.overflow = 'hidden'
   }
   const onCloseModal = () => {
     setOpenModal(false)
-    document.body.style.overflow = 'unset'
+    // document.body.style.overflow = 'unset'
     inactiveMutation.mutate()
   }
   return (
