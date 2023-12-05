@@ -1,45 +1,17 @@
 'use client'
 
-import ChatList from '../chatroom/ChatList'
 import { CHAT_SIZE } from '@/_constants/chat'
 import { useRecoilState } from 'recoil'
 import { useEffect, useRef, useState } from 'react'
 import { realTimeMessagesState } from '@/_atom/chat'
 import { useInfiniteChatQuery } from '@/_hooks/useInfiniteChatQuery'
 import { useIntersectionObserver } from '@/_hooks/useIntersectionObserver'
+import ChatList from '../chatroom/ChatList'
 
 interface ChatRoomContainerProps {
   userId: number
   roomId: number
 }
-
-// var example = {
-//   chatList: [
-//     {
-//       messageId: 1,
-//       content: 'hello',
-//       userId: 1,
-//       createdAt: '2023-01-01T00:01:00Z',
-//       isRead: true,
-//     },
-//     {
-//       messageId: 4,
-//       content:
-//         '안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕안뇽하세요안녕',
-//       userId: 1,
-//       createdAt: '2023-01-02T00:11:00Z',
-//       isRead: true,
-//     },
-//     {
-//       messageId: 5,
-//       content: 'hello',
-//       userId: 1,
-//       createdAt: '2023-01-02T00:19:00Z',
-//       isRead: false,
-//     },
-//   ],
-// }
-
 const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [scrollHeight, setScrollHeight] = useState(0)
@@ -49,21 +21,8 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
   )
-  const {
-    fetchNextPage,
-    hasNextPage,
-    data, // 형태 맞는지 재확인
-    isFetchingNextPage,
-    status,
-  } = useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
-
-  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
-        fetchNextPage()
-      }
-    })
-  }
+  const { fetchNextPage, hasNextPage, data, isFetchingNextPage } =
+    useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -73,11 +32,32 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }, [realTimeMessages])
 
   useEffect(() => {
-    const observerCallback = (entries: IntersectionObserverEntry[]) =>
-      handleIntersection(entries)
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage()
+        }
+      })
+    }
 
-    useIntersectionObserver(topDivRef, observerCallback, hasNextPage)
-  }, [userId, hasNextPage, isFetchingNextPage])
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    })
+
+    if (topDivRef.current && hasNextPage && !isFetchingNextPage) {
+      observer.observe(topDivRef.current)
+    }
+
+    if (!hasNextPage && topDivRef.current) {
+      observer.unobserve(topDivRef.current)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [userId, hasNextPage, isFetchingNextPage, fetchNextPage])
 
   useEffect(() => {
     if (!containerRef) return
@@ -87,8 +67,8 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       containerRef.current.scrollTop = scrollTop
       setScrollHeight(containerRef.current.scrollHeight)
     }
-    console.log(data?.pages) //콘솔 확인
-  }, [data?.pages]) // deps맞는지 확인.
+    console.log(data?.pages)
+  }, [data?.pages, scrollHeight])
 
   return (
     <section className="h-[82%] py-5 px-3 overflow-scroll" ref={scrollRef}>
@@ -101,6 +81,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       {data?.pages.map((pageData) => {
         return (
           <ChatList
+            key={pageData.pageable.page}
             userId={userId}
             user={pageData.user}
             chatHistory={pageData.chatList}

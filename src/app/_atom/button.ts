@@ -1,10 +1,10 @@
 import { atom } from 'recoil'
 
-interface selectedValueState {
+interface SelectedValueState {
   selectedValue: boolean
 }
 
-export const selectedValueState = atom<selectedValueState>({
+export const selectedValueState = atom<SelectedValueState>({
   key: 'selectedValueState',
   default: {
     selectedValue: false,
