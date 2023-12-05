@@ -38,7 +38,7 @@ const Message = ({ msg, type, time, isRead }: MessageProps) => {
         getMessageStyle(type).box
       } relative px-[8px] py-[7px] rounded-lg mb-1.5 `}
     >
-      <p className={`text-black text-[16px]`}>{msg}</p>
+      <p className="text-black text-[16px]">{msg}</p>
       <div
         className={`absolute bottom-0 border-black border-b-[5px] border-b-transparent  ${
           getMessageStyle(type).tail

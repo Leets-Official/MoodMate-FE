@@ -25,20 +25,23 @@ const ChatList = ({ userId, user, chatHistory }: ChatListProps) => {
           <>
             {displayDate && <ChatDate date={messageDate} />}
             {chat.userId !== userId ? (
-              <>
-                <ChatItem
-                  key={idx}
-                  type="YOU"
-                  chat={chat}
-                  user={user}
-                  newSender={
-                    idx === 0 ||
-                    (idx > 0 && chatHistory[idx - 1].userId !== chat.userId)
-                  }
-                />
-              </>
+              <ChatItem
+                key={chat.messageId}
+                type="YOU"
+                chat={chat}
+                user={user}
+                newSender={
+                  idx === 0 ||
+                  (idx > 0 && chatHistory[idx - 1].userId !== chat.userId)
+                }
+              />
             ) : (
-              <ChatItem key={idx} type="ME" chat={chat} user={user} />
+              <ChatItem
+                key={chat.messageId}
+                type="ME"
+                chat={chat}
+                user={user}
+              />
             )}
           </>
         )

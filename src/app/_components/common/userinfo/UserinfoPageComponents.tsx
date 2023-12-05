@@ -1,3 +1,4 @@
+import NotFound from '@/not-found'
 import UserNickname from './UserNickname'
 import UserGender from './UserGender'
 import UserMyage from './UserMyage'
@@ -6,7 +7,6 @@ import UserKeyword from './UserKeyword'
 import UserMoodyAge from './UserMoodyAge'
 import UserSameDept from './UserSameDept'
 import UserMood from './UserMood'
-import NotFound from '@/not-found'
 
 interface UserinfoPageComponentsProps {
   slug: string

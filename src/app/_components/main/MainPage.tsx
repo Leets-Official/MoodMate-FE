@@ -6,6 +6,9 @@ import TimerFirstText from '@/_components/timer/containers/TimerFirstText'
 import TimerMiddleText from '@/_components/timer/containers/TimerMiddleText'
 import NavBar from '@/_components/common/NavBar'
 import { useMainQuery } from '@/_hooks/useMainQuery'
+import Image from 'next/image'
+import beforeMatch from '@/_ui/illustration/common/main/beforeMatch.png'
+import beforeMatchOn from '@/_ui/illustration/common/main/beforeMatchOn.png'
 
 interface MatchProps {
   type: 'BEFORE' | 'AFTER'
@@ -54,7 +57,12 @@ const MainPage = ({ type }: MatchProps) => {
       <TimerFirstText type={updatedType} />
       <Timer targetHour={getBGStyle(updatedType).targetHour} />
       <TimerMiddleText type={updatedType} />
-      <p className="p-9 mx-auto text-center">로고</p>
+      <Image
+        src={beforeMatchOn}
+        alt="beforeMatchOn"
+        className="w-[156px] mx-auto -mb-16 mt-16 desktop:mt-4"
+      />
+      <Image src={beforeMatch} alt="beforeMatch" />
       <NavBar
         type={updatedType}
         roomId={roomId}

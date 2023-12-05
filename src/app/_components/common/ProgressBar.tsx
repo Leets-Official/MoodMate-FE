@@ -13,7 +13,7 @@ const ProgressBar = ({ current }: ProgressBarProps) => {
     <div className="flex flex-col items-center justify-center">
       <div className="w-[312px] bg-[#E6E6E6] h-[10px] mb-[9px] rounded-full">
         <div
-          className={'h-full bg-[#FC4F59] rounded-full'}
+          className="h-full bg-[#FC4F59] rounded-full"
           style={{ width: `${percentage}%` }}
         />
       </div>
