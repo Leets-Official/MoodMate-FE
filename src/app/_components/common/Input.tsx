@@ -17,7 +17,7 @@ const getInputSort = (sort: string) => {
   switch (sort) {
     case 'info':
       return {
-        input: 'w-[312px] h-[39px]',
+        input: 'w-[141px] h-[28px]',
       }
     case 'chat':
       return {

@@ -1,7 +1,8 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { Range } from 'react-range'
 import { RANGE_BAR_AGE } from '@/_constants'
 
-type RangeBarProps = {
+interface RangeBarProps {
   type: 'single' | 'range'
   values: number[]
   onChange: (values: number[]) => void
@@ -15,6 +16,7 @@ const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
         min={RANGE_BAR_AGE.MIN}
         max={RANGE_BAR_AGE.MAX}
         values={values}
+        // eslint-disable-next-line @typescript-eslint/no-shadow
         onChange={(values) => onChange(values)}
         renderTrack={({ props, children }) => (
           <div {...props} className="h-1.5 w-full bg-gray-300 rounded-full">

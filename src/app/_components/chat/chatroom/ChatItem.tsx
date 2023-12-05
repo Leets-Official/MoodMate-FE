@@ -1,6 +1,6 @@
+import { extractTimeFromDate } from '@/utils/date'
 import Bio from '@/_components/common/Bio'
 import Message from './Message'
-import { extractTimeFromDate } from '@/utils/date'
 
 interface ChatItemProps {
   user?: SimpleUser

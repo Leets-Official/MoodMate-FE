@@ -11,7 +11,7 @@ const useWebsocket = (roomId: number) => {
   )
 
   useEffect(() => {
-    const socket = new SockJS('http://localhost:8080/chat') // endpoint 확인
+    const socket = new SockJS(`${process.env.NEXT_PUBLIC_SERVER_URL}/chat`) // endpoint 확인
     const client = Stomp.over(socket)
 
     client.connect({}, (frame: string) => {
