@@ -28,10 +28,11 @@ api.interceptors.request.use(
 
     console.log('access', accessToken)
     console.log('refresh', refreshToken)
+    console.log('docum', document.cookie)
 
     // if (token) {
     // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjIsImVtYWlsIjoibW9vZG1hdGUyMDIzQGdtYWlsLmNvbSIsInN1YiI6IjIiLCJleHAiOjE3MDE3NjI0MDF9.VaxeP6QcX9sInMWntnpuxASEnDgm08pYdzMG_od1cbk`
+    // config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjIsImVtYWlsIjoibW9vZG1hdGUyMDIzQGdtYWlsLmNvbSIsInN1YiI6IjIiLCJleHAiOjE3MDE3NjI0MDF9.VaxeP6QcX9sInMWntnpuxASEnDgm08pYdzMG_od1cbk`
     // }
     return config
   },

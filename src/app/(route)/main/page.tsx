@@ -5,9 +5,16 @@ import { useMainQuery } from '@/_hooks/useMainQuery'
 import React, { useEffect } from 'react'
 import InactivePage from '@/_components/inactive/InActivePage'
 import Loading from '@/_components/common/Loading'
+import Cookies from 'js-cookie'
 
 export default function MainpagePage() {
   const { isLoading, isError, data } = useMainQuery()
+  console.log('ggggg', Cookies.get('accessToken'))
+
+  useEffect(() => {
+    console.log('ggggg', Cookies.get('accessToken'))
+  }, [])
+
   if (isLoading) {
     return <Loading />
   }
