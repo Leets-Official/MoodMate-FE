@@ -6,6 +6,7 @@ export const socialLogin = async () => {
     const {
       data: { accessToken, refreshToken },
     } = await api.get('oauth/callback/google')
+    console.log(accessToken, refreshToken)
 
     // 쿠키 저장
   } catch (error) {
