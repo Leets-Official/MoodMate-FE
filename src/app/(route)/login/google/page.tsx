@@ -26,7 +26,7 @@ const OauthPage = () => {
       setRefreshToken(splitToken[1])
       const splitRefresh = refreshToken.split('=')
       setRefreshToken(splitRefresh[1])
-      router.push('/main')
+      // router.push('/main')
     }
   }, [accessToken, refreshToken])
   Cookies.set('realAccessToken', accessToken)
