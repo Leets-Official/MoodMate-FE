@@ -2,38 +2,28 @@
 
 import { useLoginQuery } from '@/_hooks/useLoginQuery'
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 
 const OauthPage = () => {
+  const router = useRouter()
+  const [accessToken, setAccessToken] = useState<string>('')
+  const [refreshToken, setRefreshToken] = useState<string>('')
   const { isLoading, isError } = useLoginQuery()
   const [token, setToken] = useState<string>('')
-  const route = useRouter()
   useEffect(() => {
-    // const accessToken = Cookies.get('accessToken')
-    // const refreshToken = Cookies.get('refreshToken')
-    //
-    // console.log('access2', accessToken)
-    // console.log('refresh2', refreshToken)
-    // setToken(accessToken || '')
-    // console.log('access4', accessToken)
-    // console.log('refresh4', refreshToken)
-    route.push('/main')
-  }, [])
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    const { accessToken, refreshToken } = router.query
 
-  useEffect(() => {
-    console.log('token:::', token)
-  }, [token])
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>
-  // }
-  // if (isError) {
-  //   return <div>Error...</div>
-  // }
+    if (accessToken && refreshToken) {
+      setAccessToken(accessToken as string)
+      setRefreshToken(refreshToken as string)
+    }
+  }, [router.query])
   return (
     <div>
-      <p>{token}</p>
+      <p>Access Token: {accessToken}</p>
+      <p>Refresh Token: {refreshToken}</p>
     </div>
   )
 }
