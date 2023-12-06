@@ -11,7 +11,7 @@ const OauthPage = () => {
 
   console.log('access2', accessToken)
   console.log('refresh2', refreshToken)
-  console.log('docum2', document.cookie)
+  // console.log('docum2', document.cookie)
   const { isLoading, isError, data } = useLoginQuery()
   const route = useRouter()
   useEffect(() => {

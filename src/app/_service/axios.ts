@@ -17,7 +17,7 @@ api.interceptors.request.use(
 
     console.log('access', accessToken)
     console.log('refresh', refreshToken)
-    console.log('docum', document.cookie)
+    // console.log('docum', document.cookie)
 
     // if (token) {
     // eslint-disable-next-line no-param-reassign
