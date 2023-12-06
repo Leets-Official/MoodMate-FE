@@ -1,7 +1,8 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
 
 const api = axios.create({
-  baseURL: process.env.GOOGLE_LOGIN, // server url 변경!
+  baseURL: process.env.GOOGLE_LOGIN,
+  withCredentials: true,
 })
 
 // export const loginApi = axios.create({
@@ -14,6 +15,7 @@ api.interceptors.request.use(
     // eslint-disable-next-line no-param-reassign
     // config.headers.Authorization = `Bearer ${token}`
     // }
+    console.log(config.headers)
     return config
   },
   (error) => {
