@@ -17,11 +17,12 @@ const OauthPage = () => {
         'accessToken',
       )
       const refreshTokenURL = new URL(window.location.href).searchParams.get(
-        'accessToken',
+        'refreshToken',
       )
+      const splitToken = accessTokenURL?.split('?')
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      setAccessToken(accessTokenURL)
+      setAccessToken(splitToken[0])
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       setRefreshToken(refreshTokenURL)
