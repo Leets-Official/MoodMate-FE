@@ -79,7 +79,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`mt-[160px] mb-[103px] rounded-md text-darkgray ${
+        className={`mt-[160px] rounded-md text-darkgray ${
           inputValue.length > 0
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles
