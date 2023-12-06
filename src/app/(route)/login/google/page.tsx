@@ -10,14 +10,14 @@ const OauthPage = () => {
   const [token, setToken] = useState<string>('')
   const route = useRouter()
   useEffect(() => {
-    const accessToken = Cookies.get('accessToken')
-    const refreshToken = Cookies.get('refreshToken')
-
-    console.log('access2', accessToken)
-    console.log('refresh2', refreshToken)
-    setToken(accessToken || '')
-    console.log('access4', accessToken)
-    console.log('refresh4', refreshToken)
+    // const accessToken = Cookies.get('accessToken')
+    // const refreshToken = Cookies.get('refreshToken')
+    //
+    // console.log('access2', accessToken)
+    // console.log('refresh2', refreshToken)
+    // setToken(accessToken || '')
+    // console.log('access4', accessToken)
+    // console.log('refresh4', refreshToken)
     route.push('/main')
   }, [])
 
