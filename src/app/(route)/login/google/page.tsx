@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 
 const OauthPage = () => {
-  const { isLoading, isError, data } = useLoginQuery()
+  // const { isLoading, isError } = useLoginQuery()
   const [token, setToken] = useState<string>('')
   const route = useRouter()
   useEffect(() => {
@@ -25,12 +25,12 @@ const OauthPage = () => {
     console.log('token:::', token)
   }, [token])
 
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-  if (isError || !data) {
-    return <div>Error...</div>
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>
+  // }
+  // if (isError) {
+  //   return <div>Error...</div>
+  // }
   return (
     <div>
       <p>{token}</p>
