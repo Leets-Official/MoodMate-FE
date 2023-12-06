@@ -7,10 +7,10 @@ import TimerMiddleText from '@/_components/timer/containers/TimerMiddleText'
 import NavBar from '@/_components/common/NavBar'
 import { useMainQuery } from '@/_hooks/useMainQuery'
 import Image from 'next/image'
-import beforeMatch from '@/_ui/illustration/common/main/beforeMatch.png'
-import beforeMatchOn from '@/_ui/illustration/common/main/beforeMatchOn.png'
 import Loading from '@/_components/common/Loading'
-import logo from '@/_ui/illustration/common/logo/graylogo.png'
+import beforeMatch from '../../../../public/illustration/common/main/beforeMatch.png'
+import beforeMatchOn from '../../../../public/illustration/common/main/beforeMatchOn.png'
+import logo from '../../../../public/illustration/common/logo/graylogo.png'
 
 interface MatchProps {
   type: 'BEFORE' | 'AFTER'

@@ -1,4 +1,4 @@
-import loading from '@/_ui/illustration/common/logo/loading.png'
+import loading from '../../../../public/illustration/common/logo/loading.png'
 import Image from 'next/image'
 
 const Loading = () => {
