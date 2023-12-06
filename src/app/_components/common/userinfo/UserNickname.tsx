@@ -39,7 +39,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   }
 
   const buttonStyles = {
-    defaultStyles: 'bg-gray-300',
+    defaultStyles: 'bg-secondary',
     activeStyles: 'text-white bg-[#FC4F59]',
   }
 
@@ -79,7 +79,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`mt-[160px] mb-[103px] rounded-md ${
+        className={`mt-[160px] mb-[103px] rounded-md text-darkgray ${
           inputValue.length > 0
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles
