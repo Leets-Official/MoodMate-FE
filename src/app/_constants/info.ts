@@ -95,8 +95,8 @@ export const GENDER_PAGE = {
 export const MY_AGE_PAGE = {
   GREETINGS: '무디가 당신의 나이를 궁금해해요!',
   WRININGS: '출생년도를 기준으로 골라주세요.',
-  MAX: '94',
-  MIN: '04',
+  MAX: '04',
+  MIN: '94',
   AVG: '99',
 } as const
 
@@ -133,8 +133,8 @@ export const MY_KEYWORD_PAGE = {
 export const MOODIE_AGE_PAGE = {
   GREETINGS: '무디의 나이를 설정해주세요!',
   WRININGS: '출생년도를 기준으로 골라주세요.',
-  MAX: '94',
-  MIN: '04',
+  MAX: '04',
+  MIN: '94',
   AVG: '99',
 } as const
 
