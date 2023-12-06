@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 export const socialLogin = async () => {
   try {
     const res = await api.get('oauth/callback/google')
-    console.log(res.headers)
+    console.log('social login response header', res.headers)
 
     // 쿠키 저장
     // Cookies.set('accessToken', accessToken)
