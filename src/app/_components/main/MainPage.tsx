@@ -10,6 +10,7 @@ import Image from 'next/image'
 import beforeMatch from '@/_ui/illustration/common/main/beforeMatch.png'
 import beforeMatchOn from '@/_ui/illustration/common/main/beforeMatchOn.png'
 import Loading from '@/_components/common/Loading'
+import logo from '@/_ui/illustration/common/logo/graylogo.png'
 
 interface MatchProps {
   type: 'BEFORE' | 'AFTER'
@@ -52,18 +53,20 @@ const MainPage = ({ type }: MatchProps) => {
   const updatedType = roomActive ? 'AFTER' : 'BEFORE'
   return (
     <div className={`${getBGStyle(updatedType).background} flex flex-col`}>
-      <p className={`${getBGStyle(updatedType).logo} p-10 mx-auto text-center`}>
-        moodmate
-      </p>
+      <Image
+        src={logo}
+        alt="graylogo"
+        className="w-[85px] h-[13px] mt-10 mb-20 mx-auto"
+      />
       <TimerFirstText type={updatedType} />
       <Timer targetHour={getBGStyle(updatedType).targetHour} />
       <TimerMiddleText type={updatedType} />
       <Image
         src={beforeMatchOn}
         alt="beforeMatchOn"
-        className="w-[156px] mx-auto mt-16 desktop:mt-4"
+        className="w-[156px] mx-auto mt-24 desktop:mt-4"
       />
-      <Image src={beforeMatch} alt="beforeMatch" />
+      <Image src={beforeMatch} alt="beforeMatch" className="-mt-16" />
       <NavBar
         type={updatedType}
         roomId={roomId}

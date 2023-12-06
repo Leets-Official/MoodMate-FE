@@ -1,13 +1,24 @@
 import InactiveFirstText from '@/_components/inactive/containers/InactiveFirstText'
 import InactiveMiddleText from '@/_components/inactive/containers/InactiveMiddleText'
-import { useMainQuery } from '@/_hooks/useMainQuery'
 import React from 'react'
+import logo from '@/_ui/illustration/common/logo/graylogo.png'
+import inactive from '@/_ui/illustration/female/main/inactive.png'
+import Image from 'next/image'
 
 export default function InactivePage() {
   return (
     <section className="flex flex-col">
-      <p className="p-10 mx-auto text-center text-[#B3B3B3]">moodmate</p>
+      <Image
+        src={logo}
+        alt="graylogo"
+        className="w-[85px] h-[13px] mt-10 mb-20 mx-auto"
+      />
       <InactiveFirstText />
+      <Image
+        src={inactive}
+        alt="inactive"
+        className="mx-auto w-[150px] h-[220px] mt-[78px] mb-[58px]"
+      />
       <InactiveMiddleText />
     </section>
   )
