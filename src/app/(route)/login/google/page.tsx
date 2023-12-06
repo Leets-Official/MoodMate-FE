@@ -28,6 +28,7 @@ const OauthPage = () => {
       setRefreshToken(refreshTokenURL)
     }
   }, [accessToken, refreshToken])
+  Cookies.set('accessToken', accessToken)
   return (
     <div>
       <p>Access Token: {accessToken}</p>
