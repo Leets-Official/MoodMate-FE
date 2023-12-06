@@ -13,7 +13,7 @@ api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     // if (token) {
     // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjEsImVtYWlsIjoiYWhjaGphbmdAbmF2ZXIuY29tIiwic3ViIjoiMSIsImV4cCI6MTcwMTU5Mzg2NX0.Q_CBhIMiT-3YorWpw-4PsypxZXBMVr1VRIgFnKlIj8U`
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjQsImVtYWlsIjoiZXVuenp6enp6MUBuYXZlci5jb20iLCJzdWIiOiI0IiwiZXhwIjoxNzAxODYxMTM5fQ.0kd1K5ygnXvkPvJTFNcRWZfRf6lpDm0EX2Yp8rNuA7M`
     // }
     return config
   },
