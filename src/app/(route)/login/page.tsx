@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
+import { LOGIN_PAGE } from '@/_constants/login'
 import google from '../../../../public/illustration/common/login/google.png'
 import loginImage from '../../../../public/illustration/common/login/login.png'
-import { LOGIN_PAGE } from '@/_constants/login'
 
 export default function Login() {
   const handleLogin = () => {

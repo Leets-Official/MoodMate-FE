@@ -1,4 +1,5 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
+import Cookies from 'js-cookie'
 
 const api = axios.create({
   baseURL: process.env.GOOGLE_LOGIN,
@@ -11,10 +12,12 @@ const api = axios.create({
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    // if (token) {
-    // eslint-disable-next-line no-param-reassign
-    // config.headers.Authorization = `Bearer ${token}`
-    // }
+    const accessToken = Cookies.get('accessToken')
+    console.log('inter', accessToken)
+    if (accessToken) {
+      // eslint-disable-next-line no-param-reassign
+      config.headers.Authorization = `Bearer ${accessToken}`
+    }
     console.log(config.headers)
     return config
   },
