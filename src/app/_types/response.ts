@@ -20,7 +20,7 @@ interface ResponseMessage {
 /** 소셜로그인 응답 데이터 */
 interface ResponseLogin {
   accessToken: string
-  refreshTokce: string
+  refreshToken: string
 }
 
 /** 메인페이지 응답 데이터 */

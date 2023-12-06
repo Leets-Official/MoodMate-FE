@@ -5,10 +5,10 @@ import { socialLogin } from '@/_service/login'
 
 export const useLoginQuery = () => {
   const queryKey = ['login']
-  const { isLoading, isError, data } = useQuery<ResponseLogin, Error>({
+  const { isLoading, isError } = useQuery({
     queryKey,
     queryFn: socialLogin,
   })
 
-  return { isLoading, isError, data }
+  return { isLoading, isError }
 }
