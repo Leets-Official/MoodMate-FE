@@ -16,7 +16,7 @@ api.interceptors.request.use(
     console.log('inter', accessToken)
     if (accessToken) {
       // eslint-disable-next-line no-param-reassign
-      config.headers.Authorization = `Bearer ${accessToken}`
+      config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjQsImVtYWlsIjoiZXVuenp6enp6MUBuYXZlci5jb20iLCJzdWIiOiI0IiwiZXhwIjoxNzAxODk0Mzc4fQ.ZLNk3cpVPfQvTV-_NBDtHeAVhAuimELQBWDgq4cYop4`
     }
     console.log(config.headers)
     return config
