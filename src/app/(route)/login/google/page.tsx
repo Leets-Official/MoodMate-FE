@@ -2,7 +2,7 @@
 
 import { useLoginQuery } from '@/_hooks/useLoginQuery'
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 
 const OauthPage = () => {
@@ -12,14 +12,21 @@ const OauthPage = () => {
   const { isLoading, isError } = useLoginQuery()
   const [token, setToken] = useState<string>('')
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const { accessToken, refreshToken } = router.query
-
-    if (accessToken && refreshToken) {
-      setAccessToken(accessToken as string)
-      setRefreshToken(refreshToken as string)
+    if (typeof window !== 'undefined') {
+      const accessTokenURL = new URL(window.location.href).searchParams.get(
+        'accessToken',
+      )
+      const refreshTokenURL = new URL(window.location.href).searchParams.get(
+        'accessToken',
+      )
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setAccessToken(accessTokenURL)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setRefreshToken(refreshTokenURL)
     }
-  }, [router.query])
+  }, [accessToken, refreshToken])
   return (
     <div>
       <p>Access Token: {accessToken}</p>
