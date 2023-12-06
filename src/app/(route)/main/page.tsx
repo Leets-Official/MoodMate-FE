@@ -9,11 +9,6 @@ import Cookies from 'js-cookie'
 
 export default function MainpagePage() {
   const { isLoading, isError, data } = useMainQuery()
-  console.log('ggggg', Cookies.get('accessToken'))
-
-  useEffect(() => {
-    console.log('ggggg', Cookies.get('accessToken'))
-  }, [])
 
   if (isLoading) {
     return <Loading />

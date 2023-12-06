@@ -1,24 +1,13 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
-import { parseCookies, setCookie } from 'nookies'
 import Cookies from 'js-cookie'
-
-const getAccessToken = () => {
-  const cookies = parseCookies()
-  return cookies.accessToken
-}
-
-const getRefreshToken = () => {
-  const cookies = parseCookies()
-  return cookies.refreshToken
-}
 
 const api = axios.create({
   baseURL: process.env.GOOGLE_LOGIN, // server url 변경!
 })
 
-export const loginApi = axios.create({
-  baseURL: process.env.GOOGLE_LOGIN,
-})
+// export const loginApi = axios.create({
+//   baseURL: process.env.GOOGLE_LOGIN,
+// })
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
@@ -47,7 +36,7 @@ api.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config
-    const refreshToken = getRefreshToken()
+    const refreshToken = Cookies.get('refreshToken')
     if (
       error.response.status === 401 &&
       originalRequest &&
