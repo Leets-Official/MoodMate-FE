@@ -5,7 +5,7 @@ interface SelectedButtonProps {
   buttonText: string
   buttonType: keyof typeof BUTTON_TYPE
   isActive: boolean
-  color: string
+  className: string
   onClick: () => void
   imgSrc?: string
   imgSize?: string
@@ -15,12 +15,12 @@ const SelectedButton = ({
   buttonText,
   buttonType = 'DEFAULT',
   isActive,
-  color,
+  className,
   onClick,
   imgSrc,
   imgSize,
 }: SelectedButtonProps) => {
-  const buttonStyles = BUTTON_STYLE[buttonType](color)
+  const buttonStyles = BUTTON_STYLE[buttonType](className)
 
   return (
     <button
