@@ -12,14 +12,6 @@ const api = axios.create({
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    const cookies = document.cookie.split(';')
-    cookies.forEach((cookie) => {
-      const [name, value] = cookie.trim().split('=')
-      if (name === 'accessToken') {
-        const accessToken = value
-        console.log('123213', accessToken)
-      }
-    })
     const accessToken = Cookies.get('accessToken')
     console.log('inter', accessToken)
     if (accessToken) {
