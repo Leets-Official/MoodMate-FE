@@ -25,10 +25,11 @@ const OauthPage = () => {
       setAccessToken(splitToken[0])
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      setRefreshToken(refreshTokenURL)
+      setRefreshToken(splitToken[1])
     }
   }, [accessToken, refreshToken])
-  Cookies.set('accessToken', accessToken)
+  Cookies.set('realAccessToken', accessToken)
+  Cookies.set('realRefreshToken', refreshToken)
   return (
     <div>
       <p>Access Token: {accessToken}</p>

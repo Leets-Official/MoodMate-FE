@@ -12,7 +12,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    const accessToken = Cookies.get('accessToken')
+    const accessToken = Cookies.get('realAccessToken')
     console.log('inter', accessToken)
     if (accessToken) {
       // eslint-disable-next-line no-param-reassign
