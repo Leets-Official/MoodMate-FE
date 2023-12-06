@@ -23,9 +23,7 @@ const OauthPage = () => {
       setAccessToken(splitToken[0])
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      setRefreshToken(splitToken[1])
-      const splitRefresh = refreshToken?.split('=')
-      setRefreshToken(splitRefresh[1])
+      setRefreshToken(refreshTokenURL)
       // router.push('/main')
     }
   }, [accessToken, refreshToken])
