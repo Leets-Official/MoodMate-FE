@@ -11,12 +11,9 @@ const api = axios.create({
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    const token = Cookies.get('accessToken')
-    console.log('access', token)
-
     // if (token) {
     // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer ${token}`
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjEsImVtYWlsIjoiYWhjaGphbmdAbmF2ZXIuY29tIiwic3ViIjoiMSIsImV4cCI6MTcwMTU5Mzg2NX0.Q_CBhIMiT-3YorWpw-4PsypxZXBMVr1VRIgFnKlIj8U`
     // }
     return config
   },
@@ -31,27 +28,17 @@ api.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config
-    const refreshToken = Cookies.get('refreshToken')
     if (
       error.response.status === 401 &&
       originalRequest &&
       // eslint-disable-next-line no-underscore-dangle
-      !error.config.__isRetryRequest &&
-      refreshToken
+      !error.config.__isRetryRequest
     ) {
       try {
-        // const newAccessToken = await axios.post(
-        //   `${process.env.GOOGLE_LOGIN}/users/refresh`,
-        //   {
-        //     refreshToken,
-        //   },
-        // )
-        // setCookie(null, 'accessToken', newAccessToken.data.accessToken, {
-        //   // maxAge: 3 * 60 * 60,
-        //   path: '/',
-        // })
+        await axios.post(`${process.env.GOOGLE_LOGIN}/users/refresh`)
+        console.log('성공')
       } catch (e) {
-        /* empty */
+        console.log(e)
       }
     }
   },
