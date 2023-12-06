@@ -13,7 +13,7 @@ const getRefreshToken = () => {
 }
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_SERVER_URL, // server url 변경!
+  baseURL: process.env.GOOGLE_LOGIN, // server url 변경!
 })
 
 export const loginApi = axios.create({
@@ -56,16 +56,16 @@ api.interceptors.response.use(
       refreshToken
     ) {
       try {
-        const newAccessToken = await axios.post(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/users/refresh`,
-          {
-            refreshToken,
-          },
-        )
-        setCookie(null, 'accessToken', newAccessToken.data.accessToken, {
-          // maxAge: 3 * 60 * 60,
-          path: '/',
-        })
+        // const newAccessToken = await axios.post(
+        //   `${process.env.GOOGLE_LOGIN}/users/refresh`,
+        //   {
+        //     refreshToken,
+        //   },
+        // )
+        // setCookie(null, 'accessToken', newAccessToken.data.accessToken, {
+        //   // maxAge: 3 * 60 * 60,
+        //   path: '/',
+        // })
       } catch (e) {
         /* empty */
       }
