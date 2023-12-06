@@ -1,5 +1,5 @@
-import loading from '../../../../public/illustration/common/logo/loading.png'
 import Image from 'next/image'
+import loading from '../../../../public/illustration/common/logo/loading.png'
 
 const Loading = () => {
   return (
