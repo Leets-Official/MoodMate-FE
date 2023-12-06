@@ -1,5 +1,4 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
-import Cookies from 'js-cookie'
 
 const api = axios.create({
   baseURL: process.env.GOOGLE_LOGIN, // server url 변경!
@@ -13,7 +12,7 @@ api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     // if (token) {
     // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOjQsImVtYWlsIjoiZXVuenp6enp6MUBuYXZlci5jb20iLCJzdWIiOiI0IiwiZXhwIjoxNzAxODYxMTM5fQ.0kd1K5ygnXvkPvJTFNcRWZfRf6lpDm0EX2Yp8rNuA7M`
+    // config.headers.Authorization = `Bearer ${token}`
     // }
     return config
   },

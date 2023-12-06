@@ -48,7 +48,7 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
   const inactiveMutation = useMutation({
     mutationFn: patchInactiveMain,
     onSuccess: () => {
-      // route.push('/main')
+      document.location.reload()
     },
   })
   const onOpenModal = () => {
@@ -61,7 +61,7 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
     inactiveMutation.mutate()
   }
   return (
-    <div className="-z-10 translate-y-[30px] fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
+    <div className="translate-y-[30px] fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
       <div
         className={`${
           getTextStyle(type).box
@@ -75,7 +75,7 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
             getTextStyle(type).chat
           } rounded-full w-[72px] h-[72px] -mt-16`}
         >
-          <Link href={`/chat/room/${userId}/${roomId}`}>
+          <Link href={`/chat/${userId}/${roomId}`}>
             <Icons
               name={getTextStyle(type).chating}
               className="ml-6 mt-6"
