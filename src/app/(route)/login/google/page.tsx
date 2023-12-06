@@ -26,6 +26,9 @@ const OauthPage = () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       setRefreshToken(splitToken[1])
+      const splitRefresh = refreshToken.split('=')
+      setRefreshToken(splitRefresh[1])
+      router.push('/main')
     }
   }, [accessToken, refreshToken])
   Cookies.set('realAccessToken', accessToken)
