@@ -9,8 +9,6 @@ const OauthPage = () => {
   const router = useRouter()
   const [accessToken, setAccessToken] = useState<string>('')
   const [refreshToken, setRefreshToken] = useState<string>('')
-  const { isLoading, isError } = useLoginQuery()
-  const [token, setToken] = useState<string>('')
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const accessTokenURL = new URL(window.location.href).searchParams.get(

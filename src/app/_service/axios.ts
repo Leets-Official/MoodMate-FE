@@ -40,7 +40,7 @@ api.interceptors.response.use(
       !error.config.__isRetryRequest
     ) {
       try {
-        await axios.post(`${process.env.GOOGLE_LOGIN}/users/refresh`)
+        await axios.post(`${process.env.GOOGLE_LOGIN}users/refresh`)
         console.log('성공')
       } catch (e) {
         console.log(e)
