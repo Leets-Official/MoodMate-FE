@@ -1,4 +1,4 @@
-import { DEPARTMENT_LIST } from '@/_constants/info'
+import { MY_DEPARTMENT_PAGE } from '@/_constants/info'
 
 interface AccordionProps {
   selectedDepartment: string
@@ -18,28 +18,49 @@ const Accordion = ({
   }
 
   return (
-    <div
-      className={`w-72 mx-auto mt-[419px] ${
-        isOpen ? 'rounded-lg flex flex-col-reverse' : 'rounded-lg h-12'
-      } scrollbar-hide`}
-      style={{ backgroundColor: isOpen ? '#FFF3F4' : '#FFE5E7' }}
-    >
+    <>
       <button
         type="button"
-        className={`w-full h-12 rounded-lg ${
-          selectedDepartment === '학과를 입력하세요' ? 'bg-FFE5E7' : 'bg-FC4F59'
-        } text-FC4F59`}
+        className={`w-[312px] h-[48px] rounded-[16px] bg-onepink flex justify-between items-center px-4 absolute bottom-[169px] ${
+          selectedDepartment && 'border-2 border-primary'
+        }`}
         onClick={onOpen}
       >
-        {selectedDepartment}
-        <span className="ml-[50px]">{isOpen ? '▼' : '▲'}</span>
+        <span
+          className={`${
+            selectedDepartment ? 'text-primary' : 'text-darkgray'
+          } not-italic font-medium leading-normal`}
+        >
+          {selectedDepartment
+            ? selectedDepartment
+            : MY_DEPARTMENT_PAGE.WARNINGS}
+        </span>
+        <span className="absolute right-[18px]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="13"
+            height="8"
+            viewBox="0 0 13 8"
+            fill="none"
+          >
+            <path
+              d="M7.26481 0.334747C6.84179 -0.111583 6.15482 -0.111583 5.73181 0.334746L0.317258 6.04776C-0.105754 6.49409 -0.105754 7.21892 0.317258 7.66525C0.74027 8.11158 1.42724 8.11158 1.85025 7.66525L6.5 2.75921L11.1497 7.66168C11.5728 8.10801 12.2597 8.10801 12.6827 7.66168C13.1058 7.21536 13.1058 6.49052 12.6827 6.04419L7.26819 0.331176L7.26481 0.334747Z"
+              fill={selectedDepartment ? '#FC4F59' : '#333333'}
+            />
+          </svg>
+        </span>
       </button>
+
       {isOpen && (
-        <div className="max-h-36 overflow-y-scroll">
-          {DEPARTMENT_LIST.map((department) => (
+        <div className="absolute bottom-[230px] left-0 w-[312px] max-h-48 rounded-[16px] overflow-y-scroll scrollbar-hide bg-onepink">
+          {MY_DEPARTMENT_PAGE.DEPARTMENT_LIST.map((department) => (
             <button
               key={department}
-              className="w-full h-12 rounded-lg bg-FFF3F4"
+              className={`w-full h-12 ${
+                selectedDepartment === department
+                  ? 'bg-FFF3F4 text-primary'
+                  : 'bg-FFF3F4 text-darkgray'
+              }`}
               onClick={() => handleSelect(department)}
               type="button"
             >
@@ -48,7 +69,7 @@ const Accordion = ({
           ))}
         </div>
       )}
-    </div>
+    </>
   )
 }
 
