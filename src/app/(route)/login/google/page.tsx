@@ -29,17 +29,16 @@ const OauthPage = () => {
   useEffect(() => {
     if (accessToken) {
       router.push('/main')
-
-      Cookies.set('realAccessToken', accessToken, {
-        maxAge: 3 * 60 * 60,
-        path: '/',
-      })
-      Cookies.set('realRefreshToken', refreshToken, {
-        maxAge: 3 * 24 * 60 * 60,
-        path: '/',
-      })
     }
-  }, [accessToken, refreshToken, router])
+  }, [accessToken, router])
+  Cookies.set('realAccessToken', accessToken, {
+    maxAge: 3 * 60 * 60,
+    path: '/',
+  })
+  Cookies.set('realRefreshToken', refreshToken, {
+    maxAge: 3 * 24 * 60 * 60,
+    path: '/',
+  })
   return (
     <div>
       <Loading />
