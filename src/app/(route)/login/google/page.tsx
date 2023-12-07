@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
+import Loading from '@/_components/common/Loading'
 
 const OauthPage = () => {
   const [accessToken, setAccessToken] = useState<string>('')
@@ -31,8 +32,7 @@ const OauthPage = () => {
   Cookies.set('realRefreshToken', refreshToken)
   return (
     <div>
-      <p>Access Token: {accessToken}</p>
-      <p>Refresh Token: {refreshToken}</p>
+      <Loading />
     </div>
   )
 }
