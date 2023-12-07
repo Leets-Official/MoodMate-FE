@@ -49,7 +49,7 @@ const MainPage = ({ type }: MatchProps) => {
   if (isError || !data) {
     return <div>Error...</div>
   }
-  const { roomId, userId } = data.mainPageResponse
+  const { roomActive, roomId, userId } = data.mainPageResponse
   return (
     <div className={`${getBGStyle(type).background} flex flex-col`}>
       <Image
@@ -66,7 +66,12 @@ const MainPage = ({ type }: MatchProps) => {
         className="w-[156px] mx-auto mt-24 desktop:mt-4"
       />
       <Image src={beforeMatch} alt="beforeMatch" className="-mt-16" />
-      <NavBar type={type} roomId={roomId} userId={userId} roomActive />
+      <NavBar
+        type={type}
+        roomId={roomId}
+        userId={userId}
+        roomActive={roomActive}
+      />
     </div>
   )
 }

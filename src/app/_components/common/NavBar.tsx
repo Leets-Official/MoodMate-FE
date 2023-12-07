@@ -8,14 +8,16 @@ import { useState } from 'react'
 import ModalPortal from '@/_components/common/modal/ModalPortal'
 import ModalOutside from '@/_components/common/modal/ModalOutside'
 import ModalContent from '@/_components/common/modal/ModalContent'
-import { INACTIVE_MODAL } from '@/_constants'
+import { CHAT_MODAL, INACTIVE_MODAL } from '@/_constants'
 import { useMutation } from '@tanstack/react-query'
 import { patchInactiveMain } from '@/_service/main'
+import ModalContentOne from '@/_components/common/modal/ModalContentOne'
 
 interface TextProps {
   type: 'BEFORE' | 'AFTER'
   roomId: number
   userId: number
+  roomActive: boolean
 }
 
 const getTextStyle = (type: string) => {
@@ -40,10 +42,10 @@ const getTextStyle = (type: string) => {
       }
   }
 }
-
-const NavBar = ({ type, userId, roomId }: TextProps) => {
+const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
   const route = useRouter()
   const [openModal, setOpenModal] = useState<boolean>(false)
+  const [chatModal, setChatModal] = useState<boolean>(false)
   const inactiveMutation = useMutation({
     mutationFn: patchInactiveMain,
     onSuccess: () => {
@@ -58,6 +60,14 @@ const NavBar = ({ type, userId, roomId }: TextProps) => {
     setOpenModal(false)
     // document.body.style.overflow = 'unset'
     inactiveMutation.mutate()
+  }
+  const onChatOpenModal = () => {
+    setChatModal((prev) => !prev)
+    // document.body.style.overflow = 'hidden'
+  }
+  const onChatCloseModal = () => {
+    setChatModal((prev) => !prev)
+    // document.body.style.overflow = 'unset'
   }
   return (
     <div className="translate-y-[30px] fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
@@ -97,6 +107,16 @@ const NavBar = ({ type, userId, roomId }: TextProps) => {
               onConfirm={onOpenModal}
               onCancel={onCloseModal}
             />
+          </ModalOutside>
+        </ModalPortal>
+      )}
+      {!roomActive && (
+        <ModalPortal nodeName="mainPortal">
+          <ModalOutside
+            onClose={() => setChatModal(false)}
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
+          >
+            <ModalContentOne onClose={onChatCloseModal} subject={CHAT_MODAL} />
           </ModalOutside>
         </ModalPortal>
       )}
