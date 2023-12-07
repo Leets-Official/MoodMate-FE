@@ -11,7 +11,7 @@ export const useInfiniteChatQuery = (
       queryKey: ['chat', userId, roomId],
       queryFn: ({ pageParam }) => {
         console.log(pageParam)
-        return getMessages(userId, roomId, size, pageParam as number)
+        return getMessages(roomId, size, pageParam as number)
       },
       enabled: !!userId && !!roomId,
       initialPageParam: 1,

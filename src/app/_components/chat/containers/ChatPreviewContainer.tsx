@@ -14,7 +14,6 @@ const ChatPreviewContainer = ({
   roomId,
 }: ChatPreviewContainerProps) => {
   const { isLoading, isError, chatHistory } = useChatQuery(
-    userId,
     roomId,
     CHAT_SIZE.PREVIEW,
     1,

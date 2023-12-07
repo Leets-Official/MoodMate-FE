@@ -3,7 +3,6 @@ import api from './axios'
 /** 채팅 내역 가져오기 */
 export const getMessages = async (
   roomId: number,
-  userId: number,
   size: number,
   page: number,
 ) => {
@@ -12,7 +11,6 @@ export const getMessages = async (
       .get('/chat', {
         params: {
           roomId: roomId.toString(),
-          userId: userId.toString(),
           size: size.toString(),
           page: page.toString(),
         },
