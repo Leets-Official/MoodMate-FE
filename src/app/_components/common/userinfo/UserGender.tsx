@@ -63,7 +63,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
   return (
     <div className="relative h-[560px] w-[312px]">
       <div className="mt-[35px] mb-[88px]">
-        <div className="leading-normal text-darkgray font-bold text-2xl font-sans">
+        <div className="leading-normal text-darkgray font-bold text-xl font-sans">
           <div>{GENDER_PAGE.GREETINGS1}</div>
           <div>{GENDER_PAGE.GREETINGS2}</div>
         </div>

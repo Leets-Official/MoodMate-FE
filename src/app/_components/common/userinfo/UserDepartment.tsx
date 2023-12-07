@@ -39,7 +39,7 @@ export default function UserDepartment({ pageNum }: UserDepartmentProps) {
   return (
     <div className="relative h-[560px] w-[312px]">
       <div className="mt-[35px] mb-[168px]">
-        <div className="leading-normal text-darkgray font-bold text-2xl font-sans">
+        <div className="leading-normal text-darkgray font-bold text-xl font-sans">
           {MY_DEPARTMENT_PAGE.GREETINGS}
         </div>
       </div>

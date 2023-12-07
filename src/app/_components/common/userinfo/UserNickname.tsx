@@ -46,7 +46,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   return (
     <div className="relative h-[560px] w-[312px]">
       <div className="mt-[35px] mb-[168px]">
-        <div className="text-darkgray font-bold text-2xl font-sans">
+        <div className="text-darkgray font-bold text-xl font-sans">
           <div>{NICK_NAME_PAGE.GREETINGS1}</div>
           <div>{NICK_NAME_PAGE.GREETINGS2}</div>
         </div>
