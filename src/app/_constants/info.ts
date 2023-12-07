@@ -75,8 +75,6 @@ export const DEPARTMENT_LIST = [
   '응급구조학과',
 ] as const
 
-export const MOOD_LIST = ['활기찬', '풍부한', '이색적인', '유쾌한'] as const
-
 export const NICK_NAME_PAGE = {
   GREETINGS1: '가입을 축하드려요!',
   GREETINGS2: '어떻게 불러드리면 될까요?',
@@ -147,7 +145,11 @@ export const MATCHING_DEPARTMENT_PAGE = {
 
 export const DATE_MOOD_PAGE = {
   GREETINGS: '무디와 어떤 데이트를 하고 싶나요?',
-  MOOD_LIST,
+  DATE: '데이트',
+  ACT: '활동적인',
+  EMO: '감성 풍부한',
+  NEW: '이색적인',
+  FUN: '유쾌한',
 } as const
 
 export const PROGRESS_BAR = {
