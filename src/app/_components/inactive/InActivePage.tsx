@@ -2,8 +2,8 @@ import InactiveFirstText from '@/_components/inactive/containers/InactiveFirstTe
 import InactiveMiddleText from '@/_components/inactive/containers/InactiveMiddleText'
 import React from 'react'
 import Image from 'next/image'
-import logo from '../../../../public/illustration/common/logo/graylogo.png'
-import inactive from '../../../../public/illustration/female/main/inactive.png'
+import logo from 'public/illustration/common/logo/graylogo.png'
+import inactive from 'public/illustration/female/main/inactive.png'
 
 export default function InactivePage() {
   return (

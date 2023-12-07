@@ -18,7 +18,7 @@ const ModalButtonOne = ({ onClose, closeText }: ModalButtonOneProps) => {
       <NormalButton
         buttonText={closeText}
         buttonType="small"
-        className="rounded-lg bg-onepink w-[146px] h-[36px] text-center text-[14px]"
+        className="mx-auto rounded-lg bg-onepink w-[155px] h-[36px] text-center text-[14px]"
         onClick={onClose}
         isActive
       />

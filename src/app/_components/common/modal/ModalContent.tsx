@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import inactive from 'public/illustration/female/modal/inactive.png'
 import ModalButtons from './ModalButtons'
 
 interface ModalContentProps {
@@ -25,7 +27,11 @@ const ModalContent = ({
       </div>
       <div className="w-[169px] h-[193px] bg-neutral-300">
         {/* 나중에 dynamic으로 가져오기?, 크기 조정 */}
-        {onMyPage ? <p>씩씩한 무디 이미지</p> : <p>울고있는 무디 이미지</p>}
+        {onMyPage ? (
+          <p>씩씩한 무디 이미지</p>
+        ) : (
+          <Image src={inactive} alt="inactive" />
+        )}
       </div>
       <ModalButtons
         onConfirm={onConfirm}
