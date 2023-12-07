@@ -1,19 +1,19 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import { router } from 'next/client'
 
 const OauthPage = () => {
   const [accessToken, setAccessToken] = useState<string>('')
   const [refreshToken, setRefreshToken] = useState<string>('')
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const accessTokenURL = new URL(window.location.href).searchParams.get(
-        'accessToken',
-      )
       const refreshTokenURL = new URL(window.location.href).searchParams.get(
         'refreshToken',
+      )
+      const accessTokenURL = new URL(window.location.href).searchParams.get(
+        'accessToken',
       )
       const splitToken = accessTokenURL?.split('?')
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -25,12 +25,10 @@ const OauthPage = () => {
     }
   }, [accessToken, refreshToken])
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-shadow,react-hooks/rules-of-hooks
-    const router = useRouter()
     if (accessToken) {
       router.push('/main')
     }
-  }, [accessToken, refreshToken])
+  }, [accessToken])
   Cookies.set('realAccessToken', accessToken)
   Cookies.set('realRefreshToken', refreshToken)
   return (
