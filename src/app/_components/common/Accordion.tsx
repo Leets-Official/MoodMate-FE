@@ -22,7 +22,7 @@ const Accordion = ({
       <button
         type="button"
         className={`w-[312px] h-[48px] rounded-[16px] bg-onepink flex justify-between items-center px-4 absolute bottom-[169px] ${
-          selectedDepartment && 'border-2 border-primary'
+          selectedDepartment && 'border-[1px] border-primary'
         }`}
         onClick={onOpen}
       >

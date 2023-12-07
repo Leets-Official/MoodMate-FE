@@ -75,7 +75,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
           isActive={true}
           onClick={handleMaleButtonClick}
           className={`mr-[7px] bg-zeropink text-primary font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
-            maleButtonSelected ? 'border-2 border-primary' : ''
+            maleButtonSelected ? 'border-[1px] border-primary' : ''
           }`}
         />
         <SelectedButton
@@ -84,7 +84,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
           isActive={true}
           onClick={handleFemaleButtonClick}
           className={`ml-[7px] bg-zeropink text-primary font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
-            femaleButtonSelected ? 'border-2 border-primary' : ''
+            femaleButtonSelected ? 'border-[1px] border-primary' : ''
           }`}
         />
       </div>
