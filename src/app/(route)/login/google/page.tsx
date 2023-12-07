@@ -1,12 +1,10 @@
 'use client'
 
-import { useLoginQuery } from '@/_hooks/useLoginQuery'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 
 const OauthPage = () => {
-  const router = useRouter()
   const [accessToken, setAccessToken] = useState<string>('')
   const [refreshToken, setRefreshToken] = useState<string>('')
   useEffect(() => {
@@ -24,9 +22,15 @@ const OauthPage = () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       setRefreshToken(refreshTokenURL)
+    }
+  }, [accessToken, refreshToken])
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-shadow,react-hooks/rules-of-hooks
+    const router = useRouter()
+    if (accessToken) {
       router.push('/main')
     }
-  }, [accessToken, refreshToken, router])
+  }, [accessToken, refreshToken])
   Cookies.set('realAccessToken', accessToken)
   Cookies.set('realRefreshToken', refreshToken)
   return (
