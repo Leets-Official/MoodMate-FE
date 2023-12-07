@@ -17,9 +17,10 @@ export default function MainpagePage() {
     return <div>Error occurred while fetching data</div>
   }
   const { roomActive, userMatchActive } = data.mainPageResponse
+  const mainPageType = roomActive ? 'AFTER' : 'BEFORE'
   return (
     <section>
-      {userMatchActive ? <MainPage type="BEFORE" /> : <InactivePage />}
+      {userMatchActive ? <MainPage type={mainPageType} /> : <InactivePage />}
     </section>
   )
 }
