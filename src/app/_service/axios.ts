@@ -15,6 +15,7 @@ api.interceptors.request.use(
     const accessToken = Cookies.get('realAccessToken')
     console.log('inter', accessToken)
     if (accessToken) {
+      console.log('로그인 성공')
       // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = `Bearer ${accessToken}`
     }
