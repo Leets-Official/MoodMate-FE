@@ -22,9 +22,12 @@ const OauthPage = () => {
       if (splitToken && splitToken.length > 0) {
         setAccessToken(splitToken[0])
         setRefreshToken(splitToken[1])
+        console.log('1', refreshToken)
       }
+      console.log('2', refreshToken)
       const splitRefreshToken = refreshToken?.split('=')
       if (splitRefreshToken && splitRefreshToken.length > 0) {
+        console.log('3', refreshToken)
         setRefreshToken(splitRefreshToken[1])
       }
     }
