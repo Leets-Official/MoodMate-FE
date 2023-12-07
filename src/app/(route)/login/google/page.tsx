@@ -28,7 +28,7 @@ const OauthPage = () => {
         setRefreshToken(splitRefreshToken[1])
       }
     }
-  }, [])
+  }, [refreshToken])
   useEffect(() => {
     if (accessToken && refreshToken) {
       router.push('/main')
