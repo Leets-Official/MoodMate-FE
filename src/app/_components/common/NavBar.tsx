@@ -88,7 +88,12 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
             <Icons
               name={getTextStyle(type).chating}
               className="ml-6 mt-6"
-              onClick={() => route.push('/chat/partnerinfo')}
+              onClick={() => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                roomActive
+                  ? route.push('/chat/partnerinfo')
+                  : setChatModal(true)
+              }}
             />
           </Link>
         </div>
@@ -110,7 +115,7 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
           </ModalOutside>
         </ModalPortal>
       )}
-      {!roomActive && (
+      {chatModal && (
         <ModalPortal nodeName="mainPortal">
           <ModalOutside
             onClose={() => setChatModal(false)}
