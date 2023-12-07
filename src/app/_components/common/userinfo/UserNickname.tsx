@@ -50,7 +50,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
           <div>{NICK_NAME_PAGE.GREETINGS1}</div>
           <div>{NICK_NAME_PAGE.GREETINGS2}</div>
         </div>
-        <div className="mt-[10px] text-secondary font-medium text-base font-sans">
+        <div className="mt-[10px] text-secondary font-normal text-base font-sans">
           {NICK_NAME_PAGE.WRNINGS}
         </div>
       </div>
