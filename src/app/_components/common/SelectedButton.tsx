@@ -21,7 +21,7 @@ const SelectedButton = ({
   imgSize,
 }: SelectedButtonProps) => {
   const buttonStyles = BUTTON_STYLE[buttonType](className)
-
+  const textLines = buttonText.split('\n')
   return (
     <button
       type="button"
@@ -30,7 +30,12 @@ const SelectedButton = ({
       disabled={!isActive}
     >
       {imgSrc && <Image src={imgSrc} alt="" className={imgSize} />}
-      {buttonText}
+      {textLines.map((text, index) => (
+        <>
+          {index > 0 && <br />}
+          {text}
+        </>
+      ))}
     </button>
   )
 }
