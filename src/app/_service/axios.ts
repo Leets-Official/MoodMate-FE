@@ -6,20 +6,13 @@ const api = axios.create({
   withCredentials: true,
 })
 
-// export const loginApi = axios.create({
-//   baseURL: process.env.GOOGLE_LOGIN,
-// })
-
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     const accessToken = Cookies.get('realAccessToken')
-    console.log('inter', accessToken)
     if (accessToken) {
-      console.log('로그인 성공')
       // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = `Bearer ${accessToken}`
     }
-    console.log(config.headers)
     return config
   },
   (error) => {

@@ -1,10 +1,10 @@
 import { useRouter } from 'next/navigation'
-import SelectedButton from '../SelectedButton'
-import NormalButton from '../NormalButton'
 import { GENDER_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
 import { userInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
+import NormalButton from '../NormalButton'
+import SelectedButton from '../SelectedButton'
 
 interface UserGenderProps {
   pageNum: string
@@ -72,7 +72,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
         <SelectedButton
           buttonText={GENDER_PAGE.MALE}
           buttonType="GENDER"
-          isActive={true}
+          isActive
           onClick={handleMaleButtonClick}
           className={`mr-[7px] bg-zeropink text-primary font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
             maleButtonSelected ? 'border-[1px] border-primary' : ''
@@ -81,7 +81,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
         <SelectedButton
           buttonText={GENDER_PAGE.FEMALE}
           buttonType="GENDER"
-          isActive={true}
+          isActive
           onClick={handleFemaleButtonClick}
           className={`ml-[7px] bg-zeropink text-primary font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
             femaleButtonSelected ? 'border-[1px] border-primary' : ''

@@ -1,10 +1,10 @@
 import { MY_DEPARTMENT_PAGE } from '@/_constants/info'
-import Accordion from '../Accordion'
-import NormalButton from '../NormalButton'
 import { userInfoState } from '@/_atom/userinfo'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useRecoilState } from 'recoil'
+import NormalButton from '../NormalButton'
+import Accordion from '../Accordion'
 
 interface UserDepartmentProps {
   pageNum: string
@@ -19,7 +19,7 @@ export default function UserDepartment({ pageNum }: UserDepartmentProps) {
   const handleDepartmentSelect = (department: string) => {
     setIsOpen(false)
 
-    setUserInfoState((prev) => ({ ...prev, department: department }))
+    setUserInfoState((prev) => ({ ...prev, department }))
   }
 
   const nextRoute = () => {

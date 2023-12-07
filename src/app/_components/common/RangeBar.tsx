@@ -32,6 +32,7 @@ const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
       <p style={{ ...textStyles, marginRight: '4px' }}>{MY_AGE_PAGE.MIN}</p>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         {[...Array(4)].map(() => (
+          // eslint-disable-next-line react/jsx-key
           <div
             style={{
               width: '4px',
@@ -46,6 +47,7 @@ const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
       <p style={{ ...textStyles }}>{MY_AGE_PAGE.AVG}</p>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         {[...Array(4)].map(() => (
+          // eslint-disable-next-line react/jsx-key
           <div
             style={{
               width: '4px',

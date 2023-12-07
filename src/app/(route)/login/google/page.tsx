@@ -11,10 +11,13 @@ const OauthPage = () => {
   const router = useRouter()
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const refreshTokenURL = new URL(window.location.href).searchParams.get('refreshToken')
-      const accessTokenURL = new URL(window.location.href).searchParams.get('accessToken')
+      const accessTokenURL = new URL(window.location.href).searchParams.get(
+        'accessToken',
+      )
+      const refreshTokenURL = new URL(window.location.href).searchParams.get(
+        'refreshToken',
+      )
       const splitToken = accessTokenURL?.split('?')
-
       if (splitToken && splitToken.length > 0) {
         setAccessToken(splitToken[0])
       }

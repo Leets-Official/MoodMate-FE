@@ -1,10 +1,10 @@
 import { useRouter } from 'next/navigation'
-import SelectedButton from '../SelectedButton'
-import NormalButton from '../NormalButton'
 import { MY_KEYWORD_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
 import { userInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
+import NormalButton from '../NormalButton'
+import SelectedButton from '../SelectedButton'
 
 interface UserKeywordProps {
   pageNum: string
@@ -62,10 +62,11 @@ export default function UserKeyword({ pageNum }: UserKeywordProps) {
       <div>
         <div className="absolute bottom-[100px]">
           {MY_KEYWORD_PAGE.KEYWORD_LIST.map((keyword) => (
+            // eslint-disable-next-line react/jsx-key
             <SelectedButton
               buttonText={keyword}
               buttonType="KEYWORD"
-              isActive={true}
+              isActive
               onClick={() => {
                 handlerButtonclick(keyword)
               }}

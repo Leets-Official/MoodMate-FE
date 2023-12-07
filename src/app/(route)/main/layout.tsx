@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import NavBar from '@/_components/common/NavBar'
+import React from 'react'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
