@@ -61,10 +61,6 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
     // document.body.style.overflow = 'unset'
     inactiveMutation.mutate()
   }
-  const onChatOpenModal = () => {
-    setChatModal((prev) => !prev)
-    // document.body.style.overflow = 'hidden'
-  }
   const onChatCloseModal = () => {
     setChatModal((prev) => !prev)
     // document.body.style.overflow = 'unset'
