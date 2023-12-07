@@ -1,6 +1,6 @@
-import ModalButtonOne from './ModatlButtonOne'
 import Image from 'next/image'
 import yetMatch from 'public/illustration/female/modal/yetmatch.png'
+import ModalButtonOne from './ModatlButtonOne'
 
 interface ModalContentOneProps {
   subject: ModalContentOne
