@@ -4,7 +4,7 @@ import RangeBar from '../RangeBar'
 import { RANGE_BAR_AGE, MY_AGE_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
 import { userInfoState } from '@/_atom/userinfo'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 interface UserKeywordProps {
   pageNum: string
@@ -23,16 +23,9 @@ export default function UserMyage({ pageNum }: UserKeywordProps) {
     userInfo.year !== 0 ? [userInfo.year] : [RANGE_BAR_AGE.MIN],
   )
 
-  const handleSingleChange = async (newValues: number[]) => {
-    console.log(singleValue, 'this')
-    console.log(newValues)
-    await setSingleValue(newValues)
-    console.log(singleValue, 'this2')
+  const handleSingleChange = (newValues: number[]) => {
+    setSingleValue(newValues)
   }
-
-  useEffect(() => {
-    console.log(singleValue, 'updated value')
-  }, [userInfo.year])
 
   const nextRoute = () => {
     setUserInfo((prevUserInfo) => ({
