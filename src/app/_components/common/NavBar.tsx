@@ -69,6 +69,7 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
     setChatModal((prev) => !prev)
     // document.body.style.overflow = 'unset'
   }
+  console.log('roomActive', roomActive)
   return (
     <div className="translate-y-[30px] fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
       <div
