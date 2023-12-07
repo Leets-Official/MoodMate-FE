@@ -21,10 +21,12 @@ const OauthPage = () => {
 
       if (splitToken && splitToken.length > 0) {
         setAccessToken(splitToken[0])
+        setRefreshToken(splitToken[1])
       }
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      setRefreshToken(refreshTokenURL)
+      const splitRefreshToken = refreshToken?.split('=')
+      if (splitRefreshToken && splitRefreshToken.length > 0) {
+        setRefreshToken(splitRefreshToken[1])
+      }
     }
   }, [])
   useEffect(() => {
