@@ -14,23 +14,20 @@ const OauthPage = () => {
       const accessTokenURL = new URL(window.location.href).searchParams.get(
         'accessToken',
       )
+      const refreshTokenURL = new URL(window.location.href).searchParams.get(
+        'refreshToken',
+      )
       const splitToken = accessTokenURL?.split('?')
-
       if (splitToken && splitToken.length > 0) {
         setAccessToken(splitToken[0])
-        setRefreshToken(splitToken[1] || '')
-        console.log('1', refreshToken)
       }
-      console.log('2', refreshToken)
-      const splitRefreshToken = refreshToken?.split('=')
-      if (splitRefreshToken && splitRefreshToken.length > 0) {
-        console.log('3', refreshToken)
-        setRefreshToken(splitRefreshToken[1])
-      }
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setRefreshToken(refreshTokenURL)
     }
-  }, [refreshToken])
+  }, [])
   useEffect(() => {
-    if (accessToken && refreshToken) {
+    if (accessToken) {
       router.push('/main')
 
       Cookies.set('realAccessToken', accessToken, {
