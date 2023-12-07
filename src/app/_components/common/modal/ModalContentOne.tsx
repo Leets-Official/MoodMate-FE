@@ -1,4 +1,6 @@
 import ModalButtonOne from './ModatlButtonOne'
+import Image from 'next/image'
+import yetMatch from 'public/illustration/female/modal/yetmatch.png'
 
 interface ModalContentOneProps {
   subject: ModalContentOne
@@ -21,10 +23,7 @@ const ModalContentOne = ({
           {SUB_TITLE || ''}
         </h5>
       </div>
-      <div className="w-[169px] h-[193px] bg-neutral-300">
-        {/* 나중에 dynamic으로 가져오기?, 크기 조정 */}
-        {onMyPage ? <p>씩씩한 무디 이미지</p> : <p>울고있는 무디 이미지</p>}
-      </div>
+      <Image src={yetMatch} alt="yetMatch" className="w-[155px] h-[193px]" />
       <ModalButtonOne onClose={onClose} closeText={CLOSE} />
     </section>
   )
