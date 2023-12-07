@@ -90,7 +90,7 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
               className="ml-6 mt-6"
               onClick={() => {
                 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                roomActive
+                !roomActive
                   ? route.push('/chat/partnerinfo')
                   : setChatModal(true)
               }}
