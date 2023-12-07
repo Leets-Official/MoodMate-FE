@@ -80,7 +80,7 @@ export const MOOD_LIST = ['활기찬', '풍부한', '이색적인', '유쾌한']
 export const NICK_NAME_PAGE = {
   GREETINGS1: '가입을 축하드려요!',
   GREETINGS2: '어떻게 불러드리면 될까요?',
-  WRNINGS: '닉네임은 한번 정하면 수정할 수 없어요!',
+  WARNINGS: '닉네임은 한번 정하면 수정할 수 없어요!',
   INPUTBOX: '닉네임을 입력하세요.',
   GUIDE: '5글자 이내로 입력해주세요.',
 } as const
@@ -94,7 +94,7 @@ export const GENDER_PAGE = {
 
 export const MY_AGE_PAGE = {
   GREETINGS: '무디가 당신의 나이를 궁금해해요!',
-  WRININGS: '출생년도를 기준으로 골라주세요.',
+  WARNINGS: '출생년도를 기준으로 골라주세요.',
   MAX: '04',
   MIN: '94',
   AVG: '99',
@@ -133,7 +133,7 @@ export const MY_KEYWORD_PAGE = {
 
 export const MOODIE_AGE_PAGE = {
   GREETINGS: '무디의 나이를 설정해주세요!',
-  WRININGS: '출생년도를 기준으로 골라주세요.',
+  WARNINGS: '출생년도를 기준으로 골라주세요.',
   MAX: '04',
   MIN: '94',
   AVG: '99',
@@ -146,7 +146,7 @@ export const MATCHING_DEPARTMENT_PAGE = {
 } as const
 
 export const DATE_MOOD_PAGE = {
-  GREETING: '무디와 어떤 데이트를 하고 싶나요?',
+  GREETINGS: '무디와 어떤 데이트를 하고 싶나요?',
   MOOD_LIST,
 } as const
 
