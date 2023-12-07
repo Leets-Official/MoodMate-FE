@@ -31,14 +31,8 @@ const OauthPage = () => {
       router.push('/main')
     }
   }, [accessToken, router])
-  Cookies.set('realAccessToken', accessToken, {
-    maxAge: 3 * 60 * 60,
-    path: '/',
-  })
-  Cookies.set('realRefreshToken', refreshToken, {
-    maxAge: 3 * 24 * 60 * 60,
-    path: '/',
-  })
+  Cookies.set('realAccessToken', accessToken)
+  Cookies.set('realRefreshToken', refreshToken)
   return (
     <div>
       <Loading />
