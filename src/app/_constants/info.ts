@@ -108,7 +108,8 @@ export const MY_DEPARTMENT_PAGE = {
 
 export const MY_KEYWORD_PAGE = {
   GREETINGS: '무디에게 여러분을 소개해주세요!',
-  WARNINGS: '여러분을 나타내는 키워드를 3개 선택해주세요.',
+  WARNINGS1: '여러분을 나타내는 키워드를',
+  WARNINGS2: '3개 선택해주세요.',
   KEYWORD_LIST: [
     '인기짱',
     '고양이',
