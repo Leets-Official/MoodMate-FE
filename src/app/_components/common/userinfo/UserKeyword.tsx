@@ -61,9 +61,8 @@ export default function UserKeyword({ pageNum }: UserKeywordProps) {
       </div>
       <div>
         <div className="absolute bottom-[100px]">
-          {MY_KEYWORD_PAGE.KEYWORD_LIST.map((keyword, index) => (
+          {MY_KEYWORD_PAGE.KEYWORD_LIST.map((keyword) => (
             <SelectedButton
-              key={index}
               buttonText={keyword}
               buttonType="KEYWORD"
               isActive={true}
