@@ -16,7 +16,6 @@ interface TextProps {
   type: 'BEFORE' | 'AFTER'
   roomId: number
   userId: number
-  roomActive: boolean
 }
 
 const getTextStyle = (type: string) => {
@@ -42,7 +41,7 @@ const getTextStyle = (type: string) => {
   }
 }
 
-const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
+const NavBar = ({ type, userId, roomId }: TextProps) => {
   const route = useRouter()
   const [openModal, setOpenModal] = useState<boolean>(false)
   const inactiveMutation = useMutation({

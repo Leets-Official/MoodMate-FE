@@ -49,30 +49,24 @@ const MainPage = ({ type }: MatchProps) => {
   if (isError || !data) {
     return <div>Error...</div>
   }
-  const { roomActive, roomId, userId } = data.mainPageResponse
-  const updatedType = roomActive ? 'AFTER' : 'BEFORE'
+  const { roomId, userId } = data.mainPageResponse
   return (
-    <div className={`${getBGStyle(updatedType).background} flex flex-col`}>
+    <div className={`${getBGStyle(type).background} flex flex-col`}>
       <Image
         src={logo}
         alt="graylogo"
         className="w-[85px] h-[13px] mt-10 mb-20 mx-auto"
       />
-      <TimerFirstText type={updatedType} />
-      <Timer targetHour={getBGStyle(updatedType).targetHour} />
-      <TimerMiddleText type={updatedType} />
+      <TimerFirstText type={type} />
+      <Timer targetHour={getBGStyle(type).targetHour} />
+      <TimerMiddleText type={type} />
       <Image
         src={beforeMatchOn}
         alt="beforeMatchOn"
         className="w-[156px] mx-auto mt-24 desktop:mt-4"
       />
       <Image src={beforeMatch} alt="beforeMatch" className="-mt-16" />
-      <NavBar
-        type={updatedType}
-        roomId={roomId}
-        userId={userId}
-        roomActive={roomActive}
-      />
+      <NavBar type={type} roomId={roomId} userId={userId} roomActive />
     </div>
   )
 }
