@@ -24,7 +24,7 @@ const UserinfoPageComponents = ({ slug }: UserinfoPageComponentsProps) => {
     case '4':
       return <UserDepartment pageNum={pageNum} />
     case '5':
-      return <UserKeyword />
+      return <UserKeyword pageNum={pageNum} />
     case '6':
       return <UserMoodyAge />
     case '7':
