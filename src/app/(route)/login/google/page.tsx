@@ -11,9 +11,6 @@ const OauthPage = () => {
   const router = useRouter()
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const refreshTokenURL = new URL(window.location.href).searchParams.get(
-        'refreshToken',
-      )
       const accessTokenURL = new URL(window.location.href).searchParams.get(
         'accessToken',
       )
@@ -21,7 +18,7 @@ const OauthPage = () => {
 
       if (splitToken && splitToken.length > 0) {
         setAccessToken(splitToken[0])
-        setRefreshToken(splitToken[1])
+        setRefreshToken(splitToken[1] || '')
         console.log('1', refreshToken)
       }
       console.log('2', refreshToken)
@@ -35,16 +32,17 @@ const OauthPage = () => {
   useEffect(() => {
     if (accessToken && refreshToken) {
       router.push('/main')
+
+      Cookies.set('realAccessToken', accessToken, {
+        maxAge: 3 * 60 * 60,
+        path: '/',
+      })
+      Cookies.set('realRefreshToken', refreshToken, {
+        maxAge: 3 * 24 * 60 * 60,
+        path: '/',
+      })
     }
-  }, [accessToken, router])
-  Cookies.set('realAccessToken', accessToken, {
-    maxAge: 3 * 60 * 60,
-    path: '/',
-  })
-  Cookies.set('realRefreshToken', refreshToken, {
-    maxAge: 3 * 24 * 60 * 60,
-    path: '/',
-  })
+  }, [accessToken, refreshToken, router])
   return (
     <div>
       <Loading />

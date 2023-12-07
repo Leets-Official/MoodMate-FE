@@ -31,9 +31,7 @@ const Accordion = ({
             selectedDepartment ? 'text-primary' : 'text-darkgray'
           } not-italic font-medium leading-normal`}
         >
-          {selectedDepartment
-            ? selectedDepartment
-            : MY_DEPARTMENT_PAGE.WARNINGS}
+          {selectedDepartment || MY_DEPARTMENT_PAGE.WARNINGS}
         </span>
         <span className="absolute right-[18px]">
           <svg
