@@ -63,7 +63,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
   return (
     <div className="relative h-[560px] w-[312px]">
       <div className="mt-[35px] mb-[88px]">
-        <div className="leading-normal text-darkgray font-bold text-2xl font-sans">
+        <div className="leading-normal text-darkgray font-bold text-xl font-sans">
           <div>{GENDER_PAGE.GREETINGS1}</div>
           <div>{GENDER_PAGE.GREETINGS2}</div>
         </div>
@@ -75,7 +75,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
           isActive={true}
           onClick={handleMaleButtonClick}
           className={`mr-[7px] bg-zeropink text-primary font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
-            maleButtonSelected ? 'border-2 border-primary' : ''
+            maleButtonSelected ? 'border-[1px] border-primary' : ''
           }`}
         />
         <SelectedButton
@@ -84,7 +84,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
           isActive={true}
           onClick={handleFemaleButtonClick}
           className={`ml-[7px] bg-zeropink text-primary font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
-            femaleButtonSelected ? 'border-2 border-primary' : ''
+            femaleButtonSelected ? 'border-[1px] border-primary' : ''
           }`}
         />
       </div>
