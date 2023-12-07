@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { realTimeMessagesState } from '@/_atom/chat'
 import { CompatClient, Stomp } from '@stomp/stompjs'
 import { useEffect, useState } from 'react'
@@ -11,34 +12,43 @@ const useWebsocket = (roomId: number) => {
   )
 
   useEffect(() => {
-    const socket = new SockJS(`${process.env.NEXT_PUBLIC_SERVER_URL}chat`) // endpoint 확인
-    const client = Stomp.over(socket)
+    const connectWebSocket = () => {
+      const socket = new SockJS(`${process.env.NEXT_PUBLIC_SERVER_URL}chat`)
+      const client = Stomp.over(socket)
 
-    client.connect({}, (frame: string) => {
-      console.log(frame)
-      console.log('연결됨!', frame)
-      client.subscribe(`/sub/chat/${roomId}`, (res) => {
-        const receivedMessage = {
-          ...JSON.parse(res.body),
-          isRead: true,
-          messageId: new Date().toISOString(),
-          createdAt: new Date().toISOString(),
-        }
+      client.connect({}, (frame: any) => {
+        console.log('Connected:', frame)
+        client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
+          const receivedMessage = {
+            ...JSON.parse(res.body),
+            isRead: true,
+            messageId: new Date().toISOString(),
+            createdAt: new Date().toISOString(),
+          }
 
-        console.log('메시지 : ', receivedMessage)
-        setRealTimeMessages((prev) => [...prev, receivedMessage])
+          console.log('Received Message:', receivedMessage)
+          setRealTimeMessages((prev: any) => [...prev, receivedMessage])
+        })
       })
-    })
 
-    client.activate()
-    setstompClient(client)
+      client.debug = (msg: string) => {
+        console.log('STOMP:', msg)
+      }
+
+      setstompClient(client)
+    }
+
+    if (roomId && !stompClient) {
+      connectWebSocket()
+    }
 
     return () => {
-      if (client && client.connected) {
-        client.disconnect()
+      if (stompClient) {
+        stompClient.disconnect()
+        setstompClient(null)
       }
     }
-  }, [roomId])
+  }, [roomId, stompClient])
 
   const sendMessage = (message: ChatMessageFromClient) => {
     console.log(message)
