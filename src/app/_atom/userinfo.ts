@@ -16,7 +16,7 @@ export const preferInfoState = atom<PreferInfoData>({
   default: {
     preferYearMin: 0,
     preferYearMax: 0,
-    preferDepartmentPossible: false,
+    preferDepartmentPossible: true,
     preferMood: '',
   },
 })
