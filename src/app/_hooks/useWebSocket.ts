@@ -24,7 +24,7 @@ const useWebsocket = (roomId: number) => {
           console.log('Connected:', frame)
           handleConnected(frame)
           client.send(
-            `/pub/chat/`,
+            `/pub/chat`,
             {},
             JSON.stringify({
               content: 'joined the chat',
