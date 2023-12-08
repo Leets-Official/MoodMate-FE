@@ -42,9 +42,12 @@ const useWebsocket = (roomId: number) => {
             setRealTimeMessages((prev: any) => [...prev, receivedMessage])
           })
         },
+        (error: undefined) => {
+          console.log('Error: ' + error)
+        },
       )
 
-      client.debug = (msg: string) => {
+      client.debug = (msg: any) => {
         console.log('STOMP:', msg)
       }
 
