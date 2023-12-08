@@ -30,7 +30,7 @@ const useWebsocket = (roomId: number) => {
               content: 'joined the chat',
             }),
           )
-          client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
+          client.subscribe(`/sub/chat`, (res: any) => {
             const receivedMessage = {
               ...JSON.parse(res.body),
               isRead: true,
