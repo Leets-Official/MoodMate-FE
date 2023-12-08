@@ -28,7 +28,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-    console.log(realTimeMessages)
   }, [realTimeMessages])
 
   useEffect(() => {
