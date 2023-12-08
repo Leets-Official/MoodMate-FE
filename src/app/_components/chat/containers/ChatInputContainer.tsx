@@ -3,10 +3,10 @@
 import { ChangeEvent, useState } from 'react'
 import Icons from '@/_components/common/Icons'
 import { send } from '@/_ui/IconsPath'
-import Input from '../../common/Input'
 import { useRecoilState } from 'recoil'
 import useWebsocket from '@/_hooks/useWebSocket'
 import { realTimeMessagesState } from '@/_atom/chat'
+import Input from '../../common/Input'
 
 interface ChatInputContainerProps {
   roomId: number
@@ -26,8 +26,8 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
 
   const handleSendMessage = () => {
     const messageTosend = {
-      roomId: roomId,
-      userId: userId,
+      roomId,
+      userId,
       content: inputVal.trim(),
     }
 
@@ -38,7 +38,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
     const messageToStore = {
       messageId: String(new Date().toISOString()),
       content: inputVal.trim(),
-      userId: userId,
+      userId,
       createdAt: String(new Date().toISOString()),
       isRead: true,
     }
