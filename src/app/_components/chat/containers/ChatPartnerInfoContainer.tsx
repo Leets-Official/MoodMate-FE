@@ -22,7 +22,7 @@ const ChatPartnerInfoContainer = ({
     data: partner,
   } = useQuery<PartnerInfo, Error>({
     queryKey,
-    queryFn: () => getPartnerInfo(),
+    queryFn: getPartnerInfo,
   })
 
   return (

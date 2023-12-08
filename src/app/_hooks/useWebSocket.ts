@@ -18,9 +18,6 @@ const useWebsocket = (roomId: number) => {
       const client = Stomp.over(socket)
       const accessToken = Cookies.get('realAccessToken')
 
-      client.heartbeat.outgoing = 10000
-      client.heartbeat.incoming = 10000
-
       client.connect(
         { Authorization: `Bearer ${accessToken}` },
         (frame: any) => {
@@ -77,7 +74,7 @@ const useWebsocket = (roomId: number) => {
   const sendMessage = (message: { content: string; roomId: number }) => {
     console.log(message)
     if (stompClient?.connected && message) {
-      stompClient.send(`/pub/chat/`, {}, JSON.stringify(message))
+      stompClient.send(`/pub/chat`, {}, JSON.stringify(message))
     }
   }
 
