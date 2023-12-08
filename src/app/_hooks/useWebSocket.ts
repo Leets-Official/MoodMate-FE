@@ -18,6 +18,9 @@ const useWebsocket = (roomId: number) => {
       const client = Stomp.over(socket)
       const accessToken = Cookies.get('realAccessToken')
 
+      client.heartbeat.outgoing = 10000
+      client.heartbeat.incoming = 10000
+
       client.connect(
         { Authorization: `Bearer ${accessToken}` },
         (frame: any) => {
