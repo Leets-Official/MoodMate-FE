@@ -6,11 +6,11 @@ import { useState } from 'react'
 import RangeBar from '../RangeBar'
 import NormalButton from '../NormalButton'
 
-interface UserKeywordProps {
+interface UserMyageProps {
   pageNum: string
 }
 
-export default function UserMyage({ pageNum }: UserKeywordProps) {
+export default function UserMyage({ pageNum }: UserMyageProps) {
   const route = useRouter()
   const buttonStyles = {
     defaultStyles: 'bg-secondary',
