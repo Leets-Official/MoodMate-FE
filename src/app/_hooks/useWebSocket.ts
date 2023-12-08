@@ -17,11 +17,15 @@ const useWebsocket = (roomId: number) => {
       const socket = new SockJS(`${process.env.NEXT_PUBLIC_SERVER_URL}chat`)
       const client = Stomp.over(socket)
       const accessToken = Cookies.get('realAccessToken')
+      const headers = {
+        Authorization: `Bearer ${accessToken}`,
+      }
 
       client.connect(
-        { Authorization: `Bearer ${accessToken}` },
+        headers,
         (frame: any) => {
           console.log('Connected:', frame)
+          console.log('headers:', headers)
           client.send(
             `/pub/chat`,
             {},
