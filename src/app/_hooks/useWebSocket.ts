@@ -22,6 +22,7 @@ const useWebsocket = (roomId: number) => {
         { Authorization: `Bearer ${accessToken}` },
         (frame: any) => {
           console.log('Connected:', frame)
+          handleConnected(frame)
           client.send(
             `/pub/chat/`,
             {},
@@ -48,6 +49,11 @@ const useWebsocket = (roomId: number) => {
       }
 
       setstompClient(client)
+    }
+
+    const handleConnected = (frame: any) => {
+      const serverInfo = frame.headers
+      console.log('Server Info:', serverInfo)
     }
 
     if (roomId && !stompClient) {
