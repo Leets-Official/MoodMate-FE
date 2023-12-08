@@ -1,7 +1,10 @@
+'use client'
+
+import useUserinfoPostMutation from '@/_hooks/useUserinfoPostMutation'
 import { useRouter } from 'next/navigation'
 import { DATE_MOOD_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
-import { preferInfoState } from '@/_atom/userinfo'
+import { preferInfoState, userInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
@@ -9,6 +12,7 @@ import SelectedButton from '../SelectedButton'
 export default function UserMood() {
   const route = useRouter()
 
+  const [usersInfo, setUsersInfoState] = useRecoilState(userInfoState)
   const [userInfo, setUserInfoState] = useRecoilState(preferInfoState)
   const [actButtonSelected, setActButtonSelected] = useState<boolean>(
     userInfo.preferMood === '활동적인',
@@ -30,19 +34,23 @@ export default function UserMood() {
     activeStyles: 'text-white bg-primary',
   }
 
-  const nextRoute = () => {
-    const selectedMood = actButtonSelected
-      ? '활동적인'
-      : emoButtonSelected
-      ? '감성 풍부한'
-      : newButtonSelected
-      ? '이색적인'
-      : funButtonSelected
-      ? '유쾌한'
-      : ''
-    setUserInfoState((prev) => ({ ...prev, preferMood: selectedMood }))
-    route.push(`/main`)
+  useEffect(() => {
+    console.log(usersInfo)
     console.log(userInfo)
+  })
+
+  const userMutation = useUserinfoPostMutation()
+
+  const nextRoute = async () => {
+    try {
+      userMutation.mutate(usersInfo)
+
+      route.push('/main')
+      console.log(userInfo)
+      console.log(usersInfo)
+    } catch (error) {
+      console.error('Error posting user or prefer info to server : ', error)
+    }
   }
 
   const handleActButtonClick = () => {
