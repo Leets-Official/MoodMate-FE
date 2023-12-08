@@ -26,8 +26,6 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
 
   const handleSendMessage = () => {
     const messageTosend = {
-      roomId,
-      userId,
       content: inputVal.trim(),
     }
 

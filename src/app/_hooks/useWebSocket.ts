@@ -22,6 +22,13 @@ const useWebsocket = (roomId: number) => {
         { Authorization: `Bearer ${accessToken}` },
         (frame: any) => {
           console.log('Connected:', frame)
+          client.send(
+            `/pub/chat/`,
+            {},
+            JSON.stringify({
+              content: 'joined the chat',
+            }),
+          )
           client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
             const receivedMessage = {
               ...JSON.parse(res.body),
@@ -55,7 +62,7 @@ const useWebsocket = (roomId: number) => {
     }
   }, [roomId, setRealTimeMessages, stompClient])
 
-  const sendMessage = (message: ChatMessageFromClient) => {
+  const sendMessage = (message: { content: string }) => {
     console.log(message)
     if (stompClient?.connected && message) {
       stompClient.send(`/pub/chat/`, {}, JSON.stringify(message))

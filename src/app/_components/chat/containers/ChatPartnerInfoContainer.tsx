@@ -36,13 +36,13 @@ const ChatPartnerInfoContainer = ({
               {partner.nickname}
             </p>
             <div className="mt-3 justify-center px-4 pt-[4px] h-[30px] text-[14px] text-[#999999] flex mx-auto border border-[#999999] rounded-[25px]">
-              <p className="mr-3">{partner.age}</p>
+              <p className="mr-3">{partner.year}</p>
               <p className="mr-3 ">|</p>
               <p>{partner.department}</p>
             </div>
             <div className="flex items-center flex-col mt-10">
               <Keyword keywords={partner.keywords} />
-              <DateMood mood={partner.mood} />
+              <DateMood mood={partner.preferMood} />
             </div>
           </div>
         </>
