@@ -39,8 +39,8 @@ const useWebsocket = (roomId: number) => {
               messageId: new Date().toISOString(),
               createdAt: new Date().toISOString(),
             }
-            console.log('Received Message:', res)
-            console.log('Received Message:', receivedMessage)
+            console.log('Received Message from Partner:', res)
+            console.log('Received Message from Partner:', receivedMessage)
             setRealTimeMessages((prev: any) => [...prev, receivedMessage])
           })
         },
