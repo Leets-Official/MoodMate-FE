@@ -1,6 +1,4 @@
-
 'use client'
-
 /* eslint-disable no-nested-ternary */
 import { useRouter } from 'next/navigation'
 import { DATE_MOOD_PAGE } from '@/_constants'
