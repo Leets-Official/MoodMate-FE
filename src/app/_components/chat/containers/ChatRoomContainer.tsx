@@ -48,7 +48,8 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (
       scrollRef.current &&
       scrollRef.current.scrollHeight - scrollRef.current.scrollTop ===
-        scrollRef.current.clientHeight
+        scrollRef.current.clientHeight &&
+      hasNextPage
     ) {
       observer.observe(topDivRef.current!)
     }
