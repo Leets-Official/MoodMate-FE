@@ -38,7 +38,7 @@ const OauthPage = () => {
   console.log('userGender', userGender)
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if (userGender === null) {
+    if (userGender == null) {
       router.push('/userinfo/1')
     } else {
       router.push('/main')
