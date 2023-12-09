@@ -26,7 +26,7 @@ const ChatPreviewContainer = ({
           userId={userId}
           nickname={chatHistory.user.nickname}
           count={1} // 추가 수정 필요
-          lastMessage={chatHistory.chatList[0].content}
+          lastMessage={chatHistory.chatList[0].content || null}
           isRead={chatHistory.chatList[0].isRead}
           gender={chatHistory.user.gender}
         />
