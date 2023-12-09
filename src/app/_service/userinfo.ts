@@ -21,7 +21,7 @@ export const postUserData = async (
 
 const postUserInfo = async (userInfo: UserInfoData) => {
   try {
-    const response = await api.put('/users/user-info', userInfo)
+    const response = await api.post('/users/user-info', userInfo)
     return response.data
   } catch (error) {
     console.error('Error posting user info:', error)
@@ -31,10 +31,27 @@ const postUserInfo = async (userInfo: UserInfoData) => {
 
 const postPreferInfo = async (preferInfo: PreferInfoData) => {
   try {
-    const response = await api.put('/users/prefer-info', preferInfo)
+    const response = await api.post('/users/prefer-info', preferInfo)
     return response.data
   } catch (error) {
     console.error('Error posting prefer info:', error)
+    throw error
+  }
+}
+
+export const postUserData = async (
+  userInfo: UserInfoData,
+  preferInfo: PreferInfoData,
+): Promise<any[]> => {
+  try {
+    const [userInfoResult, preferInfoResult] = await Promise.allSettled([
+      postUserInfo(userInfo),
+      postPreferInfo(preferInfo),
+    ])
+
+    return [userInfoResult, preferInfoResult]
+  } catch (error) {
+    console.error('Error posting user or prefer info:', error)
     throw error
   }
 }
