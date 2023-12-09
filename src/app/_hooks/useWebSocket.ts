@@ -67,11 +67,7 @@ const useWebsocket = (roomId: number) => {
   }, [roomId, setRealTimeMessages, stompClient])
 
   const sendMessage = (message: { content: string; roomId: number }) => {
-    console.log(message)
-
     if (stompClient?.connected && message) {
-      stompClient.send(`/pub/chat`, {}, JSON.stringify({ content: 'test1' }))
-      stompClient.send(`/pub/chat`, {}, JSON.stringify({ content: 'test2' }))
       stompClient.send(`/pub/chat`, {}, JSON.stringify(message))
     }
   }

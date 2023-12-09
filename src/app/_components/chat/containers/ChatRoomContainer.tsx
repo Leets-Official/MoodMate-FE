@@ -45,12 +45,12 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       threshold: 1.0,
     })
 
-    if (topDivRef.current && hasNextPage && !isFetchingNextPage) {
-      observer.observe(topDivRef.current)
-    }
-
-    if (!hasNextPage && topDivRef.current) {
-      observer.unobserve(topDivRef.current)
+    if (
+      scrollRef.current?.scrollTop === 0 &&
+      hasNextPage &&
+      !isFetchingNextPage
+    ) {
+      observer.observe(topDivRef.current!)
     }
 
     return () => {
