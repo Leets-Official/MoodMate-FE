@@ -11,6 +11,14 @@ const OauthPage = () => {
   const [refreshToken, setRefreshToken] = useState<string>('')
   const router = useRouter()
   const { isLoading, isError, data } = useMainQuery()
+  if (isLoading) {
+    return <Loading />
+  }
+  if (isError || !data) {
+    return <div>Error...</div>
+  }
+  const { userGender } = data.mainPageResponse
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const accessTokenURL = new URL(window.location.href).searchParams.get(
@@ -27,23 +35,13 @@ const OauthPage = () => {
       // @ts-ignore
       setRefreshToken(refreshTokenURL)
     }
-  }, [])
-  if (isLoading) {
-    return <Loading />
-  }
-  if (isError || !data) {
-    return <div>Error...</div>
-  }
-  const { userGender } = data.mainPageResponse
-  console.log('userGender', userGender)
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
     if (userGender == null) {
       router.push('/userinfo/1')
     } else {
       router.push('/main')
     }
-  }, [accessToken, router, userGender])
+  }, [])
+  console.log('userGender222', userGender)
   Cookies.set('realAccessToken', accessToken)
   Cookies.set('realRefreshToken', refreshToken)
   return (
