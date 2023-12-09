@@ -64,6 +64,7 @@ export default function UserKeyword({ pageNum }: UserKeywordProps) {
           {MY_KEYWORD_PAGE.KEYWORD_LIST.map((keyword) => (
             // eslint-disable-next-line react/jsx-key
             <SelectedButton
+              key={keyword}
               buttonText={keyword}
               buttonType="KEYWORD"
               isActive

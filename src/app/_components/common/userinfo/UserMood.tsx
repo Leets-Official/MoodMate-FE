@@ -1,15 +1,19 @@
+'use client'
 /* eslint-disable no-nested-ternary */
 import { useRouter } from 'next/navigation'
 import { DATE_MOOD_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
-import { preferInfoState } from '@/_atom/userinfo'
+import { preferInfoState, userInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
+import { useMutation } from '@tanstack/react-query'
+import { postUserData } from '@/_service/userinfo'
 
 export default function UserMood() {
   const route = useRouter()
 
+  const [usersInfo, setUsersInfoState] = useRecoilState(userInfoState)
   const [userInfo, setUserInfoState] = useRecoilState(preferInfoState)
   const [actButtonSelected, setActButtonSelected] = useState<boolean>(
     userInfo.preferMood === '활동적인',
@@ -31,19 +35,27 @@ export default function UserMood() {
     activeStyles: 'text-white bg-primary',
   }
 
-  const nextRoute = () => {
-    const selectedMood = actButtonSelected
-      ? '활동적인'
-      : emoButtonSelected
-      ? '감성 풍부한'
-      : newButtonSelected
-      ? '이색적인'
-      : funButtonSelected
-      ? '유쾌한'
-      : ''
-    setUserInfoState((prev) => ({ ...prev, preferMood: selectedMood }))
-    route.push(`/main`)
+  const postUserDataMutation = useMutation({
+    mutationFn: () => postUserData(usersInfo, userInfo),
+    onSuccess: () => {
+      console.log('postUserDataMutation success')
+    },
+  })
+
+  useEffect(() => {
+    console.log(usersInfo)
     console.log(userInfo)
+  }, [usersInfo, userInfo])
+
+  const nextRoute = async () => {
+    try {
+      await postUserDataMutation.mutateAsync()
+      route.push('/main')
+      console.log(userInfo)
+      console.log(usersInfo)
+    } catch (error) {
+      console.error('Error posting user or prefer info to server : ', error)
+    }
   }
 
   const handleActButtonClick = () => {

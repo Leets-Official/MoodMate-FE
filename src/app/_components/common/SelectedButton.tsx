@@ -31,10 +31,11 @@ const SelectedButton = ({
     >
       {imgSrc && <Image src={imgSrc} alt="" className={imgSize} />}
       {textLines.map((text, index) => (
-        <>
+        // eslint-disable-next-line react/jsx-key
+        <div key={index}>
           {index > 0 && <br />}
           {text}
-        </>
+        </div>
       ))}
     </button>
   )
