@@ -9,7 +9,7 @@ import { useMainQuery } from '@/_hooks/useMainQuery'
 const OauthPage = () => {
   const [accessToken, setAccessToken] = useState<string>('')
   const [refreshToken, setRefreshToken] = useState<string>('')
-  const router = useRouter()
+  const route = useRouter()
   const { isLoading, isError, data } = useMainQuery()
   if (isLoading) {
     return <Loading />
@@ -18,7 +18,7 @@ const OauthPage = () => {
     return <div>Error...</div>
   }
   const { userGender } = data.mainPageResponse
-  console.log('1d2', userGender)
+  console.log('1d', userGender)
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -36,19 +36,17 @@ const OauthPage = () => {
       // @ts-ignore
       setRefreshToken(refreshTokenURL)
     }
-  }, [])
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    if (userGender === 'male' || userGender === 'female') {
-      Cookies.set('realAccessToken', accessToken)
-      Cookies.set('realRefreshToken', refreshToken)
-      router.push('/main')
-    } else if (userGender === null) {
-      Cookies.set('realAccessToken', accessToken)
-      Cookies.set('realRefreshToken', refreshToken)
-      router.push('/userinfo/1')
-    }
-  }, [accessToken, refreshToken, router, userGender])
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    userGender === 'MALE' || userGender === 'FEMALE'
+      ? route.push('/main')
+      : route.push('/userinfo/1')
+  }, [route, userGender])
+  // useEffect(() => {
+  //   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  //   userGender === 'MALE' ? route.push('/main') : route.push('/userinfo/1')
+  // }, [route, userGender])
+  Cookies.set('realAccessToken', accessToken)
+  Cookies.set('realRefreshToken', refreshToken)
   return (
     <div>
       <Loading />
