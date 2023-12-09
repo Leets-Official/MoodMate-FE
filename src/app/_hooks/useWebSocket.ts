@@ -3,14 +3,12 @@ import { realTimeMessagesState } from '@/_atom/chat'
 import { CompatClient, Stomp } from '@stomp/stompjs'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import SockJS from 'sockjs-client'
 
 const useWebsocket = (roomId: number) => {
   const [stompClient, setstompClient] = useState<CompatClient | null>(null)
-  const [realTimeMessages, setRealTimeMessages] = useRecoilState(
-    realTimeMessagesState,
-  )
+  const setRealTimeMessages = useSetRecoilState(realTimeMessagesState)
 
   useEffect(() => {
     const connectWebSocket = () => {
@@ -69,7 +67,11 @@ const useWebsocket = (roomId: number) => {
   }, [roomId, setRealTimeMessages, stompClient])
 
   const sendMessage = (message: { content: string; roomId: number }) => {
+    console.log(message)
+
     if (stompClient?.connected && message) {
+      stompClient.send(`/pub/chat`, {}, JSON.stringify({ content: 'test1' }))
+      stompClient.send(`/pub/chat`, {}, JSON.stringify({ content: 'test2' }))
       stompClient.send(`/pub/chat`, {}, JSON.stringify(message))
     }
   }
