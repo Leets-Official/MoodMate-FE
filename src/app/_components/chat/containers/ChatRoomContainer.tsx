@@ -28,7 +28,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-    console.log(realTimeMessages)
   }, [realTimeMessages])
 
   useEffect(() => {
@@ -46,12 +45,13 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       threshold: 1.0,
     })
 
-    if (topDivRef.current && hasNextPage && !isFetchingNextPage) {
-      observer.observe(topDivRef.current)
-    }
-
-    if (!hasNextPage && topDivRef.current) {
-      observer.unobserve(topDivRef.current)
+    if (
+      scrollRef.current &&
+      scrollRef.current.scrollHeight - scrollRef.current.scrollTop ===
+        scrollRef.current.clientHeight &&
+      hasNextPage
+    ) {
+      observer.observe(topDivRef.current!)
     }
 
     return () => {
@@ -70,9 +70,15 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     console.log(data?.pages)
   }, [data?.pages, scrollHeight])
 
+  useEffect(() => {
+    if (topDivRef.current) {
+      topDivRef.current.style.display = 'block'
+    }
+  }, [])
+
   return (
     <section className="h-[82%] py-5 px-3 overflow-scroll" ref={scrollRef}>
-      <div ref={topDivRef} />
+      <div ref={topDivRef} className="flex-none" />
       {isFetchingNextPage ? (
         <p>로딩중...</p> // 로딩 처리
       ) : (

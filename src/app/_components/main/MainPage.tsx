@@ -8,9 +8,12 @@ import NavBar from '@/_components/common/NavBar'
 import { useMainQuery } from '@/_hooks/useMainQuery'
 import Image from 'next/image'
 import Loading from '@/_components/common/Loading'
-import beforeMatch from '../../../../public/illustration/common/main/beforeMatch.png'
-import beforeMatchOn from '../../../../public/illustration/common/main/beforeMatchOn.png'
-import logo from '../../../../public/illustration/common/logo/graylogo.png'
+import afterMatch from 'public/illustration/common/main/afterMatch.png'
+import afterMatchCh from 'public/illustration/female/main/afterMatch.png'
+import beforeMatchOn from 'public/illustration/common/main/beforeMatchOn.png'
+import beforeMatch from 'public/illustration/common/main/beforeMatch.png'
+import grayLogo from 'public/illustration/common/logo/graylogo.png'
+import pinkLogo from 'public/illustration/common/logo/pinklogo.png'
 
 interface MatchProps {
   type: 'BEFORE' | 'AFTER'
@@ -21,20 +24,32 @@ const getBGStyle = (type: string) => {
     case 'BEFORE':
       return {
         targetHour: 22,
-        logo: 'text-[#B3B3B3]',
+        logo: grayLogo,
         background: 'mt-2',
+        image: beforeMatch,
+        image2: beforeMatchOn,
+        imageUi: '-mt-16',
+        image2Ui: 'w-[156px] mx-auto mt-24 desktop:mt-4',
       }
     case 'AFTER':
       return {
         targetHour: 20,
-        logo: 'text-[#FD8188]',
+        logo: pinkLogo,
         background: 'pt-2 bg-[#FFE5E7] h-screen',
+        image: afterMatch,
+        image2: afterMatchCh,
+        imageUi: '',
+        image2Ui: '',
       }
     default:
       return {
         logo: '',
         background: '',
         targetHour: 0,
+        image: '',
+        image2: '',
+        imageUi: '',
+        image2Ui: '',
       }
   }
 }
@@ -51,9 +66,9 @@ const MainPage = ({ type }: MatchProps) => {
   }
   const { roomActive, roomId, userId } = data.mainPageResponse
   return (
-    <div className={`${getBGStyle(type).background} flex flex-col`}>
+    <div className={`${getBGStyle(type).background}  flex flex-col`}>
       <Image
-        src={logo}
+        src={getBGStyle(type).logo}
         alt="graylogo"
         className="w-[85px] h-[13px] mt-10 mb-20 mx-auto"
       />
@@ -61,11 +76,15 @@ const MainPage = ({ type }: MatchProps) => {
       <Timer targetHour={getBGStyle(type).targetHour} />
       <TimerMiddleText type={type} />
       <Image
-        src={beforeMatchOn}
+        src={getBGStyle(type).image2}
         alt="beforeMatchOn"
-        className="w-[156px] mx-auto mt-24 desktop:mt-4"
+        className={getBGStyle(type).image2Ui}
       />
-      <Image src={beforeMatch} alt="beforeMatch" className="-mt-16" />
+      <Image
+        src={getBGStyle(type).image}
+        alt="beforeMatch"
+        className={getBGStyle(type).imageUi}
+      />
       <NavBar
         type={type}
         roomId={roomId}

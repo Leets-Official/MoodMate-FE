@@ -8,6 +8,7 @@ interface ResponseChatGet {
     size: number
     page: number
     totalPages: number
+    totalElements: number
   }
   chatList: ChatMessageFromServer[]
 }

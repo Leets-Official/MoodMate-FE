@@ -4,11 +4,11 @@ interface SimpleUser {
 }
 
 interface UserInfo extends SimpleUser {
-  age: number
+  year: number
   keywords: string[]
   department: string
 }
 
 interface PartnerInfo extends UserInfo {
-  mood: string
+  preferMood: string
 }

@@ -27,7 +27,6 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
   const handleSendMessage = () => {
     const messageTosend = {
       roomId,
-      userId,
       content: inputVal.trim(),
     }
 
@@ -36,10 +35,10 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
       return
     }
     const messageToStore = {
-      messageId: String(new Date().toISOString()),
+      messageId: String(new Date()),
       content: inputVal.trim(),
       userId,
-      createdAt: String(new Date().toISOString()),
+      createdAt: String(new Date()),
       isRead: true,
     }
 
