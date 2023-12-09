@@ -11,6 +11,15 @@ const OauthPage = () => {
   const [refreshToken, setRefreshToken] = useState<string>('')
   const router = useRouter()
   const { isLoading, isError, data } = useMainQuery()
+  if (isLoading) {
+    return <Loading />
+  }
+  if (isError || !data) {
+    return <div>Error...</div>
+  }
+  const { userGender } = data.mainPageResponse
+  console.log('ddd', userGender)
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const accessTokenURL = new URL(window.location.href).searchParams.get(
@@ -28,22 +37,12 @@ const OauthPage = () => {
       setRefreshToken(refreshTokenURL)
     }
   }, [])
-  if (isLoading) {
-    return <Loading />
-  }
-  if (isError || !data) {
-    return <div>Error...</div>
-  }
-  const { userGender } = data.mainPageResponse
-  console.log('userGender', userGender)
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    // eslint-disable-next-line no-constant-condition
-    if (userGender === 'MALE' || userGender === 'FEMALE') {
-      router.push('/userinfo/1')
-    } else {
-      router.push('/main')
-    }
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    userGender === 'MALE' || userGender === 'FEMALE'
+      ? router.push('/main')
+      : router.push('/userinfo/1')
   }, [accessToken, router, userGender])
   Cookies.set('realAccessToken', accessToken)
   Cookies.set('realRefreshToken', refreshToken)
