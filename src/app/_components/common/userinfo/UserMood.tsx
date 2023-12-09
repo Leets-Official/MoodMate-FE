@@ -1,6 +1,6 @@
 'use client'
 
-import useUserinfoPostMutation from '@/_hooks/useUserinfoPostMutation'
+import { useUserinfoPostMutation } from '@/_hooks/useUserinfoPostMutation'
 import { useRouter } from 'next/navigation'
 import { DATE_MOOD_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
@@ -37,13 +37,16 @@ export default function UserMood() {
   useEffect(() => {
     console.log(usersInfo)
     console.log(userInfo)
-  })
+  }, [usersInfo, userInfo])
 
   const userMutation = useUserinfoPostMutation()
 
   const nextRoute = async () => {
     try {
-      userMutation.mutate(usersInfo)
+      await userMutation.mutateAsync({
+        userInfo: usersInfo,
+        preferInfo: userInfo,
+      })
 
       route.push('/main')
       console.log(userInfo)

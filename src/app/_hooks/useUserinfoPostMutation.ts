@@ -1,16 +1,23 @@
-import { useMutation } from '@tanstack/react-query'
-import { postUserInfo } from '../_service/userinfo'
+import { useMutation, UseMutationResult } from '@tanstack/react-query'
+import { postUserData } from '../_service/userinfo'
+import { useCallback } from 'react'
 
-const useUserinfoPostMutation = () => {
-  const userinfoMutation = useMutation(postUserInfo, {
-    onSuccess: (data) => {
-      console.log('Userinfo post mutation success : ', data)
-    },
-    onError: (error) => {
-      console.log('Userinfo post mutation error : ', error)
-    },
-  })
-  return userinfoMutation
+export const useUserinfoPostMutation = (): UseMutationResult<
+  any[],
+  unknown,
+  { userInfo: UserInfoData; preferInfo: PreferInfoData },
+  unknown
+> => {
+  const mutationFn = useCallback(
+    ({
+      userInfo,
+      preferInfo,
+    }: {
+      userInfo: UserInfoData
+      preferInfo: PreferInfoData
+    }) => postUserData(userInfo, preferInfo),
+    [],
+  )
+  const mutation = useMutation(mutationFn)
+  return mutation
 }
-
-export default useUserinfoPostMutation
