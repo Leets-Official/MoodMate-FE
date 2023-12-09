@@ -20,7 +20,7 @@ export const useInfiniteChatQuery = (
           lastPage.pageable.totalElements ||
           lastPage.pageable.totalPages === 0
         ) {
-          return false
+          return 1
         }
         return lastPage.pageable.page + 1
       },
