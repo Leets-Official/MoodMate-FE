@@ -4,11 +4,13 @@ import React, { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import Loading from '@/_components/common/Loading'
+import { useMainQuery } from '@/_hooks/useMainQuery'
 
 const OauthPage = () => {
   const [accessToken, setAccessToken] = useState<string>('')
   const [refreshToken, setRefreshToken] = useState<string>('')
   const router = useRouter()
+  const { isLoading, isError, data } = useMainQuery()
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const accessTokenURL = new URL(window.location.href).searchParams.get(
@@ -26,11 +28,22 @@ const OauthPage = () => {
       setRefreshToken(refreshTokenURL)
     }
   }, [])
+  if (isLoading) {
+    return <Loading />
+  }
+  if (isError || !data) {
+    return <div>Error...</div>
+  }
+  const { userGender } = data.mainPageResponse
+  console.log('userGender', userGender)
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if (accessToken) {
-      router.push('/main')
+    if (userGender === null) {
+      router.push('/userinfo/1')
+    } else {
+      router.push('main')
     }
-  }, [accessToken, router])
+  }, [accessToken, router, userGender])
   Cookies.set('realAccessToken', accessToken)
   Cookies.set('realRefreshToken', refreshToken)
   return (
