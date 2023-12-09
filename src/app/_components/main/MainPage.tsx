@@ -47,6 +47,7 @@ const getBGStyle = (type: string) => {
         background: '',
         targetHour: 0,
         image: '',
+        image2: '',
         imageUi: '',
         image2Ui: '',
       }
@@ -75,12 +76,12 @@ const MainPage = ({ type }: MatchProps) => {
       <Timer targetHour={getBGStyle(type).targetHour} />
       <TimerMiddleText type={type} />
       <Image
-        src={beforeMatchOn}
+        src={getBGStyle(type).image2}
         alt="beforeMatchOn"
         className={getBGStyle(type).image2Ui}
       />
       <Image
-        src={beforeMatch}
+        src={getBGStyle(type).image}
         alt="beforeMatch"
         className={getBGStyle(type).imageUi}
       />
