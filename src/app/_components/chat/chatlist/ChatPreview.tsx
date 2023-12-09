@@ -6,7 +6,7 @@ interface ChatPreviewProps {
   userId: number
   nickname: string
   lastMessage?: string | null
-  isRead?: boolean
+  isRead?: boolean | null
   count?: number
   gender: 'MALE' | 'FEMALE'
 }

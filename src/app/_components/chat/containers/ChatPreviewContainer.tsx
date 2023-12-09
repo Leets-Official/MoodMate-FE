@@ -29,7 +29,9 @@ const ChatPreviewContainer = ({
           lastMessage={
             chatHistory.chatList[0] ? chatHistory.chatList[0].content : null
           }
-          isRead={chatHistory.chatList[0].isRead}
+          isRead={
+            chatHistory.chatList[0] ? chatHistory.chatList[0].isRead : null
+          }
           gender={chatHistory.user.gender}
         />
       )}
