@@ -41,7 +41,7 @@ const OauthPage = () => {
     if (userGender === null) {
       router.push('/userinfo/1')
     } else {
-      router.push('main')
+      router.push('/main')
     }
   }, [accessToken, router, userGender])
   Cookies.set('realAccessToken', accessToken)
