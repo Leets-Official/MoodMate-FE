@@ -21,7 +21,7 @@ interface MatchProps {
 
 const getBGStyle = (type: string) => {
   switch (type) {
-    case 'AFTER':
+    case 'BEFORE':
       return {
         targetHour: 22,
         logo: grayLogo,
@@ -31,7 +31,7 @@ const getBGStyle = (type: string) => {
         imageUi: '-mt-16',
         image2Ui: 'w-[156px] mx-auto mt-24 desktop:mt-4',
       }
-    case 'BEFORE':
+    case 'AFTER':
       return {
         targetHour: 20,
         logo: pinkLogo,
