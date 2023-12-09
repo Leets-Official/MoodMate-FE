@@ -15,7 +15,15 @@ export const useInfiniteChatQuery = (
       },
       enabled: !!userId && !!roomId,
       initialPageParam: 1,
-      getNextPageParam: (lastPage) => lastPage.pageable.page + 1 || undefined, // 맞는지 확인
+      getNextPageParam: (lastPage, pages) => {
+        if (
+          lastPage.pageable.totalElements ||
+          lastPage.pageable.totalPages === 0
+        ) {
+          return false
+        }
+        return lastPage.pageable.page + 1
+      },
     })
 
   return { data, fetchNextPage, hasNextPage, isFetchingNextPage, status }
