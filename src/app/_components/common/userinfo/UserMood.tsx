@@ -1,6 +1,5 @@
 'use client'
 
-import { useUserinfoPostMutation } from '@/_hooks/useUserinfoPostMutation'
 import { useRouter } from 'next/navigation'
 import { DATE_MOOD_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
@@ -8,6 +7,8 @@ import { preferInfoState, userInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
+import { useMutation } from '@tanstack/react-query'
+import { postUserData } from '@/_service/userinfo'
 
 export default function UserMood() {
   const route = useRouter()
@@ -34,20 +35,21 @@ export default function UserMood() {
     activeStyles: 'text-white bg-primary',
   }
 
+  const postUserDataMutation = useMutation({
+    mutationFn: () => postUserData(usersInfo, userInfo),
+    onSuccess: () => {
+      console.log('postUserDataMutation success')
+    },
+  })
+
   useEffect(() => {
     console.log(usersInfo)
     console.log(userInfo)
   }, [usersInfo, userInfo])
 
-  const userMutation = useUserinfoPostMutation()
-
   const nextRoute = async () => {
     try {
-      await userMutation.mutateAsync({
-        userInfo: usersInfo,
-        preferInfo: userInfo,
-      })
-
+      await postUserDataMutation.mutateAsync()
       route.push('/main')
       console.log(userInfo)
       console.log(usersInfo)
