@@ -18,7 +18,7 @@ const OauthPage = () => {
     return <div>Error...</div>
   }
   const { userGender } = data.mainPageResponse
-  console.log('1d', userGender)
+  console.log('1d2', userGender)
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -39,13 +39,16 @@ const OauthPage = () => {
   }, [])
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    userGender === 'MALE' || userGender === 'FEMALE'
-      ? router.push('/main')
-      : router.push('/userinfo/1')
-  }, [router, userGender])
-  Cookies.set('realAccessToken', accessToken)
-  Cookies.set('realRefreshToken', refreshToken)
+    if (userGender === 'male' || userGender === 'female') {
+      Cookies.set('realAccessToken', accessToken)
+      Cookies.set('realRefreshToken', refreshToken)
+      router.push('/main')
+    } else if (userGender === null) {
+      Cookies.set('realAccessToken', accessToken)
+      Cookies.set('realRefreshToken', refreshToken)
+      router.push('/userinfo/1')
+    }
+  }, [accessToken, refreshToken, router, userGender])
   return (
     <div>
       <Loading />
