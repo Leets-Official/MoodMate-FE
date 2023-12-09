@@ -69,9 +69,15 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     console.log(data?.pages)
   }, [data?.pages, scrollHeight])
 
+  useEffect(() => {
+    if (topDivRef.current) {
+      topDivRef.current.style.display = 'block'
+    }
+  }, [])
+
   return (
     <section className="h-[82%] py-5 px-3 overflow-scroll" ref={scrollRef}>
-      <div ref={topDivRef} />
+      <div ref={topDivRef} className="flex-none" />
       {isFetchingNextPage ? (
         <p>로딩중...</p> // 로딩 처리
       ) : (
