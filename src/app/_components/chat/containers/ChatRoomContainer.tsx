@@ -79,11 +79,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   return (
     <section className="h-[82%] py-5 px-3 overflow-scroll" ref={scrollRef}>
       <div ref={topDivRef} className="flex-none" />
-      {isFetchingNextPage ? (
-        <p>로딩중...</p> // 로딩 처리
-      ) : (
-        !hasNextPage && <p>처음 채팅!</p>
-      )}
       {data?.pages.map((pageData) => {
         return (
           <ChatList
