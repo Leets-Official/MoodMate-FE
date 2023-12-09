@@ -18,7 +18,7 @@ const OauthPage = () => {
     return <div>Error...</div>
   }
   const { userGender } = data.mainPageResponse
-  console.log('ddd', userGender)
+  console.log('1d', userGender)
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -43,7 +43,7 @@ const OauthPage = () => {
     userGender === 'MALE' || userGender === 'FEMALE'
       ? router.push('/main')
       : router.push('/userinfo/1')
-  }, [accessToken, router, userGender])
+  }, [router, userGender])
   Cookies.set('realAccessToken', accessToken)
   Cookies.set('realRefreshToken', refreshToken)
   return (
