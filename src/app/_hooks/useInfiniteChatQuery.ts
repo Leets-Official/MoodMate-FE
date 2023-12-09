@@ -17,10 +17,10 @@ export const useInfiniteChatQuery = (
       initialPageParam: 1,
       getNextPageParam: (lastPage, pages) => {
         if (
-          lastPage.pageable.totalElements ||
+          lastPage.pageable.totalElements === 0 &&
           lastPage.pageable.totalPages === 0
         ) {
-          return 1
+          return undefined
         }
         return lastPage.pageable.page + 1
       },
