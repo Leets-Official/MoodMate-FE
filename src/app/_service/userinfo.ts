@@ -38,20 +38,3 @@ const postPreferInfo = async (preferInfo: PreferInfoData) => {
     throw error
   }
 }
-
-export const postUserData = async (
-  userInfo: UserInfoData,
-  preferInfo: PreferInfoData,
-): Promise<any[]> => {
-  try {
-    const [userInfoResult, preferInfoResult] = await Promise.allSettled([
-      postUserInfo(userInfo),
-      postPreferInfo(preferInfo),
-    ])
-
-    return [userInfoResult, preferInfoResult]
-  } catch (error) {
-    console.error('Error posting user or prefer info:', error)
-    throw error
-  }
-}
