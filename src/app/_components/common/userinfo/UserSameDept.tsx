@@ -27,7 +27,7 @@ export default function UserSameDept({ pageNum }: UserSameDeptProps) {
   }
 
   const nextRoute = () => {
-    const selectedDept = trueButtonSelected ? true : false
+    const selectedDept = !!trueButtonSelected
     setUserInfoState((prev) => ({
       ...prev,
       preferDepartmentPossible: selectedDept,

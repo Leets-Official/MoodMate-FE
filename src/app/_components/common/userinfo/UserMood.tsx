@@ -1,14 +1,15 @@
 'use client'
+
 /* eslint-disable no-nested-ternary */
 import { useRouter } from 'next/navigation'
 import { DATE_MOOD_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
 import { preferInfoState, userInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
-import NormalButton from '../NormalButton'
-import SelectedButton from '../SelectedButton'
 import { useMutation } from '@tanstack/react-query'
 import { postUserData } from '@/_service/userinfo'
+import NormalButton from '../NormalButton'
+import SelectedButton from '../SelectedButton'
 
 export default function UserMood() {
   const route = useRouter()

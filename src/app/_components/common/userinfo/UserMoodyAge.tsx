@@ -1,10 +1,10 @@
 import { useRouter } from 'next/navigation'
-import NormalButton from '../NormalButton'
-import RangeBar from '../RangeBar'
 import { RANGE_BAR_AGE, MY_AGE_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
 import { preferInfoState } from '@/_atom/userinfo'
 import { useState } from 'react'
+import RangeBar from '../RangeBar'
+import NormalButton from '../NormalButton'
 
 interface UserMoodyageProps {
   pageNum: string

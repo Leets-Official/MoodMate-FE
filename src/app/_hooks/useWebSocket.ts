@@ -43,7 +43,7 @@ const useWebsocket = (roomId: number) => {
           })
         },
         (error: undefined) => {
-          console.log('Error: ' + error)
+          console.log(`Error: ${error}`)
         },
       )
 

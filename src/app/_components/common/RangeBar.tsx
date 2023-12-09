@@ -34,7 +34,6 @@ const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
         {[...Array(4)].map((_, index) => (
           // eslint-disable-next-line react/jsx-key
           <div
-            key={index}
             style={{
               width: '4px',
               height: '4px',
@@ -50,7 +49,6 @@ const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
         {[...Array(4)].map((_, index) => (
           // eslint-disable-next-line react/jsx-key
           <div
-            key={index}
             style={{
               width: '4px',
               height: '4px',

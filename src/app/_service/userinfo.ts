@@ -6,7 +6,9 @@ export const postUserData = async (
 ) => {
   try {
     const [userInfoResult, preferInfoResult] = await Promise.allSettled([
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       postUserInfo(userInfo),
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       postPreferInfo(preferInfo),
     ])
 
