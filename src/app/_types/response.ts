@@ -35,8 +35,8 @@ interface ResponseMain {
   }
 }
 /** 메인페이지 응답 데이터 */
-interface ResponseMypage {
-  mypagePageResponse: {
+interface ResponseMyPage {
+  myPagePageResponse: {
     userNickname: string
     year: number
     userDepartment: string

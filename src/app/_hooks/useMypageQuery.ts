@@ -1,13 +1,13 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { mypageInfo } from '@/_service/mypage'
+import { myPageInfo } from '@/_service/mypage'
 
-export const useMypageQuery = () => {
-  const queryKey = ['mypage']
-  const { isLoading, isError, data } = useQuery<ResponseMypage, Error>({
+export const useMyPageQuery = () => {
+  const queryKey = ['myPage']
+  const { isLoading, isError, data } = useQuery<ResponseMyPage, Error>({
     queryKey,
-    queryFn: mypageInfo,
+    queryFn: myPageInfo,
   })
 
   return { isLoading, isError, data }
