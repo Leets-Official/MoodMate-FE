@@ -4,6 +4,9 @@ import Image from 'next/image'
 import { LOGIN_PAGE } from '@/_constants/login'
 import google from '../../../../public/illustration/common/login/google.png'
 import loginImage from '../../../../public/illustration/common/login/login.png'
+import { useMainQuery } from '@/_hooks/useMainQuery'
+import React, { useEffect } from 'react'
+import Loading from '@/_components/common/Loading'
 
 export default function Login() {
   const handleLogin = () => {
