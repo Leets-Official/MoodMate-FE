@@ -10,7 +10,7 @@ import Profile from '@/_components/information/Profile'
 export default function MyPage() {
   const { isLoading, isError, data } = useMyPageQuery()
   useEffect(() => {
-    console.log('data', data)
+    console.log('data', data?.myPageResponse)
   }, [data])
   if (isLoading) {
     return <Loading />
