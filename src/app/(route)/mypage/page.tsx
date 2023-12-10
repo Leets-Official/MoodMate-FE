@@ -1,18 +1,24 @@
+'use client'
+
 import MypageSecondBoxContainer from '@/_components/mypage/containers/MypageSecondBoxContainer'
 import MypageThirdBoxContainer from '@/_components/mypage/containers/MypageThirdBoxContainer'
-import { useMypageQuery } from '@/_hooks/useMypageQuery'
-import React from 'react'
+import { useMyPageQuery } from '@/_hooks/useMypageQuery'
+import React, { useEffect } from 'react'
 import Loading from '@/_components/common/Loading'
 import Profile from '@/_components/information/Profile'
 
-export default function MypagePage() {
-  const { isLoading, isError, data } = useMypageQuery()
+export default function MyPage() {
+  const { isLoading, isError, data } = useMyPageQuery()
+  useEffect(() => {
+    console.log(data?.myPagePageResponse)
+  }, [data])
   if (isLoading) {
     return <Loading />
   }
   if (isError || !data) {
     return <div>Error...</div>
   }
+
   const {
     userNickname,
     year,
@@ -22,7 +28,8 @@ export default function MypagePage() {
     preferYearMin,
     preferDepartmentPossible,
     preferMood,
-  } = data.mypagePageResponse
+  } = data.myPagePageResponse
+
   return (
     <div>
       <Profile
