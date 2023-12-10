@@ -10,7 +10,7 @@ import Profile from '@/_components/information/Profile'
 export default function MyPage() {
   const { isLoading, isError, data } = useMyPageQuery()
   useEffect(() => {
-    console.log('data', data?.myPageResponse)
+    console.log('data2', data?.myPageResponse)
   }, [data])
   if (isLoading) {
     return <Loading />
@@ -28,23 +28,23 @@ export default function MyPage() {
     preferYearMin,
     preferDepartmentPossible,
     preferMood,
-  } = data
+  } = data.myPageResponse
 
   return (
     <div>
-      {/* <Profile */}
-      {/*   userNickname={userNickname} */}
-      {/*   year={year} */}
-      {/*   userDepartment={userDepartment} */}
-      {/* /> */}
-      {/* <MypageSecondBoxContainer */}
-      {/*   userKeywords={userKeywords} */}
-      {/*   preferYearMax={preferYearMax} */}
-      {/*   preferYearMin={preferYearMin} */}
-      {/*   preferDepartmentPossible={preferDepartmentPossible} */}
-      {/*   preferMood={preferMood} */}
-      {/* /> */}
-      {/* <MypageThirdBoxContainer /> */}
+      <Profile
+        userNickname={userNickname}
+        year={year}
+        userDepartment={userDepartment}
+      />
+      <MypageSecondBoxContainer
+        userKeywords={userKeywords}
+        preferYearMax={preferYearMax}
+        preferYearMin={preferYearMin}
+        preferDepartmentPossible={preferDepartmentPossible}
+        preferMood={preferMood}
+      />
+      <MypageThirdBoxContainer />
     </div>
   )
 }
