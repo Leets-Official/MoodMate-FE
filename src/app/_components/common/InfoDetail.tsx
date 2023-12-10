@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { downarrow, rightarrow } from '@/_ui/IconsPath'
 import Icons from '@/_components/common/Icons'
 import NormalButton from '@/_components/common/NormalButton'
-import Keyword from '@/_components/information/Keyword'
 
 interface InfoDetailProps {
   titleText: string
