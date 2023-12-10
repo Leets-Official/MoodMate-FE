@@ -27,17 +27,23 @@ const OauthPage = () => {
       setRefreshToken(refreshTokenURL)
     }
   }, [])
-  useEffect(() => {
-    if (accessToken) {
-      router.push('/main')
-    }
-  }, [accessToken, router])
+  // useEffect(() => {
+  //   if (accessToken) {
+  //     router.push('/main')
+  //   }
+  // }, [accessToken, router])
   Cookies.set('realAccessToken', accessToken)
   Cookies.set('realRefreshToken', refreshToken)
   const { isLoading, isError, data } = useMainQuery()
   useEffect(() => {
     console.log('dd', data?.mainPageResponse)
   }, [data])
+  if (isLoading) {
+    return <Loading />
+  }
+  if (isError || !data) {
+    return <div>Error...</div>
+  }
   return (
     <div>
       <Loading />
