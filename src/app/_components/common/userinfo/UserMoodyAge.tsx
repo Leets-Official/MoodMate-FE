@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation'
-import { RANGE_BAR_AGE, MY_AGE_PAGE } from '@/_constants'
+import { RANGE_BAR_AGE, MOODIE_AGE_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
 import { preferInfoState } from '@/_atom/userinfo'
 import { useState } from 'react'
@@ -43,10 +43,10 @@ export default function UserMoodyage({ pageNum }: UserMoodyageProps) {
       <div className="mt-[35px] mb-[88px]">
         <div>
           <div className="leading-normal text-darkgray font-bold text-xl font-sans">
-            {MY_AGE_PAGE.GREETINGS}
+            {MOODIE_AGE_PAGE.GREETINGS}
           </div>
           <div className="mt-[10px] text-secondary font-normal text-base font-sans">
-            <div>{MY_AGE_PAGE.WARNINGS}</div>
+            <div>{MOODIE_AGE_PAGE.WARNINGS}</div>
           </div>
         </div>
       </div>
