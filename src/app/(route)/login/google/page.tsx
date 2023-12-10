@@ -10,6 +10,7 @@ const OauthPage = () => {
   const [accessToken, setAccessToken] = useState<string>('')
   const [refreshToken, setRefreshToken] = useState<string>('')
   const router = useRouter()
+  const { isLoading, isError, data } = useMainQuery()
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const accessTokenURL = new URL(window.location.href).searchParams.get(
@@ -34,16 +35,24 @@ const OauthPage = () => {
   // }, [accessToken, router])
   Cookies.set('realAccessToken', accessToken)
   Cookies.set('realRefreshToken', refreshToken)
-  const { isLoading, isError, data } = useMainQuery()
-  useEffect(() => {
-    console.log('dㅈ223d', data?.mainPageResponse)
-  }, [data])
   if (isLoading) {
     return <Loading />
   }
   if (isError || !data) {
     return <div>Error...</div>
   }
+  const { userGender } = data.mainPageResponse
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    if (data) {
+      console.log('usergender', userGender)
+      if (userGender === 'MALE') {
+        router.push('/main')
+      } else {
+        router.push('/userinfo/1')
+      }
+    }
+  })
   return (
     <div>
       <Loading />
