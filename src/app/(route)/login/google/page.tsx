@@ -36,7 +36,7 @@ const OauthPage = () => {
   Cookies.set('realRefreshToken', refreshToken)
   const { isLoading, isError, data } = useMainQuery()
   useEffect(() => {
-    console.log('dd', data?.mainPageResponse)
+    console.log('dㅈ223d', data?.mainPageResponse)
   }, [data])
   if (isLoading) {
     return <Loading />
