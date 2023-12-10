@@ -43,6 +43,14 @@ const useWebsocket = (roomId: number) => {
 
     return () => {
       if (stompClient) {
+        stompClient.send(
+          `/pub/chat`,
+          {},
+          JSON.stringify({
+            roomId,
+            content: 'left the chat',
+          }),
+        )
         stompClient.disconnect()
         setRealTimeMessages([])
         setstompClient(null)
