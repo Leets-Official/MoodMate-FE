@@ -27,29 +27,17 @@ const OauthPage = () => {
       setRefreshToken(refreshTokenURL)
     }
   }, [])
-  // useEffect(() => {
-  //   if (accessToken) {
-  //     router.push('/main')
-  //   }
-  // }, [accessToken, router])
+  useEffect(() => {
+    if (accessToken) {
+      router.push('/main')
+    }
+  }, [accessToken, router])
   Cookies.set('realAccessToken', accessToken)
   Cookies.set('realRefreshToken', refreshToken)
   const { isLoading, isError, data } = useMainQuery()
-  if (isLoading) {
-    return <Loading />
-  }
-  if (isError || !data) {
-    return <div>Error...</div>
-  }
-  const { userGender } = data.mainPageResponse
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if (userGender === 'MALE' || userGender === 'FEMALE') {
-      router.push('/main')
-    } else {
-      router.push('/userinfo/1')
-    }
-  }, [router, userGender])
+    console.log('dd', data?.mainPageResponse)
+  }, [data])
   return (
     <div>
       <Loading />
