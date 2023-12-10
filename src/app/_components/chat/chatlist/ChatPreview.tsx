@@ -21,7 +21,7 @@ const ChatPreview = ({
   gender,
 }: ChatPreviewProps) => {
   return (
-    <section className="bg-white h-[80px] w-[80%] rounded-2xl border-2 border-primary">
+    <section className="bg-white h-[80px] w-[80%] rounded-2xl border-1 border-primary">
       <Link href={`/chat/room/${userId}/${roomId}`}>
         <div className="flex justify-center items-center flex-row gap-3 h-full">
           <Bio gender={gender} size="SMALL" />

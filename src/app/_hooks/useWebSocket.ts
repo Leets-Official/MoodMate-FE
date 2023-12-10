@@ -23,6 +23,7 @@ const useWebsocket = (roomId: number) => {
         headers,
         (frame: any) => {
           console.log('Connected:', frame)
+          console.log('Connected:', frame.headers)
           client.send(
             `/pub/chat`,
             {},
