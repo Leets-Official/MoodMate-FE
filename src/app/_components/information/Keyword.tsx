@@ -3,11 +3,6 @@ interface KeywordProps {
 }
 
 const Keyword = ({ keywords }: KeywordProps) => {
-  // const keywords = [
-  //   { title: '키워드1', key: 'first' },
-  //   { title: '키워드2', key: 'second' },
-  //   { title: '키워드3', key: 'third' },
-  // ]
   return (
     <div className="flex text-[14px] ml-3 my-2">
       {keywords.map((keyword, i) => {

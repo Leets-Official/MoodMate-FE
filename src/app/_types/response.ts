@@ -34,3 +34,16 @@ interface ResponseMain {
     roomActive: boolean
   }
 }
+/** 메인페이지 응답 데이터 */
+interface ResponseMypage {
+  mypagePageResponse: {
+    userNickname: string
+    year: number
+    userDepartment: string
+    userKeywords: string[]
+    preferYearMin: number
+    preferYearMax: number
+    preferDepartmentPossible: boolean
+    preferMood: string
+  }
+}
