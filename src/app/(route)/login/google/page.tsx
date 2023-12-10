@@ -35,11 +35,11 @@ const OauthPage = () => {
   // }, [accessToken, router])
   Cookies.set('realAccessToken', accessToken)
   Cookies.set('realRefreshToken', refreshToken)
-
   useEffect(() => {
-    if (data) {
-      console.log('usergender', data.mainPageResponse.userGender)
-      if (data.mainPageResponse.userGender === 'MALE') {
+    if (data && data.mainPageResponse && data.mainPageResponse.userGender) {
+      const { userGender } = data.mainPageResponse
+      console.log('usergender', userGender)
+      if (userGender === 'MALE') {
         router.push('/main')
       } else {
         router.push('/userinfo/1')
@@ -51,7 +51,12 @@ const OauthPage = () => {
     return <Loading />
   }
 
-  if (isError || !data) {
+  if (
+    isError ||
+    !data ||
+    !data.mainPageResponse ||
+    !data.mainPageResponse.userGender
+  ) {
     return <div>Error...</div>
   }
   return (
