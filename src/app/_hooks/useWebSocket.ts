@@ -9,12 +9,12 @@ import SockJS from 'sockjs-client'
 const useWebsocket = (roomId: number) => {
   const [stompClient, setstompClient] = useState<CompatClient | null>(null)
   const setRealTimeMessages = useSetRecoilState(realTimeMessagesState)
+  const accessToken = Cookies.get('realAccessToken')
 
   useEffect(() => {
     const connectWebSocket = () => {
       const socket = new SockJS(`${process.env.NEXT_PUBLIC_SERVER_URL}chat`)
       const client = Stomp.over(socket)
-      const accessToken = Cookies.get('realAccessToken')
       const headers = {
         Authorization: `Bearer ${accessToken}`,
       }
@@ -27,6 +27,7 @@ const useWebsocket = (roomId: number) => {
             `/pub/chat`,
             {},
             JSON.stringify({
+              token: `Bearer ${accessToken}`,
               roomId,
               content: 'joined the chat',
             }),
@@ -65,6 +66,7 @@ const useWebsocket = (roomId: number) => {
           `/pub/chat`,
           {},
           JSON.stringify({
+            token: `Bearer ${accessToken}`,
             roomId,
             content: 'left the chat',
           }),
@@ -77,7 +79,11 @@ const useWebsocket = (roomId: number) => {
 
   const sendMessage = (message: { content: string; roomId: number }) => {
     if (stompClient?.connected && message) {
-      stompClient.send(`/pub/chat`, {}, JSON.stringify(message))
+      stompClient.send(
+        `/pub/chat`,
+        {},
+        JSON.stringify({ ...message, token: `Bearer ${accessToken}` }),
+      )
     }
   }
 
