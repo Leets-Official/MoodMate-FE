@@ -27,7 +27,6 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
     userInfo.gender === 'FEMALE'
       ? '/illustration/female/age/myage.png'
       : '/illustration/male/age/myage.png'
-  console.log(myCharacter)
 
   const handleSingleChange = (newValues: number[]) => {
     setSingleValue(newValues)
