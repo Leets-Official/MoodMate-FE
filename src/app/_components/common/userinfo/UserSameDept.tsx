@@ -60,7 +60,6 @@ export default function UserSameDept({ pageNum }: UserSameDeptProps) {
   useEffect(() => {
     setTrueButtonSelected(userInfo.preferDepartmentPossible === true)
     setFalseButtonSelected(userInfo.preferDepartmentPossible === false)
-    console.log(userInfo)
   }, [userInfo])
 
   return (
@@ -72,22 +71,22 @@ export default function UserSameDept({ pageNum }: UserSameDeptProps) {
       </div>
       <div>
         <SelectedButton
-          buttonText={MATCHING_DEPARTMENT_PAGE.SAME_DEPT}
+          buttonText={`${MATCHING_DEPARTMENT_PAGE.SAME_DEPT}\n${MATCHING_DEPARTMENT_PAGE.LIKE}`}
           buttonType="MAJOR"
           isActive
           onClick={handleTrueButtonClick}
-          className={`ml-[7px] font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
+          className={`ml-[7px] font-sans leading-none text-[14px] font-bold justify-end items-center rounded-3xl ${
             trueButtonSelected
               ? 'border-[1px] border-primary text-primary bg-onepink'
               : 'bg-zeropink '
           }`}
         />
         <SelectedButton
-          buttonText={MATCHING_DEPARTMENT_PAGE.DIFF_DEPT}
+          buttonText={`${MATCHING_DEPARTMENT_PAGE.DIFF_DEPT}\n${MATCHING_DEPARTMENT_PAGE.LIKE}`}
           buttonType="MAJOR"
           isActive
           onClick={handleFalseButtonClick}
-          className={`ml-[7px] font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
+          className={`ml-[7px] font-sans leading-none text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
             falseButtonSelected
               ? 'border-[1px] border-primary text-primary bg-onepink'
               : 'bg-zeropink '

@@ -139,8 +139,9 @@ export const MOODIE_AGE_PAGE = {
 
 export const MATCHING_DEPARTMENT_PAGE = {
   GREETINGS: '어떤 것을 선호하시나요?',
-  SAME_DEPT: '같은 학과도 좋아요!',
-  DIFF_DEPT: '다른 학과가 좋아요!',
+  SAME_DEPT: '같은 학과도',
+  LIKE: '좋아요!',
+  DIFF_DEPT: '다른 학과가',
 } as const
 
 export const DATE_MOOD_PAGE = {
