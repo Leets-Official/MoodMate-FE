@@ -8,7 +8,8 @@ interface SelectedButtonProps {
   className: string
   onClick: () => void
   imgSrc?: string
-  imgSize?: string
+  imgSizeW?: number
+  imgSizeH?: number
 }
 
 const SelectedButton = ({
@@ -18,10 +19,12 @@ const SelectedButton = ({
   className,
   onClick,
   imgSrc,
-  imgSize,
+  imgSizeW,
+  imgSizeH,
 }: SelectedButtonProps) => {
   const buttonStyles = BUTTON_STYLE[buttonType](className)
   const textLines = buttonText.split('\n')
+
   return (
     <button
       type="button"
@@ -29,7 +32,11 @@ const SelectedButton = ({
       onClick={onClick}
       disabled={!isActive}
     >
-      {imgSrc && <Image src={imgSrc} alt="" className={imgSize} />}
+      {imgSrc && (
+        <div className="flex justify-center items-center mb-1">
+          <Image src={imgSrc} alt="" width={imgSizeW} height={imgSizeH} />
+        </div>
+      )}
       {textLines.map((text, index) => (
         // eslint-disable-next-line react/jsx-key
         <div>
