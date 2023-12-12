@@ -8,9 +8,7 @@ import NavBar from '@/_components/common/NavBar'
 import { useMainQuery } from '@/_hooks/useMainQuery'
 import Image from 'next/image'
 import Loading from '@/_components/common/Loading'
-import afterMatch from 'public/illustration/common/main/afterMatch.png'
-import afterMatchCh from 'public/illustration/female/main/afterMatch.png'
-import beforeMatchOn from 'public/illustration/common/main/beforeMatchOn.png'
+import afterMatch from 'public/illustration/female/main/afterMatch.png'
 import beforeMatch from 'public/illustration/common/main/beforeMatch.png'
 import grayLogo from 'public/illustration/common/logo/graylogo.png'
 import pinkLogo from 'public/illustration/common/logo/pinklogo.png'
@@ -27,7 +25,6 @@ const getBGStyle = (type: string) => {
         logo: grayLogo,
         background: 'mt-2',
         image: beforeMatch,
-        image2: beforeMatchOn,
         imageUi: '-mt-16',
         image2Ui: 'w-[156px] mx-auto mt-24 desktop:mt-4',
       }
@@ -37,7 +34,6 @@ const getBGStyle = (type: string) => {
         logo: pinkLogo,
         background: 'pt-2 bg-[#FFE5E7] h-screen',
         image: afterMatch,
-        image2: afterMatchCh,
         imageUi: '',
         image2Ui: '',
       }
@@ -47,7 +43,6 @@ const getBGStyle = (type: string) => {
         background: '',
         targetHour: 0,
         image: '',
-        image2: '',
         imageUi: '',
         image2Ui: '',
       }
@@ -75,11 +70,6 @@ const MainPage = ({ type }: MatchProps) => {
       <TimerFirstText type={type} />
       <Timer targetHour={getBGStyle(type).targetHour} />
       <TimerMiddleText type={type} />
-      <Image
-        src={getBGStyle(type).image2}
-        alt="beforeMatchOn"
-        className={getBGStyle(type).image2Ui}
-      />
       <Image
         src={getBGStyle(type).image}
         alt="beforeMatch"
