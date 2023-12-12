@@ -25,8 +25,8 @@ const getBGStyle = (type: string) => {
         logo: grayLogo,
         background: 'mt-2',
         image: beforeMatch,
-        textUi: 'mb-1.5',
-        imageUi: 'mt-5',
+        textUi: 'mb-4',
+        imageUi: 'mt-4',
       }
     case 'AFTER':
       return {
