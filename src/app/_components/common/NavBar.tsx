@@ -67,7 +67,7 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
   }
   console.log('roomActive', roomActive)
   return (
-    <div className="h-[250px] translate-y-6 fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
       <div
         className={`${
           getTextStyle(type).box
