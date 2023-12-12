@@ -25,6 +25,8 @@ const getBGStyle = (type: string) => {
         logo: grayLogo,
         background: 'mt-2',
         image: beforeMatch,
+        textUi: 'mb-1.5',
+        imageUi: 'mt-5',
       }
     case 'AFTER':
       return {
@@ -32,6 +34,8 @@ const getBGStyle = (type: string) => {
         logo: pinkLogo,
         background: 'pt-2 bg-[#FFE5E7] h-screen',
         image: afterMatch,
+        textUi: '',
+        imageUi: '',
       }
     default:
       return {
@@ -39,6 +43,8 @@ const getBGStyle = (type: string) => {
         background: '',
         targetHour: 0,
         image: '',
+        textUi: '',
+        imageUi: '',
       }
   }
 }
@@ -60,12 +66,16 @@ const MainPage = ({ type }: MatchProps) => {
         <Image
           src={getBGStyle(type).logo}
           alt="graylogo"
-          className="w-[85px] h-[13px] mt-5 mx-auto"
+          className={`${getBGStyle(type).textUi}w-[85px] h-[13px] mt-5 mx-auto`}
         />
         <TimerFirstText type={type} />
         <Timer targetHour={getBGStyle(type).targetHour} />
         <TimerMiddleText type={type} />
-        <Image src={getBGStyle(type).image} alt="Matching" className="-mt-5" />
+        <Image
+          src={getBGStyle(type).image}
+          alt="Matching"
+          className={`-mt-5 ${getBGStyle(type).imageUi}`}
+        />
       </div>
       <NavBar
         type={type}
