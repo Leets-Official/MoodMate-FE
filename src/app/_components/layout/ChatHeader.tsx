@@ -73,6 +73,7 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
               subject={openExitModal ? END_CHAT_MODAL : NEW_MATCHING_MODAL}
               onConfirm={openExitModal ? onOpenMatchModal : onConfirmNewMatch}
               onCancel={openExitModal ? onCloseExitModal : onCancelNewMatch}
+              gender=""
             />
           </ModalOutside>
         </ModalPortal>
