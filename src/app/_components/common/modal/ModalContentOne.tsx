@@ -1,20 +1,21 @@
 import Image from 'next/image'
-import yetMatch from 'public/illustration/female/modal/yetmatch.png'
+import yetMatchFemale from 'public/illustration/female/modal/yetmatch.png'
+import yetMatchMale from 'public/illustration/male/modal/yetmatch.png'
 import ModalButtonOne from './ModatlButtonOne'
 
 interface ModalContentOneProps {
   subject: ModalContentOne
-  onMyPage?: boolean
   onClose: () => void
+  gender: string
 }
 
 const ModalContentOne = ({
   subject,
   onClose,
-  onMyPage,
+  gender,
 }: ModalContentOneProps) => {
   const { TITLE, SUB_TITLE, CLOSE } = subject
-
+  const yetMatch = gender === 'MALE' ? yetMatchMale : yetMatchFemale
   return (
     <section className=" w-full h-full flex flex-col justify-center items-center gap-[40px]">
       <div>
