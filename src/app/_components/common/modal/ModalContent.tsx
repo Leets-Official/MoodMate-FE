@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import inactive from 'public/illustration/female/modal/inactive.png'
+import inactiveFemale from 'public/illustration/female/modal/inactive.png'
+import inactiveMale from 'public/illustration/male/modal/inactive.png'
 import ModalButtons from './ModalButtons'
 
 interface ModalContentProps {
@@ -7,6 +8,7 @@ interface ModalContentProps {
   onMyPage?: boolean
   onConfirm: () => void
   onCancel: () => void
+  gender: string
 }
 
 const ModalContent = ({
@@ -14,9 +16,10 @@ const ModalContent = ({
   onConfirm,
   onCancel,
   onMyPage,
+  gender,
 }: ModalContentProps) => {
   const { TITLE, SUB_TITLE, CONFIRM, CANCEL } = subject
-
+  const inactive = gender === 'MALE' ? inactiveMale : inactiveFemale
   return (
     <section className=" w-full h-full flex flex-col justify-center items-center gap-[40px]">
       <div>

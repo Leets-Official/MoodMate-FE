@@ -8,16 +8,18 @@ import NavBar from '@/_components/common/NavBar'
 import { useMainQuery } from '@/_hooks/useMainQuery'
 import Image from 'next/image'
 import Loading from '@/_components/common/Loading'
-import afterMatch from 'public/illustration/female/main/afterMatch.png'
+import afterMatchFemale from 'public/illustration/female/main/afterMatch.png'
+import afterMatchMale from 'public/illustration/male/main/afterMatch.png'
 import beforeMatch from 'public/illustration/common/main/beforeMatch.png'
 import grayLogo from 'public/illustration/common/logo/graylogo.png'
 import pinkLogo from 'public/illustration/common/logo/pinklogo.png'
 
 interface MatchProps {
   type: 'BEFORE' | 'AFTER'
+  gender: 'MALE' | 'FEMALE'
 }
 
-const getBGStyle = (type: string) => {
+const getBGStyle = (type: string, gender: string) => {
   switch (type) {
     case 'BEFORE':
       return {
@@ -29,13 +31,34 @@ const getBGStyle = (type: string) => {
         imageUi: 'mt-4',
       }
     case 'AFTER':
-      return {
-        targetHour: 20,
-        logo: pinkLogo,
-        background: 'pt-2 bg-[#FFE5E7] h-screen',
-        image: afterMatch,
-        textUi: '',
-        imageUi: '',
+      switch (gender) {
+        case 'MALE':
+          return {
+            targetHour: 20,
+            logo: pinkLogo,
+            background: 'pt-2 bg-[#FFE5E7] h-screen',
+            image: afterMatchFemale,
+            textUi: '',
+            imageUi: '',
+          }
+        case 'FEMALE':
+          return {
+            targetHour: 20,
+            logo: pinkLogo,
+            background: 'pt-2 bg-[#FFE5E7] h-screen',
+            image: afterMatchMale,
+            textUi: '',
+            imageUi: '',
+          }
+        default:
+          return {
+            logo: '',
+            background: '',
+            targetHour: 0,
+            image: '',
+            textUi: '',
+            imageUi: '',
+          }
       }
     default:
       return {
@@ -48,7 +71,7 @@ const getBGStyle = (type: string) => {
       }
   }
 }
-const MainPage = ({ type }: MatchProps) => {
+const MainPage = ({ type, gender }: MatchProps) => {
   const { isLoading, isError, data } = useMainQuery()
   useEffect(() => {
     console.log(data?.mainPageResponse)
@@ -61,22 +84,26 @@ const MainPage = ({ type }: MatchProps) => {
   }
   const { roomActive, roomId, userId } = data.mainPageResponse
   return (
-    <div className={`${getBGStyle(type).background} h-screen flex flex-col`}>
+    <div
+      className={`${
+        getBGStyle(type, gender).background
+      } h-screen flex flex-col`}
+    >
       <div className="flex flex-col">
         <Image
-          src={getBGStyle(type).logo}
+          src={getBGStyle(type, gender).logo}
           alt="graylogo"
           className={`${
-            getBGStyle(type).textUi
+            getBGStyle(type, gender).textUi
           } w-[85px] h-[13px] mt-5 mx-auto`}
         />
         <TimerFirstText type={type} />
-        <Timer targetHour={getBGStyle(type).targetHour} />
+        <Timer targetHour={getBGStyle(type, gender).targetHour} />
         <TimerMiddleText type={type} />
         <Image
-          src={getBGStyle(type).image}
+          src={getBGStyle(type, gender).image}
           alt="Matching"
-          className={`-mt-5 ${getBGStyle(type).imageUi}`}
+          className={`-mt-5 ${getBGStyle(type, gender).imageUi}`}
         />
       </div>
       <NavBar
@@ -84,6 +111,7 @@ const MainPage = ({ type }: MatchProps) => {
         roomId={roomId}
         userId={userId}
         roomActive={roomActive}
+        gender={gender}
       />
     </div>
   )

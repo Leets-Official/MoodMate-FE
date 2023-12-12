@@ -3,7 +3,6 @@
 import Icons from '@/_components/common/Icons'
 import { bio, chat, deactivation, whitechat } from '@/_ui/IconsPath'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { useState } from 'react'
 import ModalPortal from '@/_components/common/modal/ModalPortal'
 import ModalOutside from '@/_components/common/modal/ModalOutside'
@@ -18,6 +17,7 @@ interface TextProps {
   roomId: number
   userId: number
   roomActive: boolean
+  gender: 'MALE' | 'FEMALE'
 }
 
 const getTextStyle = (type: string) => {
@@ -42,7 +42,7 @@ const getTextStyle = (type: string) => {
       }
   }
 }
-const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
+const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
   const route = useRouter()
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [chatModal, setChatModal] = useState<boolean>(false)
@@ -106,6 +106,7 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
               subject={INACTIVE_MODAL}
               onConfirm={onOpenModal}
               onCancel={onCloseModal}
+              gender={gender}
             />
           </ModalOutside>
         </ModalPortal>
@@ -116,7 +117,11 @@ const NavBar = ({ type, userId, roomId, roomActive }: TextProps) => {
             onClose={() => setChatModal(false)}
             className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
           >
-            <ModalContentOne onClose={onChatCloseModal} subject={CHAT_MODAL} />
+            <ModalContentOne
+              onClose={onChatCloseModal}
+              subject={CHAT_MODAL}
+              gender={gender}
+            />
           </ModalOutside>
         </ModalPortal>
       )}
