@@ -65,7 +65,7 @@ const MainPage = ({ type }: MatchProps) => {
       <Image
         src={getBGStyle(type).logo}
         alt="graylogo"
-        className="w-[85px] h-[13px] mt-[10%] mb-20 mx-auto"
+        className="w-[85px] h-[13px] mt-[50%] mb-20 mx-auto"
       />
       <TimerFirstText type={type} />
       <Timer targetHour={getBGStyle(type).targetHour} />
