@@ -25,8 +25,6 @@ const getBGStyle = (type: string) => {
         logo: grayLogo,
         background: 'mt-2',
         image: beforeMatch,
-        imageUi: '-mt-16',
-        image2Ui: 'w-[156px] mx-auto mt-24 desktop:mt-4',
       }
     case 'AFTER':
       return {
@@ -34,8 +32,6 @@ const getBGStyle = (type: string) => {
         logo: pinkLogo,
         background: 'pt-2 bg-[#FFE5E7] h-screen',
         image: afterMatch,
-        imageUi: '',
-        image2Ui: '',
       }
     default:
       return {
@@ -43,8 +39,6 @@ const getBGStyle = (type: string) => {
         background: '',
         targetHour: 0,
         image: '',
-        imageUi: '',
-        image2Ui: '',
       }
   }
 }
@@ -65,7 +59,7 @@ const MainPage = ({ type }: MatchProps) => {
       <Image
         src={getBGStyle(type).logo}
         alt="graylogo"
-        className="w-[85px] h-[13px] mt-[50%] mb-20 mx-auto"
+        className="w-[85px] h-[13px] mt-[15%] mb-[20%] mx-auto"
       />
       <TimerFirstText type={type} />
       <Timer targetHour={getBGStyle(type).targetHour} />
@@ -73,7 +67,7 @@ const MainPage = ({ type }: MatchProps) => {
       <Image
         src={getBGStyle(type).image}
         alt="beforeMatch"
-        className={getBGStyle(type).imageUi}
+        className="mt-[30%]"
       />
       <NavBar
         type={type}
