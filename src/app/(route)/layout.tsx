@@ -19,9 +19,11 @@ export default function RootLayout({
     <html lang="en">
       <body className="h-screen desktop:w-[360px] desktop:mx-auto">
         <RecoilProvider>
-          <div className="h-[80%]">
+          <div className="h-[5%]" />
+          <div className="h-[90%]">
             <QueryProvider>{children}</QueryProvider>
           </div>
+          <div className="h-[5%]" />
         </RecoilProvider>
       </body>
     </html>
