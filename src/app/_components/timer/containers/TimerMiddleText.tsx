@@ -32,7 +32,7 @@ const getTextStyle = (type: string) => {
 }
 const TimerMiddleText = ({ type }: TextProps) => {
   return (
-    <div className="mt-7 flex items-center text-center flex-col mx-auto">
+    <div className="mt-4 flex items-center text-center flex-col mx-auto">
       <div
         className={`${
           getTextStyle(type).text

@@ -47,7 +47,7 @@ const Timer = ({ targetHour }: TimerProps) => {
   const seconds = String(Math.floor((timeLeft / 1000) % 60)).padStart(2, '0')
 
   return (
-    <div className="mx-auto mt-2">
+    <div className="mx-auto">
       <p className="text-[40px] font-bold text-[#333333]">
         {hours} : {minutes} : {seconds}
       </p>
