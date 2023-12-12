@@ -74,7 +74,10 @@ export default function UserGender({ pageNum }: UserGenderProps) {
           buttonType="GENDER"
           isActive
           onClick={handleMaleButtonClick}
-          className={`mr-[7px] bg-zeropink text-primary font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
+          imgSrc="/illustration/common/gender/male.png"
+          imgSizeW={106}
+          imgSizeH={110}
+          className={`mr-[7px] bg-zeropink text-primary font-sans text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
             maleButtonSelected ? 'border-[1px] border-primary' : ''
           }`}
         />
@@ -83,7 +86,10 @@ export default function UserGender({ pageNum }: UserGenderProps) {
           buttonType="GENDER"
           isActive
           onClick={handleFemaleButtonClick}
-          className={`ml-[7px] bg-zeropink text-primary font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
+          imgSrc="/illustration/common/gender/female.png"
+          imgSizeW={106}
+          imgSizeH={110}
+          className={`ml-[7px] bg-zeropink text-primary font-sans text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
             femaleButtonSelected ? 'border-[1px] border-primary' : ''
           }`}
         />
