@@ -56,7 +56,7 @@ const MainPage = ({ type }: MatchProps) => {
   const { roomActive, roomId, userId } = data.mainPageResponse
   return (
     <div className={`${getBGStyle(type).background} h-screen flex flex-col`}>
-      <div className="h-[80%] pb-[280px] flex flex-col">
+      <div className="h-[70%] pb-[280px] flex flex-col">
         <Image
           src={getBGStyle(type).logo}
           alt="graylogo"
@@ -68,7 +68,7 @@ const MainPage = ({ type }: MatchProps) => {
         <Image src={getBGStyle(type).image} alt="Matching" className="mt-5" />
       </div>
       <div className="h-[5%] " />
-      <div className="h-[15%]">
+      <div className="h-[25%]">
         <NavBar
           type={type}
           roomId={roomId}
