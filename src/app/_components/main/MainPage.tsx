@@ -56,7 +56,7 @@ const MainPage = ({ type }: MatchProps) => {
   const { roomActive, roomId, userId } = data.mainPageResponse
   return (
     <div className={`${getBGStyle(type).background} h-screen flex flex-col`}>
-      <div></div>
+      <div />
       <Image
         src={getBGStyle(type).logo}
         alt="graylogo"
@@ -65,11 +65,7 @@ const MainPage = ({ type }: MatchProps) => {
       <TimerFirstText type={type} />
       <Timer targetHour={getBGStyle(type).targetHour} />
       <TimerMiddleText type={type} />
-      <Image
-        src={getBGStyle(type).image}
-        alt="beforeMatch"
-        className="mt-5"
-      />
+      <Image src={getBGStyle(type).image} alt="beforeMatch" className="mt-5" />
       <NavBar
         type={type}
         roomId={roomId}
