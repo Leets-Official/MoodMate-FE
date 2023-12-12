@@ -11,13 +11,13 @@ export default function InactivePage() {
       <Image
         src={logo}
         alt="graylogo"
-        className="w-[85px] h-[13px] mt-5 mb-20 mx-auto"
+        className="w-[85px] h-[13px] mt-5 mb-12 mx-auto"
       />
       <InactiveFirstText />
       <Image
         src={inactive}
         alt="inactive"
-        className="mx-auto w-[150px] h-[220px] mt-20 mb-10"
+        className="mx-auto w-[150px] h-[220px] mt-12 mb-5"
       />
       <InactiveMiddleText />
     </section>
