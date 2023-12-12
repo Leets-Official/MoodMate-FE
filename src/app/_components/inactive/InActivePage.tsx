@@ -7,17 +7,17 @@ import inactive from 'public/illustration/female/main/inactive.png'
 
 export default function InactivePage() {
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col h-screen">
       <Image
         src={logo}
         alt="graylogo"
-        className="w-[85px] h-[13px] mt-10 mb-20 mx-auto"
+        className="w-[85px] h-[13px] mt-5 mb-13 mx-auto"
       />
       <InactiveFirstText />
       <Image
         src={inactive}
         alt="inactive"
-        className="mx-auto w-[150px] h-[220px] mt-[78px] mb-[58px]"
+        className="mx-auto w-[150px] h-[220px] mt-13 mb-13"
       />
       <InactiveMiddleText />
     </section>
