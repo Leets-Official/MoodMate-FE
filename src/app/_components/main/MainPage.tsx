@@ -67,7 +67,7 @@ const MainPage = ({ type }: MatchProps) => {
         <TimerMiddleText type={type} />
         <Image src={getBGStyle(type).image} alt="Matching" />
       </div>
-      <div className="h-[15%] flex">
+      <div className="h-[15%]">
         <NavBar
           type={type}
           roomId={roomId}
