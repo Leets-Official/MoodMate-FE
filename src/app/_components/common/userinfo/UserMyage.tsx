@@ -23,6 +23,12 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
     userInfo.year !== 0 ? [userInfo.year] : [RANGE_BAR_AGE.MIN],
   )
 
+  const myCharacter =
+    userInfo.gender === 'FEMALE'
+      ? '/illustration/female/age/myage.png'
+      : '/illustration/male/age/myage.png'
+  console.log(myCharacter)
+
   const handleSingleChange = (newValues: number[]) => {
     setSingleValue(newValues)
   }
@@ -52,8 +58,8 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
           </div>
         </div>
       </div>
-      <div className="relative top-[0%] mt-[-50px] mb-[20px] left-[40%] ml-[-50px] w-[149px] h-[157px] text-darkgray flex justify-center items-center bg-lightgray">
-        이미지
+      <div className="relative top-[0%] mt-[-60px] mb-[20px]  left-[40%] ml-[-50px] w-[149px] h-[157px] flex justify-center items-center">
+        <img src={myCharacter} alt="" width="149" height="atuo" />
       </div>
       <div className="justify-items-center flex flex-col items-center">
         <RangeBar
