@@ -58,7 +58,7 @@ const MainPage = ({ type }: MatchProps) => {
     <div
       className={`${
         getBGStyle(type).background
-      } h-screen flex flex-col pb-[265px]`}
+      } h-screen flex flex-col pb-[250px]`}
     >
       <Image
         src={getBGStyle(type).logo}
