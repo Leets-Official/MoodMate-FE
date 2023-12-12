@@ -58,17 +58,21 @@ const MainPage = ({ type }: MatchProps) => {
     <div
       className={`${
         getBGStyle(type).background
-      } h-screen flex flex-col pb-[250px]`}
+      } h-screen flex flex-col`}
     >
-      <Image
-        src={getBGStyle(type).logo}
-        alt="graylogo"
-        className="w-[85px] h-[13px] mt-5 mx-auto"
-      />
-      <TimerFirstText type={type} />
-      <Timer targetHour={getBGStyle(type).targetHour} />
-      <TimerMiddleText type={type} />
-      <Image src={getBGStyle(type).image} alt="Matching" className="mt-5" />
+      <div className="h-[5%]" />
+      <div className="h-[90%] pb-[250px]">
+        <Image
+          src={getBGStyle(type).logo}
+          alt="graylogo"
+          className="w-[85px] h-[13px] mt-5 mx-auto"
+        />
+        <TimerFirstText type={type} />
+        <Timer targetHour={getBGStyle(type).targetHour} />
+        <TimerMiddleText type={type} />
+        <Image src={getBGStyle(type).image} alt="Matching" className="mt-5" />
+      </div>
+      <div className="h-[5%]" />
       <NavBar
         type={type}
         roomId={roomId}
