@@ -131,7 +131,10 @@ export default function UserMood() {
           buttonType="MOOD"
           isActive
           onClick={handleActButtonClick}
-          className={`mx-2 my-2 font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
+          imgSrc="/illustration/common/datemood/active.png"
+          imgSizeW={75}
+          imgSizeH={85}
+          className={`mx-2 my-2 font-sans text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
             actButtonSelected
               ? 'border-[1px]  bg-onepink border-primary text-primary'
               : 'bg-zeropink text-darkgray'
@@ -142,7 +145,11 @@ export default function UserMood() {
           buttonType="MOOD"
           isActive
           onClick={handleEmoButtonClick}
-          className={`mx-2 my-2  font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
+          imgSrc="/illustration/common/datemood/emotional.png"
+          imgSizeH={85}
+          imgSizeW={75}
+          imgClassName="h-[85px]"
+          className={`mx-2 my-2  font-sans text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
             emoButtonSelected
               ? 'border-[1px]  bg-onepink border-primary text-primary'
               : 'bg-zeropink text-darkgray'
@@ -153,7 +160,11 @@ export default function UserMood() {
           buttonType="MOOD"
           isActive
           onClick={handleNewButtonClick}
-          className={`mx-2 my-2  font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
+          imgSrc="/illustration/common/datemood/unusual.png"
+          imgSizeH={85}
+          imgSizeW={75}
+          imgClassName="h-[85px]"
+          className={`mx-2 my-2  font-sans text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
             newButtonSelected
               ? 'border-[1px] bg-onepink border-primary text-primary'
               : 'bg-zeropink text-darkgray'
@@ -164,7 +175,10 @@ export default function UserMood() {
           buttonType="MOOD"
           isActive
           onClick={handleFunButtonClick}
-          className={`mx-2 my-2 font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl ${
+          imgSrc="/illustration/common/datemood/funny.png"
+          imgSizeH={85}
+          imgSizeW={75}
+          className={`mx-2 my-2 font-sans text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
             funButtonSelected
               ? 'border-[1px]  bg-onepink border-primary text-primary'
               : 'bg-zeropink text-darkgray'

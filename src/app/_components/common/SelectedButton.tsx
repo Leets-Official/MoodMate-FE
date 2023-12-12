@@ -10,6 +10,7 @@ interface SelectedButtonProps {
   imgSrc?: string
   imgSizeW?: number
   imgSizeH?: number
+  imgClassName?: string
 }
 
 const SelectedButton = ({
@@ -21,6 +22,7 @@ const SelectedButton = ({
   imgSrc,
   imgSizeW,
   imgSizeH,
+  imgClassName,
 }: SelectedButtonProps) => {
   const buttonStyles = BUTTON_STYLE[buttonType](className)
   const textLines = buttonText.split('\n')
@@ -33,13 +35,15 @@ const SelectedButton = ({
       disabled={!isActive}
     >
       {imgSrc && (
-        <div className="flex justify-center items-center mb-1">
+        <div
+          className={`${imgClassName} flex justify-center items-center mb-2`}
+        >
           <Image src={imgSrc} alt="" width={imgSizeW} height={imgSizeH} />
         </div>
       )}
       {textLines.map((text, index) => (
         // eslint-disable-next-line react/jsx-key
-        <div>
+        <div className="leading-none">
           {index > 0 && <br />}
           {text}
         </div>
