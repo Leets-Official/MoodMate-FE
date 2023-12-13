@@ -35,8 +35,8 @@ const useWebsocket = (roomId: number) => {
               messageId: new Date().toISOString(),
               createdAt: new Date().toISOString(),
             }
-            // senderId 비교하는 로직 추가
             console.log('Received Message from Partner:', receivedMessage)
+
             setRealTimeMessages((prev: any) => [...prev, receivedMessage])
           })
         },
@@ -73,7 +73,11 @@ const useWebsocket = (roomId: number) => {
     }
   }, [roomId, setRealTimeMessages, stompClient])
 
-  const sendMessage = (message: { content: string; roomId: number }) => {
+  const sendMessage = (message: {
+    userId: number
+    roomId: number
+    content: string
+  }) => {
     if (stompClient?.connected && message) {
       stompClient.send(
         `/pub/chat`,
