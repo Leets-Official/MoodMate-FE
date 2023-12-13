@@ -15,23 +15,19 @@ const useWebsocket = (roomId: number) => {
     const connectWebSocket = () => {
       const socket = new SockJS(`${process.env.NEXT_PUBLIC_SERVER_URL}chat`)
       const client = Stomp.over(socket)
-      const headers = {
-        Authorization: `Bearer ${accessToken}`,
-      }
 
       client.connect(
-        headers,
-        (frame: any) => {
-          console.log('Connected:', frame)
-          client.send(
-            `/pub/chat`,
-            {},
-            JSON.stringify({
-              token: `Bearer ${accessToken}`,
-              roomId,
-              content: 'joined the chat',
-            }),
-          )
+        {},
+        () => {
+          // client.send(
+          //   `/pub/chat`,
+          //   {},
+          //   JSON.stringify({
+          //     token: `Bearer ${accessToken}`,
+          //     roomId,
+          //     content: 'joined the chat',
+          //   }),
+          // )
           client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
             const receivedMessage = {
               ...JSON.parse(res.body),
@@ -39,7 +35,7 @@ const useWebsocket = (roomId: number) => {
               messageId: new Date().toISOString(),
               createdAt: new Date().toISOString(),
             }
-            console.log('Received Message from Partner:', res)
+            // senderId 비교하는 로직 추가
             console.log('Received Message from Partner:', receivedMessage)
             setRealTimeMessages((prev: any) => [...prev, receivedMessage])
           })
@@ -62,15 +58,15 @@ const useWebsocket = (roomId: number) => {
 
     return () => {
       if (stompClient) {
-        stompClient.send(
-          `/pub/chat`,
-          {},
-          JSON.stringify({
-            token: `Bearer ${accessToken}`,
-            roomId,
-            content: 'left the chat',
-          }),
-        )
+        // stompClient.send(
+        //   `/pub/chat`,
+        //   {},
+        //   JSON.stringify({
+        //     token: `Bearer ${accessToken}`,
+        //     roomId,
+        //     content: 'left the chat',
+        //   }),
+        // )
         stompClient.disconnect()
         setstompClient(null)
       }
