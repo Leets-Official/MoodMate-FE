@@ -110,7 +110,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           />
         )
       })}
-      <ChatList userId={userId} chatHistory={realTimeMessages} />
+      {/* <ChatList userId={userId} chatHistory={realTimeMessages} /> */}
     </section>
   )
 }
