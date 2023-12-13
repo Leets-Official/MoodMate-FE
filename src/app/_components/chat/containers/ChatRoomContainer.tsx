@@ -51,6 +51,12 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [realTimeMessages])
 
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    }
+  }, [])
+
   // useEffect(() => {
   //   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
   //     entries.forEach((entry) => {
