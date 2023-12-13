@@ -1,3 +1,5 @@
+import Image, { StaticImageData } from 'next/image'
+
 interface BioProps {
   gender: 'MALE' | 'FEMALE'
   size: 'SMALL' | 'MEDIUM' | 'LARGE'
@@ -16,12 +18,21 @@ const getBioStyle = (size: string) => {
   }
 }
 
-// gender에 따라 구별
 const Bio = ({ gender, size }: BioProps) => {
+  const imageSrc = require(
+    `/public/illustration/${gender.toLowerCase()}/chat/partnerprofile.png`,
+  ) as StaticImageData
+
   return (
-    <div
-      className={`${getBioStyle(size)} mt-2 rounded-full border border-black`}
-    />
+    <>
+      <Image
+        src={imageSrc}
+        alt="bio"
+        width={43}
+        height={43}
+        className={`${getBioStyle(size)} mt-2 rounded-full`}
+      />
+    </>
   )
 }
 

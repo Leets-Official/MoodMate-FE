@@ -98,7 +98,10 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }, [data?.pages, scrollHeight])
 
   return (
-    <section className="h-[82%] py-5 px-3 overflow-scroll" ref={scrollRef}>
+    <section
+      className="h-[82%] py-5 px-3 overflow-scroll scrollbar-hide"
+      ref={scrollRef}
+    >
       <div ref={topDivRef} />
       {data?.pages.map((pageData) => {
         return (
@@ -110,7 +113,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           />
         )
       })}
-      {/* <ChatList userId={userId} chatHistory={realTimeMessages} /> */}
+      <ChatList userId={userId} chatHistory={realTimeMessages} />
     </section>
   )
 }

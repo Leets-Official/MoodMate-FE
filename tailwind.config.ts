@@ -27,6 +27,11 @@ const config: Config = {
         lightgray: '#E6E6E6',
         white: '#FFFFFF',
       },
+      tilities: {
+        '.smooth-scroll': {
+          '-webkit-overflow-scrolling': 'touch',
+        },
+      },
     },
   },
   // eslint-disable-next-line global-require

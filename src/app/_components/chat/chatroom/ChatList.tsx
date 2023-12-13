@@ -1,4 +1,4 @@
-import { displayNewDate } from '@/utils/date'
+import { displayNewDate, extractTimeFromDate } from '@/utils/date'
 import ChatItem from './ChatItem'
 import ChatDate from './ChatDate'
 
@@ -23,7 +23,11 @@ const ChatList = ({ userId, user, chatHistory }: ChatListProps) => {
 
         return (
           <>
-            {displayDate && <ChatDate date={messageDate} />}
+            {displayDate && (
+              <div className="pt-3">
+                <ChatDate date={messageDate} />
+              </div>
+            )}
             {chat.userId !== userId ? (
               <ChatItem
                 key={chat.messageId}
@@ -34,6 +38,12 @@ const ChatList = ({ userId, user, chatHistory }: ChatListProps) => {
                   idx === 0 ||
                   (idx > 0 && chatHistory[idx - 1].userId !== chat.userId)
                 }
+                newMinutes={
+                  idx === chatHistory.length - 1 ||
+                  (idx > 0 &&
+                    extractTimeFromDate(chatHistory[idx - 1].createdAt) !==
+                      extractTimeFromDate(chatHistory[idx].createdAt))
+                }
               />
             ) : (
               <ChatItem
@@ -41,6 +51,16 @@ const ChatList = ({ userId, user, chatHistory }: ChatListProps) => {
                 type="ME"
                 chat={chat}
                 user={user}
+                newSender={
+                  idx === 0 ||
+                  (idx > 0 && chatHistory[idx - 1].userId !== userId)
+                }
+                newMinutes={
+                  idx === chatHistory.length - 1 ||
+                  (idx > 0 &&
+                    extractTimeFromDate(chatHistory[idx - 1].createdAt) !==
+                      extractTimeFromDate(chatHistory[idx].createdAt))
+                }
               />
             )}
           </>
