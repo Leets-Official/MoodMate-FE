@@ -31,7 +31,13 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     scrollRef,
     (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && hasNextPage) {
+        if (
+          entry.isIntersecting &&
+          scrollRef.current &&
+          scrollRef.current.scrollHeight - scrollRef.current.scrollTop ===
+            scrollRef.current.clientHeight &&
+          hasNextPage
+        ) {
           fetchNextPage()
         }
       })
@@ -85,15 +91,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     console.log(data?.pages)
   }, [data?.pages, scrollHeight])
 
-  useEffect(() => {
-    if (topDivRef.current) {
-      topDivRef.current.style.display = 'block'
-    }
-  }, [])
-
   return (
     <section className="h-[82%] py-5 px-3 overflow-scroll" ref={scrollRef}>
-      <div ref={topDivRef} className="flex-none" />
+      <div ref={topDivRef} />
       {data?.pages.map((pageData) => {
         return (
           <ChatList

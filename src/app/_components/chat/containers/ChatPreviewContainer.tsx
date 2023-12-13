@@ -25,7 +25,7 @@ const ChatPreviewContainer = ({
           roomId={roomId}
           userId={userId}
           nickname={chatHistory.user.nickname}
-          count={1} // 추가 수정 필요
+          count={1}
           lastMessage={
             chatHistory.chatList[0] ? chatHistory.chatList[0].content : null
           }
