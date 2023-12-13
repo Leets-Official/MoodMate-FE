@@ -1,7 +1,7 @@
 'use client'
 
 import { CHAT_SIZE } from '@/_constants/chat'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { useEffect, useRef, useState } from 'react'
 import { realTimeMessagesState } from '@/_atom/chat'
 import { useInfiniteChatQuery } from '@/_hooks/useInfiniteChatQuery'
@@ -21,8 +21,23 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
   )
-  const { fetchNextPage, hasNextPage, data, isFetchingNextPage } =
-    useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
+  const { fetchNextPage, hasNextPage, data } = useInfiniteChatQuery(
+    userId,
+    roomId,
+    CHAT_SIZE.ROOM,
+  )
+
+  useIntersectionObserver(
+    scrollRef,
+    (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && hasNextPage) {
+          fetchNextPage()
+        }
+      })
+    },
+    hasNextPage,
+  )
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -30,34 +45,34 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [realTimeMessages])
 
-  useEffect(() => {
-    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          fetchNextPage()
-        }
-      })
-    }
+  // useEffect(() => {
+  //   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+  //     entries.forEach((entry) => {
+  //       if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
+  //         fetchNextPage()
+  //       }
+  //     })
+  //   }
 
-    const observer = new IntersectionObserver(handleIntersection, {
-      root: null,
-      rootMargin: '0px',
-      threshold: 1.0,
-    })
+  //   const observer = new IntersectionObserver(handleIntersection, {
+  //     root: null,
+  //     rootMargin: '0px',
+  //     threshold: 1.0,
+  //   })
 
-    if (
-      scrollRef.current &&
-      scrollRef.current.scrollHeight - scrollRef.current.scrollTop ===
-        scrollRef.current.clientHeight &&
-      hasNextPage
-    ) {
-      observer.observe(topDivRef.current!)
-    }
+  //   if (
+  //     scrollRef.current &&
+  //     scrollRef.current.scrollHeight - scrollRef.current.scrollTop ===
+  //       scrollRef.current.clientHeight &&
+  //     hasNextPage
+  //   ) {
+  //     observer.observe(topDivRef.current!)
+  //   }
 
-    return () => {
-      observer.disconnect()
-    }
-  }, [userId, hasNextPage, isFetchingNextPage, fetchNextPage])
+  //   return () => {
+  //     observer.disconnect()
+  //   }
+  // }, [userId, hasNextPage, isFetchingNextPage, fetchNextPage])
 
   useEffect(() => {
     if (!containerRef) return
