@@ -19,15 +19,6 @@ const useWebsocket = (roomId: number) => {
       client.connect(
         {},
         () => {
-          // client.send(
-          //   `/pub/chat`,
-          //   {},
-          //   JSON.stringify({
-          //     token: `Bearer ${accessToken}`,
-          //     roomId,
-          //     content: 'joined the chat',
-          //   }),
-          // )
           client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
             const receivedMessage = {
               ...JSON.parse(res.body),
@@ -36,7 +27,6 @@ const useWebsocket = (roomId: number) => {
               createdAt: new Date().toISOString(),
             }
             console.log('Received Message from Partner:', receivedMessage)
-
             setRealTimeMessages((prev: any) => [...prev, receivedMessage])
           })
         },
@@ -58,26 +48,13 @@ const useWebsocket = (roomId: number) => {
 
     return () => {
       if (stompClient) {
-        // stompClient.send(
-        //   `/pub/chat`,
-        //   {},
-        //   JSON.stringify({
-        //     token: `Bearer ${accessToken}`,
-        //     roomId,
-        //     content: 'left the chat',
-        //   }),
-        // )
         stompClient.disconnect()
         setstompClient(null)
       }
     }
   }, [roomId, setRealTimeMessages, stompClient])
 
-  const sendMessage = (message: {
-    userId: number
-    roomId: number
-    content: string
-  }) => {
+  const sendMessage = (message: ChatMessageFromClient) => {
     if (stompClient?.connected && message) {
       stompClient.send(
         `/pub/chat`,
