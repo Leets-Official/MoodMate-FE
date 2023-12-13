@@ -49,43 +49,13 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-    console.log(realTimeMessages)
-  }, [realTimeMessages])
+  }, [])
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
   }, [])
-
-  // useEffect(() => {
-  //   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-  //     entries.forEach((entry) => {
-  //       if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
-  //         fetchNextPage()
-  //       }
-  //     })
-  //   }
-
-  //   const observer = new IntersectionObserver(handleIntersection, {
-  //     root: null,
-  //     rootMargin: '0px',
-  //     threshold: 1.0,
-  //   })
-
-  //   if (
-  //     scrollRef.current &&
-  //     scrollRef.current.scrollHeight - scrollRef.current.scrollTop ===
-  //       scrollRef.current.clientHeight &&
-  //     hasNextPage
-  //   ) {
-  //     observer.observe(topDivRef.current!)
-  //   }
-
-  //   return () => {
-  //     observer.disconnect()
-  //   }
-  // }, [userId, hasNextPage, isFetchingNextPage, fetchNextPage])
 
   useEffect(() => {
     if (!containerRef) return
