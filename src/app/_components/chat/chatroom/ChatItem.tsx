@@ -25,7 +25,7 @@ const ChatItem = ({
             <div className="flex gap-3 mt-4">
               {user?.gender && <Bio gender={user.gender} size="SMALL" />}
               <div className=" flex flex-col max-w-[200px] ">
-                <div className="text-[12px] font-semibold text-darkgray line-clamp-1 mb-2 ">
+                <div className="text-[12px] h-[17px] font-semibold text-darkgray line-clamp-1 mb-2 ">
                   <p>{user?.nickname}</p>
                 </div>
                 <Message
