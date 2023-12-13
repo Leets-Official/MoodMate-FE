@@ -53,15 +53,15 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
       <Input
         sort="chat"
         onClick={() => {}}
-        className="bg-[#B3B3B3] rounded-3xl px-3"
+        className="bg-onepink rounded-3xl px-3 text-darkgray border-none outline-none"
         onFocus={() => {}}
         onChange={(e) => onChangeInput(e)}
         onEnterPress={handleSendMessage}
         textValue={inputVal || ''}
         placeholder="메시지를 입력하세요."
       />
-      <div className="absolute flex justify-center items-center right-12 top-[25%] bg-[#999999] h-[24px] w-[24px] rounded-full">
-        <Icons name={send} />
+      <div className="absolute flex justify-center items-center right-[12%] top-[12%] bg-threepink h-[34px] w-[34px] rounded-full cursor-pointer">
+        <Icons name={send} onClick={handleSendMessage} />
       </div>
     </div>
   )
