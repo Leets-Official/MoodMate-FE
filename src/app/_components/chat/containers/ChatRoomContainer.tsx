@@ -45,6 +45,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           hasNextPage &&
           !isFetchingNextPage
         ) {
+          console.log('intersected')
           fetchNextPage()
         }
       })
