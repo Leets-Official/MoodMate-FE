@@ -1,7 +1,7 @@
 'use client'
 
 import { CHAT_SIZE } from '@/_constants/chat'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { useEffect, useRef, useState } from 'react'
 import { realTimeMessagesState } from '@/_atom/chat'
 import { useInfiniteChatQuery } from '@/_hooks/useInfiniteChatQuery'
@@ -13,45 +13,55 @@ interface ChatRoomContainerProps {
   roomId: number
 }
 const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
-  // const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const [scrollHeight, setScrollHeight] = useState(0)
-  // const topDivRef = useRef<HTMLDivElement>(null)
+  const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
   )
-  const { fetchNextPage, hasNextPage, data } = useInfiniteChatQuery(
-    userId,
-    roomId,
-    CHAT_SIZE.ROOM,
-  )
-
-  const handleScroll = () => {
-    const ref = containerRef.current!
-    if (Math.abs(ref.scrollTop) < 100 && hasNextPage) {
-      fetchNextPage()
-    }
-    // if (ref.scrollTop < -50) {
-    //   // 스크롤이 맨 아래가 아닌 경우 프리뷰 표시
-    // }
-    // if (ref.scrollTop > -10) {
-    //   // 스크롤이 맨 아래인 경우 프리뷰 제거
-    // }
-  }
+  const { fetchNextPage, hasNextPage, data, isFetchingNextPage } =
+    useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
 
   useEffect(() => {
-    if (containerRef.current)
-      containerRef.current.addEventListener('scroll', handleScroll)
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    }
+  }, [realTimeMessages])
+
+  useEffect(() => {
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage()
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    })
+
+    if (
+      scrollRef.current &&
+      scrollRef.current.scrollHeight - scrollRef.current.scrollTop ===
+        scrollRef.current.clientHeight &&
+      hasNextPage
+    ) {
+      observer.observe(topDivRef.current!)
+    }
+
     return () => {
-      if (containerRef.current)
-        containerRef.current.removeEventListener('scroll', handleScroll)
+      observer.disconnect()
     }
-  }, [handleScroll])
-
-  //가장 처음 스크롤을 맨 아래로 내린 상태로 렌더링 로직 추가
+  }, [userId, hasNextPage, isFetchingNextPage, fetchNextPage])
 
   useEffect(() => {
+    if (!containerRef) return
+
     if (containerRef.current) {
       const scrollTop = containerRef.current.scrollHeight - scrollHeight
       containerRef.current.scrollTop = scrollTop
@@ -59,6 +69,12 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
     console.log(data?.pages)
   }, [data?.pages, scrollHeight])
+
+  useEffect(() => {
+    if (topDivRef.current) {
+      topDivRef.current.style.display = 'block'
+    }
+  }, [])
 
   return (
     <section
@@ -85,20 +101,3 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
 }
 
 export default ChatRoomContainer
-
-// useIntersectionObserver(
-//   scrollRef,
-//   (entries: IntersectionObserverEntry[]) => {
-//     entries.forEach((entry) => {
-//       if (
-//         entry.isIntersecting &&
-//         scrollRef.current &&
-//         scrollRef.current.scrollTop === 0 &&
-//         hasNextPage
-//       ) {
-//         fetchNextPage()
-//       }
-//     })
-//   },
-//   hasNextPage,
-// )
