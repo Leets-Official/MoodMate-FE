@@ -6,7 +6,7 @@ export const useInfiniteChatQuery = (
   roomId: number,
   size: number,
 ) => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+  const { data, fetchNextPage, hasNextPage, hasPreviousPage } =
     useInfiniteQuery<ResponseChatGet, Error>({
       queryKey: ['chat', userId, roomId],
       queryFn: ({ pageParam }) => {
@@ -26,5 +26,10 @@ export const useInfiniteChatQuery = (
       },
     })
 
-  return { data, fetchNextPage, hasNextPage, isFetchingNextPage, status }
+  return {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    hasPreviousPage,
+  }
 }
