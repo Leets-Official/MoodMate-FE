@@ -16,8 +16,8 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [fetchedChatData, setFetchedChatData] = useState<
-    ChatMessageFromServer[] | null
-  >(null)
+    ChatMessageFromServerFull[]
+  >([])
   const [scrollHeight, setScrollHeight] = useState(0)
   const [prevScrollHeight, setPrevScrollHeight] = useState<number | null>(null)
 
@@ -43,8 +43,8 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     console.log(data?.pages)
 
     if (data) {
-      const newData = data.pages.flatMap((pageData) => pageData.chatList)
-      setFetchedChatData((prevData) => prevData && prevData.concat(newData))
+      const newData = data.pages.flatMap((pageData) => pageData)
+      setFetchedChatData((prevData) => [...prevData, ...newData])
     }
   }, [data])
 
@@ -82,12 +82,12 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     <div className="h-[82%] py-5 px-3 ">
       <div className="h-full overflow-scroll scrollbar-hide" ref={containerRef}>
         <div ref={topDivRef}></div>
-        {data?.pages.map((pageData) => (
+        {fetchedChatData.map((chatData) => (
           <ChatList
-            key={pageData.pageable.page}
+            key={chatData.pageable.page}
             userId={userId}
-            user={pageData.user}
-            chatHistory={fetchedChatData || pageData.chatList}
+            user={chatData.user}
+            chatHistory={chatData.chatList}
           />
         ))}
         <ChatList
