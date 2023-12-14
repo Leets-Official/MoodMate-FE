@@ -11,6 +11,7 @@ interface ChatRoomContainerProps {
   userId: number
   roomId: number
 }
+
 const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const scrollRef = useRef<HTMLDivElement>(null)
   const topDivRef = useRef<HTMLDivElement>(null)
@@ -38,12 +39,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   useEffect(() => {
     const handleScroll = () => {
       const container = containerRef.current
-      if (
-        container &&
-        container.scrollTop === 0 &&
-        hasNextPage &&
-        !isFetchingNextPage
-      ) {
+      if (container && container.scrollTop === 0 && hasNextPage) {
         fetchNextPage()
       }
     }
@@ -59,17 +55,20 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [])
 
-  // useEffect(() => {
-  //   if (containerRef.current) {
-  //     const scrollTop = containerRef.current.scrollHeight - scrollHeight
-  //     containerRef.current.scrollTop = scrollTop
-  //     setScrollHeight(containerRef.current.scrollHeight)
-  //   }
-  //   console.log(data?.pages)
-  // }, [data?.pages, scrollHeight])
+  useEffect(() => {
+    if (containerRef.current) {
+      const scrollTop = containerRef.current.scrollHeight - scrollHeight
+      containerRef.current.scrollTop = scrollTop
+      setScrollHeight(containerRef.current.scrollHeight)
+    }
+    console.log(data?.pages)
+  }, [data?.pages, scrollHeight])
 
   return (
-    <section className="h-[82%] py-5 px-3 overflow-scroll" ref={containerRef}>
+    <section
+      className="h-[82%] py-5 px-3 overflow-scroll scrollbar-hide"
+      ref={containerRef}
+    >
       {data?.pages.map((pageData) => (
         <ChatList
           key={pageData.pageable.page}
