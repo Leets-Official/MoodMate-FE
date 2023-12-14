@@ -40,11 +40,14 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
-    console.log(data?.pages)
 
     if (data) {
       const newData = data.pages.flatMap((pageData) => pageData)
-      setFetchedChatData((prevData) => [...newData, ...prevData])
+      if (data.pages[0].pageable.page === 0) {
+        setFetchedChatData((prevData) => [...prevData, ...newData])
+      } else {
+        setFetchedChatData((prevData) => [...newData, ...prevData])
+      }
     }
   }, [data])
 
@@ -56,9 +59,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           entry.target === topDivRef.current &&
           hasNextPage
         ) {
-          console.log('Intersection observed. Fetching next page...')
-
-          fetchNextPage()
+          setTimeout(() => {
+            fetchNextPage()
+          }, 800)
         }
       })
     }
