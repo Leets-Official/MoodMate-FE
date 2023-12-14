@@ -44,9 +44,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       if (data.pages[0].pageable.page === 0) {
         setFetchedChatData(data.pages)
       } else {
-        setTimeout(() => {
-          setFetchedChatData((prevData) => [...newData, ...prevData])
-        }, 650)
+        setFetchedChatData((prevData) => [...newData, ...prevData])
       }
     }
   }, [data])
@@ -59,7 +57,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           entry.target === topDivRef.current &&
           hasNextPage
         ) {
-          fetchNextPage()
+          setTimeout(() => {
+            fetchNextPage()
+          }, 600)
         }
       })
     }
