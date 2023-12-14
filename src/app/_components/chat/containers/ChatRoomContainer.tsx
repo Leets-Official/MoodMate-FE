@@ -41,7 +41,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       if (!hasPreviousPage) {
         setFetchedChatData(data.pages)
       } else {
-        setFetchedChatData((prevData) => [...newData, ...prevData])
+        setFetchedChatData((prevData) => [...prevData, ...newData])
       }
     }
   }, [data])
