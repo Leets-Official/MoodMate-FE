@@ -66,16 +66,16 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [realTimeMessages])
 
-  // useEffect(() => {
-  //   if (!containerRef) return
+  useEffect(() => {
+    if (!containerRef) return
 
-  //   if (containerRef.current) {
-  //     const scrollTop = containerRef.current.scrollHeight - scrollHeight
-  //     containerRef.current.scrollTop = scrollTop
-  //     setScrollHeight(containerRef.current.scrollHeight)
-  //   }
-  //   console.log(data?.pages)
-  // }, [data?.pages, scrollHeight])
+    if (containerRef.current) {
+      const scrollTop = containerRef.current.scrollHeight - scrollHeight
+      containerRef.current.scrollTop = scrollTop
+      setScrollHeight(containerRef.current.scrollHeight)
+    }
+    console.log(data?.pages)
+  }, [data?.pages, scrollHeight])
 
   return (
     <section
