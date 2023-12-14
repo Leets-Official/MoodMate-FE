@@ -13,11 +13,8 @@ interface ChatRoomContainerProps {
   roomId: number
 }
 const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [scrollHeight, setScrollHeight] = useState(0)
-
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
   )
@@ -78,25 +75,22 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }, [data?.pages, scrollHeight])
 
   return (
-    <section
-      className="h-[82%] py-5 px-3 overflow-scroll scrollbar-hide"
-      ref={containerRef}
-    >
-      {data?.pages.map((pageData) => {
-        return (
+    <section className="h-[82%] py-5 px-3 overflow-scroll scrollbar-hide">
+      <div className="h-full overflow-y-auto" ref={containerRef}>
+        {data?.pages.map((pageData) => (
           <ChatList
             key={pageData.pageable.page}
             userId={userId}
             user={pageData.user}
             chatHistory={pageData.chatList}
           />
-        )
-      })}
-      <ChatList
-        userId={userId}
-        user={data?.pages[0].user}
-        chatHistory={realTimeMessages}
-      />
+        ))}
+        <ChatList
+          userId={userId}
+          user={data?.pages[0].user}
+          chatHistory={realTimeMessages}
+        />
+      </div>
     </section>
   )
 }
