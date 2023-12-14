@@ -45,12 +45,8 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }, [realTimeMessages])
 
   useEffect(() => {
-    setTimeout(() => {
-      console.log('ㄱㄷ')
-    }, 1500)
     if (containerRef.current) {
-      // containerRef.current.scrollTop = containerRef.current.scrollHeight
-      containerRef.current.scrollTo(0, containerRef.current.scrollHeight)
+      containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
     if (data?.pages[0].user && !data?.pages[0].user.roomActive) {
       setOpenUnmatchedModal(true)
