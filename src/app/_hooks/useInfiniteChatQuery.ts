@@ -16,13 +16,15 @@ export const useInfiniteChatQuery = (
       enabled: !!userId && !!roomId,
       initialPageParam: 1,
       getNextPageParam: (lastPage, pages) => {
-        if (
-          lastPage.pageable.totalPages === 0 ||
-          lastPage.pageable.totalPages === lastPage.pageable.page
-        ) {
-          return undefined
+        const lastFetchedPage = pages[pages.length - 1]
+        const currentPage = lastFetchedPage?.pageable?.page || 0
+        const totalPages = lastFetchedPage?.pageable?.totalPages || 0
+
+        if (currentPage >= totalPages) {
+          return undefined // No more pages to fetch
         }
-        return lastPage.pageable.page + 1
+
+        return currentPage + 1 // Return the next page number
       },
     })
 
