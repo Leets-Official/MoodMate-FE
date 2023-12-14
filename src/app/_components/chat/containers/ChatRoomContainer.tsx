@@ -15,9 +15,7 @@ interface ChatRoomContainerProps {
 const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [fetchedChatData, setFetchedChatData] = useState<
-    ChatMessageFromServerFull[]
-  >([])
+  const [fetchedChatData, setFetchedChatData] = useState<ResponseChatGet[]>([])
   const [scrollHeight, setScrollHeight] = useState(0)
   const [prevScrollHeight, setPrevScrollHeight] = useState<number | null>(null)
 
@@ -44,7 +42,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (data) {
       const newData = data.pages.flatMap((pageData) => pageData)
       if (data.pages[0].pageable.page === 0) {
-        setFetchedChatData((prevData) => [...prevData, ...newData])
+        setFetchedChatData(data.pages)
       } else {
         setFetchedChatData((prevData) => [...newData, ...prevData])
       }
