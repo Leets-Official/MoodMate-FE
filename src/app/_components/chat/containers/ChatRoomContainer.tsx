@@ -44,7 +44,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
 
     if (data) {
       const newData = data.pages.flatMap((pageData) => pageData)
-      setFetchedChatData((prevData) => [...prevData, ...newData])
+      setFetchedChatData((prevData) => [...newData, ...prevData])
     }
   }, [data])
 
