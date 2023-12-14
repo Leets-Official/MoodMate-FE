@@ -13,6 +13,8 @@ const Accordion = ({
   onOpen,
   isOpen,
 }: AccordionProps) => {
+  const getSortedDepartmentList = () =>
+    [...MY_DEPARTMENT_PAGE.DEPARTMENT_LIST].sort()
   const handleSelect = (department: string) => {
     onDepartmentSelect(department)
   }
@@ -51,7 +53,7 @@ const Accordion = ({
 
       {isOpen && (
         <div className="absolute bottom-[230px] left-0 w-[312px] max-h-48 rounded-[16px] overflow-y-scroll scrollbar-hide bg-onepink">
-          {MY_DEPARTMENT_PAGE.DEPARTMENT_LIST.map((department) => (
+          {getSortedDepartmentList().map((department) => (
             <button
               key={department}
               className={`w-full h-12 ${
