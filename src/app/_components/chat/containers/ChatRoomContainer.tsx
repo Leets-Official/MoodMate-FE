@@ -37,13 +37,14 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
 
     if (data) {
-      const newData = data.pages.flatMap((pageData) => pageData)
       if (!hasPreviousPage) {
         setFetchedChatData(data.pages)
       } else {
-        setFetchedChatData((prevData) => [...prevData, ...newData])
+        setFetchedChatData((prevData) => [...prevData, ...data.pages])
       }
     }
+    console.log(data)
+    console.log(fetchedChatData)
   }, [data])
 
   useEffect(() => {
