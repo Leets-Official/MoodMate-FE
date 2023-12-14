@@ -5,7 +5,6 @@ import { useRecoilState } from 'recoil'
 import { useEffect, useRef, useState } from 'react'
 import { realTimeMessagesState } from '@/_atom/chat'
 import { useInfiniteChatQuery } from '@/_hooks/useInfiniteChatQuery'
-import { useIntersectionObserver } from '@/_hooks/useIntersectionObserver'
 import ChatList from '../chatroom/ChatList'
 
 interface ChatRoomContainerProps {
@@ -60,20 +59,17 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [])
 
-  useEffect(() => {
-    if (containerRef.current) {
-      const scrollTop = containerRef.current.scrollHeight - scrollHeight
-      containerRef.current.scrollTop = scrollTop
-      setScrollHeight(containerRef.current.scrollHeight)
-    }
-    console.log(data?.pages)
-  }, [data?.pages, scrollHeight])
+  // useEffect(() => {
+  //   if (containerRef.current) {
+  //     const scrollTop = containerRef.current.scrollHeight - scrollHeight
+  //     containerRef.current.scrollTop = scrollTop
+  //     setScrollHeight(containerRef.current.scrollHeight)
+  //   }
+  //   console.log(data?.pages)
+  // }, [data?.pages, scrollHeight])
 
   return (
-    <section
-      className="h-[82%] py-5 px-3 overflow-scroll scrollbar-hide"
-      ref={containerRef}
-    >
+    <section className="h-[82%] py-5 px-3 overflow-scroll" ref={containerRef}>
       {data?.pages.map((pageData) => (
         <ChatList
           key={pageData.pageable.page}
