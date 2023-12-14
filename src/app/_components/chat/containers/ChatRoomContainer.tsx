@@ -60,15 +60,10 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       threshold: 1.0,
     })
 
-    if (
-      topDivRef.current &&
-      topDivRef.current.scrollHeight - topDivRef.current.scrollTop ===
-        topDivRef.current.clientHeight &&
-      hasNextPage
-    ) {
-      console.log('scrollHeight', topDivRef.current.scrollHeight)
-      console.log('scrollTop', topDivRef.current.scrollTop)
-      console.log('clientHeight', topDivRef.current.clientHeight)
+    if (topDivRef.current && containerRef.current) {
+      console.log('scrollHeight', containerRef.current.scrollHeight)
+      console.log('scrollTop', containerRef.current.scrollTop)
+      console.log('clientHeight', containerRef.current.clientHeight)
       observer.observe(containerRef.current!)
     }
 
