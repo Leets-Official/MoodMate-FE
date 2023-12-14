@@ -17,7 +17,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [scrollHeight, setScrollHeight] = useState(0)
   const topDivRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
 
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
@@ -57,21 +56,21 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [realTimeMessages])
 
-  useEffect(() => {
-    if (!containerRef) return
+  // useEffect(() => {
+  //   if (!containerRef) return
 
-    if (containerRef.current) {
-      const scrollTop = containerRef.current.scrollHeight - scrollHeight
-      containerRef.current.scrollTop = scrollTop
-      setScrollHeight(containerRef.current.scrollHeight)
-    }
-    console.log(data?.pages)
-  }, [data?.pages, scrollHeight])
+  //   if (containerRef.current) {
+  //     const scrollTop = containerRef.current.scrollHeight - scrollHeight
+  //     containerRef.current.scrollTop = scrollTop
+  //     setScrollHeight(containerRef.current.scrollHeight)
+  //   }
+  //   console.log(data?.pages)
+  // }, [data?.pages, scrollHeight])
 
   return (
     <section
       className="h-[82%] py-5 px-3 overflow-scroll scrollbar-hide"
-      ref={containerRef}
+      ref={scrollRef}
     >
       <div ref={topDivRef} />
       {data?.pages.map((pageData) => {
