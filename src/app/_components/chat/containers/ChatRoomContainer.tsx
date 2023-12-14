@@ -32,12 +32,12 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   useEffect(() => {
     setTimeout(() => {
       console.log('ㄱㄷ')
+      if (containerRef.current) {
+        // containerRef.current.scrollTop = containerRef.current.scrollHeight
+        containerRef.current.scrollTo(0, containerRef.current.scrollHeight)
+      }
     }, 1500)
-    if (containerRef.current) {
-      // containerRef.current.scrollTop = containerRef.current.scrollHeight
-      containerRef.current.scrollTo(0, containerRef.current.scrollHeight)
-    }
-  }, [])
+  }, [data])
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
