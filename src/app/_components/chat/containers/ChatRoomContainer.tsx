@@ -20,8 +20,11 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
   )
-  const { fetchNextPage, hasNextPage, data, isFetchingNextPage } =
-    useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
+  const { fetchNextPage, hasNextPage, data } = useInfiniteChatQuery(
+    userId,
+    roomId,
+    CHAT_SIZE.ROOM,
+  )
 
   useEffect(() => {
     if (containerRef.current) {
@@ -33,6 +36,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
+    console.log(data?.pages)
   }, [data])
 
   useEffect(() => {
@@ -42,8 +46,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           entry.isIntersecting &&
           containerRef.current &&
           containerRef.current.scrollTop === 0 &&
-          hasNextPage &&
-          !isFetchingNextPage
+          hasNextPage
         ) {
           console.log('intersected')
           fetchNextPage()
@@ -67,7 +70,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     return () => {
       observer.disconnect()
     }
-  }, [userId, hasNextPage, isFetchingNextPage, fetchNextPage])
+  }, [])
 
   return (
     <div className="h-[82%] py-5 px-3 ">
@@ -92,31 +95,3 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
 }
 
 export default ChatRoomContainer
-
-// useEffect(() => {
-//   const handleScroll = () => {
-//     const container = containerRef.current
-//     if (container && container.scrollTop === 0 && hasNextPage) {
-//       fetchNextPage()
-//     }
-//   }
-
-//   if (containerRef.current) {
-//     containerRef.current.addEventListener('scroll', handleScroll)
-//   }
-
-//   return () => {
-//     if (containerRef.current) {
-//       containerRef.current.removeEventListener('scroll', handleScroll)
-//     }
-//   }
-// }, [])
-
-// useEffect(() => {
-//   if (containerRef.current) {
-//     const scrollTop = containerRef.current.scrollHeight - scrollHeight
-//     containerRef.current.scrollTop = scrollTop
-//     setScrollHeight(containerRef.current.scrollHeight)
-//   }
-//   console.log(data?.pages)
-// }, [data?.pages, scrollHeight])
