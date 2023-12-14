@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil'
 import { useEffect, useRef, useState } from 'react'
 import { realTimeMessagesState } from '@/_atom/chat'
 import { useInfiniteChatQuery } from '@/_hooks/useInfiniteChatQuery'
+import { useIntersectionObserver } from '@/_hooks/useIntersectionObserver'
 import ChatList from '../chatroom/ChatList'
 
 interface ChatRoomContainerProps {
@@ -12,8 +13,11 @@ interface ChatRoomContainerProps {
   roomId: number
 }
 const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [scrollHeight, setScrollHeight] = useState(0)
+
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
   )
@@ -54,17 +58,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
         containerRef.current.removeEventListener('scroll', handleScroll)
       }
     }
-  }, [userId, hasNextPage, isFetchingNextPage, fetchNextPage])
+  }, [])
 
   useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight
-    }
-  }, [realTimeMessages])
-
-  useEffect(() => {
-    if (!containerRef) return
-
     if (containerRef.current) {
       const scrollTop = containerRef.current.scrollHeight - scrollHeight
       containerRef.current.scrollTop = scrollTop
@@ -96,3 +92,38 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
 }
 
 export default ChatRoomContainer
+
+// useEffect(() => {
+//   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+//     entries.forEach((entry) => {
+//       if (
+//         entry.isIntersecting &&
+//         containerRef.current &&
+//         containerRef.current.scrollTop === 0 &&
+//         hasNextPage &&
+//         !isFetchingNextPage
+//       ) {
+//         fetchNextPage()
+//       }
+//     })
+//   }
+
+//   const observer = new IntersectionObserver(handleIntersection, {
+//     root: null,
+//     rootMargin: '0px',
+//     threshold: 1.0,
+//   })
+
+//   if (
+//     scrollRef.current &&
+//     scrollRef.current.scrollHeight - scrollRef.current.scrollTop ===
+//       scrollRef.current.clientHeight &&
+//     hasNextPage
+//   ) {
+//     observer.observe(containerRef.current!)
+//   }
+
+//   return () => {
+//     observer.disconnect()
+//   }
+// }, [userId, hasNextPage, isFetchingNextPage, fetchNextPage])
