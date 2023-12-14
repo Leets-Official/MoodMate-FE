@@ -7,6 +7,7 @@ import { realTimeMessagesState } from '@/_atom/chat'
 import { useInfiniteChatQuery } from '@/_hooks/useInfiniteChatQuery'
 import { useIntersectionObserver } from '@/_hooks/useIntersectionObserver'
 import ChatList from '../chatroom/ChatList'
+import { fsyncSync } from 'fs'
 
 interface ChatRoomContainerProps {
   userId: number
@@ -34,8 +35,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
         if (
           entry.isIntersecting &&
           scrollRef.current &&
-          scrollRef.current.scrollHeight - scrollRef.current.scrollTop ===
-            scrollRef.current.clientHeight &&
+          scrollRef.current.scrollTop === 0 &&
           hasNextPage
         ) {
           fetchNextPage()
@@ -52,6 +52,12 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }, [])
 
   useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    }
+  }, [realTimeMessages])
+
+  useEffect(() => {
     if (!containerRef) return
 
     if (containerRef.current) {
@@ -65,7 +71,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   return (
     <section
       className="h-[82%] py-5 px-3 overflow-scroll scrollbar-hide"
-      ref={scrollRef}
+      ref={containerRef}
     >
       <div ref={topDivRef} />
       {data?.pages.map((pageData) => {
@@ -78,7 +84,11 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           />
         )
       })}
-      <ChatList userId={userId} chatHistory={realTimeMessages} />
+      <ChatList
+        userId={userId}
+        user={data?.pages[0].user}
+        chatHistory={realTimeMessages}
+      />
     </section>
   )
 }
