@@ -3,6 +3,7 @@ import Image, { StaticImageData } from 'next/image'
 interface BioProps {
   gender: 'MALE' | 'FEMALE'
   size: 'SMALL' | 'MEDIUM' | 'LARGE'
+  type?: string
 }
 
 const getBioStyle = (size: string) => {
@@ -18,7 +19,7 @@ const getBioStyle = (size: string) => {
   }
 }
 
-const Bio = ({ gender, size }: BioProps) => {
+const Bio = ({ gender, size, type }: BioProps) => {
   const imageSrc = require(
     `/public/illustration/${gender.toLowerCase()}/chat/partnerprofile.png`,
   ) as StaticImageData
@@ -28,8 +29,8 @@ const Bio = ({ gender, size }: BioProps) => {
       <Image
         src={imageSrc}
         alt="bio"
-        width={43}
-        height={43}
+        width={type === 'partnerInfo' ? 158 : 43}
+        height={type === 'partnerInfo' ? 158 : 43}
         className={`${getBioStyle(size)} mt-2 rounded-full`}
       />
     </>

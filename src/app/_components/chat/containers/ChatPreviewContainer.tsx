@@ -3,6 +3,7 @@
 import { useChatQuery } from '@/_hooks/useChatQuery'
 import { CHAT_SIZE } from '@/_constants/chat'
 import ChatPreview from '../chatlist/ChatPreview'
+import Image, { StaticImageData } from 'next/image'
 
 interface ChatPreviewContainerProps {
   roomId: number
@@ -18,6 +19,10 @@ const ChatPreviewContainer = ({
     CHAT_SIZE.PREVIEW,
     1,
   )
+  const imageSrc = require(
+    `/public/illustration/common/chat/chatlist.png`,
+  ) as StaticImageData
+
   return (
     <section className="bg-onepink w-full h-full flex justify-center pt-[34px]">
       {chatHistory && (
@@ -35,6 +40,7 @@ const ChatPreviewContainer = ({
           gender={chatHistory.user.gender}
         />
       )}
+      <Image src={imageSrc} alt="preview" width={296} height={298} />
     </section>
   )
 }

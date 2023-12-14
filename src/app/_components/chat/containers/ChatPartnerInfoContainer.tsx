@@ -30,7 +30,7 @@ const ChatPartnerInfoContainer = ({
       {partner && (
         <>
           <Header partner />
-          <Bio gender="FEMALE" size="LARGE" />
+          <Bio gender="FEMALE" size="LARGE" type="partnerInfo" />
           <div className="flex flex-col fixed rounded-[52px] bg-[#FFE5E7] h-[67%] bottom-0 w-screen translate-y-10">
             <p className="text-center font-bold text-[20px] mt-8">
               {partner.nickname}
