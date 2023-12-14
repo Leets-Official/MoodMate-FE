@@ -15,7 +15,11 @@ interface ChatRoomContainerProps {
 const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const [fetchedChatData, setFetchedChatData] = useState<
+    ChatMessageFromServer[] | null
+  >(null)
   const [scrollHeight, setScrollHeight] = useState(0)
+  const [prevScrollHeight, setPrevScrollHeight] = useState<number | null>(null)
 
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
@@ -37,6 +41,11 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
     console.log(data?.pages)
+
+    if (data) {
+      const newData = data.pages.flatMap((pageData) => pageData.chatList)
+      setFetchedChatData((prevData) => prevData && prevData.concat(newData))
+    }
   }, [data])
 
   useEffect(() => {
@@ -48,6 +57,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           hasNextPage
         ) {
           console.log('Intersection observed. Fetching next page...')
+
           fetchNextPage()
         }
       })
@@ -77,7 +87,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
             key={pageData.pageable.page}
             userId={userId}
             user={pageData.user}
-            chatHistory={pageData.chatList}
+            chatHistory={fetchedChatData || pageData.chatList}
           />
         ))}
         <ChatList
