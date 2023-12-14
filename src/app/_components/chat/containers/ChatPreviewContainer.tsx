@@ -20,7 +20,7 @@ const ChatPreviewContainer = ({
   )
 
   return (
-    <section className="bg-onepink w-full h-full flex justify-center pt-[34px]">
+    <section className="w-full h-full flex justify-center pt-[34px]">
       {chatHistory && (
         <ChatPreview
           roomId={roomId}

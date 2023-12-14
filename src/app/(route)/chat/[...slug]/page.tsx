@@ -15,10 +15,14 @@ export default function ChatPage({ params }: ChatPageProps) {
   ) as StaticImageData
 
   return (
-    <section className="flex flex-col h-screen">
+    <section className="flex flex-col justify-center items-center h-screen">
       <Header chat />
-      <ChatPreviewContainer userId={Number(userId)} roomId={Number(roomId)} />
-      <Image src={imageSrc} alt="preview" width={296} height={298} />
+      <div className="relative bg-onepink ">
+        <ChatPreviewContainer userId={Number(userId)} roomId={Number(roomId)} />
+        <div className="absolute bottom-0">
+          <Image src={imageSrc} alt="preview" width={296} height={298} />
+        </div>
+      </div>
     </section>
   )
 }
