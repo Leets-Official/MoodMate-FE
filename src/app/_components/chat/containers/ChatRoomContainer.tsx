@@ -22,11 +22,8 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
   )
-  const { fetchNextPage, hasNextPage, data } = useInfiniteChatQuery(
-    userId,
-    roomId,
-    CHAT_SIZE.ROOM,
-  )
+  const { fetchNextPage, hasNextPage, data, hasPreviousPage } =
+    useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
 
   useEffect(() => {
     if (containerRef.current) {
@@ -41,7 +38,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
 
     if (data) {
       const newData = data.pages.flatMap((pageData) => pageData)
-      if (data.pages[0].pageable.page === 0) {
+      if (!hasPreviousPage) {
         setFetchedChatData(data.pages)
       } else {
         setFetchedChatData((prevData) => [...newData, ...prevData])
