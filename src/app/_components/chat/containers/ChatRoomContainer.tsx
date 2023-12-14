@@ -55,14 +55,14 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [])
 
-  useEffect(() => {
-    if (containerRef.current) {
-      const scrollTop = containerRef.current.scrollHeight - scrollHeight
-      containerRef.current.scrollTop = scrollTop
-      setScrollHeight(containerRef.current.scrollHeight)
-    }
-    console.log(data?.pages)
-  }, [data?.pages, scrollHeight])
+  // useEffect(() => {
+  //   if (containerRef.current) {
+  //     const scrollTop = containerRef.current.scrollHeight - scrollHeight
+  //     containerRef.current.scrollTop = scrollTop
+  //     setScrollHeight(containerRef.current.scrollHeight)
+  //   }
+  //   console.log(data?.pages)
+  // }, [data?.pages, scrollHeight])
 
   return (
     <div className="h-[82%] py-5 px-3 ">
