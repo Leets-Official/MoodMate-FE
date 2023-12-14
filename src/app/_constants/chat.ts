@@ -17,5 +17,5 @@ export const NEW_MATCHING_MODAL = {
 
 export const CHAT_SIZE = {
   PREVIEW: 1,
-  ROOM: 20,
+  ROOM: 50,
 } as const
