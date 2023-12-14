@@ -44,11 +44,10 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       entries.forEach((entry) => {
         if (
           entry.isIntersecting &&
-          containerRef.current &&
-          containerRef.current.scrollTop === 0 &&
+          entry.target === topDivRef.current &&
           hasNextPage
         ) {
-          console.log('intersected')
+          console.log('Intersection observed. Fetching next page...')
           fetchNextPage()
         }
       })
@@ -60,17 +59,14 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       threshold: 1.0,
     })
 
-    if (topDivRef.current && containerRef.current) {
-      console.log('scrollHeight', containerRef.current.scrollHeight)
-      console.log('scrollTop', containerRef.current.scrollTop)
-      console.log('clientHeight', containerRef.current.clientHeight)
-      observer.observe(containerRef.current!)
+    if (containerRef.current && topDivRef.current) {
+      observer.observe(topDivRef.current)
     }
 
     return () => {
       observer.disconnect()
     }
-  }, [])
+  }, [hasNextPage, fetchNextPage])
 
   return (
     <div className="h-[82%] py-5 px-3 ">
