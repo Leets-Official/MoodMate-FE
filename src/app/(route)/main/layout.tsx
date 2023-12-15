@@ -5,7 +5,7 @@ export default function MainLayout({
 }) {
   return (
     <main>
-      <div id="mainPortal" className="z-50" />
+      <div id="mainPortal" />
       {children}
     </main>
   )
