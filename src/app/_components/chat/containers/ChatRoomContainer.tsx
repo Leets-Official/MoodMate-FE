@@ -5,13 +5,13 @@ import { useRecoilState } from 'recoil'
 import { useEffect, useRef, useState } from 'react'
 import { realTimeMessagesState } from '@/_atom/chat'
 import { useInfiniteChatQuery } from '@/_hooks/useInfiniteChatQuery'
-import ChatList from '../chatroom/ChatList'
 import { useRouter } from 'next/navigation'
 import ModalPortal from '@/_components/common/modal/ModalPortal'
 import ModalOutside from '@/_components/common/modal/ModalOutside'
 import ModalContentOne from '@/_components/common/modal/ModalContentOne'
 import Loading from '@/_components/common/Loading'
 import ErrorPage from '@/(route)/error'
+import ChatList from '../chatroom/ChatList'
 
 interface ChatRoomContainerProps {
   userId: number

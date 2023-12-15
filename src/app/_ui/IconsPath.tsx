@@ -94,4 +94,3 @@ export const info = {
   height: 16,
   fill: '#333333',
 } as const
-
