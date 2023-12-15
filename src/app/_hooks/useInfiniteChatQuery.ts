@@ -29,7 +29,6 @@ export const useInfiniteChatQuery = (
     useInfiniteQuery<ResponseChatGet, Error>({
       queryKey: ['chat', userId, roomId],
       queryFn: ({ pageParam }) => {
-        console.log(pageParam)
         return getMessages(roomId, size, pageParam as number)
       },
       enabled: !!userId && !!roomId,
