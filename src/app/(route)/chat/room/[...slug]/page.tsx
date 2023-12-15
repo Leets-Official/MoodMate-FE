@@ -22,12 +22,13 @@ export default function ChatRoomPage({ params }: ChatRoomPageProps) {
   }, [])
 
   return (
-    <section className="scrollbar-hide h-screen" ref={pageRef}>
-      <div className="relative flex flex-col justify-center items-center h-full w-full ">
-        <ChatHeader userId={Number(userId)} />
-        <ChatRoomContainer userId={Number(userId)} roomId={Number(roomId)} />
-        <ChatInputContainer userId={Number(userId)} roomId={Number(roomId)} />
-      </div>
+    <section
+      className="scrollbar-hide h-screen flex flex-col justify-center items-center"
+      ref={pageRef}
+    >
+      <ChatHeader userId={Number(userId)} />
+      <ChatRoomContainer userId={Number(userId)} roomId={Number(roomId)} />
+      <ChatInputContainer userId={Number(userId)} roomId={Number(roomId)} />
     </section>
   )
 }
