@@ -1,10 +1,11 @@
 interface KeywordProps {
+  partner?: boolean
   keywords: string[]
 }
 
-const Keyword = ({ keywords }: KeywordProps) => {
+const Keyword = ({ keywords, partner }: KeywordProps) => {
   return (
-    <div className="flex text-[14px] ">
+    <div className={`flex text-[14px] ${!partner && 'ml-3 my-2'}`}>
       {keywords.map((keyword, i) => {
         return (
           <p

@@ -23,9 +23,11 @@ const Header = ({ chat, partner }: HeaderProps) => {
       {chat ? (
         <h1 className="text-[20px] font-bold">채팅</h1>
       ) : (
-        <Icons name={back} onClick={() => router.back()} />
+        <div className="cursor-pointer">
+          <Icons name={back} onClick={() => router.back()} />
+        </div>
       )}
-      <div className="flex flex-row items-center justify-center gap-3">
+      <div className="flex flex-row items-center justify-center gap-3 cursor-pointer">
         {!partner && (
           <Link href="/main">
             <Icons name={home} />
