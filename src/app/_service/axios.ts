@@ -31,7 +31,10 @@ api.interceptors.response.use(
         const response = await axios.post(
           `${process.env.GOOGLE_LOGIN}users/refresh`,
         )
+
         const { accessToken, refreshToken } = response.data.tokenResponse
+        Cookies.remove('accessToken')
+        Cookies.remove('refreshToken')
 
         const accessTokenExpiry = new Date()
         accessTokenExpiry.setTime(
