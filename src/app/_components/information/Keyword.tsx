@@ -4,12 +4,14 @@ interface KeywordProps {
 
 const Keyword = ({ keywords }: KeywordProps) => {
   return (
-    <div className="flex text-[14px] ml-3 my-2">
+    <div className="flex text-[14px] ">
       {keywords.map((keyword, i) => {
         return (
           <p
             key={keyword}
-            className="px-5 py-1.5 rounded-[18px] mr-2 bg-[#FFE5E7] text-[#FC4F59] border border-[#FC4F59]"
+            className={`px-5 py-1.5 rounded-[18px] mr-2 ${
+              i % 2 === 0 ? 'bg-twopink text-white' : 'bg-threepink text-white'
+            }`}
           >
             {keyword}
           </p>
