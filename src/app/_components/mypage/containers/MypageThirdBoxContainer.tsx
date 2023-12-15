@@ -8,7 +8,6 @@ import ModalPortal from '@/_components/common/modal/ModalPortal'
 
 const MypageThirdBoxContainer = () => {
   const [openModal, setOpenModal] = useState<boolean>(false)
-  const [chatModal, setChatModal] = useState<boolean>(false)
   const onOpenModal = () => {
     setOpenModal((prev) => !prev)
     // document.body.style.overflow = 'hidden'
@@ -21,11 +20,13 @@ const MypageThirdBoxContainer = () => {
     <section className="ml-6 mt-4">
       <p className="text-[12px] text-[#808080]">로그인</p>
       <div className="mt-4 flex">
-        <Icons name={logout} onClick={() => setOpenModal(true)} />
-        <p className="text-[16px] ml-2.5">로그아웃</p>
+        <Icons name={logout} />
+        <p className="text-[16px] ml-2.5" onClick={() => setOpenModal(true)}>
+          로그아웃
+        </p>
       </div>
       {openModal && (
-        <ModalPortal nodeName="mainPortal">
+        <ModalPortal nodeName="myPortal">
           <ModalOutside
             onClose={() => setOpenModal(false)}
             className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"

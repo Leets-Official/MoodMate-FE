@@ -6,7 +6,7 @@ export default function MypageLayout({
   return (
     <main>
       {children}
-      <div id="mypagePortal" />
+      <div id="myPortal" />
     </main>
   )
 }
