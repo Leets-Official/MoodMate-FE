@@ -19,7 +19,7 @@ const Profile = ({
   return (
     <section className="flex flex-col">
       <div className="mx-auto text-center">
-        <Image src={gender} alt="gender" className="mt-16 w-[70px] h-[72px]" />
+        <Image src={gender} alt="gender" className="mt-4 w-[70px] h-[72px]" />
         <p className="mt-4 text-[18px] font-bold">{userNickname}</p>
       </div>
       <div className="mt-3 justify-center px-4 pt-[4px] h-[30px] text-[14px] text-[#4D4D4D] flex mx-auto border border-[#4D4D4D] rounded-[25px]">

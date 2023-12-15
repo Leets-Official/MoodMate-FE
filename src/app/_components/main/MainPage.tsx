@@ -14,6 +14,10 @@ import grayLogo from 'public/illustration/common/logo/graylogo.png'
 import pinkLogo from 'public/illustration/common/logo/pinklogo.png'
 import ErrorPage from '@/(route)/error'
 import React from 'react'
+import AnnouncementPage from '@/(route)/announcement/page'
+import Icons from '@/_components/common/Icons'
+import { info } from '@/_ui/IconsPath'
+import { useRouter } from 'next/navigation'
 
 interface MatchProps {
   type: 'BEFORE' | 'AFTER'
@@ -73,6 +77,7 @@ const getBGStyle = (type: string, gender: string) => {
   }
 }
 const MainPage = ({ type, gender }: MatchProps) => {
+  const route = useRouter()
   const { isLoading, isError, data } = useMainQuery()
   if (isLoading) {
     return <Loading />
@@ -94,6 +99,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
           getBGStyle(type, gender).textUi
         } w-[85px] h-[13px] mt-5 mx-auto`}
       />
+      <Icons name={info} onClick={() => route.push('/announcement')} />
       <TimerFirstText type={type} />
       <Timer targetHour={getBGStyle(type, gender).targetHour} />
       <TimerMiddleText type={type} />
