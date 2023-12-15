@@ -40,7 +40,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
       <Input
         sort="chat"
         onClick={() => {}}
-        className="rounded-3xl px-4 text-darkgray border-none outline-none"
+        className="rounded-3xl bg-onepink px-4 text-darkgray border-none outline-none"
         onFocus={() => {}}
         onChange={(e) => onChangeInput(e)}
         onEnterPress={handleSendMessage}
