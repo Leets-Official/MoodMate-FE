@@ -15,23 +15,15 @@ interface ChatPartnerInfoContainerProps {
 const ChatPartnerInfoContainer = ({
   userId,
 }: ChatPartnerInfoContainerProps) => {
-  // const queryKey = ['chat/partner-info', userId]
-  // const {
-  //   isLoading,
-  //   isError,
-  //   data: partner,
-  // } = useQuery<PartnerInfo, Error>({
-  //   queryKey,
-  //   queryFn: getPartnerInfo,
-  // })
-
-  const partner = {
-    nickname: '내영',
-    year: 2000,
-    department: '경영학전공',
-    keywords: ['sdfdf', 'dfsdfs', 'dfdsfs'],
-    preferMood: 'sdfsdf',
-  }
+  const queryKey = ['chat/partner-info', userId]
+  const {
+    isLoading,
+    isError,
+    data: partner,
+  } = useQuery<PartnerInfo, Error>({
+    queryKey,
+    queryFn: getPartnerInfo,
+  })
 
   return (
     <section className="h-screen w-full">
