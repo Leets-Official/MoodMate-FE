@@ -67,11 +67,11 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
   }
   console.log('roomActive', roomActive)
   return (
-    <div>
+    <div className="fixed translate-y-[43px] bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
       <div
         className={`${
           getTextStyle(type).box
-        } fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full pt-11 h-[223px] rounded-[88px] translate-y-[43px] justify-between`}
+        } pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between`}
       >
         <div className="ml-16">
           <Icons name={deactivation} onClick={() => setOpenModal(true)} />
@@ -96,6 +96,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
           <Icons name={bio} onClick={() => route.push('/mypage')} />
         </div>
       </div>
+
       {openModal && (
         <ModalPortal nodeName="mainPortal">
           <ModalOutside
