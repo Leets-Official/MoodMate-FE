@@ -19,7 +19,7 @@ export default function MainpagePage() {
   const mainPageType = roomActive ? 'AFTER' : 'BEFORE'
   const mainPageGender = userGender === 'MALE' ? 'MALE' : 'FEMALE'
   return (
-    <section className="scrollbar-hide -z-50">
+    <section className="scrollbar-hide">
       {userMatchActive ? (
         <MainPage type={mainPageType} gender={mainPageGender} />
       ) : (
