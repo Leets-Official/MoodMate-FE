@@ -28,9 +28,12 @@ api.interceptors.response.use(
     const originalRequest = error.config
     if (error.response.status === 400) {
       try {
-        console.log('리프레시 :', Cookies.get('refreshToken'))
+        const refresh = Cookies.get('refreshToken')
         const response = await axios.post(
           `${process.env.GOOGLE_LOGIN}users/refresh`,
+          {
+            refreshToken: refresh,
+          },
         )
 
         const { accessToken, refreshToken } = response.data.tokenResponse

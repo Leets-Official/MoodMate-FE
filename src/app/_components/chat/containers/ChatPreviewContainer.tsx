@@ -3,6 +3,8 @@
 import { useChatQuery } from '@/_hooks/useChatQuery'
 import { CHAT_SIZE } from '@/_constants/chat'
 import ChatPreview from '../chatlist/ChatPreview'
+import Loading from '@/_components/common/Loading'
+import ErrorPage from '@/(route)/error'
 
 interface ChatPreviewContainerProps {
   roomId: number
@@ -18,6 +20,14 @@ const ChatPreviewContainer = ({
     CHAT_SIZE.PREVIEW,
     1,
   )
+
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (isError) {
+    return <ErrorPage />
+  }
 
   return (
     <section className="w-full h-full flex justify-center pt-[34px]">
