@@ -36,12 +36,8 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
 
-    if (data) {
-      if (!hasPreviousPage) {
-        setFetchedChatData(data.pages)
-      } else {
-        setFetchedChatData((prevData) => [...prevData, ...data.pages])
-      }
+    if (hasPreviousPage && data) {
+      setFetchedChatData((prevData) => [...prevData, ...data.pages])
     }
     console.log(data)
     console.log(fetchedChatData)
