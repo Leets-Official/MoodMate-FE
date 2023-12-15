@@ -8,7 +8,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    const accessToken = Cookies.get('realAccessToken')
+    const accessToken = Cookies.get('accessToken')
     if (accessToken) {
       // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = `Bearer ${accessToken}`
