@@ -1,6 +1,7 @@
 import femaleImage from 'public/illustration/female/mypage/myprofile.png'
 import maleImage from 'public/illustration/male/mypage/myprofile.png'
 import Image from 'next/image'
+import { useState } from 'react'
 
 interface UserInfoProps {
   userGender: string
