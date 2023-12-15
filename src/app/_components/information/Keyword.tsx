@@ -11,6 +11,7 @@ const Keyword = ({ keywords, partner }: KeywordProps) => {
           <p
             key={keyword}
             className={`px-5 py-1.5 rounded-[18px] mr-2 ${
+              // eslint-disable-next-line no-nested-ternary
               partner
                 ? i % 2 === 0
                   ? 'bg-twopink text-white'
