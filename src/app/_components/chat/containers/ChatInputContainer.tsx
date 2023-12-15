@@ -36,7 +36,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
   }
 
   return (
-    <div className="fixed bottom-0 bg-white flex w-full justify-center h-[65px] py-3">
+    <div className="fixed bottom-0 bg-white flex desktop:w-[378px] justify-center h-[65px] py-3">
       <Input
         sort="chat"
         onClick={() => {}}
