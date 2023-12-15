@@ -56,7 +56,7 @@ api.interceptors.response.use(
 
         originalRequest.headers.Authorization = `Bearer ${accessToken}`
         console.log('토큰 재발급 성공')
-        return axios(originalRequest)
+        return await axios(originalRequest)
       } catch (e) {
         console.log('토큰 재발급 실패', e)
       }

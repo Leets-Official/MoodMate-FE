@@ -2,9 +2,9 @@
 
 import { useChatQuery } from '@/_hooks/useChatQuery'
 import { CHAT_SIZE } from '@/_constants/chat'
-import ChatPreview from '../chatlist/ChatPreview'
 import Loading from '@/_components/common/Loading'
 import ErrorPage from '@/(route)/error'
+import ChatPreview from '../chatlist/ChatPreview'
 
 interface ChatPreviewContainerProps {
   roomId: number
