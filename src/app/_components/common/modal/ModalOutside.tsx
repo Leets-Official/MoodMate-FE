@@ -6,9 +6,9 @@ interface ModalOutsideProps {
 
 const ModalOutside = ({ children, onClose, className }: ModalOutsideProps) => {
   return (
-    <div className="fixed top-0 left-0 flex justify-center items-center w-full h-full ">
+    <div className="fixed top-0 left-0 flex justify-center items-center w-full h-full z-50">
       <div
-        className="absolute top-0 left-0 w-full h-full bg-[#d9d9d980] backdrop-blur-[1px]"
+        className="absolute top-0 left-0 w-full h-full bg-[#d9d9d980] backdrop-blur-[1px] z-50"
         onClick={(e) => e.target === e.currentTarget && onClose()}
         role="presentation"
       />
