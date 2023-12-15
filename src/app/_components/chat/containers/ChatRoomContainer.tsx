@@ -75,8 +75,11 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }, [data?.pages.length])
 
   return (
-    <div className="my-[12.5%] py-[12%] h-[80%] px-3 w-full bg-slate-400 ">
-      <div className="h-full overflow-scroll scrollbar-hide" ref={containerRef}>
+    <div className="w-full bg-slate-400 pb-[120px]">
+      <div
+        className="h-screen overflow-scroll scrollbar-hide"
+        ref={containerRef}
+      >
         <div ref={topDivRef} />
         {data?.pages
           .slice()
