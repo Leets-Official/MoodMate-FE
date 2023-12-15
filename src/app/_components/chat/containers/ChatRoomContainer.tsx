@@ -1,11 +1,17 @@
 'use client'
 
-import { CHAT_SIZE } from '@/_constants/chat'
+import { CHAT_SIZE, UNMATCHED_MODAL } from '@/_constants/chat'
 import { useRecoilState } from 'recoil'
 import { useEffect, useRef, useState } from 'react'
 import { realTimeMessagesState } from '@/_atom/chat'
 import { useInfiniteChatQuery } from '@/_hooks/useInfiniteChatQuery'
 import ChatList from '../chatroom/ChatList'
+import { useRouter } from 'next/navigation'
+import ModalPortal from '@/_components/common/modal/ModalPortal'
+import ModalOutside from '@/_components/common/modal/ModalOutside'
+import ModalContentOne from '@/_components/common/modal/ModalContentOne'
+import Loading from '@/_components/common/Loading'
+import ErrorPage from '@/(route)/error'
 
 interface ChatRoomContainerProps {
   userId: number
@@ -13,13 +19,15 @@ interface ChatRoomContainerProps {
 }
 
 const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
+  const router = useRouter()
   const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [scrollHeight, setScrollHeight] = useState(0)
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
   )
-  const { fetchNextPage, hasNextPage, data, hasPreviousPage } =
+  const [openUnmatchModal, setOpenUnmatchedModal] = useState<boolean>(false)
+  const { fetchNextPage, hasNextPage, data, isError, isLoading } =
     useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
 
   useEffect(() => {
@@ -32,6 +40,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
+    // if (data?.pages[0].user && data?.pages[0].user.roomActive) {
+    //   setOpenUnmatchedModal(true)
+    // }
   }, [data])
 
   useEffect(() => {
@@ -44,7 +55,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
         ) {
           setTimeout(() => {
             fetchNextPage()
-          }, 400)
+          }, 300)
         }
       })
     }
@@ -74,10 +85,18 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [data?.pages.length])
 
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (isError || !data) {
+    return <ErrorPage />
+  }
+
   return (
     <div className="w-full bg-white h-screen">
       <div
-        className="mt-[80px] h-[79%] bg-white overflow-scroll scrollbar-hide"
+        className="items-center mt-[80px] w-[95%] h-[76%] bg-black overflow-scroll scrollbar-hide"
         ref={containerRef}
       >
         <div ref={topDivRef} />
@@ -100,6 +119,21 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           />
         )}
       </div>
+      {/* 동작 확인하기 ** */}
+      {openUnmatchModal && data && (
+        <ModalPortal nodeName="unmatchedPortal">
+          <ModalOutside
+            onClose={() => {}}
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
+          >
+            <ModalContentOne
+              subject={UNMATCHED_MODAL}
+              onClose={() => router.push('/main')}
+              gender={data.pages[0].user.gender}
+            />
+          </ModalOutside>
+        </ModalPortal>
+      )}
     </div>
   )
 }
