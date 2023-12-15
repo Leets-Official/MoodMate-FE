@@ -3,10 +3,10 @@
 import MypageSecondBoxContainer from '@/_components/mypage/containers/MypageSecondBoxContainer'
 import MypageThirdBoxContainer from '@/_components/mypage/containers/MypageThirdBoxContainer'
 import { useMyPageQuery } from '@/_hooks/useMypageQuery'
-import React, { useEffect } from 'react'
 import Loading from '@/_components/common/Loading'
 import Profile from '@/_components/information/Profile'
 import ErrorPage from '@/(route)/error'
+import Header from '@/_components/layout/Header'
 
 export default function MyPage() {
   const { isLoading, isError, data } = useMyPageQuery()
@@ -31,6 +31,7 @@ export default function MyPage() {
 
   return (
     <section className="scrollbar-hide">
+      <Header partner />
       <Profile
         userGender={userGender}
         userNickname={userNickname}
