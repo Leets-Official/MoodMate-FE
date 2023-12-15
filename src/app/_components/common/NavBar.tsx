@@ -100,7 +100,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
         <ModalPortal nodeName="mainPortal">
           <ModalOutside
             onClose={() => setOpenModal(false)}
-            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10 z-50"
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
           >
             <ModalContent
               subject={INACTIVE_MODAL}
@@ -115,7 +115,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
         <ModalPortal nodeName="mainPortal">
           <ModalOutside
             onClose={() => setChatModal(false)}
-            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10 z-50"
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm"
           >
             <ModalContentOne
               onClose={onChatCloseModal}
