@@ -4,7 +4,7 @@ export default function ChatRoomLayout({
   children: React.ReactNode
 }) {
   return (
-    <main className="desktop:w-[360px] desktop:mx-auto ">
+    <main>
       {children}
       <div id="exitPortal" />
       <div id="unmatchedPortal" />
