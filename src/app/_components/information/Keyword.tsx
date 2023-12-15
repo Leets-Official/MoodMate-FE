@@ -1,26 +1,30 @@
-interface DateMoodProps {
+interface KeywordProps {
   partner?: boolean
-  mood: string
+  keywords: string[]
 }
 
-const DateMood = ({ mood, partner }: DateMoodProps) => {
+const Keyword = ({ keywords, partner }: KeywordProps) => {
   return (
-    <div
-      className={`flex text-[14px] ${
-        partner ? ' w-full justify-center mt-[20px]' : 'ml-3 my-2'
-      } `}
-    >
-      <p
-        className={` px-5 py-1.5 rounded-[18px] mr-2  ${
-          partner
-            ? ' w-[80%] text-center text-white bg-threepink'
-            : ' text-primary border border-primary bg-onepink'
-        }`}
-      >
-        {mood} 데이트
-      </p>
+    <div className={`flex text-[14px] ${!partner && 'ml-3 my-2'}`}>
+      {keywords.map((keyword, i) => {
+        return (
+          <p
+            key={keyword}
+            className={`px-5 py-1.5 rounded-[18px] mr-2 ${
+              // eslint-disable-next-line no-nested-ternary
+              partner
+                ? i % 2 === 0
+                  ? 'bg-twopink text-white'
+                  : 'bg-threepink text-white'
+                : ' bg-onepink text-primary border border-primary'
+            }`}
+          >
+            {keyword}
+          </p>
+        )
+      })}
     </div>
   )
 }
 
-export default DateMood
+export default Keyword
