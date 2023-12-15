@@ -7,7 +7,7 @@ import errorImage from 'public/illustration/common/error/network.png'
 
 const Error = () => {
   return (
-    <section className="w-full h-screen flex items-center justify-center">
+    <section className="w-full h-screen flex flex-col items-center justify-center">
       <Image src={errorImage} alt="image" />
       <ErrorpageFirstContainer />
       <ErrorpageSecondContainer />

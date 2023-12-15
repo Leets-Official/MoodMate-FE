@@ -6,7 +6,7 @@ import { useMyPageQuery } from '@/_hooks/useMypageQuery'
 import React, { useEffect } from 'react'
 import Loading from '@/_components/common/Loading'
 import Profile from '@/_components/information/Profile'
-import Error from '@/(route)/pages/500'
+import Error from '@/(route)/error.tsx'
 
 export default function MyPage() {
   const { isLoading, isError, data } = useMyPageQuery()
