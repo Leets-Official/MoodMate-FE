@@ -47,7 +47,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
         textValue={inputVal || ''}
         placeholder="메시지를 입력하세요."
       />
-      <div className="absolute flex justify-center items-center right-[12%] top-[8%] bg-threepink h-[34px] w-[34px] rounded-full cursor-pointer">
+      <div className="absolute flex justify-center items-center right-[12%] top-[19%] bg-threepink h-[34px] w-[34px] rounded-full cursor-pointer">
         <Icons name={send} onClick={handleSendMessage} />
       </div>
     </div>
