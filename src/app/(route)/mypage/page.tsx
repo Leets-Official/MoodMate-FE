@@ -6,7 +6,7 @@ import { useMyPageQuery } from '@/_hooks/useMypageQuery'
 import React, { useEffect } from 'react'
 import Loading from '@/_components/common/Loading'
 import Profile from '@/_components/information/Profile'
-import Error from '@/(route)/error.tsx'
+import ErrorPage from '@/(route)/error'
 
 export default function MyPage() {
   const { isLoading, isError, data } = useMyPageQuery()
@@ -17,7 +17,7 @@ export default function MyPage() {
     return <Loading />
   }
   if (isError || !data) {
-    return <Error />
+    return <ErrorPage />
   }
 
   const {
