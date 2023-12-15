@@ -67,64 +67,68 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
   }
   console.log('roomActive', roomActive)
   return (
-    <div className="fixed translate-y-[43px] bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
-      <div
-        className={`${
-          getTextStyle(type).box
-        } pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between`}
-      >
-        <div className="ml-16">
-          <Icons name={deactivation} onClick={() => setOpenModal(true)} />
-        </div>
+    <div>
+      <div className="fixed translate-y-[43px] bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
         <div
           className={`${
-            getTextStyle(type).chat
-          } rounded-full w-[72px] h-[72px] -mt-16`}
+            getTextStyle(type).box
+          } pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between`}
         >
-          <Icons
-            name={getTextStyle(type).chating}
-            className="ml-6 mt-6"
-            onClick={() => {
-              // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-              roomActive
-                ? route.push(`/chat/${userId}/${roomId}`)
-                : setChatModal(true)
-            }}
-          />
-        </div>
-        <div className="mr-16">
-          <Icons name={bio} onClick={() => route.push('/mypage')} />
+          <div className="ml-16">
+            <Icons name={deactivation} onClick={() => setOpenModal(true)} />
+          </div>
+          <div
+            className={`${
+              getTextStyle(type).chat
+            } rounded-full w-[72px] h-[72px] -mt-16`}
+          >
+            <Icons
+              name={getTextStyle(type).chating}
+              className="ml-6 mt-6"
+              onClick={() => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                roomActive
+                  ? route.push(`/chat/${userId}/${roomId}`)
+                  : setChatModal(true)
+              }}
+            />
+          </div>
+          <div className="mr-16">
+            <Icons name={bio} onClick={() => route.push('/mypage')} />
+          </div>
         </div>
       </div>
-      {openModal && (
-        <ModalPortal nodeName="mainPortal">
-          <ModalOutside
-            onClose={() => setOpenModal(false)}
-            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
-          >
-            <ModalContent
-              subject={INACTIVE_MODAL}
-              onConfirm={onOpenModal}
-              onCancel={onCloseModal}
-              gender={gender}
-            />
-          </ModalOutside>
-        </ModalPortal>
-      )}
-      {chatModal && (
-        <ModalPortal nodeName="mainPortal">
-          <ModalOutside
-            onClose={() => setChatModal(false)}
-            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm pointer-events-auto"
-          >
-            <ModalContentOne
-              onClose={onChatCloseModal}
-              subject={CHAT_MODAL}
-              gender={gender}
-            />
-          </ModalOutside>
-        </ModalPortal>
-      )}
+      <div>
+        {openModal && (
+          <ModalPortal nodeName="mainPortal">
+            <ModalOutside
+              onClose={() => setOpenModal(false)}
+              className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
+            >
+              <ModalContent
+                subject={INACTIVE_MODAL}
+                onConfirm={onOpenModal}
+                onCancel={onCloseModal}
+                gender={gender}
+              />
+            </ModalOutside>
+          </ModalPortal>
+        )}
+        {chatModal && (
+          <ModalPortal nodeName="mainPortal">
+            <ModalOutside
+              onClose={() => setChatModal(false)}
+              className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm pointer-events-auto"
+            >
+              <ModalContentOne
+                onClose={onChatCloseModal}
+                subject={CHAT_MODAL}
+                gender={gender}
+              />
+            </ModalOutside>
+          </ModalPortal>
+        )}
+      </div>
     </div>
   )
 }
