@@ -11,7 +11,7 @@ export default function Login() {
     window.location.href = `${process.env.GOOGLE_LOGIN}oauth/login/google`
   }
   return (
-    <div className="flex flex-col h-screen mx-5">
+    <section className="flex flex-col h-screen mx-5 scrollbar-hide">
       <div className="h-[20%]">
         <div className="flex font-bold text-[20px] ml-5 mt-[20%] desktop:mt-[20%]">
           {LOGIN_PAGE.FIRST}
@@ -36,6 +36,6 @@ export default function Login() {
         onClick={handleLogin}
         className="hover:cursor-pointer mt-8 w-full mx-auto"
       />
-    </div>
+    </section>
   )
 }

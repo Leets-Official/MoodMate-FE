@@ -31,7 +31,7 @@ export default function MyPage() {
   } = data.myPageResponse
 
   return (
-    <div>
+    <section className="scrollbar-hide">
       <Profile
         userNickname={userNickname}
         year={year}
@@ -45,6 +45,6 @@ export default function MyPage() {
         preferMood={preferMood}
       />
       <MypageThirdBoxContainer />
-    </div>
+    </section>
   )
 }
