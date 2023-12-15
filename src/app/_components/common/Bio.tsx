@@ -2,7 +2,7 @@ import Image, { StaticImageData } from 'next/image'
 
 interface BioProps {
   gender: 'MALE' | 'FEMALE'
-  size: 'SMALL' | 'MEDIUM' | 'LARGE'
+  size?: 'SMALL' | 'MEDIUM' | 'LARGE'
   type?: string
 }
 
@@ -11,7 +11,7 @@ const getBioStyle = (size: string) => {
     case 'SMALL':
       return 'w-[40px] h-[40px]'
     case 'MEDIUM':
-      return 'w-[80px] h-[80px]'
+      return 'w-[48px] h-[48px]'
     case 'LARGE':
       return 'w-[137px] h-[136px]'
     default:
@@ -26,13 +26,13 @@ const Bio = ({ gender, size, type }: BioProps) => {
   ) as StaticImageData
 
   return (
-    <div>
+    <div className="flex justify-center items-center">
       <Image
         src={imageSrc}
         alt="bio"
         width={type === 'partnerInfo' ? 158 : 43}
         height={type === 'partnerInfo' ? 158 : 43}
-        className={`${getBioStyle(size)} mt-2 rounded-full`}
+        className={`${size && getBioStyle(size)} rounded-full`}
       />
     </div>
   )

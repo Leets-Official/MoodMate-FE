@@ -15,10 +15,7 @@ interface ChatRoomContainerProps {
 const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [fetchedChatData, setFetchedChatData] = useState<ResponseChatGet[]>([])
   const [scrollHeight, setScrollHeight] = useState(0)
-  const [prevScrollHeight, setPrevScrollHeight] = useState<number | null>(null)
-
   const [realTimeMessages, setRealTimeMessages] = useRecoilState(
     realTimeMessagesState,
   )
@@ -35,11 +32,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
-    // if (data) {
-    //   setFetchedChatData((prevData) => [...prevData, ...data.pages])
-    // }
-    console.log(data)
-    console.log(fetchedChatData)
   }, [data])
 
   useEffect(() => {
@@ -52,7 +44,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
         ) {
           setTimeout(() => {
             fetchNextPage()
-          }, 600)
+          }, 400)
         }
       })
     }
@@ -83,8 +75,11 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }, [data?.pages.length])
 
   return (
-    <div className="h-[82%] py-5 px-3 ">
-      <div className="h-full overflow-scroll scrollbar-hide" ref={containerRef}>
+    <div className="flex flex-col h-full w-full px-2 py-[23.5%]">
+      <div
+        className="h-full w-full overflow-scroll scrollbar-hide"
+        ref={containerRef}
+      >
         <div ref={topDivRef} />
         {data?.pages
           .slice()
@@ -97,11 +92,13 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
               chatHistory={chatData.chatList}
             />
           ))}
-        <ChatList
-          userId={userId}
-          user={data?.pages[0].user}
-          chatHistory={realTimeMessages}
-        />
+        {data && (
+          <ChatList
+            userId={userId}
+            user={data.pages[0].user}
+            chatHistory={realTimeMessages}
+          />
+        )}
       </div>
     </div>
   )
