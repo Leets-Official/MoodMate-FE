@@ -20,12 +20,13 @@ const getBioStyle = (size: string) => {
 }
 
 const Bio = ({ gender, size, type }: BioProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require
   const imageSrc = require(
     `/public/illustration/${gender.toLowerCase()}/chat/partnerprofile.png`,
   ) as StaticImageData
 
   return (
-    <>
+    <div>
       <Image
         src={imageSrc}
         alt="bio"
@@ -33,7 +34,7 @@ const Bio = ({ gender, size, type }: BioProps) => {
         height={type === 'partnerInfo' ? 158 : 43}
         className={`${getBioStyle(size)} mt-2 rounded-full`}
       />
-    </>
+    </div>
   )
 }
 
