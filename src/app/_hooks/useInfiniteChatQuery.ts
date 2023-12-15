@@ -6,29 +6,21 @@ export const useInfiniteChatQuery = (
   roomId: number,
   size: number,
 ) => {
-  const { data, fetchNextPage, hasNextPage, hasPreviousPage } =
-    useInfiniteQuery<ResponseChatGet, Error>({
-      queryKey: ['chat', userId, roomId],
-      queryFn: ({ pageParam }) => {
-        return getMessages(roomId, size, pageParam as number)
-      },
-      enabled: !!userId && !!roomId,
-      initialPageParam: 1,
-      getNextPageParam: (lastPage, pages) => {
-        if (
-          lastPage.pageable.totalPages === 0 ||
-          lastPage.pageable.totalPages === lastPage.pageable.page
-        ) {
-          return undefined
-        }
-        return lastPage.pageable.page + 1
-      },
-    })
-
-  return {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    hasPreviousPage,
-  }
+  return useInfiniteQuery<ResponseChatGet, Error>({
+    queryKey: ['chat', userId, roomId],
+    queryFn: ({ pageParam }) => {
+      return getMessages(roomId, size, pageParam as number)
+    },
+    enabled: !!userId && !!roomId,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, pages) => {
+      if (
+        lastPage.pageable.totalPages === 0 ||
+        lastPage.pageable.totalPages === lastPage.pageable.page
+      ) {
+        return undefined
+      }
+      return lastPage.pageable.page + 1
+    },
+  })
 }

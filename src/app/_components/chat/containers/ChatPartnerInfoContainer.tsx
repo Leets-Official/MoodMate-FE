@@ -1,12 +1,13 @@
 'use client'
 
-import profile from '@/_components/information/Profile'
+import ErrorPage from '@/(route)/error'
 import Keyword from '@/_components/information/Keyword'
 import DateMood from '@/_components/information/DateMood'
 import { useQuery } from '@tanstack/react-query'
 import { getPartnerInfo } from '@/_service/partner'
 import Bio from '@/_components/common/Bio'
 import Header from '@/_components/layout/Header'
+import Loading from '@/_components/common/Loading'
 
 interface ChatPartnerInfoContainerProps {
   userId: number
@@ -25,6 +26,14 @@ const ChatPartnerInfoContainer = ({
     queryFn: getPartnerInfo,
   })
 
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (isError) {
+    return <ErrorPage />
+  }
+
   return (
     <section className="h-screen w-full">
       <Header partner />
@@ -33,7 +42,7 @@ const ChatPartnerInfoContainer = ({
           <div className="flex justify-center h-[20%] w-full">
             <Bio gender="FEMALE" size="LARGE" type="partnerInfo" />
           </div>
-          <div className="flex flex-col rounded-[52px] bg-[#FFE5E7] h-[65%] w-full ">
+          <div className="flex flex-col rounded-t-[52px] bg-[#FFE5E7] h-[65%] w-full ">
             <p className="text-center font-bold text-[20px] mt-8">
               {partner.nickname}
             </p>
