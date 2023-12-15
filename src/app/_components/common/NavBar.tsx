@@ -98,7 +98,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="z-50">
         {openModal && (
           <ModalPortal nodeName="mainPortal">
             <ModalOutside
