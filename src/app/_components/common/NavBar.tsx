@@ -71,7 +71,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
       <div
         className={`${
           getTextStyle(type).box
-        } pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between`}
+        } pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between -z-10`}
       >
         <div className="ml-16">
           <Icons name={deactivation} onClick={() => setOpenModal(true)} />
