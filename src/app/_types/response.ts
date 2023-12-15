@@ -34,9 +34,10 @@ interface ResponseMain {
     roomActive: boolean
   }
 }
-/** 메인페이지 응답 데이터 */
+/** 마이페이지 응답 데이터 */
 interface ResponseMyPage {
   myPageResponse: {
+    userGender: string
     userNickname: string
     year: number
     userDepartment: string

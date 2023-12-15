@@ -21,6 +21,7 @@ export default function MyPage() {
   }
 
   const {
+    userGender,
     userNickname,
     year,
     userDepartment,
@@ -34,6 +35,7 @@ export default function MyPage() {
   return (
     <section className="scrollbar-hide">
       <Profile
+        userGender={userGender}
         userNickname={userNickname}
         year={year}
         userDepartment={userDepartment}
