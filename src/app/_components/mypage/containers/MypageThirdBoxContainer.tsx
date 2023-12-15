@@ -12,13 +12,12 @@ const MypageThirdBoxContainer = () => {
   const [openModal, setOpenModal] = useState<boolean>(false)
   const route = useRouter()
   const onOpenModal = () => {
-    setOpenModal((prev) => !prev)
-    // document.body.style.overflow = 'hidden'
-  }
-  const onCloseModal = () => {
     Cookies.remove('accessToken')
     Cookies.remove('refreshToken')
     route.push('/login')
+  }
+  const onCloseModal = () => {
+    setOpenModal((prev) => !prev)
   }
   return (
     <section className="ml-6 mt-4">
