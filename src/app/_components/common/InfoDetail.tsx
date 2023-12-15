@@ -16,16 +16,20 @@ const InfoDetail = ({ titleText, component, className }: InfoDetailProps) => {
   const toggleArrowIcon = () => {
     setArrowIcon(arrowIcon === rightarrow ? downarrow : rightarrow)
   }
+
   return (
     <div>
-      <div className="flex mt-4">
+      <div
+        className="flex mt-4"
+        onClick={() => {
+          setVisible(!visible)
+          toggleArrowIcon()
+        }}
+      >
         <Icons name={arrowIcon} className="mt-2.5" />
         <NormalButton
+          onClick={() => {}}
           buttonText={titleText}
-          onClick={() => {
-            setVisible(!visible)
-            toggleArrowIcon()
-          }}
           buttonType="small"
           className={className}
           isActive
