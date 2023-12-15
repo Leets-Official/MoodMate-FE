@@ -89,23 +89,21 @@ const MainPage = ({ type, gender }: MatchProps) => {
         getBGStyle(type, gender).background
       } h-screen flex flex-col`}
     >
-      <div className="flex flex-col">
-        <Image
-          src={getBGStyle(type, gender).logo}
-          alt="graylogo"
-          className={`${
-            getBGStyle(type, gender).textUi
-          } w-[85px] h-[13px] mt-5 mx-auto`}
-        />
-        <TimerFirstText type={type} />
-        <Timer targetHour={getBGStyle(type, gender).targetHour} />
-        <TimerMiddleText type={type} />
-        <Image
-          src={getBGStyle(type, gender).image}
-          alt="Matching"
-          className={`-mt-5 ${getBGStyle(type, gender).imageUi}`}
-        />
-      </div>
+      <Image
+        src={getBGStyle(type, gender).logo}
+        alt="graylogo"
+        className={`${
+          getBGStyle(type, gender).textUi
+        } w-[85px] h-[13px] mt-5 mx-auto`}
+      />
+      <TimerFirstText type={type} />
+      <Timer targetHour={getBGStyle(type, gender).targetHour} />
+      <TimerMiddleText type={type} />
+      <Image
+        src={getBGStyle(type, gender).image}
+        alt="Matching"
+        className={`-mt-5 ${getBGStyle(type, gender).imageUi}`}
+      />
       <NavBar
         type={type}
         roomId={roomId}
