@@ -53,7 +53,7 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
   }
 
   return (
-    <section className="fixed top-0 flex items-center bg-black justify-between w-full h-[10%] px-[26px] z-10">
+    <section className="fixed top-0 flex items-center bg-black justify-between w-full h-[80px] px-[26px] z-10">
       <Icons name={back} onClick={() => router.back()} />
       <div className="flex flex-row items-center justify-center gap-3 cursor-pointer">
         <Icons name={quit} onClick={() => setOpenExitModal(true)} />
