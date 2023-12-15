@@ -10,6 +10,7 @@ api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     const accessToken = Cookies.get('realAccessToken')
     if (accessToken) {
+      // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = `Bearer ${accessToken}`
     }
     return config
