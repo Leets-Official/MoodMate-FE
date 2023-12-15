@@ -43,6 +43,7 @@ const useWebsocket = (roomId: number) => {
     return () => {
       if (stompClient) {
         stompClient.disconnect()
+        setRealTimeMessages([])
         setstompClient(null)
       }
     }
