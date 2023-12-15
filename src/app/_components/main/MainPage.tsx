@@ -1,7 +1,6 @@
 'use client'
 
 import Timer from '@/_components/common/Timer'
-import React, { useEffect } from 'react'
 import TimerFirstText from '@/_components/timer/containers/TimerFirstText'
 import TimerMiddleText from '@/_components/timer/containers/TimerMiddleText'
 import NavBar from '@/_components/common/NavBar'
@@ -73,9 +72,6 @@ const getBGStyle = (type: string, gender: string) => {
 }
 const MainPage = ({ type, gender }: MatchProps) => {
   const { isLoading, isError, data } = useMainQuery()
-  useEffect(() => {
-    console.log(data?.mainPageResponse)
-  }, [data])
   if (isLoading) {
     return <Loading />
   }
