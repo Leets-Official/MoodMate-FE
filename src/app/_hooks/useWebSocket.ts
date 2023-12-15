@@ -9,7 +9,7 @@ import SockJS from 'sockjs-client'
 const useWebsocket = (roomId: number) => {
   const [stompClient, setstompClient] = useState<CompatClient | null>(null)
   const setRealTimeMessages = useSetRecoilState(realTimeMessagesState)
-  const accessToken = Cookies.get('realAccessToken')
+  const accessToken = Cookies.get('accessToken')
 
   useEffect(() => {
     const connectWebSocket = () => {

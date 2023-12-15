@@ -21,20 +21,42 @@ api.interceptors.request.use(
 )
 
 api.interceptors.response.use(
-  (response) => {
+  async (response) => {
     return response
   },
   async (error) => {
     const originalRequest = error.config
     if (error.response.status === 400) {
       try {
-        await axios.post(`${process.env.GOOGLE_LOGIN}users/refresh`)
+        const response = await axios.post(
+          `${process.env.GOOGLE_LOGIN}users/refresh`,
+        )
+        const { accessToken, refreshToken } = response.data.tokenResponse
+
+        const accessTokenExpiry = new Date()
+        accessTokenExpiry.setTime(
+          accessTokenExpiry.getTime() + 3 * 60 * 60 * 1000,
+        )
+        Cookies.set('accessToken', accessToken, { expires: accessTokenExpiry })
+
+        const refreshTokenExpiry = new Date()
+        refreshTokenExpiry.setTime(
+          refreshTokenExpiry.getTime() + 3 * 24 * 60 * 60 * 1000,
+        )
+        Cookies.set('refreshToken', refreshToken, {
+          expires: refreshTokenExpiry,
+        })
+
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`
+        console.log('토큰 재발급 성공')
+        return axios(originalRequest)
       } catch (e) {
-        console.log(e)
+        console.log('토큰 재발급 실패', e)
       }
     } else {
       console.log(error.response.status)
     }
+    return Promise.reject(error)
   },
 )
 
