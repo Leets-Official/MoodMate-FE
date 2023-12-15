@@ -67,11 +67,11 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
   }
   console.log('roomActive', roomActive)
   return (
-    <div className="-z-10 translate-y-[43px] fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
+    <div className="translate-y-[43px] fixed bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full z-10">
       <div
         className={`${
           getTextStyle(type).box
-        } pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between`}
+        } relative z-0 pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between`}
       >
         <div className="ml-16">
           <Icons name={deactivation} onClick={() => setOpenModal(true)} />
@@ -100,7 +100,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
         <ModalPortal nodeName="mainPortal">
           <ModalOutside
             onClose={() => setOpenModal(false)}
-            className="z-30 max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10 z-20 pointer-events-auto"
           >
             <ModalContent
               subject={INACTIVE_MODAL}
@@ -115,7 +115,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
         <ModalPortal nodeName="mainPortal">
           <ModalOutside
             onClose={() => setChatModal(false)}
-            className="z-30 max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm"
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm z-20 pointer-events-auto"
           >
             <ModalContentOne
               onClose={onChatCloseModal}
