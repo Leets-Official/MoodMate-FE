@@ -26,17 +26,14 @@ api.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config
-    if (
-      error.response.status === 401 &&
-      originalRequest &&
-      // eslint-disable-next-line no-underscore-dangle
-      !error.config.__isRetryRequest
-    ) {
+    if (error.response.status === 400) {
       try {
         await axios.post(`${process.env.GOOGLE_LOGIN}users/refresh`)
       } catch (e) {
         console.log(e)
       }
+    } else {
+      console.log(error.response.status)
     }
   },
 )
