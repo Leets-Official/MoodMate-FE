@@ -3,5 +3,10 @@ export default function MypageLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <main>{children}</main>
+  return (
+    <main>
+      {children}
+      <div id="mypagePortal" />
+    </main>
+  )
 }

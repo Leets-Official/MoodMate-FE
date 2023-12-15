@@ -26,3 +26,10 @@ export const CHAT_MODAL = {
   SUB_TITLE: '밤 10시가 지나도 매칭되지 않으셨으면 다음날을 기다려주세요.',
   CLOSE: '닫기',
 } as const
+
+export const MY_MODAL = {
+  TITLE: '로그아웃 하시겠어요?',
+  SUB_TITLE: '무디가 기다릴게요!',
+  CONFIRM: '로그아웃',
+  CANCEL: '취소',
+} as const
