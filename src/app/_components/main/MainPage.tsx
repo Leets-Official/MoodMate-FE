@@ -13,6 +13,7 @@ import afterMatchMale from 'public/illustration/male/main/afterMatch.png'
 import beforeMatch from 'public/illustration/common/main/beforeMatch.png'
 import grayLogo from 'public/illustration/common/logo/graylogo.png'
 import pinkLogo from 'public/illustration/common/logo/pinklogo.png'
+import ChatHeader from '@/_components/layout/ChatHeader'
 
 interface MatchProps {
   type: 'BEFORE' | 'AFTER'
@@ -89,6 +90,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
         getBGStyle(type, gender).background
       } h-screen flex flex-col`}
     >
+      <ChatHeader userId={Number(userId)} />
       <Image
         src={getBGStyle(type, gender).logo}
         alt="graylogo"
