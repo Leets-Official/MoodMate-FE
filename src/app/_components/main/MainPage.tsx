@@ -90,7 +90,6 @@ const MainPage = ({ type, gender }: MatchProps) => {
         getBGStyle(type, gender).background
       } h-screen flex flex-col`}
     >
-      <ChatHeader userId={Number(userId)} />
       <Image
         src={getBGStyle(type, gender).logo}
         alt="graylogo"
