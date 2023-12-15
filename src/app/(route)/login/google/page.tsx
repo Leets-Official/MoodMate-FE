@@ -33,8 +33,8 @@ const OauthPage = () => {
   //     router.push('/main')
   //   }
   // }, [accessToken, router])
-  Cookies.set('realAccessToken', accessToken)
-  Cookies.set('realRefreshToken', refreshToken)
+  Cookies.set('accessToken', accessToken)
+  Cookies.set('refreshToken', refreshToken)
 
   useEffect(() => {
     if (data) {
