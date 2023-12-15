@@ -24,7 +24,7 @@ const InactiveFirstText = () => {
         buttonText={INACTIVE_BUTTON.REMATCH}
         onClick={() => inactiveMutation.mutate()}
         buttonType="large"
-        className="bg-[#FC4F59] text-white text-[14px] w-[312px] h-[48px] rounded-[8px] mt-20"
+        className="bg-[#FC4F59] text-white text-[14px] w-[312px] h-[48px] rounded-[8px] mt-7"
         isActive
       />
       <NormalButton

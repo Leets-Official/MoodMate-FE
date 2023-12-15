@@ -17,7 +17,7 @@ export default function InactivePage() {
       <Image
         src={inactive}
         alt="inactive"
-        className="mx-auto w-[150px] h-[220px] mt-12 mb-5"
+        className="mx-auto w-[150px] h-[220px] mt-7 mb-5"
       />
       <InactiveMiddleText />
     </section>
