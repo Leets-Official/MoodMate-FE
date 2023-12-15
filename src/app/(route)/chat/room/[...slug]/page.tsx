@@ -23,7 +23,7 @@ export default function ChatRoomPage({ params }: ChatRoomPageProps) {
 
   return (
     <section
-      className="w-full scrollbar-hide h-screen flex flex-col justify-center items-center"
+      className="w-full scrollbar-hide flex flex-col justify-center items-center"
       ref={pageRef}
     >
       <ChatHeader userId={Number(userId)} />
