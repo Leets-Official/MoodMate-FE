@@ -67,7 +67,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
   }
   console.log('roomActive', roomActive)
   return (
-    <div className="translate-y-[43px] bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
+    <div className="flex translate-y-[43px] bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
       <div
         className={`${
           getTextStyle(type).box
@@ -100,7 +100,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
         <ModalPortal nodeName="mainPortal">
           <ModalOutside
             onClose={() => setOpenModal(false)}
-            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10 pointer-events-auto"
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
           >
             <ModalContent
               subject={INACTIVE_MODAL}
