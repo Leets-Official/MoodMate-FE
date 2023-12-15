@@ -12,7 +12,7 @@ export default function ChatRoomPage({ params }: ChatRoomPageProps) {
   const [userId, roomId] = params.slug
 
   return (
-    <section className="flex flex-col h-screen ">
+    <section className="relative flex flex-col justify-center items-center w-full overflow-hidden">
       <ChatHeader userId={Number(userId)} />
       <ChatRoomContainer userId={Number(userId)} roomId={Number(roomId)} />
       <ChatInputContainer userId={Number(userId)} roomId={Number(roomId)} />

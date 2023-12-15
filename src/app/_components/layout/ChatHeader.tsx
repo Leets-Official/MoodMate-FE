@@ -11,6 +11,7 @@ import ModalPortal from '../common/modal/ModalPortal'
 import ModalOutside from '../common/modal/ModalOutside'
 import ModalContent from '../common/modal/ModalContent'
 import Icons from '../common/Icons'
+import { patchInactiveMain } from '@/_service/main'
 
 interface ChatHeaderProps {
   userId: number
@@ -23,39 +24,36 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
   const newMatchMutation = useMutation({
     mutationFn: patchQuitChat,
     onSuccess: () => {
-      router.push('/main') // 메인 렌더링 되면서 채팅방 안 들어가지는지 확인
+      router.push('/main')
     },
   })
   const noMatchMutation = useMutation({
     mutationFn: patchQuitChat,
-    onSuccess: () => {
-      // 비활성화 api 추가
+    onSuccess: async () => {
+      await patchInactiveMain()
+      router.push('/main')
     },
   })
 
   const onOpenMatchModal = () => {
     setOpenExitModal((prev) => !prev)
     setOpenMatchModal((prev) => !prev)
-    // document.body.style.overflow = 'hidden'
   }
 
   const onCloseExitModal = () => {
     setOpenExitModal(false)
-    // document.body.style.overflow = 'unset'
   }
 
   const onConfirmNewMatch = async () => {
-    console.log('채팅 종료 & 재매칭 ')
     newMatchMutation.mutate()
   }
 
   const onCancelNewMatch = async () => {
-    console.log('채팅종료만. 재매칭은 x')
     noMatchMutation.mutate()
   }
 
   return (
-    <section className="flex items-center justify-between w-full h-[47px] px-[26px]">
+    <section className="fixed top-0 flex items-center bg-white justify-between w-full h-[10%] px-[26px] z-10">
       <Icons name={back} onClick={() => router.back()} />
       <div className="flex flex-row items-center justify-center gap-3 cursor-pointer">
         <Icons name={quit} onClick={() => setOpenExitModal(true)} />
