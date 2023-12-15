@@ -63,7 +63,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
     setChatModal((prev) => !prev)
   }
   return (
-    <div className="fixed translate-y-[43px] bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
+    <div className="fixed translate-y-[43px] bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full z-[10]">
       <div
         className={`${
           getTextStyle(type).box
