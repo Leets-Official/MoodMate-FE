@@ -75,12 +75,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }, [data?.pages.length])
 
   return (
-    <div className="flex flex-col h-full w-full px-2 py-[23.5%]">
-      <div
-        className="h-full w-full overflow-scroll scrollbar-hide"
-        ref={containerRef}
-      >
-        <div ref={topDivRef} />
+    <div className="py-[15%] h-[75%] px-3 bg-black ">
+      <div className="h-full overflow-scroll scrollbar-hide" ref={containerRef}>
+        <div ref={topDivRef}></div>
         {data?.pages
           .slice()
           .reverse()
