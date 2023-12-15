@@ -1,4 +1,5 @@
 'use client'
+
 import ChatInputContainer from '@/_components/chat/containers/ChatInputContainer'
 import ChatRoomContainer from '@/_components/chat/containers/ChatRoomContainer'
 import ChatHeader from '@/_components/layout/ChatHeader'
