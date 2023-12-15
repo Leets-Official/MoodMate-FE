@@ -12,9 +12,14 @@ interface HeaderProps {
 
 const Header = ({ chat, partner }: HeaderProps) => {
   const router = useRouter()
+  console.log(partner)
 
   return (
-    <section className="bg-white flex items-center justify-between w-full h-[8%] px-[26px]">
+    <section
+      className={`bg-white flex items-center justify-between w-full h-[8%] px-[26px] ${
+        partner && 'h-[8%]'
+      }`}
+    >
       {chat ? (
         <h1 className="text-[20px] font-bold">채팅</h1>
       ) : (

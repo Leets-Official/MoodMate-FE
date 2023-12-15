@@ -5,6 +5,7 @@ import Icons from '@/_components/common/Icons'
 import { send } from '@/_ui/IconsPath'
 import useWebsocket from '@/_hooks/useWebSocket'
 import Input from '../../common/Input'
+import { CHAT_INPUT } from '@/_constants'
 
 interface ChatInputContainerProps {
   roomId: number
@@ -36,7 +37,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
   }
 
   return (
-    <div className="fixed bottom-0 bg-white flex desktop:w-[378px] justify-center h-[65px] py-3">
+    <div className="fixed bottom-0 flex desktop:w-[378px] justify-center h-[65px] py-3 w-full">
       <Input
         sort="chat"
         onClick={() => {}}
@@ -45,7 +46,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
         onChange={(e) => onChangeInput(e)}
         onEnterPress={handleSendMessage}
         textValue={inputVal || ''}
-        placeholder="메시지를 입력하세요."
+        placeholder={CHAT_INPUT.MESSAGE}
       />
       <div className="absolute flex justify-center items-center right-[12%] top-[26%] bg-threepink h-[34px] w-[34px] rounded-full cursor-pointer">
         <Icons name={send} onClick={handleSendMessage} />
