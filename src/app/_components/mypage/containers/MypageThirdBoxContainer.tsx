@@ -3,18 +3,22 @@ import { logout } from '@/_ui/IconsPath'
 import { useState } from 'react'
 import ModalOutside from '@/_components/common/modal/ModalOutside'
 import ModalContent from '@/_components/common/modal/ModalContent'
-import { INACTIVE_MODAL, MY_MODAL } from '@/_constants'
+import { MY_MODAL } from '@/_constants'
 import ModalPortal from '@/_components/common/modal/ModalPortal'
+import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 const MypageThirdBoxContainer = () => {
   const [openModal, setOpenModal] = useState<boolean>(false)
+  const route = useRouter()
   const onOpenModal = () => {
     setOpenModal((prev) => !prev)
     // document.body.style.overflow = 'hidden'
   }
   const onCloseModal = () => {
-    setOpenModal(false)
-    // document.body.style.overflow = 'unset'
+    Cookies.remove('accessToken')
+    Cookies.remove('refreshToken')
+    route.push('/login')
   }
   return (
     <section className="ml-6 mt-4">
