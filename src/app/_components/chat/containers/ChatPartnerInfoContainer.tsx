@@ -43,8 +43,8 @@ const ChatPartnerInfoContainer = ({
               <p>{partner.department}</p>
             </div>
             <div className="flex items-center justify-center flex-col mt-10 w-full">
-              <Keyword keywords={partner.keywords} />
-              <DateMood mood={partner.preferMood} />
+              <Keyword keywords={partner.keywords} partner />
+              <DateMood mood={partner.preferMood} partner />
             </div>
           </div>
         </div>
