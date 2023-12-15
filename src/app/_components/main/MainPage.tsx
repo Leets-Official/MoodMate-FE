@@ -12,6 +12,8 @@ import afterMatchMale from 'public/illustration/male/main/afterMatch.png'
 import beforeMatch from 'public/illustration/common/main/beforeMatch.png'
 import grayLogo from 'public/illustration/common/logo/graylogo.png'
 import pinkLogo from 'public/illustration/common/logo/pinklogo.png'
+import ErrorPage from '@/(route)/error'
+import React from 'react'
 
 interface MatchProps {
   type: 'BEFORE' | 'AFTER'
@@ -76,7 +78,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
     return <Loading />
   }
   if (isError || !data) {
-    return <div>Error...</div>
+    return <ErrorPage />
   }
   const { roomActive, roomId, userId } = data.mainPageResponse
   return (
