@@ -1,14 +1,10 @@
-import Image from 'next/image'
-import loading from '../../../../public/illustration/common/logo/loading.png'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { BeatLoader } from 'react-spinners'
 
 const Loading = () => {
   return (
-    <div className="bg-primary w-full h-screen flex">
-      <Image
-        src={loading}
-        alt="로딩아이콘"
-        className="w-[142px] h-[108px] my-auto mx-auto"
-      />
+    <div className="w-full h-screen flex">
+      <BeatLoader color="#FC4F59" />
     </div>
   )
 }

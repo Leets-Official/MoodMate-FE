@@ -80,7 +80,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   return (
     <div className="h-[82%] py-5 px-3 ">
       <div className="h-full overflow-scroll scrollbar-hide" ref={containerRef}>
-        <div ref={topDivRef}></div>
+        <div ref={topDivRef} />
         {fetchedChatData.reverse().map((chatData) => (
           <ChatList
             key={chatData.pageable.page}
