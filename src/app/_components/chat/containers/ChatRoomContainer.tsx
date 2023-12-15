@@ -75,9 +75,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }, [data?.pages.length])
 
   return (
-    <div className="w-full bg-slate-400 h-screen">
+    <div className="w-full bg-white h-screen">
       <div
-        className="mt-[80px] h-[79%] bg-primary overflow-scroll scrollbar-hide"
+        className="mt-[80px] h-[79%] bg-white overflow-scroll scrollbar-hide"
         ref={containerRef}
       >
         <div ref={topDivRef} />
