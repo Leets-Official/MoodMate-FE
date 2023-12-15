@@ -85,13 +85,13 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [data?.pages.length])
 
-  // if (isLoading) {
-  //   return <Loading />
-  // }
+  if (isLoading) {
+    return <Loading />
+  }
 
-  // if (isError || !data) {
-  //   return <ErrorPage />
-  // }
+  if (isError || !data) {
+    return <ErrorPage />
+  }
 
   return (
     <div className="w-full bg-white h-screen">
@@ -120,7 +120,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
         )}
       </div>
       {/* 동작 확인하기 ** */}
-      {openUnmatchModal && data && (
+      {/* {openUnmatchModal && data && (
         <ModalPortal nodeName="unmatchedPortal">
           <ModalOutside
             onClose={() => {}}
@@ -133,7 +133,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
             />
           </ModalOutside>
         </ModalPortal>
-      )}
+      )} */}
     </div>
   )
 }
