@@ -11,7 +11,11 @@ const Keyword = ({ keywords, partner }: KeywordProps) => {
           <p
             key={keyword}
             className={`px-5 py-1.5 rounded-[18px] mr-2 ${
-              i % 2 === 0 ? 'bg-twopink text-white' : 'bg-threepink text-white'
+              partner
+                ? i % 2 === 0
+                  ? 'bg-twopink text-white'
+                  : 'bg-threepink text-white'
+                : ' bg-onepink text-primary border border-primary'
             }`}
           >
             {keyword}
