@@ -6,7 +6,7 @@ import errorImage from 'public/illustration/common/error/notfound.png'
 export default function NotFoundPage() {
   return (
     <section className="w-full h-screen flex items-center justify-center">
-      <Image src={errorImage} alt="image" />
+      <Image src={errorImage} alt="image" className="w-[296px] h-[170px]" />
       <NotfoundpageFirstContainer />
       <NotfoundpageSecondContainer />
     </section>

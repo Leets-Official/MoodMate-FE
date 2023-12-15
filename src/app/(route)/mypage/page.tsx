@@ -10,9 +10,6 @@ import ErrorPage from '@/(route)/error'
 
 export default function MyPage() {
   const { isLoading, isError, data } = useMyPageQuery()
-  useEffect(() => {
-    console.log('data2', data?.myPageResponse)
-  }, [data])
   if (isLoading) {
     return <Loading />
   }
