@@ -63,11 +63,11 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
     setChatModal((prev) => !prev)
   }
   return (
-    <div className="translate-y-[43px]left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
+    <div className="fixed translate-y-[43px] bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
       <div
         className={`${
           getTextStyle(type).box
-        } z-[10] pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between`}
+        } pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between`}
       >
         <div className="ml-16 cursor-pointer">
           <Icons name={deactivation} onClick={() => setOpenModal(true)} />
