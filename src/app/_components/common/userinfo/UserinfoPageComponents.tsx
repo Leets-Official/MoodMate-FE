@@ -1,4 +1,4 @@
-import NotFound from '@/(route)/pages/404'
+import NotFound from '@/(route)/not-found'
 import UserNickname from './UserNickname'
 import UserGender from './UserGender'
 import UserMyage from './UserMyage'
