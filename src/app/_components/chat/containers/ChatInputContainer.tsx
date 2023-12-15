@@ -6,6 +6,7 @@ import { send } from '@/_ui/IconsPath'
 import useWebsocket from '@/_hooks/useWebSocket'
 import { CHAT_INPUT } from '@/_constants'
 import Input from '../../common/Input'
+import { CHAT_INPUT } from '@/_constants'
 
 interface ChatInputContainerProps {
   roomId: number
