@@ -14,7 +14,7 @@ const Header = ({ chat, partner }: HeaderProps) => {
   const router = useRouter()
 
   return (
-    <section className="flex items-center justify-between w-full h-[47px] px-[26px]">
+    <section className="bg-white flex items-center justify-between w-full h-[8%] px-[26px]">
       {chat ? (
         <h1 className="text-[20px] font-bold">채팅</h1>
       ) : (
