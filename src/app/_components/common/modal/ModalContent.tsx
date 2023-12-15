@@ -20,6 +20,8 @@ const ModalContent = ({
 }: ModalContentProps) => {
   const { TITLE, SUB_TITLE, CONFIRM, CANCEL } = subject
   const inactive = gender === 'MALE' ? inactiveMale : inactiveFemale
+  const inactiveUi =
+    gender === 'MALE' ? 'w-[153px] h-[172px]' : 'w-[142px] h-[197px]'
   return (
     <section className=" w-full h-full flex flex-col justify-center items-center gap-[40px]">
       <div>
@@ -32,7 +34,7 @@ const ModalContent = ({
       {onMyPage ? (
         <p>씩씩한 무디 이미지</p>
       ) : (
-        <Image src={inactive} alt="inactive" className="w-[142px] h-[197px]" />
+        <Image src={inactive} alt="inactive" className={inactiveUi} />
       )}
       <ModalButtons
         onConfirm={onConfirm}
