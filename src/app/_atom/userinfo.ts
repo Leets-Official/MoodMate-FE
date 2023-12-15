@@ -1,4 +1,18 @@
 import { atom } from 'recoil'
+import { recoilPersist } from 'recoil-persist'
+
+const sessionStorage =
+  typeof window !== 'undefined' ? window.sessionStorage : undefined
+
+const { persistAtom: userinfoPersistAtom } = recoilPersist({
+  key: 'userInfoState',
+  storage: sessionStorage,
+})
+
+const { persistAtom: perferinfoPersistAtom } = recoilPersist({
+  key: 'preferInfoState',
+  storage: sessionStorage,
+})
 
 export const userInfoState = atom<UserInfoData>({
   key: 'userInfoState',
@@ -9,6 +23,7 @@ export const userInfoState = atom<UserInfoData>({
     department: '',
     keywords: [],
   },
+  effects_UNSTABLE: [userinfoPersistAtom],
 })
 
 export const preferInfoState = atom<PreferInfoData>({
@@ -19,4 +34,5 @@ export const preferInfoState = atom<PreferInfoData>({
     preferDepartmentPossible: true,
     preferMood: '',
   },
+  effects_UNSTABLE: [perferinfoPersistAtom],
 })
