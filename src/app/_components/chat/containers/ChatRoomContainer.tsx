@@ -35,10 +35,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
-
-    if (hasPreviousPage && data) {
-      setFetchedChatData((prevData) => [...prevData, ...data.pages])
-    }
+    // if (data) {
+    //   setFetchedChatData((prevData) => [...prevData, ...data.pages])
+    // }
     console.log(data)
     console.log(fetchedChatData)
   }, [data])
@@ -73,18 +72,31 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [hasNextPage, fetchNextPage])
 
+  useEffect(() => {
+    if (!containerRef) return
+
+    if (containerRef.current) {
+      const scrollTop = containerRef.current.scrollHeight - scrollHeight
+      containerRef.current.scrollTop = scrollTop
+      setScrollHeight(containerRef.current.scrollHeight)
+    }
+  }, [data?.pages.length])
+
   return (
     <div className="h-[82%] py-5 px-3 ">
       <div className="h-full overflow-scroll scrollbar-hide" ref={containerRef}>
         <div ref={topDivRef} />
-        {fetchedChatData.reverse().map((chatData) => (
-          <ChatList
-            key={chatData.pageable.page}
-            userId={userId}
-            user={chatData.user}
-            chatHistory={chatData.chatList}
-          />
-        ))}
+        {data?.pages
+          .slice()
+          .reverse()
+          .map((chatData) => (
+            <ChatList
+              key={chatData.pageable.page}
+              userId={userId}
+              user={chatData.user}
+              chatHistory={chatData.chatList}
+            />
+          ))}
         <ChatList
           userId={userId}
           user={data?.pages[0].user}
