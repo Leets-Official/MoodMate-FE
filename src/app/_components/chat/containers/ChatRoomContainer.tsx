@@ -85,13 +85,13 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     }
   }, [data?.pages.length])
 
-  if (isLoading) {
-    return <Loading />
-  }
+  // if (isLoading) {
+  //   return <Loading />
+  // }
 
-  if (isError || !data) {
-    return <ErrorPage />
-  }
+  // if (isError || !data) {
+  //   return <ErrorPage />
+  // }
 
   return (
     <div className="w-full bg-white h-screen">
