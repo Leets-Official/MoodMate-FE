@@ -26,7 +26,6 @@ const useWebsocket = (roomId: number) => {
               messageId: new Date().toISOString(),
               createdAt: new Date().toISOString(),
             }
-            console.log('Received Message from Partner:', receivedMessage)
             setRealTimeMessages((prev: any) => [...prev, receivedMessage])
           })
         },
@@ -34,11 +33,6 @@ const useWebsocket = (roomId: number) => {
           console.log(`Error: ${error}`)
         },
       )
-
-      client.debug = (msg: any) => {
-        console.log('STOMP:', msg)
-      }
-
       setstompClient(client)
     }
 
