@@ -20,7 +20,9 @@ const ModalContentOne = ({
     <section className=" w-full h-full flex flex-col justify-center items-center gap-[40px]">
       <div className="text-center">
         <h1 className="text-darkgray text-[18px] font-bold ">{TITLE}</h1>
-        <h1 className="text-darkgray -mt-1.5 text-[18px] font-bold ">{TITLE2}</h1>
+        <h1 className="text-darkgray -mt-1.5 text-[18px] font-bold ">
+          {TITLE2}
+        </h1>
         <h5 className="text-secondary text-[12px]">{SUB_TITLE}</h5>
         <h5 className="text-secondary text-[12px]">{SUB_TITLE2}</h5>
       </div>

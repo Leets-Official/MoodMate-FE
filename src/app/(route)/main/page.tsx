@@ -15,7 +15,8 @@ export default function MainpagePage() {
   if (isError || !data) {
     return <div>Error occurred while fetching data</div>
   }
-  const { roomActive, userMatchActive, userGender } = data.mainPageResponse
+  const { roomActive, userMatchActive, userGender, roomId, userId } =
+    data.mainPageResponse
   const mainPageType = roomActive ? 'AFTER' : 'BEFORE'
   const mainPageGender = userGender === 'MALE' ? 'MALE' : 'FEMALE'
   return (
@@ -23,7 +24,12 @@ export default function MainpagePage() {
       {userMatchActive ? (
         <MainPage type={mainPageType} gender={mainPageGender} />
       ) : (
-        <InactivePage />
+        <InactivePage
+          gender={mainPageGender}
+          userId={userId}
+          roomId={roomId}
+          roomActive={roomActive}
+        />
       )}
     </section>
   )
