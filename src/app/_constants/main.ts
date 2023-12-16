@@ -30,8 +30,8 @@ export const CHAT_MODAL = {
 } as const
 
 export const INACTIVE_CHAT_MODAL = {
-  TITLE: '재매칭을 원하시면 매칭',
-  TITLE2: '다시 시작하기를 눌러주세요',
+  TITLE: "재매칭을 원하시면 '매칭",
+  TITLE2: "다시 시작하기'를 눌러주세요",
   CLOSE: '닫기',
 } as const
 
