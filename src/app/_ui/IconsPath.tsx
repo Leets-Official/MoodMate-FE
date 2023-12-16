@@ -92,5 +92,5 @@ export const info = {
   path: 'M17 5V11C18.7 11 20 9.7 20 8C20 6.3 18.7 5 17 5ZM9 4H2C0.9 4 0 4.9 0 6V10C0 11.1 0.9 12 2 12H3V15C3 16.1 3.9 17 5 17H7V12H9L13 16H15V0H13L9 4Z',
   width: 20,
   height: 17,
-  fill: '#333333',
+  fill: '#E7B400',
 } as const

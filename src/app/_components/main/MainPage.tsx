@@ -32,7 +32,7 @@ const getBGStyle = (type: string, gender: string) => {
         logo: grayLogo,
         background: 'mt-2',
         image: beforeMatch,
-        textUi: 'mb-5',
+        textUi: 'mb-7',
         imageUi: 'mt-4',
       }
     case 'AFTER':
@@ -101,7 +101,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
       />
       <Icons
         name={info}
-        className="mb-2 absolute top-0 right-0 mr-4"
+        className="mt-4 absolute top-0 right-0 mr-4"
         onClick={() => route.push('/announcement')}
       />
       <TimerFirstText type={type} />
