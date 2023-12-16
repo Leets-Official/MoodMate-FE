@@ -14,11 +14,11 @@ const ModalButtonOne = ({ onClose, closeText }: ModalButtonOneProps) => {
     onClose()
   }
   return (
-    <div className="flex flex-row w-full">
+    <div className="flex flex-row">
       <NormalButton
         buttonText={closeText}
         buttonType="small"
-        className="mx-auto rounded-lg bg-onepink px-5 h-[36px] text-center text-[14px]"
+        className="w-[146px] mx-auto rounded-lg bg-onepink px-5 h-[36px] text-center text-[14px]"
         onClick={onCloseHandler}
         isActive
       />

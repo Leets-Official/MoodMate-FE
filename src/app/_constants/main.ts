@@ -22,8 +22,10 @@ export const INACTIVE_MODAL = {
 } as const
 
 export const CHAT_MODAL = {
-  TITLE: '매칭이 완료되면 입장할 수 있습니다.',
-  SUB_TITLE: '밤 10시가 지나도 매칭되지 않으셨으면 다음날을 기다려주세요.',
+  TITLE: '매칭이 완료되면',
+  TITLE2: '입장할 수 있습니다.',
+  SUB_TITLE: '밤 10시가 지나도 매칭되지 않으셨으면',
+  SUB_TITLE2: '다음날을 기다려주세요.',
   CLOSE: '닫기',
 } as const
 
