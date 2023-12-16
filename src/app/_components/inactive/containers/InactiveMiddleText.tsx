@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import NormalButton from '@/_components/common/NormalButton'
 import { useRouter } from 'next/navigation'
-import { CHAT_MODAL, INACTIVE_BUTTON } from '@/_constants'
+import { CHAT_MODAL, INACTIVE_BUTTON, INACTIVE_CHAT_MODAL } from '@/_constants'
 import { useMutation } from '@tanstack/react-query'
 import { patchInactiveMain } from '@/_service/main'
 import ModalPortal from '@/_components/common/modal/ModalPortal'
@@ -62,7 +62,7 @@ const InactiveFirstText = ({
           >
             <ModalContentOne
               onClose={onChatCloseModal}
-              subject={CHAT_MODAL}
+              subject={INACTIVE_CHAT_MODAL}
               gender={gender}
             />
           </ModalOutside>
