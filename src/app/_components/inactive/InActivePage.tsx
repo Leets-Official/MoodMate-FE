@@ -5,7 +5,18 @@ import Image from 'next/image'
 import logo from 'public/illustration/common/logo/graylogo.png'
 import inactive from 'public/illustration/female/main/inactive.png'
 
-export default function InactivePage() {
+interface ChatProps {
+  roomId: number
+  userId: number
+  roomActive: boolean
+  gender: 'MALE' | 'FEMALE'
+}
+export default function InactivePage({
+  roomId,
+  userId,
+  roomActive,
+  gender,
+}: ChatProps) {
   return (
     <section className="flex flex-col h-screen">
       <Image
@@ -19,7 +30,12 @@ export default function InactivePage() {
         alt="inactive"
         className="mx-auto w-[150px] h-[220px] mt-7 mb-5"
       />
-      <InactiveMiddleText />
+      <InactiveMiddleText
+        gender={gender}
+        roomId={roomId}
+        roomActive={roomActive}
+        userId={userId}
+      />
     </section>
   )
 }

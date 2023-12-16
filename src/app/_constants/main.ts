@@ -11,7 +11,7 @@ export const AFTER_TIMER_GUIDE = {
 } as const
 export const INACTIVE_BUTTON = {
   REMATCH: '매칭 다시 시작하기',
-  GOMAIN: '마이페이지로 돌아가기',
+  GOMAIN: '무디와 채팅하러 가기',
 } as const
 
 export const INACTIVE_MODAL = {
