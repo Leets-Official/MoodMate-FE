@@ -29,6 +29,14 @@ export const CHAT_MODAL = {
   CLOSE: '닫기',
 } as const
 
+export const INACTIVE_CHAT_MODAL = {
+  TITLE: '재매칭을 원하시면',
+  TITLE2: '매칭 다시 시작하기를 눌러주세요',
+  SUB_TITLE: '20시 이전에 활성화를 해야',
+  SUB_TITLE2: '당일 매칭이 이루어져요.',
+  CLOSE: '닫기',
+} as const
+
 export const MY_MODAL = {
   TITLE: '로그아웃 하시겠어요?',
   SUB_TITLE: '무디가 기다릴게요!',
