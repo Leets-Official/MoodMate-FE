@@ -1,6 +1,6 @@
 'use client'
 
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { mainInfo } from '@/_service/main'
 
 export const useMainQuery = () => {

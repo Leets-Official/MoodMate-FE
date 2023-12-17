@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { NICK_NAME_PAGE, INPUT_NICKNAME } from '@/_constants'
