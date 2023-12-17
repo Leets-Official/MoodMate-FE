@@ -24,7 +24,10 @@ const MypageThirdBoxContainer = () => {
       <p className="text-[12px] text-[#808080]">로그인</p>
       <div className="mt-4 flex mb-4">
         <Icons name={logout} />
-        <p className="text-[16px] ml-2.5" onClick={() => setOpenModal(true)}>
+        <p
+          className="text-[16px] ml-2.5 cursor pointer"
+          onClick={() => setOpenModal(true)}
+        >
           로그아웃
         </p>
       </div>
