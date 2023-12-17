@@ -1,5 +1,6 @@
 'use client'
 
+/* eslint-disable-next-line react/jsx-props-no-spreading */
 import React from 'react'
 import { Range } from 'react-range'
 import { RANGE_BAR_AGE, MY_AGE_PAGE } from '@/_constants'
@@ -140,6 +141,7 @@ const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
         onChange={(newValues) => onChange(newValues)}
         renderTrack={({ props, children }) => (
           <div
+            /* eslint-disable-next-line react/jsx-props-no-spreading */
             {...props}
             style={{
               height: '5px',
@@ -193,6 +195,7 @@ const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
                   justifyContent: 'center',
                   outline: 'none',
                 }}
+                /* eslint-disable-next-line react/jsx-props-no-spreading */
                 {...restProps}
               >
                 {type === 'single' && (
