@@ -1,5 +1,3 @@
-import React from 'react'
-
 const InactiveFirstText = () => {
   return (
     <div className="mt-1.5 flex items-center text-center flex-col mx-auto">
