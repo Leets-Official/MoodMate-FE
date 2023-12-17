@@ -27,7 +27,7 @@ const Profile = ({
         <p className="mr-3 ">|</p>
         <p>{userDepartment}</p>
       </div>
-      <div className="w-auto h-2 bg-[#E6E6E6] mt-6" />
+      <div className="w-auto h-2 bg-lightgray mt-6" />
     </section>
   )
 }
