@@ -5,6 +5,7 @@ import { useMainQuery } from '@/_hooks/useMainQuery'
 import React from 'react'
 import InactivePage from '@/_components/inactive/InActivePage'
 import Loading from '@/_components/common/Loading'
+import Error from '@/(route)/error'
 
 export default function MainpagePage() {
   const { isLoading, isError, data } = useMainQuery()
@@ -13,7 +14,7 @@ export default function MainpagePage() {
     return <Loading />
   }
   if (isError || !data) {
-    return <div>Error occurred while fetching data</div>
+    return <Error />
   }
   const { roomActive, userMatchActive, userGender, roomId, userId } =
     data.mainPageResponse
