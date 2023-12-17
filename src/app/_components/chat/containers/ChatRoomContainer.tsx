@@ -22,11 +22,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const router = useRouter()
   const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const hasFocused = useRef(false)
   const realTimeMessages = useRecoilValue(realTimeMessagesState)
-  const [localRealTimeMessages, setLocalRealTimeMessages] = useState<
-    ChatMessageFromServer[]
-  >([])
   const [scrollHeight, setScrollHeight] = useState(0)
   const [openUnmatchModal, setOpenUnmatchedModal] = useRecoilState(
     openUnmatchModalState,
@@ -36,25 +32,13 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
 
   useEffect(() => {
     const handleFocus = () => {
-      if (!hasFocused.current) {
-        hasFocused.current = true
-      }
+      window.location.reload()
     }
 
     window.addEventListener('focus', handleFocus)
-
-    return () => {
-      window.removeEventListener('focus', handleFocus)
-    }
   }, [])
 
   useEffect(() => {
-    if (!hasFocused.current) {
-      return
-    } else {
-      setLocalRealTimeMessages(realTimeMessages)
-    }
-
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
@@ -139,7 +123,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           <ChatList
             userId={userId}
             user={data.pages[0].user}
-            chatHistory={localRealTimeMessages}
+            chatHistory={realTimeMessages}
           />
         )}
       </div>
