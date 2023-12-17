@@ -11,7 +11,7 @@ interface UserNicknameProps {
 }
 
 export function useSSR() {
-  const [isInitialInput, setisInitialInput] = useState(true)
+  const [isInitialInput, setisInitialInput] = useState<boolean>(true)
   const [nicknameValue, setNicknameValue] = useRecoilState(userInfoState)
 
   useEffect(() => {
@@ -27,8 +27,10 @@ export function useSSR() {
 const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const route = useRouter()
   const [nickname, setNickname] = useSSR()
-  const [inputValue, setInputValue] = useState(nickname.nickname)
-  const [inputCount, setinputCount] = useState(`${nickname.nickname.length}/5`)
+  const [inputValue, setInputValue] = useState<string>(nickname.nickname)
+  const [inputCount, setinputCount] = useState<string>(
+    `${nickname.nickname.length}/5`,
+  )
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(0, INPUT_NICKNAME.MAX)
