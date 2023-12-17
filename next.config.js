@@ -2,11 +2,11 @@
 const nextConfig = {
   async redirects() {
     return [
-      {
-        source: '/userinfo/:slug',
-        destination: '/login',
-        permanent: false,
-      },
+      // {
+      //   source: '/userinfo/:slug',
+      //   destination: '/login',
+      //   permanent: false,
+      // },
     ]
   },
 }
