@@ -1,11 +1,12 @@
 'use client'
 
 import { CHAT_SIZE, UNMATCHED_MODAL } from '@/_constants/chat'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { useEffect, useRef, useState } from 'react'
 import { realTimeMessagesState } from '@/_atom/chat'
 import { useInfiniteChatQuery } from '@/_hooks/useInfiniteChatQuery'
 import { useRouter } from 'next/navigation'
+import ChatList from '../chatroom/ChatList'
 import ModalPortal from '@/_components/common/modal/ModalPortal'
 import ModalOutside from '@/_components/common/modal/ModalOutside'
 import ModalContentOne from '@/_components/common/modal/ModalContentOne'
@@ -23,9 +24,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const topDivRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [scrollHeight, setScrollHeight] = useState(0)
-  const [realTimeMessages, setRealTimeMessages] = useRecoilState(
-    realTimeMessagesState,
-  )
+  const realTimeMessages = useRecoilValue(realTimeMessagesState)
   const [openUnmatchModal, setOpenUnmatchedModal] = useState<boolean>(false)
   const { fetchNextPage, hasNextPage, data, isError, isLoading } =
     useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
@@ -40,9 +39,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
-    // if (data?.pages[0].user && data?.pages[0].user.roomActive) {
-    //   setOpenUnmatchedModal(true)
-    // }
+    if (data?.pages[0].user && data?.pages[0].user.roomActive) {
+      setOpenUnmatchedModal(true)
+    }
   }, [data])
 
   useEffect(() => {
@@ -119,7 +118,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           />
         )}
       </div>
-      {/* 동작 확인하기 ** */}
       {openUnmatchModal && data && (
         <ModalPortal nodeName="unmatchedPortal">
           <ModalOutside

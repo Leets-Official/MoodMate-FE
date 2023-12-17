@@ -3,6 +3,7 @@ interface ResponseChatGet {
   user: {
     gender: 'MALE' | 'FEMALE'
     nickname: string
+    roomActive: boolean
   }
   pageable: {
     size: number
