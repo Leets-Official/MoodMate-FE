@@ -15,9 +15,7 @@ const Header = ({ chat, partner }: HeaderProps) => {
 
   return (
     <section
-      className={`bg-white flex items-center justify-between w-full h-[8%] px-[26px] ${
-        partner && 'h-[8%]'
-      }`}
+      className={`bg-white flex items-center justify-between w-full h-[8%] px-[26px]`}
     >
       {chat ? (
         <h1 className="text-[20px] font-bold">채팅</h1>
