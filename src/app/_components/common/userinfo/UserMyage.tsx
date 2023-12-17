@@ -40,9 +40,7 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
 
     route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
 
-    setTimeout(() => {
-      console.log(userInfo)
-    }, 0)
+    setTimeout(() => {}, 0)
   }
 
   return (

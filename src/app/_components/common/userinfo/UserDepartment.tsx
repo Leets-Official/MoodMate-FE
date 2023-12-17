@@ -24,7 +24,6 @@ export default function UserDepartment({ pageNum }: UserDepartmentProps) {
 
   const nextRoute = () => {
     route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
-    console.log(userInfo)
   }
 
   const handleAccordionOpen = () => {

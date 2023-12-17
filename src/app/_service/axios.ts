@@ -55,13 +55,12 @@ api.interceptors.response.use(
         })
 
         originalRequest.headers.Authorization = `Bearer ${accessToken}`
-        console.log('토큰 재발급 성공')
         return await axios(originalRequest)
       } catch (e) {
-        console.log('토큰 재발급 실패', e)
+        throw e
       }
     } else {
-      console.log(error.response.status)
+      /* empty */
     }
     return Promise.reject(error)
   },

@@ -30,7 +30,8 @@ const useWebsocket = (roomId: number) => {
           })
         },
         (error: undefined) => {
-          console.log(`Error: ${error}`)
+          // eslint-disable-next-line @typescript-eslint/no-throw-literal
+          throw error
         },
       )
       setstompClient(client)

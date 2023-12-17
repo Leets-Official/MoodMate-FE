@@ -43,7 +43,6 @@ const OauthPage = () => {
 
   useEffect(() => {
     if (data) {
-      console.log('usergender', data.mainPageResponse.userGender)
       if (
         data.mainPageResponse.userGender === 'MALE' ||
         data.mainPageResponse.userGender === 'FEMALE'

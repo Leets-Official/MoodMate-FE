@@ -17,7 +17,6 @@ export const getMessages = async (
       })
       .then((res) => res.data)
   } catch (error) {
-    console.log('채팅 기록 가져오기 에러 : ', error)
     throw error
   }
 }
@@ -27,7 +26,6 @@ export const patchQuitChat = async () => {
   try {
     return await api.patch('/chat').then((res) => res.data) // message 콘솔 확인
   } catch (error) {
-    console.log('채팅종료 에러 : ', error)
     throw error
   }
 }
