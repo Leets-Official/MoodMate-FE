@@ -57,7 +57,6 @@ export default function UserGender({ pageNum }: UserGenderProps) {
   useEffect(() => {
     setMaleButtonSelected(userInfo.gender === 'MALE')
     setFemaleButtonSelected(userInfo.gender === 'FEMALE')
-    console.log(userInfo)
   }, [userInfo])
 
   return (

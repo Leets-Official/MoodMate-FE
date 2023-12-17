@@ -12,7 +12,6 @@ interface HeaderProps {
 
 const Header = ({ chat, partner }: HeaderProps) => {
   const router = useRouter()
-  console.log(partner)
 
   return (
     <section

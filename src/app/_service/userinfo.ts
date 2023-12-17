@@ -16,7 +16,6 @@ export const postUserData = async (
 
     return () => ({ userInfoResult, preferInfoResult }) // 함수 반환
   } catch (error) {
-    console.error('Error posting user or prefer info:', error)
     throw error
   }
 }
@@ -26,7 +25,6 @@ const postUserInfo = async (userInfo: UserInfoData) => {
     const response = await api.post('/users/user-info', userInfo)
     return response.data
   } catch (error) {
-    console.error('Error posting user info:', error)
     throw error
   }
 }
@@ -36,7 +34,6 @@ const postPreferInfo = async (preferInfo: PreferInfoData) => {
     const response = await api.post('/users/prefer-info', preferInfo)
     return response.data
   } catch (error) {
-    console.error('Error posting prefer info:', error)
     throw error
   }
 }

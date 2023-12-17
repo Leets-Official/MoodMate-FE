@@ -38,24 +38,15 @@ export default function UserMood() {
 
   const postUserDataMutation = useMutation({
     mutationFn: () => postUserData(usersInfo, userInfo),
-    onSuccess: () => {
-      console.log('postUserDataMutation success')
-    },
+    onSuccess: () => {},
   })
-
-  useEffect(() => {
-    console.log(usersInfo)
-    console.log(userInfo)
-  }, [usersInfo, userInfo])
 
   const nextRoute = async () => {
     try {
       await postUserDataMutation.mutateAsync()
       route.push('/main')
-      console.log(userInfo)
-      console.log(usersInfo)
     } catch (error) {
-      console.error('Error posting user or prefer info to server : ', error)
+      throw error
     }
   }
 
