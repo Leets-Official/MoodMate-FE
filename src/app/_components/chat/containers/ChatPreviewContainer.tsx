@@ -12,13 +12,6 @@ import ModalOutside from '@/_components/common/modal/ModalOutside'
 import ModalContentOne from '@/_components/common/modal/ModalContentOne'
 import { useRouter } from 'next/navigation'
 import ChatPreview from '../chatlist/ChatPreview'
-import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import { openUnmatchModalState } from '@/_atom/chat'
-import ModalPortal from '@/_components/common/modal/ModalPortal'
-import ModalOutside from '@/_components/common/modal/ModalOutside'
-import ModalContentOne from '@/_components/common/modal/ModalContentOne'
-import { useRouter } from 'next/navigation'
 
 interface ChatPreviewContainerProps {
   roomId: number

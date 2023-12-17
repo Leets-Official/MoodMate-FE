@@ -14,8 +14,6 @@ import ModalPortal from '../common/modal/ModalPortal'
 import ModalOutside from '../common/modal/ModalOutside'
 import ModalContent from '../common/modal/ModalContent'
 import Icons from '../common/Icons'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { openUnmatchModalState } from '@/_atom/chat'
 
 interface ChatHeaderProps {
   userId: number
