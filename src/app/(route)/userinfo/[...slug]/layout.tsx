@@ -1,5 +1,3 @@
-'use client'
-
 import BackHeader from '@/_components/layout/BackHeader'
 import ProgressBar from '@/_components/common/ProgressBar'
 import { PROGRESS_BAR } from '@/_constants'

@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import { BUTTON_TYPE, BUTTON_STYLE } from '@/_constants'
 
