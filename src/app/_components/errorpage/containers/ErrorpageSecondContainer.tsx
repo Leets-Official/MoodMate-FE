@@ -1,10 +1,6 @@
-import { useRouter } from 'next/router'
-
 const ErrorpageSecondContainer = () => {
-  const router = useRouter()
-
   const refreshPage = () => {
-    router.reload()
+    window.location.reload()
   }
   return (
     <div className="flex text-center">
