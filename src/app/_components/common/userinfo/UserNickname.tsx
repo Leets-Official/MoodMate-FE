@@ -5,6 +5,8 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { userInfoState } from '@/_atom/userinfo'
 import NormalButton from '../NormalButton'
 import Input from '../Input'
+import { useMainQuery } from '@/_hooks/useMainQuery'
+import Error from '@/(route)/error'
 
 interface UserNicknameProps {
   pageNum: string
@@ -16,6 +18,18 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const userInfo = useRecoilValue(userInfoState)
   const [inputValue, setInputValue] = useState(userInfo.nickname)
   const [inputCount, setinputCount] = useState(`${inputValue.length}/5`)
+
+  const { isError, data } = useMainQuery()
+
+  if (isError) {
+    return <Error />
+  }
+  if (
+    data?.mainPageResponse.userGender == 'MALE' ||
+    data?.mainPageResponse.userGender == 'FEMALE'
+  ) {
+    route.push('/main')
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(0, INPUT_NICKNAME.MAX)

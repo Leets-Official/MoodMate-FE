@@ -7,7 +7,6 @@ import { useQuery } from '@tanstack/react-query'
 import { getPartnerInfo } from '@/_service/partner'
 import Bio from '@/_components/common/Bio'
 import Header from '@/_components/layout/Header'
-import Loading from '@/_components/common/Loading'
 
 interface ChatPartnerInfoContainerProps {
   userId: number
@@ -17,18 +16,10 @@ const ChatPartnerInfoContainer = ({
   userId,
 }: ChatPartnerInfoContainerProps) => {
   const queryKey = ['chat/partner-info', userId]
-  const {
-    isLoading,
-    isError,
-    data: partner,
-  } = useQuery<PartnerInfo, Error>({
+  const { isError, data: partner } = useQuery<PartnerInfo, Error>({
     queryKey,
     queryFn: getPartnerInfo,
   })
-
-  if (isLoading) {
-    return <Loading />
-  }
 
   if (isError) {
     return <ErrorPage />

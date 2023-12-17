@@ -5,10 +5,10 @@ import { myPageInfo } from '@/_service/mypage'
 
 export const useMyPageQuery = () => {
   const queryKey = ['myPage']
-  const { isLoading, isError, data } = useQuery<ResponseMyPage, Error>({
+  const { isError, data } = useQuery<ResponseMyPage, Error>({
     queryKey,
     queryFn: myPageInfo,
   })
 
-  return { isLoading, isError, data }
+  return { isError, data }
 }

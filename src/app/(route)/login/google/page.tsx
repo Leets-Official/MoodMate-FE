@@ -8,7 +8,7 @@ import { useMainQuery } from '@/_hooks/useMainQuery'
 import ErrorPage from '@/(route)/error'
 
 const OauthPage = () => {
-  const { isLoading, isError, data } = useMainQuery()
+  const { isError, data } = useMainQuery()
   const [accessToken, setAccessToken] = useState<string>('')
   const [refreshToken, setRefreshToken] = useState<string>('')
   const router = useRouter()
@@ -54,9 +54,6 @@ const OauthPage = () => {
     }
   }, [data, router])
 
-  if (isLoading) {
-    return <Loading />
-  }
   if (isError || !data) {
     return <ErrorPage />
   }

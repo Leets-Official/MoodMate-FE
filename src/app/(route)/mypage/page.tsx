@@ -3,16 +3,14 @@
 import MypageSecondBoxContainer from '@/_components/mypage/containers/MypageSecondBoxContainer'
 import MypageThirdBoxContainer from '@/_components/mypage/containers/MypageThirdBoxContainer'
 import { useMyPageQuery } from '@/_hooks/useMypageQuery'
-import Loading from '@/_components/common/Loading'
+
 import Profile from '@/_components/information/Profile'
 import ErrorPage from '@/(route)/error'
 import Header from '@/_components/layout/Header'
 
 export default function MyPage() {
-  const { isLoading, isError, data } = useMyPageQuery()
-  if (isLoading) {
-    return <Loading />
-  }
+  const { isError, data } = useMyPageQuery()
+
   if (isError || !data) {
     return <ErrorPage />
   }

@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import ModalPortal from '@/_components/common/modal/ModalPortal'
 import ModalOutside from '@/_components/common/modal/ModalOutside'
 import ModalContentOne from '@/_components/common/modal/ModalContentOne'
-import Loading from '@/_components/common/Loading'
+
 import ErrorPage from '@/(route)/error'
 import ChatList from '../chatroom/ChatList'
 
@@ -27,8 +27,11 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   const [openUnmatchModal, setOpenUnmatchedModal] = useRecoilState(
     openUnmatchModalState,
   )
-  const { fetchNextPage, hasNextPage, data, isError, isLoading } =
-    useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
+  const { fetchNextPage, hasNextPage, data, isError } = useInfiniteChatQuery(
+    userId,
+    roomId,
+    CHAT_SIZE.ROOM,
+  )
 
   useEffect(() => {
     if (containerRef.current) {
@@ -84,10 +87,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
       setScrollHeight(containerRef.current.scrollHeight)
     }
   }, [data?.pages.length])
-
-  if (isLoading) {
-    return <Loading />
-  }
 
   if (isError || !data) {
     return <ErrorPage />
