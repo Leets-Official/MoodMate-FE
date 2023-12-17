@@ -1,5 +1,5 @@
 'use client'
-/* eslint-disable react/jsx-props-no-spreading */
+
 import React from 'react'
 import { Range } from 'react-range'
 import { RANGE_BAR_AGE, MY_AGE_PAGE } from '@/_constants'
