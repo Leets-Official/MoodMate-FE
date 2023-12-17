@@ -1,3 +1,4 @@
+'use client'
 import { MY_DEPARTMENT_PAGE } from '@/_constants/info'
 
 interface AccordionProps {

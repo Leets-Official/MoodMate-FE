@@ -1,3 +1,5 @@
+'use client'
+
 import { PROGRESS_BAR } from '@/_constants/info'
 import { useEffect, useState } from 'react'
 
