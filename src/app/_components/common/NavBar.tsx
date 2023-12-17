@@ -54,18 +54,14 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
   })
   const onOpenModal = () => {
     setOpenModal((prev) => !prev)
-    // document.body.style.overflow = 'hidden'
   }
   const onCloseModal = () => {
     setOpenModal(false)
-    // document.body.style.overflow = 'unset'
     inactiveMutation.mutate()
   }
   const onChatCloseModal = () => {
     setChatModal((prev) => !prev)
-    // document.body.style.overflow = 'unset'
   }
-  console.log('roomActive', roomActive)
   return (
     <div className="fixed translate-y-[43px] bottom-0 left-1/2 -translate-x-1/2 desktop:w-[378px] w-full">
       <div
