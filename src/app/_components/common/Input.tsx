@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 interface InputProps {
   sort: string
   textValue: string

@@ -1,5 +1,4 @@
 import { AFTER_TIMER_GUIDE, BEFORE_TIMER_GUIDE } from '@/_constants/main'
-import React from 'react'
 
 interface TextProps {
   type: 'BEFORE' | 'AFTER'

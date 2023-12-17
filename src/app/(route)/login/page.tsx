@@ -2,9 +2,8 @@
 
 import Image from 'next/image'
 import { LOGIN_PAGE } from '@/_constants/login'
-import React from 'react'
-import loginImage from '../../../../public/illustration/common/login/login.png'
-import google from '../../../../public/illustration/common/login/google.png'
+import loginImage from 'public/illustration/common/login/login.png'
+import google from 'public/illustration/common/login/google.png'
 
 export default function Login() {
   const handleLogin = () => {
