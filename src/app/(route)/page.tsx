@@ -1,3 +1,5 @@
+'use client'
+
 import Loading from '@/_components/common/Loading'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
@@ -11,10 +13,8 @@ export default function Root() {
     route.push('/login')
   }
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        <Loading />
-      </div>
+    <main>
+      <Loading />
     </main>
   )
 }
