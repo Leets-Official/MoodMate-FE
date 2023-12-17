@@ -180,7 +180,7 @@ export default function UserMood() {
         buttonText="매칭 시작"
         onClick={nextRoute}
         buttonType="large"
-        className={`absolute bottom-0  text-darkgray rounded-md ${
+        className={`font-sans absolute bottom-0  text-darkgray rounded-md ${
           actButtonSelected ||
           emoButtonSelected ||
           newButtonSelected ||

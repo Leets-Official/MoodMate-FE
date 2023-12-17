@@ -97,7 +97,7 @@ export default function UserSameDept({ pageNum }: UserSameDeptProps) {
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`absolute bottom-0  text-darkgray rounded-md ${
+        className={`font-sans absolute bottom-0  text-darkgray rounded-md ${
           trueButtonSelected || falseButtonSelected
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles
