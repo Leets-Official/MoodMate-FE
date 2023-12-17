@@ -69,13 +69,13 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
           getTextStyle(type).box
         } pt-11 h-[223px] rounded-[88px] translate-y-1/3 flex justify-between`}
       >
-        <div className="ml-16">
+        <div className="ml-16 cursor-pointer">
           <Icons name={deactivation} onClick={() => setOpenModal(true)} />
         </div>
         <div
           className={`${
             getTextStyle(type).chat
-          } rounded-full w-[72px] h-[72px] -mt-16`}
+          } rounded-full w-[72px] h-[72px] -mt-16 cursor-pointer`}
         >
           <Icons
             name={getTextStyle(type).chating}
@@ -88,7 +88,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
             }}
           />
         </div>
-        <div className="mr-16">
+        <div className="mr-16 cursor-pointer">
           <Icons name={bio} onClick={() => route.push('/mypage')} />
         </div>
       </div>
