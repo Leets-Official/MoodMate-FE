@@ -76,17 +76,14 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
           className={`${
             getTextStyle(type).chat
           } rounded-full w-[72px] h-[72px] -mt-16 cursor-pointer`}
+          onClick={() => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            roomActive
+              ? route.push(`/chat/${userId}/${roomId}`)
+              : setChatModal(true)
+          }}
         >
-          <Icons
-            name={getTextStyle(type).chating}
-            className="ml-6 mt-6"
-            onClick={() => {
-              // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-              roomActive
-                ? route.push(`/chat/${userId}/${roomId}`)
-                : setChatModal(true)
-            }}
-          />
+          <Icons name={getTextStyle(type).chating} className="ml-6 mt-6" />
         </div>
         <div className="mr-16 cursor-pointer">
           <Icons name={bio} onClick={() => route.push('/mypage')} />
