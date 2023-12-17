@@ -12,6 +12,8 @@ import ModalPortal from '../common/modal/ModalPortal'
 import ModalOutside from '../common/modal/ModalOutside'
 import ModalContent from '../common/modal/ModalContent'
 import Icons from '../common/Icons'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { openUnmatchModalState } from '@/_atom/chat'
 
 interface ChatHeaderProps {
   userId: number
@@ -21,6 +23,7 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
   const router = useRouter()
   const [openExitModal, setOpenExitModal] = useState<boolean>(false)
   const [openMatchModal, setOpenMatchModal] = useState<boolean>(false)
+  const openUnmatchModal = useRecoilValue(openUnmatchModalState)
   const newMatchMutation = useMutation({
     mutationFn: patchQuitChat,
     onSuccess: () => {
@@ -55,7 +58,7 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
   return (
     <section
       className={`desktop:w-[378px] w-full fixed top-0 flex items-center bg-white justify-between h-[80px] px-[26px] ${
-        openMatchModal || openExitModal ? 'z-[-10]' : 'z-10'
+        openMatchModal || openExitModal || openUnmatchModal ? 'z-[-10]' : 'z-10'
       }`}
     >
       <Icons name={back} onClick={() => router.back()} />
