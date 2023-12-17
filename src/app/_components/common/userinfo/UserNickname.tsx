@@ -73,12 +73,12 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
 
   const inputStyles = {
     defaultStyles: 'bg-lightgray',
-    activeStyles: 'bg-[#FC4F59]',
+    activeStyles: 'bg-primar',
   }
 
   const buttonStyles = {
     defaultStyles: 'bg-secondary',
-    activeStyles: 'text-white bg-[#FC4F59]',
+    activeStyles: 'text-white bg-primary',
   }
 
   return (
@@ -100,9 +100,11 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
           onChange={handleInputChange}
           className="w-[240px] placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[30px]"
         />
-        <span className="text-[12px] text-secondary">{inputCount}</span>
+        <span className="text-[12px] font-sans text-secondary">
+          {inputCount}
+        </span>
         <div
-          className={`w-full h-[2px] mt-[3px] rounded-[2.415px] ${
+          className={`font-sans w-full h-[2px] mt-[3px] rounded-[2.415px] ${
             inputValue.length > 0
               ? inputStyles.activeStyles
               : inputStyles.defaultStyles
@@ -117,7 +119,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`absolute bottom-0 rounded-md text-darkgray ${
+        className={`font-sans absolute bottom-0 rounded-md text-darkgray ${
           inputValue.length > 0
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

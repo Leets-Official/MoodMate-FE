@@ -58,7 +58,7 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
       <div className="relative top-[0%] mt-[-60px] mb-[20px]  left-[40%] ml-[-50px] w-[149px] h-[157px] flex justify-center items-center">
         <img src={myCharacter} alt="" width="149" height="atuo" />
       </div>
-      <div className="justify-items-center flex flex-col items-center">
+      <div className="justify-items-center flex flex-col items-center font-sans">
         <RangeBar
           type="single"
           values={singleValue}
@@ -68,7 +68,7 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
           buttonText="다음"
           onClick={nextRoute}
           buttonType="large"
-          className={`absolute bottom-0 text-darkgray rounded-md ${
+          className={`font-sans absolute bottom-0 text-darkgray rounded-md ${
             singleValue[0] !== 0
               ? buttonStyles.activeStyles
               : buttonStyles.defaultStyles
