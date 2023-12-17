@@ -99,7 +99,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
       />
       <Icons
         name={info}
-        className="mt-4 absolute top-0 right-0 mr-4 desktop:w-[378px] cursor-pointer"
+        className="mt-4 absolute top-0 right-0 mr-4 cursor-pointer"
         onClick={() => route.push('/announcement')}
       />
       <TimerFirstText type={type} />
