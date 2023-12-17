@@ -6,7 +6,7 @@
 
 <br />
 
-> 서비스 바로가기 <br /> > **https://www.moodmate.site**
+> 서비스 바로가기 <br /> > **https://www.moodmate.site/main**
 
 <br/>
 
