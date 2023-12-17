@@ -1,5 +1,3 @@
-'use client'
-
 import UserinfoPageComponents from '@/_components/common/userinfo/UserinfoPageComponents'
 
 interface UserinfoPageProps {

@@ -1,3 +1,5 @@
+'use client'
+
 import NotFound from '@/(route)/not-found'
 import UserNickname from './UserNickname'
 import UserGender from './UserGender'

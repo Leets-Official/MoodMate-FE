@@ -23,7 +23,7 @@ export default function UserSameDept({ pageNum }: UserSameDeptProps) {
 
   const buttonStyles = {
     defaultStyles: 'bg-secondary',
-    activeStyles: 'text-white bg-[#FC4F59]',
+    activeStyles: 'text-white bg-primary',
   }
 
   const nextRoute = () => {
@@ -97,7 +97,7 @@ export default function UserSameDept({ pageNum }: UserSameDeptProps) {
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`absolute bottom-0  text-darkgray rounded-md ${
+        className={`font-sans absolute bottom-0  text-darkgray rounded-md ${
           trueButtonSelected || falseButtonSelected
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

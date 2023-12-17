@@ -1,3 +1,4 @@
+'use client'
 import { MY_DEPARTMENT_PAGE } from '@/_constants/info'
 
 interface AccordionProps {
@@ -60,7 +61,7 @@ const Accordion = ({
                 selectedDepartment === department
                   ? 'bg-FFF3F4 text-primary'
                   : 'bg-FFF3F4 text-darkgray'
-              }`}
+              } hover:text-primary hover:bg-zeropink font-sans font-medium leading-normal`}
               onClick={() => handleSelect(department)}
               type="button"
             >

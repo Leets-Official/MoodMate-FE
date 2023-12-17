@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import { Range } from 'react-range'
@@ -156,6 +157,7 @@ const RangeBar = ({ type, values, onChange }: RangeBarProps) => {
                   height: '5px',
                   borderRadius: 'full',
                   background: '#FC4F59',
+                  font: 'sans',
                   width: `${
                     ((values[1] - values[0]) /
                       (RANGE_BAR_AGE.MAX - RANGE_BAR_AGE.MIN)) *

@@ -32,7 +32,7 @@ export default function UserDepartment({ pageNum }: UserDepartmentProps) {
 
   const buttonStyles = {
     defaultStyles: 'bg-secondary',
-    activeStyles: 'text-white bg-[#FC4F59]',
+    activeStyles: 'text-white bg-primary',
   }
 
   return (
@@ -54,7 +54,7 @@ export default function UserDepartment({ pageNum }: UserDepartmentProps) {
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`absolute bottom-0 text-darkgray rounded-md ${
+        className={`absolute bottom-0 font-sans text-darkgray rounded-md ${
           userInfo.department
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

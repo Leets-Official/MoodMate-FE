@@ -23,7 +23,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
 
   const buttonStyles = {
     defaultStyles: 'bg-secondary',
-    activeStyles: 'text-white bg-[#FC4F59]',
+    activeStyles: 'text-white bg-primary',
   }
 
   const nextRoute = () => {
@@ -97,7 +97,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`absolute bottom-0  text-darkgray rounded-md ${
+        className={`absolute bottom-0 font-sans text-darkgray rounded-md ${
           maleButtonSelected || femaleButtonSelected
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

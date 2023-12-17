@@ -83,7 +83,7 @@ export default function UserKeyword({ pageNum }: UserKeywordProps) {
           buttonText="다음"
           onClick={nextRoute}
           buttonType="large"
-          className={`absolute bottom-0 text-darkgray rounded-md ${
+          className={`font-sans absolute bottom-0 text-darkgray rounded-md ${
             selectedButtons.length === 3
               ? buttonStyles.activeStyles
               : buttonStyles.defaultStyles
