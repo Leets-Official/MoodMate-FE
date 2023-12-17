@@ -8,12 +8,12 @@ import Link from 'next/link'
 import { patchQuitChat } from '@/_service/chat'
 import { useMutation } from '@tanstack/react-query'
 import { patchInactiveMain } from '@/_service/main'
+import { useRecoilValue } from 'recoil'
+import { openUnmatchModalState } from '@/_atom/chat'
 import ModalPortal from '../common/modal/ModalPortal'
 import ModalOutside from '../common/modal/ModalOutside'
 import ModalContent from '../common/modal/ModalContent'
 import Icons from '../common/Icons'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { openUnmatchModalState } from '@/_atom/chat'
 
 interface ChatHeaderProps {
   userId: number

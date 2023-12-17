@@ -4,7 +4,6 @@ import { useChatQuery } from '@/_hooks/useChatQuery'
 import { CHAT_SIZE, UNMATCHED_MODAL } from '@/_constants/chat'
 import Loading from '@/_components/common/Loading'
 import ErrorPage from '@/(route)/error'
-import ChatPreview from '../chatlist/ChatPreview'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { openUnmatchModalState } from '@/_atom/chat'
@@ -12,6 +11,7 @@ import ModalPortal from '@/_components/common/modal/ModalPortal'
 import ModalOutside from '@/_components/common/modal/ModalOutside'
 import ModalContentOne from '@/_components/common/modal/ModalContentOne'
 import { useRouter } from 'next/navigation'
+import ChatPreview from '../chatlist/ChatPreview'
 
 interface ChatPreviewContainerProps {
   roomId: number
