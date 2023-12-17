@@ -61,7 +61,9 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
         openMatchModal || openExitModal || openUnmatchModal ? 'z-[-10]' : 'z-10'
       }`}
     >
-      <Icons name={back} onClick={() => router.back()} />
+      <div className="cursor-pointer">
+        <Icons name={back} onClick={() => router.back()} />
+      </div>
       <div className="flex flex-row items-center justify-center gap-3 cursor-pointer">
         <Icons name={quit} onClick={() => setOpenExitModal(true)} />
         <Link href={`/chat/partner-info/${userId}`}>

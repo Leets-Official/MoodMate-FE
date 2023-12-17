@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import Loading from '@/_components/common/Loading'
 import { useMainQuery } from '@/_hooks/useMainQuery'
+import ErrorPage from '@/(route)/error'
 
 const OauthPage = () => {
   const { isLoading, isError, data } = useMainQuery()
@@ -28,13 +29,17 @@ const OauthPage = () => {
       setRefreshToken(refreshTokenURL)
     }
   }, [])
-  // useEffect(() => {
-  //   if (accessToken) {
-  //     router.push('/main')
-  //   }
-  // }, [accessToken, router])
-  Cookies.set('accessToken', accessToken)
-  Cookies.set('refreshToken', refreshToken)
+  const accessTokenExpiry = new Date()
+  accessTokenExpiry.setTime(accessTokenExpiry.getTime() + 3 * 60 * 60 * 1000)
+  Cookies.set('accessToken', accessToken, { expires: accessTokenExpiry })
+
+  const refreshTokenExpiry = new Date()
+  refreshTokenExpiry.setTime(
+    refreshTokenExpiry.getTime() + 3 * 24 * 60 * 60 * 1000,
+  )
+  Cookies.set('refreshToken', refreshToken, {
+    expires: refreshTokenExpiry,
+  })
 
   useEffect(() => {
     if (data) {
@@ -53,10 +58,10 @@ const OauthPage = () => {
   if (isLoading) {
     return <Loading />
   }
-
   if (isError || !data) {
-    return <div>Error...</div>
+    return <ErrorPage />
   }
+
   return (
     <div>
       <Loading />
