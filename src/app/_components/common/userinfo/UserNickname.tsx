@@ -10,12 +10,25 @@ interface UserNicknameProps {
   pageNum: string
 }
 
+export function useSSR() {
+  const [isInitialInput, setisInitialInput] = useState(true)
+  const [nicknameValue, setNicknameValue] = useRecoilState(userInfoState)
+
+  useEffect(() => {
+    setisInitialInput(false)
+  }, [])
+
+  return [
+    isInitialInput ? useRecoilValue(userInfoState) : nicknameValue,
+    setNicknameValue,
+  ] as const
+}
+
 const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const route = useRouter()
-  const [nickname, setNickname] = useRecoilState(userInfoState)
-  const userInfo = useRecoilValue(userInfoState)
-  const [inputValue, setInputValue] = useState(userInfo.nickname)
-  const [inputCount, setinputCount] = useState(`${userInfo.nickname.length}/5`)
+  const [nickname, setNickname] = useSSR()
+  const [inputValue, setInputValue] = useState(nickname.nickname)
+  const [inputCount, setinputCount] = useState(`${nickname.nickname.length}/5`)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(0, INPUT_NICKNAME.MAX)
@@ -34,21 +47,23 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const calculateInputCount = (value: string) => `${value.length}/5`
 
   useEffect(() => {
+    const isBrowser = typeof window !== 'undefined'
+    if (!isBrowser) {
+      return
+    }
+
     const fetchData = async () => {
-      const isBrowser = typeof window !== 'undefined'
-      if (isBrowser) {
-        const storedUserInfo = sessionStorage.getItem('userInfoState')
-        if (storedUserInfo !== null) {
-          const parsedUserInfo = JSON.parse(storedUserInfo)
-          const storedNickname = parsedUserInfo?.userInfoState?.nickname
-          if (storedNickname) {
-            setNickname((prevNickname) => ({
-              ...prevNickname,
-              nickname: storedNickname,
-            }))
-            setInputValue(storedNickname)
-            setinputCount(calculateInputCount(storedNickname))
-          }
+      const storedUserInfo = sessionStorage.getItem('userInfoState')
+      if (storedUserInfo !== null) {
+        const parsedUserInfo = JSON.parse(storedUserInfo)
+        const storedNickname = parsedUserInfo?.userInfoState?.nickname
+        if (storedNickname) {
+          setNickname((prevNickname) => ({
+            ...prevNickname,
+            nickname: storedNickname,
+          }))
+          setInputValue(storedNickname)
+          setinputCount(calculateInputCount(storedNickname))
         }
       }
     }
