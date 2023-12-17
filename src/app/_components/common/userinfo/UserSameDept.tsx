@@ -23,7 +23,7 @@ export default function UserSameDept({ pageNum }: UserSameDeptProps) {
 
   const buttonStyles = {
     defaultStyles: 'bg-secondary',
-    activeStyles: 'text-white bg-[#FC4F59]',
+    activeStyles: 'text-white bg-primary',
   }
 
   const nextRoute = () => {

@@ -50,7 +50,7 @@ const MypageSecondBoxContainer = ({
           className="ml-4"
         />
       </div>
-      <div className="w-auto h-2 bg-[#E6E6E6] mt-6" />
+      <div className="w-auto h-2 bg-lightgray mt-6" />
     </section>
   )
 }
