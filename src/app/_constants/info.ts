@@ -80,7 +80,7 @@ export const NICK_NAME_PAGE = {
   GREETINGS2: '어떻게 불러드리면 될까요?',
   WARNINGS: '닉네임은 한번 정하면 수정할 수 없어요!',
   INPUTBOX: '닉네임을 입력하세요.',
-  GUIDE: '5글자 이내로 입력해주세요.',
+  GUIDE: '5글자 이내로 한글만 입력해주세요.',
 } as const
 
 export const GENDER_PAGE = {

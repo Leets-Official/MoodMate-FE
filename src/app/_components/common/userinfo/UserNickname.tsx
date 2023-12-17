@@ -19,10 +19,11 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(0, INPUT_NICKNAME.MAX)
-    setInputValue(newValue)
-
-    const countText = `${newValue.length}/${INPUT_NICKNAME.MAX}`
-    setinputCount(countText)
+    const koeranOnly = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/g
+    if (koeranOnly.test(newValue)) {
+      setInputValue(newValue)
+      setinputCount(`${newValue.length}/${INPUT_NICKNAME.MAX}`)
+    }
   }
 
   const nextRoute = () => {
@@ -35,7 +36,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
 
   const inputStyles = {
     defaultStyles: 'bg-lightgray',
-    activeStyles: 'bg-primar',
+    activeStyles: 'bg-primary',
   }
 
   const buttonStyles = {
@@ -60,7 +61,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
           textValue={inputValue}
           placeholder={NICK_NAME_PAGE.INPUTBOX}
           onChange={handleInputChange}
-          className="w-[240px] placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[30px]"
+          className="w-[230px] placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[30px]"
         />
         <span className="text-[12px] font-sans text-secondary">
           {inputCount}
