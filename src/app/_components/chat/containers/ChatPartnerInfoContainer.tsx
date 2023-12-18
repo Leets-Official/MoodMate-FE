@@ -12,7 +12,6 @@ import Loading from '@/_components/common/Loading'
 interface ChatPartnerInfoContainerProps {
   userId: number
 }
-
 const ChatPartnerInfoContainer = ({
   userId,
 }: ChatPartnerInfoContainerProps) => {
@@ -33,7 +32,6 @@ const ChatPartnerInfoContainer = ({
   if (isError) {
     return <ErrorPage />
   }
-
   return (
     <section className="h-screen w-full">
       <Header partner />
