@@ -43,7 +43,7 @@ const ChatPreview = ({
             )}
           </div>
           {!isRead && (
-            <div className="flex justify-center items-center bg-neutral-500 text-white w-[16px] h-[16px] rounded-full text-[10px] mr-3">
+            <div className="flex justify-center items-center bg-neutral-500 text-white w-[16px] h-[16px] rounded-full text-[10px] mr-2">
               {count}
             </div>
           )}
