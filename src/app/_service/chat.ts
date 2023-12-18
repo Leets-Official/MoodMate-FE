@@ -1,6 +1,5 @@
 import api from './axios'
 
-/** 채팅 내역 가져오기 */
 export const getMessages = async (
   roomId: number,
   size: number,
@@ -21,7 +20,6 @@ export const getMessages = async (
   }
 }
 
-/** 채팅 종료 */
 export const patchQuitChat = async () => {
   try {
     return await api.patch('/chat').then((res) => res.data) // message 콘솔 확인
