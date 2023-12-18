@@ -14,7 +14,7 @@ export default function AnnouncementPage() {
       <News news="안녕하세요 저는 은지에열" />
       <News news="안녕하세요 저는 은지에열" />
       <div className="mt-6 mx-6">
-        <hr></hr>
+        <hr />
         <div className="text-[14px] text-gray-500 p-4 ">
           <p>더 궁금한 점이 있다면?</p>
           <p className="underline">
