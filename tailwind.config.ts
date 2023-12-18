@@ -14,7 +14,7 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       screens: {
-        desktop: '700px',
+        desktop: '500px',
       },
       colors: {
         primary: '#FC4F59',
@@ -26,6 +26,11 @@ const config: Config = {
         darkgray: '#333333',
         lightgray: '#E6E6E6',
         white: '#FFFFFF',
+      },
+      tilities: {
+        '.smooth-scroll': {
+          '-webkit-overflow-scrolling': 'touch',
+        },
       },
     },
   },

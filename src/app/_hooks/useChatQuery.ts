@@ -3,20 +3,15 @@
 import { getMessages } from '@/_service/chat'
 import { useQuery } from '@tanstack/react-query'
 
-export const useChatQuery = (
-  userId: number,
-  roomId: number,
-  size: number,
-  page: number,
-) => {
-  const queryKey = ['chat', userId, size, page]
+export const useChatQuery = (roomId: number, size: number, page: number) => {
+  const queryKey = ['chat', roomId, size, page]
   const {
     isLoading,
     isError,
     data: chatHistory,
   } = useQuery<ResponseChatGet, Error>({
     queryKey,
-    queryFn: () => getMessages(userId, roomId, size, page),
+    queryFn: () => getMessages(roomId, size, page),
   })
 
   return { isLoading, isError, chatHistory }

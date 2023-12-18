@@ -1,21 +1,39 @@
 import api from './axios'
 
-export const postUserInfo = async (userInfo: UserInfoData) => {
+export const postUserData = async (
+  userInfo: UserInfoData,
+  preferInfo: PreferInfoData,
+) => {
   try {
-    const response = await api.post('/users/user-info', userInfo)
-    return response.data
-  } catch (error: any) {
-    console.error('Error posting user info:', error.message)
+    const [userInfoResult, preferInfoResult] = await Promise.allSettled([
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      postUserInfo(userInfo),
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      postPreferInfo(preferInfo),
+    ])
+
+    // return [userInfoResult, preferInfoResult]; // 주석 처리
+
+    return () => ({ userInfoResult, preferInfoResult }) // 함수 반환
+  } catch (error) {
     throw error
   }
 }
 
-export const postPreferInfo = async (preferInfo: PreferInfoData) => {
+const postUserInfo = async (userInfo: UserInfoData) => {
+  try {
+    const response = await api.post('/users/user-info', userInfo)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
+const postPreferInfo = async (preferInfo: PreferInfoData) => {
   try {
     const response = await api.post('/users/prefer-info', preferInfo)
     return response.data
-  } catch (error: any) {
-    console.error('Error posting prefer info:', error.message)
+  } catch (error) {
     throw error
   }
 }

@@ -1,3 +1,6 @@
+'use client'
+
+import NotFound from '@/(route)/not-found'
 import UserNickname from './UserNickname'
 import UserGender from './UserGender'
 import UserMyage from './UserMyage'
@@ -6,7 +9,6 @@ import UserKeyword from './UserKeyword'
 import UserMoodyAge from './UserMoodyAge'
 import UserSameDept from './UserSameDept'
 import UserMood from './UserMood'
-import NotFound from '@/not-found'
 
 interface UserinfoPageComponentsProps {
   slug: string
@@ -18,17 +20,17 @@ const UserinfoPageComponents = ({ slug }: UserinfoPageComponentsProps) => {
     case '1':
       return <UserNickname pageNum={pageNum} />
     case '2':
-      return <UserGender />
+      return <UserGender pageNum={pageNum} />
     case '3':
-      return <UserMyage />
+      return <UserMyage pageNum={pageNum} />
     case '4':
-      return <UserDepartment />
+      return <UserDepartment pageNum={pageNum} />
     case '5':
-      return <UserKeyword />
+      return <UserKeyword pageNum={pageNum} />
     case '6':
-      return <UserMoodyAge />
+      return <UserMoodyAge pageNum={pageNum} />
     case '7':
-      return <UserSameDept />
+      return <UserSameDept pageNum={pageNum} />
     case '8':
       return <UserMood />
     default:

@@ -21,7 +21,6 @@ export const getUserToken = async (code: string) => {
       path: '/',
     })
   } catch (error) {
-    console.log('유저 토큰 가져오기 에러 : ', error)
     throw error
   }
 }

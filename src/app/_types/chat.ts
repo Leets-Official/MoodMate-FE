@@ -11,3 +11,16 @@ interface ChatMessageFromServer {
   createdAt: string
   isRead: boolean
 }
+
+interface Pageable {
+  page: number
+  size: number
+  totalElements: number
+  totalPages: number
+}
+
+interface ChatMessageFromServerFull {
+  chatList: ChatMessageFromServer[]
+  pageable: Pageable
+  user: SimpleUser
+}

@@ -5,9 +5,9 @@ interface ChatPreviewProps {
   roomId: number
   userId: number
   nickname: string
-  lastMessage: string
-  isRead: boolean
-  count: number
+  lastMessage?: string | null
+  isRead?: boolean | null
+  count?: number
   gender: 'MALE' | 'FEMALE'
 }
 
@@ -21,15 +21,26 @@ const ChatPreview = ({
   gender,
 }: ChatPreviewProps) => {
   return (
-    <section className="bg-white h-[80px] w-[80%] rounded-2xl ">
+    <div className="bg-white h-[86px] w-[85%] rounded-2xl border-[1px] border-primary mx-5">
       <Link href={`/chat/room/${userId}/${roomId}`}>
-        <div className="flex justify-center items-center flex-row gap-4 h-full">
-          <Bio gender={gender} size="SMALL" />
-          <div className="flex flex-col w-[180px]  bg-white">
+        <div className="flex justify-center items-center flex-row gap-3 h-full w-full ">
+          <div className="w-[18%]">
+            <Bio
+              gender={gender === 'FEMALE' ? 'MALE' : 'FEMALE'}
+              size="MEDIUM"
+            />
+          </div>
+          <div className="flex flex-col w-[72%] bg-white">
             <p className="font-bold text-[16px] line-clamp-1 ">{nickname}</p>
-            <div className="text-[14px] w-[181px] line-clamp-2 leading-[1.3]">
-              {lastMessage}
-            </div>
+            {lastMessage ? (
+              <div className="text-[14px] w-[181px] line-clamp-2 leading-[1.3]">
+                {lastMessage}
+              </div>
+            ) : (
+              <p className="text-xs text-neutral-600">
+                새로운 채팅을 시작해보세요!
+              </p>
+            )}
           </div>
           {!isRead && (
             <div className="flex justify-center items-center bg-neutral-500 text-white w-[16px] h-[16px] rounded-full text-[10px]">
@@ -38,7 +49,7 @@ const ChatPreview = ({
           )}
         </div>
       </Link>
-    </section>
+    </div>
   )
 }
 

@@ -53,7 +53,7 @@ export const DEPARTMENT_LIST = [
   '스마트시티학과',
   '의공학과',
   '바이오의료기기학과',
-  '게임·영상학과학과',
+  '게임·영상학과',
   '한의예과',
   '회화·조소전공',
   '디자인전공',
@@ -75,14 +75,12 @@ export const DEPARTMENT_LIST = [
   '응급구조학과',
 ] as const
 
-export const MOOD_LIST = ['활기찬', '풍부한', '이색적인', '유쾌한'] as const
-
 export const NICK_NAME_PAGE = {
   GREETINGS1: '가입을 축하드려요!',
   GREETINGS2: '어떻게 불러드리면 될까요?',
-  WRNINGS: '닉네임은 한번 정하면 수정할 수 없어요!',
+  WARNINGS: '닉네임은 한번 정하면 수정할 수 없어요!',
   INPUTBOX: '닉네임을 입력하세요.',
-  GUIDE: '5글자 이내로 입력해주세요.',
+  GUIDE: '5글자 이내로 한글만 입력해주세요.',
 } as const
 
 export const GENDER_PAGE = {
@@ -94,36 +92,37 @@ export const GENDER_PAGE = {
 
 export const MY_AGE_PAGE = {
   GREETINGS: '무디가 당신의 나이를 궁금해해요!',
-  WRININGS: '출생년도를 기준으로 골라주세요.',
-  MAX: '94',
-  MIN: '04',
+  WARNINGS: '출생년도를 기준으로 골라주세요.',
+  MAX: '04',
+  MIN: '94',
   AVG: '99',
 } as const
 
 export const MY_DEPARTMENT_PAGE = {
   GREETINGS: '무디에게 학과를 알려주세요!',
-  WANINGS: '학과를 선택하세요.',
+  WARNINGS: '학과를 선택하세요.',
   DEPARTMENT_LIST,
 } as const
 
 export const MY_KEYWORD_PAGE = {
   GREETINGS: '무디에게 여러분을 소개해주세요!',
-  WANINGS: '여러분을 나타내는 키워드를 3개 선택해주세요.',
+  WARNINGS1: '여러분을 나타내는 키워드를',
+  WARNINGS2: '3개 선택해주세요.',
   KEYWORD_LIST: [
     '인기짱',
-    '고양이',
-    '강아지',
+    '고양이상',
+    '강아지상',
     '혼자가 좋아',
     '감성충만',
     '상상력왕',
     '방콕러',
     '반려인',
-    '귀요미',
+    '배려왕',
     '쩝쩝박사',
     '몸짱',
     '얼굴천재',
     '패셔니스타',
-    '장난꾸러기',
+    '프로게이머',
     '트렌드세터',
     '섹시도발',
     '마이웨이',
@@ -132,24 +131,37 @@ export const MY_KEYWORD_PAGE = {
 
 export const MOODIE_AGE_PAGE = {
   GREETINGS: '무디의 나이를 설정해주세요!',
-  WRININGS: '출생년도를 기준으로 골라주세요.',
-  MAX: '94',
-  MIN: '04',
+  WARNINGS: '출생년도를 기준으로 골라주세요.',
+  MAX: '04',
+  MIN: '94',
   AVG: '99',
 } as const
 
 export const MATCHING_DEPARTMENT_PAGE = {
   GREETINGS: '어떤 것을 선호하시나요?',
-  SAME_DEPT: '같은 학과도 좋아요!',
-  DIFF_DEPT: '다른 학과가 좋아요!',
+  SAME_DEPT: '같은 학과도',
+  LIKE: '좋아요!',
+  DIFF_DEPT: '다른 학과가',
 } as const
 
 export const DATE_MOOD_PAGE = {
-  GREETING: '무디와 어떤 데이트를 하고 싶나요?',
-  MOOD_LIST,
+  GREETINGS: '무디와 어떤 데이트를 하고 싶나요?',
+  DATE: '데이트',
+  ACT: '활동적인',
+  EMO: '감성 풍부한',
+  NEW: '이색적인',
+  FUN: '유쾌한',
 } as const
 
 export const PROGRESS_BAR = {
+  1: '무드메이트에 오신걸 환영해요.',
+  2: '무디가 여러분을 기다리고 있어요!',
+  3: '무디에게 여러분에 대해 알려주세요.',
+  4: '무디는 여러분이랑 친해지고 싶어요.',
+  5: '무디가 여러분을 기다리고 있어요!',
+  6: '거의 다 왔어요. 힘내요!',
+  7: '벌써 7번째 질문이에요.',
+  8: '드디어 마지막!',
   MAX: 8,
 } as const
 

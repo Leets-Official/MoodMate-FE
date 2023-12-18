@@ -3,10 +3,9 @@
 import { ChangeEvent, useState } from 'react'
 import Icons from '@/_components/common/Icons'
 import { send } from '@/_ui/IconsPath'
-import Input from '../../common/Input'
-import { useRecoilState } from 'recoil'
 import useWebsocket from '@/_hooks/useWebSocket'
-import { realTimeMessagesState } from '@/_atom/chat'
+import { CHAT_INPUT } from '@/_constants'
+import Input from '../../common/Input'
 
 interface ChatInputContainerProps {
   roomId: number
@@ -15,9 +14,6 @@ interface ChatInputContainerProps {
 
 const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
   const [inputVal, setInputVal] = useState<string>('')
-  const [realTimeMessages, setRealTimeMessages] = useRecoilState(
-    realTimeMessagesState,
-  )
   const { sendMessage } = useWebsocket(roomId)
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,8 +22,8 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
 
   const handleSendMessage = () => {
     const messageTosend = {
-      roomId: roomId,
-      userId: userId,
+      userId,
+      roomId,
       content: inputVal.trim(),
     }
 
@@ -35,33 +31,25 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
       alert('메시지를 입력해주세요.')
       return
     }
-    const messageToStore = {
-      messageId: String(new Date().toISOString()),
-      content: inputVal.trim(),
-      userId: userId,
-      createdAt: String(new Date().toISOString()),
-      isRead: true,
-    }
 
-    setRealTimeMessages((prev) => [...prev, messageToStore])
     sendMessage(messageTosend)
     setInputVal('')
   }
 
   return (
-    <div className="relative flex w-full justify-center h-10">
+    <div className="fixed bottom-0 flex desktop:w-[378px] justify-center h-[65px] py-3 w-full">
       <Input
         sort="chat"
         onClick={() => {}}
-        className="bg-[#B3B3B3] rounded-3xl px-3"
+        className="rounded-3xl bg-onepink px-4 text-darkgray border-none outline-none"
         onFocus={() => {}}
         onChange={(e) => onChangeInput(e)}
         onEnterPress={handleSendMessage}
         textValue={inputVal || ''}
-        placeholder="메시지를 입력하세요."
+        placeholder={CHAT_INPUT.MESSAGE}
       />
-      <div className="absolute flex justify-center items-center right-12 top-[25%] bg-[#999999] h-[24px] w-[24px] rounded-full">
-        <Icons name={send} />
+      <div className="absolute flex justify-center items-center right-[12%] top-[26%] bg-threepink h-[34px] w-[34px] rounded-full cursor-pointer">
+        <Icons name={send} onClick={handleSendMessage} />
       </div>
     </div>
   )

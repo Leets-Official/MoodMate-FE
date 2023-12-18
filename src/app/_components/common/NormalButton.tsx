@@ -1,3 +1,5 @@
+'use client'
+
 interface NormalButtonProps {
   buttonText: string
   onClick: () => void

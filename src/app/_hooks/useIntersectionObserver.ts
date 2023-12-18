@@ -1,9 +1,9 @@
 import { useEffect, type RefObject, useRef } from 'react'
 
 export const useIntersectionObserver = <T extends HTMLElement>(
-  targetRef: RefObject<T>, //관찰하는 요소
-  onIntersect: IntersectionObserverCallback, //관찰 되었을 때 실행하고 싶은 함수
-  hasNextPage: boolean | undefined, //무한 스크롤로 더 불러올 요소가 있는지
+  targetRef: RefObject<T>,
+  onIntersect: IntersectionObserverCallback,
+  hasNextPage: boolean | undefined,
 ) => {
   const observer = useRef<IntersectionObserver>()
 
@@ -17,12 +17,15 @@ export const useIntersectionObserver = <T extends HTMLElement>(
 
       if (!hasNextPage) {
         observer.current?.unobserve(targetRef.current)
-        return
+      } else {
+        observer.current.observe(targetRef.current)
       }
-
-      observer.current.observe(targetRef.current)
     }
 
-    return () => observer && observer.current?.disconnect()
-  }, [targetRef, onIntersect])
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect()
+      }
+    }
+  }, [targetRef, onIntersect, hasNextPage])
 }

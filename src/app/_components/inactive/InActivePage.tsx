@@ -1,14 +1,40 @@
 import InactiveFirstText from '@/_components/inactive/containers/InactiveFirstText'
 import InactiveMiddleText from '@/_components/inactive/containers/InactiveMiddleText'
-import { useMainQuery } from '@/_hooks/useMainQuery'
-import React from 'react'
+import Image from 'next/image'
+import logo from 'public/illustration/common/logo/graylogo.png'
+import inactive from 'public/illustration/female/main/inactive.png'
 
-export default function InactivePage() {
+interface ChatProps {
+  roomId: number
+  userId: number
+  roomActive: boolean
+  gender: 'MALE' | 'FEMALE'
+}
+export default function InactivePage({
+  roomId,
+  userId,
+  roomActive,
+  gender,
+}: ChatProps) {
   return (
-    <section className="flex flex-col">
-      <p className="p-10 mx-auto text-center text-[#B3B3B3]">moodmate</p>
+    <section className="flex flex-col h-screen">
+      <Image
+        src={logo}
+        alt="graylogo"
+        className="w-[85px] h-[13px] mt-5 mb-12 mx-auto"
+      />
       <InactiveFirstText />
-      <InactiveMiddleText />
+      <Image
+        src={inactive}
+        alt="inactive"
+        className="mx-auto w-[150px] h-[220px] mt-7 mb-5"
+      />
+      <InactiveMiddleText
+        gender={gender}
+        roomId={roomId}
+        roomActive={roomActive}
+        userId={userId}
+      />
     </section>
   )
 }

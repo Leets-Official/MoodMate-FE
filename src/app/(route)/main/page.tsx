@@ -2,21 +2,35 @@
 
 import MainPage from '@/_components/main/MainPage'
 import { useMainQuery } from '@/_hooks/useMainQuery'
-import React, { useEffect } from 'react'
 import InactivePage from '@/_components/inactive/InActivePage'
+import Loading from '@/_components/common/Loading'
+import Error from '@/(route)/error'
 
 export default function MainpagePage() {
   const { isLoading, isError, data } = useMainQuery()
+
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Loading />
   }
   if (isError || !data) {
-    return <div>Error occurred while fetching data</div>
+    return <Error />
   }
-  const { roomActive, userMatchActive } = data.mainPageResponse
+  const { roomActive, userMatchActive, userGender, roomId, userId } =
+    data.mainPageResponse
+  const mainPageType = roomActive ? 'AFTER' : 'BEFORE'
+  const mainPageGender = userGender === 'MALE' ? 'MALE' : 'FEMALE'
   return (
-    <section>
-      {userMatchActive ? <MainPage type="BEFORE" /> : <InactivePage />}
+    <section className="scrollbar-hide">
+      {userMatchActive ? (
+        <MainPage type={mainPageType} gender={mainPageGender} />
+      ) : (
+        <InactivePage
+          gender={mainPageGender}
+          userId={userId}
+          roomId={roomId}
+          roomActive={roomActive}
+        />
+      )}
     </section>
   )
 }

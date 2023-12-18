@@ -7,6 +7,7 @@ export default function ChatRoomLayout({
     <main>
       {children}
       <div id="exitPortal" />
+      <div id="unmatchedPortal" />
     </main>
   )
 }

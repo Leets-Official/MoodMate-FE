@@ -1,32 +1,17 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
-import { parseCookies, setCookie } from 'nookies'
-import { GOOGLE_LOGIN } from '@/_lib/google'
-
-const getAccessToken = () => {
-  const cookies = parseCookies()
-  return cookies.accessToken
-}
-
-const getRefreshToken = () => {
-  const cookies = parseCookies()
-  return cookies.refreshToken
-}
+import Cookies from 'js-cookie'
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_SERVER_URL, // server url 변경!
-})
-
-export const loginApi = axios.create({
-  baseURL: GOOGLE_LOGIN,
+  baseURL: process.env.GOOGLE_LOGIN,
+  withCredentials: true,
 })
 
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    const token = getAccessToken()
-    console.log('ddddddddd', token)
-    if (token) {
+    const accessToken = Cookies.get('accessToken')
+    if (accessToken) {
       // eslint-disable-next-line no-param-reassign
-      config.headers.Authorization = `Bearer ${token}`
+      config.headers.Authorization = `Bearer ${accessToken}`
     }
     return config
   },
@@ -36,31 +21,48 @@ api.interceptors.request.use(
 )
 
 api.interceptors.response.use(
-  (response) => {
+  async (response) => {
     return response
   },
   async (error) => {
     const originalRequest = error.config
-    const refreshToken = getRefreshToken()
-    if (
-      error.response.status === 401 &&
-      originalRequest &&
-      !error.config.__isRetryRequest &&
-      refreshToken
-    ) {
+    if (error.response.status === 400) {
       try {
-        const newAccessToken = await axios.post(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/users/refresh`,
+        const refresh = Cookies.get('refreshToken')
+        const response = await axios.post(
+          `${process.env.GOOGLE_LOGIN}users/refresh`,
           {
-            refreshToken,
+            refreshToken: refresh,
           },
         )
-        setCookie(null, 'accessToken', newAccessToken.data.accessToken, {
-          maxAge: 3 * 60 * 60,
-          path: '/',
+
+        const { accessToken, refreshToken } = response.data.tokenResponse
+        Cookies.remove('accessToken')
+        Cookies.remove('refreshToken')
+
+        const accessTokenExpiry = new Date()
+        accessTokenExpiry.setTime(
+          accessTokenExpiry.getTime() + 3 * 60 * 60 * 1000,
+        )
+        Cookies.set('accessToken', accessToken, { expires: accessTokenExpiry })
+
+        const refreshTokenExpiry = new Date()
+        refreshTokenExpiry.setTime(
+          refreshTokenExpiry.getTime() + 3 * 24 * 60 * 60 * 1000,
+        )
+        Cookies.set('refreshToken', refreshToken, {
+          expires: refreshTokenExpiry,
         })
-      } catch (e) {}
+
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`
+        return await axios(originalRequest)
+      } catch (e) {
+        throw e
+      }
+    } else {
+      /* empty */
     }
+    return Promise.reject(error)
   },
 )
 

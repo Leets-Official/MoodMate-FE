@@ -1,22 +1,44 @@
 'use client'
 
-import NormalButton from '@/_components/common/NormalButton'
-import { GOOGLE_AUTH_URL } from '@/_lib/google'
+import Image from 'next/image'
+import { LOGIN_PAGE } from '@/_constants/login'
+import loginImage from 'public/illustration/common/login/login.png'
+import google from 'public/illustration/common/login/google.png'
 
 export default function Login() {
   const handleLogin = () => {
-    window.location.href = GOOGLE_AUTH_URL
+    window.location.href = `${process.env.GOOGLE_LOGIN}oauth/login/google`
   }
   return (
-    <div className="flex flex-col">
-      <p className="mx-auto text-blue-600 mb-60 mt-52">로고</p>
-      <NormalButton
-        buttonText="Google 게정으로 로그인"
-        buttonType="large"
+    <section className="flex flex-col h-screen mx-5 scrollbar-hide">
+      <div className="h-[20%]">
+        <div className="flex font-bold text-[20px] ml-5 mt-[20%] desktop:mt-[20%]">
+          {LOGIN_PAGE.FIRST}
+          <div className="ml-1.5 text-primary">{LOGIN_PAGE.SECOND}</div>
+          {LOGIN_PAGE.THIRD}
+        </div>
+        <div className="flex font-bold text-[20px] ml-5">
+          <div className="text-primary">{LOGIN_PAGE.FOUR}</div>
+          {LOGIN_PAGE.FIVE}
+        </div>
+      </div>
+      <div className="h-[50%]">
+        <Image
+          src={loginImage}
+          alt="loginImage"
+          className="w-full mt-10 mb-24 desktop:mt-10 desktop:mb-14"
+        />
+      </div>
+      <Image
+        src={google}
+        alt="구글로그인버튼"
         onClick={handleLogin}
-        className="text-[15px] text-black mx-auto rounded-[8px] shadow shadow-gray-500"
-        isActive
+        className="hover:cursor-pointer mt-7 w-full mx-auto"
       />
-    </div>
+      <div className="text-center text-xs text-secondary ml-2 mt-4">
+        <p>회원가입 시 개인정보 제공 및 대화 내용 저장에 동의합니다.</p>
+        <p>서비스 종료 후 모든 정보는 폐기처리 됩니다.</p>
+      </div>
+    </section>
   )
 }

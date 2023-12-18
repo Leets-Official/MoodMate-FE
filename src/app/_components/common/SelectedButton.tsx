@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { BUTTON_TYPE, BUTTON_STYLE } from '@/_constants'
 
@@ -5,22 +7,27 @@ interface SelectedButtonProps {
   buttonText: string
   buttonType: keyof typeof BUTTON_TYPE
   isActive: boolean
-  color: string
+  className: string
   onClick: () => void
   imgSrc?: string
-  imgSize?: string
+  imgSizeW?: number
+  imgSizeH?: number
+  imgClassName?: string
 }
 
 const SelectedButton = ({
   buttonText,
   buttonType = 'DEFAULT',
   isActive,
-  color,
+  className,
   onClick,
   imgSrc,
-  imgSize,
+  imgSizeW,
+  imgSizeH,
+  imgClassName,
 }: SelectedButtonProps) => {
-  const buttonStyles = BUTTON_STYLE[buttonType](color)
+  const buttonStyles = BUTTON_STYLE[buttonType](className)
+  const textLines = buttonText.split('\n')
 
   return (
     <button
@@ -29,8 +36,20 @@ const SelectedButton = ({
       onClick={onClick}
       disabled={!isActive}
     >
-      {imgSrc && <Image src={imgSrc} alt="" className={imgSize} />}
-      {buttonText}
+      {imgSrc && (
+        <div
+          className={`${imgClassName} flex justify-center items-center mb-2`}
+        >
+          <Image src={imgSrc} alt="" width={imgSizeW} height={imgSizeH} />
+        </div>
+      )}
+      {textLines.map((text, index) => (
+        // eslint-disable-next-line react/jsx-key
+        <div className="leading-none">
+          {index > 0 && <br />}
+          {text}
+        </div>
+      ))}
     </button>
   )
 }

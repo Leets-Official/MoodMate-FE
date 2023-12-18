@@ -1,9 +1,17 @@
+'use client'
+
+import Loading from '@/_components/common/Loading'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+
 export default function Root() {
+  const route = useRouter()
+  useEffect(() => {
+    route.push('/login')
+  }, [route])
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        <p>rootpage</p>
-      </div>
+    <main>
+      <Loading />
     </main>
   )
 }

@@ -15,7 +15,13 @@ export const NEW_MATCHING_MODAL = {
   CANCEL: '그만할래요!',
 } as const
 
+export const UNMATCHED_MODAL = {
+  TITLE: '상대 무디가 채팅을  종료했어요!',
+  SUB_TITLE: '새로운 무디와의 매칭을 기다려주세요.',
+  CLOSE: '홈으로 가기',
+} as const
+
 export const CHAT_SIZE = {
   PREVIEW: 1,
-  ROOM: 20,
+  ROOM: 40,
 } as const

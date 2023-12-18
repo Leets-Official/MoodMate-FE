@@ -3,11 +3,13 @@ interface ResponseChatGet {
   user: {
     gender: 'MALE' | 'FEMALE'
     nickname: string
+    roomActive: boolean
   }
   pageable: {
     size: number
     page: number
     totalPages: number
+    totalElements: number
   }
   chatList: ChatMessageFromServer[]
 }
@@ -20,7 +22,7 @@ interface ResponseMessage {
 /** 소셜로그인 응답 데이터 */
 interface ResponseLogin {
   accessToken: string
-  refreshTokce: string
+  refreshToken: string
 }
 
 /** 메인페이지 응답 데이터 */
@@ -31,5 +33,19 @@ interface ResponseMain {
     userMatchActive: boolean
     roomId: number | -1
     roomActive: boolean
+  }
+}
+/** 마이페이지 응답 데이터 */
+interface ResponseMyPage {
+  myPageResponse: {
+    userGender: string
+    userNickname: string
+    year: number
+    userDepartment: string
+    userKeywords: string[]
+    preferYearMin: number
+    preferYearMax: number
+    preferDepartmentPossible: boolean
+    preferMood: string
   }
 }

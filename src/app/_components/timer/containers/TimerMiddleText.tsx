@@ -1,5 +1,4 @@
 import { AFTER_TIMER_GUIDE, BEFORE_TIMER_GUIDE } from '@/_constants/main'
-import React from 'react'
 
 interface TextProps {
   type: 'BEFORE' | 'AFTER'
@@ -32,7 +31,7 @@ const getTextStyle = (type: string) => {
 }
 const TimerMiddleText = ({ type }: TextProps) => {
   return (
-    <div className="mt-7 flex items-center text-center flex-col mx-auto">
+    <div className="mt-4 flex items-center text-center flex-col mx-auto">
       <div
         className={`${
           getTextStyle(type).text

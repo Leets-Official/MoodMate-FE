@@ -30,15 +30,15 @@ const ModalButtons = ({
       <NormalButton
         buttonText={cancelText}
         buttonType="small"
-        className="rounded-lg text-[14px]"
-        onClick={onCancel}
+        className="rounded-lg text-[14px] w-[96px] h-[36px] text-center bg-onepink"
+        onClick={onCancelHandler}
         isActive
       />
       <NormalButton
         buttonText={confirmText}
         buttonType="small"
-        className="rounded-lg  text-[14px]"
-        onClick={onConfirm}
+        className="rounded-lg text-[14px] w-[96px] h-[36px] text-center bg-onepink"
+        onClick={onConfirmHandler}
         isActive
       />
     </div>

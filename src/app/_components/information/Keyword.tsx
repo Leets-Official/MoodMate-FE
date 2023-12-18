@@ -1,20 +1,23 @@
 interface KeywordProps {
+  partner?: boolean
   keywords: string[]
 }
 
-const Keyword = ({ keywords }: KeywordProps) => {
-  // const keywords = [
-  //   { title: '키워드1', key: 'first' },
-  //   { title: '키워드2', key: 'second' },
-  //   { title: '키워드3', key: 'third' },
-  // ]
+const Keyword = ({ keywords, partner }: KeywordProps) => {
   return (
-    <div className="flex text-[14px] ml-3 my-2">
+    <div className={`flex text-[14px] ${!partner && 'ml-3 my-2'}`}>
       {keywords.map((keyword, i) => {
         return (
           <p
             key={keyword}
-            className="px-5 py-1.5 rounded-[18px] mr-2 bg-[#FFE5E7] text-[#FC4F59] border border-[#FC4F59]"
+            className={`px-5 py-1.5 rounded-[18px] mr-2 ${
+              // eslint-disable-next-line no-nested-ternary
+              partner
+                ? i % 2 === 0
+                  ? 'bg-twopink text-white'
+                  : 'bg-threepink text-white'
+                : ' bg-onepink text-primary border border-primary'
+            }`}
           >
             {keyword}
           </p>

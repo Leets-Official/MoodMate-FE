@@ -1,3 +1,8 @@
+import Image from 'next/image'
+import inactiveFemale from 'public/illustration/female/modal/inactive.png'
+import inactiveMale from 'public/illustration/male/modal/inactive.png'
+import logoutFemale from 'public/illustration/female/modal/logout.png'
+import logoutMale from 'public/illustration/male/modal/logout.png'
 import ModalButtons from './ModalButtons'
 
 interface ModalContentProps {
@@ -5,6 +10,7 @@ interface ModalContentProps {
   onMyPage?: boolean
   onConfirm: () => void
   onCancel: () => void
+  gender?: string
 }
 
 const ModalContent = ({
@@ -12,9 +18,13 @@ const ModalContent = ({
   onConfirm,
   onCancel,
   onMyPage,
+  gender,
 }: ModalContentProps) => {
   const { TITLE, SUB_TITLE, CONFIRM, CANCEL } = subject
-
+  const inactive = gender === 'MALE' ? inactiveMale : inactiveFemale
+  const logout = gender === 'MALE' ? logoutMale : logoutFemale
+  const inactiveUi =
+    gender === 'MALE' ? 'w-[153px] h-[172px]' : 'w-[142px] h-[197px]'
   return (
     <section className=" w-full h-full flex flex-col justify-center items-center gap-[40px]">
       <div>
@@ -23,10 +33,12 @@ const ModalContent = ({
           {SUB_TITLE || ''}
         </h5>
       </div>
-      <div className="w-[169px] h-[193px] bg-neutral-300">
-        {/* 나중에 dynamic으로 가져오기?, 크기 조정 */}
-        {onMyPage ? <p>씩씩한 무디 이미지</p> : <p>울고있는 무디 이미지</p>}
-      </div>
+      {/* 나중에 dynamic으로 가져오기?, 크기 조정 */}
+      {onMyPage ? (
+        <Image src={logout} alt="logout" className="w-[180px] h-[207px]" />
+      ) : (
+        <Image src={inactive} alt="inactive" className={inactiveUi} />
+      )}
       <ModalButtons
         onConfirm={onConfirm}
         onCancel={onCancel}

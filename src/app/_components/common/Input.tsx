@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 interface InputProps {
   sort: string
   textValue: string
@@ -21,7 +19,7 @@ const getInputSort = (sort: string) => {
       }
     case 'chat':
       return {
-        input: 'w-[312px] h-[45px]',
+        input: 'w-[80%] h-[45px] pr-[20px]',
       }
     default:
       return {
