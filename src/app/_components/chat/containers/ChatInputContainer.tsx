@@ -13,11 +13,19 @@ interface ChatInputContainerProps {
 }
 
 const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
+  const MAX = 250
   const [inputVal, setInputVal] = useState<string>('')
   const { sendMessage } = useWebsocket(roomId)
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputVal(() => e.target.value)
+    const value = e.target.value
+
+    if (value.length > MAX) {
+      setInputVal(value.slice(0, MAX))
+      alert('입력은 최대 250자까지 가능합니다.')
+    } else {
+      setInputVal(value)
+    }
   }
 
   const handleSendMessage = () => {
