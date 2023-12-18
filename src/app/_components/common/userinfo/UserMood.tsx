@@ -50,6 +50,25 @@ export default function UserMood() {
 
   const nextRoute = async () => {
     try {
+      if (
+        Object.values(userInfo).some((value) => value === '') ||
+        usersInfo.keywords.length === 0
+      ) {
+        alert(
+          '정보 입력이 잘못되었습니다. 로그인 페이지로 이동합니다. 재로그인 해주세요.',
+        )
+        route.push('/login')
+        return
+      }
+
+      if (Object.values(userInfo).some((value) => value === '')) {
+        alert(
+          '선호 정보 입력이 잘못되었습니다. 로그인 페이지로 이동합니다. 재로그인 해주세요.',
+        )
+        route.push('/login')
+        return
+      }
+
       await postUserDataMutation.mutateAsync()
       route.push('/main')
     } catch (error) {
