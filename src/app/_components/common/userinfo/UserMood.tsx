@@ -50,24 +50,9 @@ export default function UserMood() {
 
   const nextRoute = async () => {
     try {
-      console.log('usersInfo', usersInfo)
-      console.log('userInfo', userInfo)
-      Object.values(userInfo).some((value) => {
-        console.log(value)
-      })
-      Object.values(usersInfo).some((value) => {
-        console.log(value)
-      })
-      Object.keys(userInfo).some((value) => {
-        console.log(value)
-      })
-      Object.keys(usersInfo).some((value) => {
-        console.log(value)
-      })
       if (
         Object.values(userInfo).some((value) => value === '') ||
-        usersInfo.keywords.length === 0 ||
-        usersInfo.nickname.length === 0
+        usersInfo.keywords.length === 0
       ) {
         alert(
           '정보 입력이 잘못되었습니다. 로그인 페이지로 이동합니다. 재로그인 해주세요.',
