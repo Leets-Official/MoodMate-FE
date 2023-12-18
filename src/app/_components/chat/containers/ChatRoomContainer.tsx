@@ -111,6 +111,11 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
               chatHistory={chatData.chatList}
             />
           ))}
+        {data && data.pages[0].chatList.length === 0 && (
+          <div className="w-full text-center mb-5 text-xs text-[#B0B0B0]">
+            무디와의 설레는 채팅을 시작해보세요!
+          </div>
+        )}
         {data && (
           <ChatList
             userId={userId}
