@@ -40,7 +40,11 @@ const ChatPartnerInfoContainer = ({
       {partner && (
         <div className="flex flex-col justify-center items-center gap-[40px] h-full w-full">
           <div className="flex justify-center h-[20%] w-full">
-            <Bio gender="FEMALE" size="LARGE" type="partnerInfo" />
+            <Bio
+              gender={partner.gender === 'FEMALE' ? 'MALE' : 'FEMALE'}
+              size="LARGE"
+              type="partnerInfo"
+            />
           </div>
           <div className="flex flex-col rounded-t-[52px] bg-[#FFE5E7] h-[65%] w-full ">
             <p className="text-center font-bold text-[20px] mt-8">
