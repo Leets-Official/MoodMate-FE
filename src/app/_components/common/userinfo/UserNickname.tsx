@@ -34,10 +34,11 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(0, INPUT_NICKNAME.MAX)
     const koeranOnly = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/g
-    if (koeranOnly.test(newValue)) {
-      setInputValue(newValue)
-      setinputCount(`${newValue.length}/${INPUT_NICKNAME.MAX}`)
+    if (!koeranOnly.test(newValue)) {
+      alert('한글만 입력 가능합니다.')
     }
+    setInputValue(newValue)
+    setinputCount(`${newValue.length}/${INPUT_NICKNAME.MAX}`)
   }
 
   const nextRoute = () => {
