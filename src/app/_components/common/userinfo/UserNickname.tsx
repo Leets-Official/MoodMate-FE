@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { NICK_NAME_PAGE, INPUT_NICKNAME } from '@/_constants'
 import { useRecoilState, useRecoilValue } from 'recoil'
@@ -10,12 +10,26 @@ interface UserNicknameProps {
   pageNum: string
 }
 
+export function useSSR() {
+  const [isInitialInput, setisInitialInput] = useState<boolean>(true)
+  const [nicknameValue, setNicknameValue] = useRecoilState(userInfoState)
+
+  useEffect(() => {
+    setisInitialInput(false)
+  }, [])
+
+  return [
+    isInitialInput ? useRecoilValue(userInfoState) : nicknameValue,
+    setNicknameValue,
+  ] as const
+}
+
 const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const route = useRouter()
   const [nickname, setNickname] = useRecoilState(userInfoState)
   const userInfo = useRecoilValue(userInfoState)
   const [inputValue, setInputValue] = useState(userInfo.nickname)
-  const [inputCount, setinputCount] = useState(`${inputValue.length}/5`)
+  const [inputCount, setinputCount] = useState(`${userInfo.nickname.length}/5`)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(0, INPUT_NICKNAME.MAX)
@@ -35,6 +49,31 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
     }))
     route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
   }
+
+  const calculateInputCount = (value: string) => `${value.length}/5`
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const isBrowser = typeof window !== 'undefined'
+      if (isBrowser) {
+        const storedUserInfo = sessionStorage.getItem('userInfoState')
+        if (storedUserInfo !== null) {
+          const parsedUserInfo = JSON.parse(storedUserInfo)
+          const storedNickname = parsedUserInfo?.userInfoState?.nickname
+          if (storedNickname) {
+            setNickname((prevNickname) => ({
+              ...prevNickname,
+              nickname: storedNickname,
+            }))
+            setInputValue(storedNickname)
+            setinputCount(calculateInputCount(storedNickname))
+          }
+        }
+      }
+    }
+
+    fetchData()
+  }, [])
 
   const inputStyles = {
     defaultStyles: 'bg-lightgray',
