@@ -66,7 +66,8 @@ export default function UserMood() {
       })
       if (
         Object.values(userInfo).some((value) => value === '') ||
-        usersInfo.keywords.length === 0
+        usersInfo.keywords.length === 0 ||
+        usersInfo.nickname.length === 0
       ) {
         alert(
           '정보 입력이 잘못되었습니다. 로그인 페이지로 이동합니다. 재로그인 해주세요.',
