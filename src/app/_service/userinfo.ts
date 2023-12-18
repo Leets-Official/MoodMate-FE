@@ -1,32 +1,9 @@
-import { useRouter } from 'next/navigation'
 import api from './axios'
 
 export const postUserData = async (
   userInfo: UserInfoData,
   preferInfo: PreferInfoData,
 ) => {
-  // Check if any required field in userInfo is missing
-  if (
-    !userInfo.nickname ||
-    !userInfo.gender ||
-    !userInfo.year ||
-    !userInfo.department ||
-    !userInfo.keywords
-  ) {
-    throw new Error('Please fill in all required fields in user info.')
-  }
-
-  // Check if any required field in preferInfo is missing
-  if (
-    !preferInfo.preferYearMin ||
-    !preferInfo.preferYearMax ||
-    preferInfo.preferMood === undefined
-  ) {
-    throw new Error('Please fill in all required fields in preference info.')
-  }
-
-  const router = useRouter()
-
   try {
     const [userInfoResult, preferInfoResult] = await Promise.allSettled([
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -37,14 +14,9 @@ export const postUserData = async (
 
     // return [userInfoResult, preferInfoResult]; // 주석 처리
 
-    return { userInfoResult, preferInfoResult } // 함수 반환
+    return () => ({ userInfoResult, preferInfoResult }) // 함수 반환
   } catch (error: any) {
-    if (error) {
-      if (error.message?.includes('required fields')) {
-        alert('필수 항목을 모두 입력해주세요.')
-        router.push('/login')
-      }
-    }
+    throw error
   }
 }
 
