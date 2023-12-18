@@ -25,6 +25,7 @@ export default function AnnouncementPage() {
               🛎️ 무드메이트 상담소 오픈채팅 바로가기
             </a>
           </p>
+          <p>🔍 instagram : @gcmoodmate</p>
         </div>
       </div>
     </section>
