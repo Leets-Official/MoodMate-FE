@@ -41,6 +41,7 @@ export const postUserData = async (
   } catch (error: any) {
     if (error) {
       if (error.message?.includes('required fields')) {
+        alert('필수 항목을 모두 입력해주세요.')
         router.push('/login')
       }
     }
