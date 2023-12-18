@@ -14,7 +14,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const route = useRouter()
   const [nickname, setNickname] = useRecoilState(userInfoState)
   const userInfo = useRecoilValue(userInfoState)
-  const [inputValue, setInputValue] = useState(userInfo.nickname)
+  const [inputValue, setInputValue] = useState(userInfo.nickname || '')
   const [inputCount, setinputCount] = useState(`${inputValue.length}/5`)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +31,7 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const nextRoute = () => {
     setNickname((prevNickname) => ({
       ...prevNickname,
-      nickname: inputValue,
+      nickname: inputValue.trim(),
     }))
     route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
   }
