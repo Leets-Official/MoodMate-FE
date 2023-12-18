@@ -51,7 +51,7 @@ const ChatPartnerInfoContainer = ({
               {partner.nickname}
             </p>
             <div className="mt-3 justify-center px-4 pt-[4px] h-[30px] text-[14px] text-primary flex mx-auto border border-primary rounded-[25px]">
-              <p className="mr-3">{partner.year.toString().slice(-2)}</p>
+              <p className="mr-3">{partner.year.toString().slice(-2)}년생</p>
               <p className="mr-3 ">|</p>
               <p>{partner.department}</p>
             </div>
