@@ -22,9 +22,10 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
     const koeranOnly = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/g
     if (!koeranOnly.test(newValue)) {
       alert('한글만 입력 가능합니다.')
+    } else {
+      setInputValue(newValue)
+      setinputCount(`${newValue.length}/${INPUT_NICKNAME.MAX}`)
     }
-    setInputValue(newValue)
-    setinputCount(`${newValue.length}/${INPUT_NICKNAME.MAX}`)
   }
 
   const nextRoute = () => {
