@@ -29,11 +29,16 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   }
 
   const nextRoute = () => {
-    setNickname((prevNickname) => ({
-      ...prevNickname,
-      nickname: inputValue.trim(),
-    }))
-    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+    if (inputValue.trim() === '') {
+      alert('닉네임을 입력해주세요.')
+      return
+    } else {
+      setNickname((prevNickname) => ({
+        ...prevNickname,
+        nickname: inputValue.trim(),
+      }))
+      route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+    }
   }
 
   const inputStyles = {
