@@ -17,7 +17,7 @@ const DateMood = ({ mood, partner }: DateMoodProps) => {
             : ' text-primary border border-primary bg-onepink'
         }`}
       >
-        {mood}
+        {mood} 데이트
       </p>
     </div>
   )

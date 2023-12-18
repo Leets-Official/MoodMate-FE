@@ -5,16 +5,16 @@ export const postUserData = async (
   preferInfo: PreferInfoData,
 ) => {
   try {
-    const [userInfoResult, preferInfoResult] = await Promise.allSettled([
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      postUserInfo(userInfo),
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      postPreferInfo(preferInfo),
-    ])
+    let userInfoResult, preferInfoResult
 
-    // return [userInfoResult, preferInfoResult]; // 주석 처리
+    try {
+      userInfoResult = await postUserInfo(userInfo)
+      preferInfoResult = await postPreferInfo(preferInfo)
+    } catch (error) {
+      throw error
+    }
 
-    return () => ({ userInfoResult, preferInfoResult }) // 함수 반환
+    return { userInfoResult, preferInfoResult }
   } catch (error) {
     throw error
   }

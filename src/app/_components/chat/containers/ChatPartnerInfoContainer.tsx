@@ -11,7 +11,6 @@ import Header from '@/_components/layout/Header'
 interface ChatPartnerInfoContainerProps {
   userId: number
 }
-
 const ChatPartnerInfoContainer = ({
   userId,
 }: ChatPartnerInfoContainerProps) => {
@@ -24,21 +23,24 @@ const ChatPartnerInfoContainer = ({
   if (isError) {
     return <ErrorPage />
   }
-
   return (
     <section className="h-screen w-full">
       <Header partner />
       {partner && (
         <div className="flex flex-col justify-center items-center gap-[40px] h-full w-full">
           <div className="flex justify-center h-[20%] w-full">
-            <Bio gender="FEMALE" size="LARGE" type="partnerInfo" />
+            <Bio
+              gender={partner.gender === 'FEMALE' ? 'MALE' : 'FEMALE'}
+              size="LARGE"
+              type="partnerInfo"
+            />
           </div>
           <div className="flex flex-col rounded-t-[52px] bg-[#FFE5E7] h-[65%] w-full ">
             <p className="text-center font-bold text-[20px] mt-8">
               {partner.nickname}
             </p>
             <div className="mt-3 justify-center px-4 pt-[4px] h-[30px] text-[14px] text-primary flex mx-auto border border-primary rounded-[25px]">
-              <p className="mr-3">{partner.year}</p>
+              <p className="mr-3">{partner.year.toString().slice(-2)}년생</p>
               <p className="mr-3 ">|</p>
               <p>{partner.department}</p>
             </div>
