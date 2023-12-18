@@ -52,16 +52,16 @@ export default function UserMood() {
     try {
       console.log('usersInfo', usersInfo)
       console.log('userInfo', userInfo)
-      Object.values(userInfo).forEach((value) => {
+      Object.values(userInfo).some((value) => {
         console.log(value)
       })
-      Object.values(usersInfo).forEach((value) => {
+      Object.values(usersInfo).some((value) => {
         console.log(value)
       })
-      Object.keys(userInfo).forEach((value) => {
+      Object.keys(userInfo).some((value) => {
         console.log(value)
       })
-      Object.keys(usersInfo).forEach((value) => {
+      Object.keys(usersInfo).some((value) => {
         console.log(value)
       })
       if (
