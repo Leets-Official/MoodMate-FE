@@ -50,6 +50,20 @@ export default function UserMood() {
 
   const nextRoute = async () => {
     try {
+      console.log('usersInfo', usersInfo)
+      console.log('userInfo', userInfo)
+      Object.values(userInfo).forEach((value) => {
+        console.log(value)
+      })
+      Object.values(usersInfo).forEach((value) => {
+        console.log(value)
+      })
+      Object.keys(userInfo).forEach((value) => {
+        console.log(value)
+      })
+      Object.keys(usersInfo).forEach((value) => {
+        console.log(value)
+      })
       if (
         Object.values(userInfo).some((value) => value === '') ||
         usersInfo.keywords.length === 0
