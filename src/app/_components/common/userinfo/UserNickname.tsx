@@ -31,7 +31,6 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
   const nextRoute = () => {
     if (inputValue.trim() === '') {
       alert('닉네임을 입력해주세요.')
-      return
     } else {
       setNickname((prevNickname) => ({
         ...prevNickname,
