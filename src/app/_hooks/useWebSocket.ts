@@ -81,17 +81,7 @@ const useWebsocket = (roomId: number) => {
 
   const sendMessage = async (message: ChatMessageFromClient) => {
     if (!accessToken && stompClient?.connected && message) {
-      const newAccess = getAccessToken()
-      stompClient.send(
-        `/pub/chat`,
-        {},
-        JSON.stringify({
-          ...message,
-          token: `Bearer ${newAccess}`,
-        }),
-      )
-    }
-    if (accessToken && stompClient?.connected && message) {
+      getAccessToken()
       stompClient.send(
         `/pub/chat`,
         {},
@@ -100,6 +90,8 @@ const useWebsocket = (roomId: number) => {
           token: `Bearer ${accessToken}`,
         }),
       )
+    }
+    if (accessToken && stompClient?.connected && message) {
     }
   }
 
