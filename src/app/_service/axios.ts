@@ -43,7 +43,7 @@ api.interceptors.response.use(
 
         const accessTokenExpiry = new Date()
         accessTokenExpiry.setTime(
-          accessTokenExpiry.getTime() + 3 * 60 * 60 * 1000,
+          accessTokenExpiry.getTime() + 6 * 60 * 60 * 1000,
         )
         Cookies.set('accessToken', accessToken, { expires: accessTokenExpiry })
 

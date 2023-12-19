@@ -1,10 +1,39 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { realTimeMessagesState } from '@/_atom/chat'
 import { CompatClient, Stomp } from '@stomp/stompjs'
+import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import SockJS from 'sockjs-client'
+
+const getAccessToken = async () => {
+  Cookies.remove('refreshToken', { domain: 'leets.moodmate.site' })
+  const refresh = Cookies.get('refreshToken')
+  const response = await axios.post(
+    `${process.env.GOOGLE_LOGIN}users/refresh`,
+    {
+      refreshToken: refresh,
+    },
+  )
+
+  const { accessToken, refreshToken } = response.data.tokenResponse
+  Cookies.remove('accessToken')
+  Cookies.remove('refreshToken')
+
+  const accessTokenExpiry = new Date()
+  accessTokenExpiry.setTime(accessTokenExpiry.getTime() + 6 * 60 * 60 * 1000)
+  Cookies.set('accessToken', accessToken, { expires: accessTokenExpiry })
+
+  const refreshTokenExpiry = new Date()
+  refreshTokenExpiry.setTime(
+    refreshTokenExpiry.getTime() + 3 * 24 * 60 * 60 * 1000,
+  )
+  Cookies.set('refreshToken', refreshToken, {
+    expires: refreshTokenExpiry,
+  })
+  return Cookies.get('accessToken')
+}
 
 const useWebsocket = (roomId: number) => {
   const [stompClient, setstompClient] = useState<CompatClient | null>(null)
@@ -50,12 +79,26 @@ const useWebsocket = (roomId: number) => {
     }
   }, [roomId, setRealTimeMessages, stompClient])
 
-  const sendMessage = (message: ChatMessageFromClient) => {
-    if (stompClient?.connected && message) {
+  const sendMessage = async (message: ChatMessageFromClient) => {
+    if (!accessToken && stompClient?.connected && message) {
+      const newAccess = getAccessToken()
       stompClient.send(
         `/pub/chat`,
         {},
-        JSON.stringify({ ...message, token: `Bearer ${accessToken}` }),
+        JSON.stringify({
+          ...message,
+          token: `Bearer ${newAccess}`,
+        }),
+      )
+    }
+    if (accessToken && stompClient?.connected && message) {
+      stompClient.send(
+        `/pub/chat`,
+        {},
+        JSON.stringify({
+          ...message,
+          token: `Bearer ${accessToken}`,
+        }),
       )
     }
   }
