@@ -21,8 +21,8 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
     const { value } = e.target
 
     if (value.length > MAX) {
-      setInputVal(value.slice(0, MAX))
       alert('입력은 최대 250자까지 가능합니다.')
+      setInputVal(value.slice(0, MAX))
     } else {
       setInputVal(value)
     }
