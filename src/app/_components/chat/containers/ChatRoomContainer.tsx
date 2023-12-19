@@ -102,6 +102,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }
 
   return (
+<<<<<<< HEAD
     <div className="w-full bg-white h-screen">
       <div
         className="items-center mt-[80px] w-full px-3 h-[75%] overflow-scroll scrollbar-hide"
@@ -125,6 +126,12 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           </div>
         )}
         {data && (
+=======
+    <div className="h-[82%] py-5 px-3 ">
+      <div className="h-full overflow-scroll scrollbar-hide" ref={containerRef}>
+        <div ref={topDivRef}></div>
+        {fetchedChatData.reverse().map((chatData) => (
+>>>>>>> afa808f (:recycle: [refactor] : previous reverse  page)
           <ChatList
             userId={userId}
             user={data.pages[0].user}
