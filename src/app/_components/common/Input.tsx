@@ -19,7 +19,7 @@ const getInputSort = (sort: string) => {
       }
     case 'chat':
       return {
-        input: 'w-[80%] h-[45px] pr-[20px] pr-3',
+        input: 'w-[80%] h-[45px] pr-[45px]',
       }
     default:
       return {
