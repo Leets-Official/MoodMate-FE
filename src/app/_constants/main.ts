@@ -16,7 +16,7 @@ export const INACTIVE_BUTTON = {
 
 export const INACTIVE_MODAL = {
   TITLE: '무디를 비활성화 할까요?',
-  SUB_TITLE: '비활성화 하면 매칭이 중단돼요',
+  SUB_TITLE: '다음 매칭에서 제외됩니다 채팅은 유지돼요',
   CONFIRM: '싫어요!',
   CANCEL: '좋아요!',
 } as const
