@@ -47,9 +47,9 @@ const OauthPage = () => {
         data.mainPageResponse.userGender === 'MALE' ||
         data.mainPageResponse.userGender === 'FEMALE'
       ) {
-        router.push('/main')
+        router.push('./main')
       } else {
-        router.push('/userinfo/1')
+        router.push('./userinfo/1')
       }
     }
   }, [data, router])
