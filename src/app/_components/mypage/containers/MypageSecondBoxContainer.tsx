@@ -5,6 +5,8 @@ import MoodyAge from '@/_components/information/MoodyAge'
 import Department from '@/_components/information/Department'
 import DateMood from '@/_components/information/DateMood'
 import InfoDetail from '@/_components/common/InfoDetail'
+import NormalButton from '@/_components/common/NormalButton'
+import { useRouter } from 'next/router'
 
 interface UserInfoProps {
   userKeywords: string[]
@@ -20,9 +22,20 @@ const MypageSecondBoxContainer = ({
   preferDepartmentPossible,
   preferMood,
 }: UserInfoProps) => {
+  const router = useRouter()
+  const onClick = () => {
+    router.push('/mypage/edit')
+  }
   return (
     <section className="flex flex-col">
       <p className="ml-6 mt-4 text-[12px] text-[#808080]">내가 고른 항목</p>
+      <NormalButton
+        buttonText="수정하기"
+        onClick={onClick}
+        buttonType="small"
+        isActive={true}
+        className="bg-primary text-white"
+      />
       <div className="ml-6">
         <InfoDetail
           titleText="키워드"
