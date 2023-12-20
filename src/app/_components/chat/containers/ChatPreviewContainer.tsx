@@ -2,7 +2,7 @@
 
 import { useChatQuery } from '@/_hooks/useChatQuery'
 import { CHAT_SIZE, UNMATCHED_MODAL } from '@/_constants/chat'
-import Loading from '@/_components/common/Loading'
+
 import ErrorPage from '@/(route)/error'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
@@ -26,21 +26,13 @@ const ChatPreviewContainer = ({
   const [openUnmatchModal, setOpenUnmatchedModal] = useRecoilState(
     openUnmatchModalState,
   )
-  const { isLoading, isError, chatHistory } = useChatQuery(
-    roomId,
-    CHAT_SIZE.PREVIEW,
-    1,
-  )
+  const { isError, chatHistory } = useChatQuery(roomId, CHAT_SIZE.PREVIEW, 1)
 
   useEffect(() => {
     if (chatHistory && !chatHistory.user.roomActive) {
       setOpenUnmatchedModal(true)
     }
   }, [chatHistory])
-
-  if (isLoading) {
-    return <Loading />
-  }
 
   if (isError) {
     return <ErrorPage />

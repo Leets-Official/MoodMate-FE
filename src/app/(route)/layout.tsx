@@ -1,6 +1,8 @@
 import { QueryProvider, RecoilProvider } from '@/_context'
 import '@/_ui/globals.css'
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
+import Loading from '@/_components/common/Loading'
 
 export const metadata: Metadata = {
   title: '무드메이트',
@@ -19,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="h-screen desktop:w-[360px] desktop:mx-auto">
         <RecoilProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </QueryProvider>
         </RecoilProvider>
       </body>
     </html>

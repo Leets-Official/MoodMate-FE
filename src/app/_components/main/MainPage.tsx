@@ -6,7 +6,7 @@ import TimerMiddleText from '@/_components/timer/containers/TimerMiddleText'
 import NavBar from '@/_components/common/NavBar'
 import { useMainQuery } from '@/_hooks/useMainQuery'
 import Image from 'next/image'
-import Loading from '@/_components/common/Loading'
+
 import afterMatchFemale from 'public/illustration/female/main/afterMatch.png'
 import afterMatchMale from 'public/illustration/male/main/afterMatch.png'
 import beforeMatch from 'public/illustration/common/main/beforeMatch.png'
@@ -76,10 +76,8 @@ const getBGStyle = (type: string, gender: string) => {
 }
 const MainPage = ({ type, gender }: MatchProps) => {
   const route = useRouter()
-  const { isLoading, isError, data } = useMainQuery()
-  if (isLoading) {
-    return <Loading />
-  }
+  const { isError, data } = useMainQuery()
+
   if (isError || !data) {
     return <ErrorPage />
   }
