@@ -3,5 +3,10 @@ export default function MyKeywords({
 }: {
   children: React.ReactNode
 }) {
-  return <main>{children}</main>
+  return (
+    <main className="flex flex-col items-center">
+      <div className="h-[16px"></div>
+      {children}
+    </main>
+  )
 }
