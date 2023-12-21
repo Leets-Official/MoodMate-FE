@@ -15,6 +15,7 @@ interface UserInfoProps {
   preferDepartmentPossible: boolean
   preferMood: string
 }
+
 const MypageSecondBoxContainer = ({
   userKeywords,
   preferYearMax,
@@ -24,7 +25,7 @@ const MypageSecondBoxContainer = ({
 }: UserInfoProps) => {
   const router = useRouter()
   const onClick = () => {
-    router.push('/mypage/edit')
+    router.push('/mypage/edit/1')
   }
   return (
     <section className="flex flex-col">

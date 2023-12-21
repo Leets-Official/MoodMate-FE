@@ -12,3 +12,10 @@ interface PreferInfoData {
   preferDepartmentPossible: boolean
   preferMood: string
 }
+
+interface EditPreferInfoData {
+  preferYearMin: number
+  preferYearMax: number
+  userKeywords: string[]
+  preferMood: string
+}
