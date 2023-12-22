@@ -32,7 +32,6 @@ const InactiveFirstText = ({
   })
   const onChatCloseModal = () => {
     setChatModal((prev) => !prev)
-    // document.body.style.overflow = 'unset'
   }
   const moveToMypage = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions

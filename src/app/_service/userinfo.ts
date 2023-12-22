@@ -9,9 +9,7 @@ export const postUserData = async (
     let preferInfoResult
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       userInfoResult = await postUserInfo(userInfo)
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       preferInfoResult = await postPreferInfo(preferInfo)
     } catch (error) {
       throw error

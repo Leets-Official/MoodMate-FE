@@ -22,7 +22,7 @@ export const getMessages = async (
 
 export const patchQuitChat = async () => {
   try {
-    return await api.patch('/chat').then((res) => res.data) // message 콘솔 확인
+    return await api.patch('/chat').then((res) => res.data)
   } catch (error) {
     throw error
   }
