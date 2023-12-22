@@ -6,7 +6,7 @@
 
 <br />
 
-> 서비스 바로가기 <br /> > **https://www.moodmate.site/main**
+> 서비스 바로가기 <br /> > **https://www.moodmate.site**
 
 <br/>
 
@@ -28,8 +28,8 @@
 - [✍🏻 프로젝트 개요](#-프로젝트-개요)
 - [⚙️ 기술 스택](#️-기술-스택)
 - [🧡 FE 팀원 소개](#-fe-팀원-소개)
+- [🖥️ 화면 구성](#-화면-구성)
 - [🚀 핵심 기능](#-핵심-기능)
-  - [1:1 실시간 채팅](#-1:1-실시간-채팅)
 - [🏛️ 시스템 아키텍처](#️-시스템-아키텍처)
 - [🔎 FE 기술적 도전](#-FE-기술적-도전)
   - [디자인 시스템 구축](#디자인-시스템-구축)
@@ -98,15 +98,53 @@ MoodMate 무드메이트는 매일 밤 10시에 데이트 무드 취향, 나이�
 
 <br />
 
+## 🖥️ 화면 구성
+
+### 회원 정보 입력
+
+<p align="center">  <img src="public/readme/정보1.png"align="center" width="32%">  <img src="public/readme/정보2.png"align="center" width="32%">  <img src="public/readme/정보3.png"align="center" width="32%"></p>
+<p align="center">  <img src="public/readme/정보4.png"align="center" width="32%">  <img src="public/readme/정보5.png"align="center" width="32%"></p>
+
+<br />
+
+### 상대 무디 조건 입력
+
+<p align="center">  <img src="public/readme/무디1.png"align="center" width="32%">  <img src="public/readme/무디2.png"align="center" width="32%">  <img src="public/readme/무디3.png"align="center" width="32%"></p>
+
+<br />
+
+### 메인페이지
+
+<p align="center">  <img src="public/readme/메인1.png"align="center" width="32%"> <img src="public/readme/메인2.png"align="center" width="32%">  <img src="public/readme/비활메인.png"align="center" width="32%"><figcaption align="center">매칭대기중 | 매칭 후 채팅중 | 비활성화중 메인</figcaption></p>
+
+### 채팅
+
+<p align="center">  <img src="public/readme/채팅1.png"align="center" width="32%"> <img src="public/readme/채팅2.png"align="center" width="32%">  <img src="public/readme/상대방채팅.png"align="center" width="32%"><figcaption align="center">채팅 미리보기 | 채팅중 | 상대 무디 정보 조회</figcaption></p>
+
+### 마이페이지
+
+<p align="center">  <img src="public/readme/마이페이지.png"align="center" width="32%"></p>
+
 <br />
 
 ## 🚀 핵심 기능
 
+### 매칭 시스템
+
 ### 1:1 실시간 채팅
 
-> 웹소켓, Stomp.js, Sock.js
+> 웹소켓과 Stomp 프로토콜을 이용한 1:1 채팅방 구현
 
-- recoil 전역 상태 관리
+- pub, sub 모델을 통한 양방향 통신 구현
+- recoil 전역 상태 관리툴을 이용해 실시간 채팅이 올 때 마다 클라이언트 사이드에 저장함으로서 백엔드 api 요청 횟수 조절
+
+### 채팅방 무한스크롤
+
+> 리액트 쿼리와 IntersectionObserver를 활용한 무한 스크롤 구현으로, 사용자가 원할 때만 채팅 내용을 가져옴
+
+- 유저가 스크롤을 위로 올리면 이전의 채팅이 설정한 사이즈만큼 보여짐
+- 다음 페이지의 element가 없다면 더이상의 api 요청을 하지 않음
+- 스크롤이 맨 위 또는 중간에 있을 때, 실시간 메시지를 송수신하면 스크롤이 가장 아래로 내려감
 
 </aside>
 
