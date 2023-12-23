@@ -2,20 +2,26 @@ import { useRouter } from 'next/navigation'
 import { MY_KEYWORD_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
 import { userInfoState } from '@/_atom/userinfo'
+import { editPreferInfoState } from '@/_atom/editinfo'
 import { useEffect, useState } from 'react'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
 
 interface UserKeywordProps {
   pageNum: string
+  userKeywords?: string[]
 }
 
-export default function UserKeyword({ pageNum }: UserKeywordProps) {
+export default function UserKeyword({
+  pageNum,
+  userKeywords,
+}: UserKeywordProps) {
   const route = useRouter()
 
   const [userInfo, setUserInfoState] = useRecoilState(userInfoState)
+  const [editInfo, setEditInfoState] = useRecoilState(editPreferInfoState)
   const [selectedButtons, setSelectedButtons] = useState<string[]>(
-    userInfo.keywords,
+    userKeywords ? userKeywords : userInfo.keywords,
   )
 
   const buttonStyles = {
@@ -28,7 +34,12 @@ export default function UserKeyword({ pageNum }: UserKeywordProps) {
       ...prevUserInfo,
       keywords: selectedButtons,
     }))
-    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+    setEditInfoState((prevEditInfo) => ({
+      ...prevEditInfo,
+      keywords: selectedButtons,
+    }))
+    const routeUrl = userKeywords ? '/mypage/edit' : '/userinfo'
+    route.push(`${routeUrl}/${parseInt(pageNum, 10) + 1}`)
   }
 
   const handlerButtonclick = (keyword: string) => {

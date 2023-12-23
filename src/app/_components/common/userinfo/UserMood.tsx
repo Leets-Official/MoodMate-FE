@@ -7,29 +7,38 @@ import { useRecoilState } from 'recoil'
 import { preferInfoState, userInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { postUserData } from '@/_service/userinfo'
+import { postUserData, editUserData } from '@/_service/userinfo'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
 import Cookies from 'js-cookie'
+import { editPreferInfoState } from '@/_atom/editinfo'
 
-export default function UserMood() {
+interface UserMoodProps {
+  preferMood?: string
+}
+
+export default function UserMood({ preferMood }: UserMoodProps) {
   const route = useRouter()
 
   const [usersInfo, setUsersInfoState] = useRecoilState(userInfoState)
   const [userInfo, setUserInfoState] = useRecoilState(preferInfoState)
+  const [editInfo, setEditInfoState] = useRecoilState(editPreferInfoState)
+
+  const isEditMood = preferMood ? preferMood : userInfo.preferMood
+
   const [actButtonSelected, setActButtonSelected] = useState<boolean>(
-    userInfo.preferMood === '활동적인',
+    isEditMood === '활동적인',
   )
   const [emoButtonSelected, setEmoButtonSelected] = useState<boolean>(
-    userInfo.preferMood === '감성 풍부한',
+    isEditMood === '감성 풍부한',
   )
 
   const [newButtonSelected, setNewButtonSelected] = useState<boolean>(
-    userInfo.preferMood === '이색적인',
+    isEditMood === '이색적인',
   )
 
   const [funButtonSelected, setFunButtonSelected] = useState<boolean>(
-    userInfo.preferMood === '유쾌한',
+    isEditMood === '유쾌한',
   )
 
   const buttonStyles = {
@@ -48,11 +57,27 @@ export default function UserMood() {
     },
   })
 
+  const editMyPageMutation = useMutation({
+    mutationFn: () => editUserData(editInfo),
+    onSuccess: () => {},
+    onError: () => {
+      alert('정보 수정에 실패했습니다. 재로그인 후 이용해주세요!')
+      Cookies.remove('accessToken')
+      Cookies.remove('refreshToken')
+      route.push('/login')
+    },
+  })
+
+  const isEditValue = preferMood ? editInfo : userInfo
+  const isEditFunc = preferMood ? editMyPageMutation : postUserDataMutation
+  const routeUrl = preferMood ? '/mypage' : '/main'
+
   const nextRoute = async () => {
     try {
       if (
-        Object.values(userInfo).some((value) => value === '') ||
-        usersInfo.keywords.length === 0
+        Object.values(isEditValue).some((value) => value === '') ||
+        usersInfo.keywords.length === 0 ||
+        editInfo.userKeywords.length === 0
       ) {
         alert(
           '정보 입력이 잘못되었습니다. 로그인 페이지로 이동합니다. 재로그인 해주세요.',
@@ -61,15 +86,15 @@ export default function UserMood() {
         return
       }
 
-      if (Object.values(userInfo).some((value) => value === '')) {
+      if (Object.values(isEditValue).some((value) => value === '')) {
         alert(
           '선호 정보 입력이 잘못되었습니다. 로그인 페이지로 이동합니다. 재로그인 해주세요.',
         )
-        route.push('/login')
+        route.push(`${routeUrl}`)
         return
       }
 
-      await postUserDataMutation.mutateAsync()
+      await isEditFunc.mutateAsync()
       route.push('/main')
     } catch (error) {
       alert('정보 저장에 실패했습니다. 재로그인 후 이용해주세요!')
@@ -133,10 +158,10 @@ export default function UserMood() {
   }
 
   useEffect(() => {
-    setActButtonSelected(userInfo.preferMood === '활동적인')
-    setEmoButtonSelected(userInfo.preferMood === '감성 풍부한')
-    setFunButtonSelected(userInfo.preferMood === '유쾌한')
-    setNewButtonSelected(userInfo.preferMood === '이색적인')
+    setActButtonSelected(isEditMood === '활동적인')
+    setEmoButtonSelected(isEditMood === '감성 풍부한')
+    setFunButtonSelected(isEditMood === '유쾌한')
+    setNewButtonSelected(isEditMood === '이색적인')
   }, [userInfo])
 
   return (

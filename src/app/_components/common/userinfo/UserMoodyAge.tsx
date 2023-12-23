@@ -5,12 +5,19 @@ import { preferInfoState, userInfoState } from '@/_atom/userinfo'
 import { useState } from 'react'
 import RangeBar from '../RangeBar'
 import NormalButton from '../NormalButton'
+import { editPreferInfoState } from '@/_atom/editinfo'
 
 interface UserMoodyageProps {
   pageNum: string
+  preferYearMax?: number
+  preferYearMin?: number
 }
 
-export default function UserMoodyage({ pageNum }: UserMoodyageProps) {
+export default function UserMoodyage({
+  pageNum,
+  preferYearMax,
+  preferYearMin,
+}: UserMoodyageProps) {
   const route = useRouter()
   const buttonStyles = {
     defaultStyles: 'bg-secondary',
@@ -18,15 +25,21 @@ export default function UserMoodyage({ pageNum }: UserMoodyageProps) {
   }
 
   const [userInfo, setUserInfo] = useRecoilState(preferInfoState)
+  const [editInfo, setEditInfoState] = useRecoilState(editPreferInfoState)
   const [myInfo, setMyInfo] = useRecoilState(userInfoState)
   const moodyCharacter =
     myInfo.gender === 'FEMALE'
       ? '/illustration/female/age/partnerage.png'
       : '/illustration/male/age/partnerpage.png'
 
+  const isEditAge =
+    preferYearMax && preferYearMin
+      ? [preferYearMin, preferYearMax]
+      : [userInfo.preferYearMin, userInfo.preferYearMax]
+
   const [rangeValue, setRangeValue] = useState<number[]>(
     userInfo.preferYearMax !== 0 && userInfo.preferYearMin !== 0
-      ? [userInfo.preferYearMin, userInfo.preferYearMax]
+      ? isEditAge
       : [RANGE_BAR_AGE.MIN, RANGE_BAR_AGE.MAX],
   )
 
@@ -37,6 +50,11 @@ export default function UserMoodyage({ pageNum }: UserMoodyageProps) {
   const nextRoute = () => {
     setUserInfo((prevUserInfo) => ({
       ...prevUserInfo,
+      preferYearMax: rangeValue[1],
+      preferYearMin: rangeValue[0],
+    }))
+    setEditInfoState((prevEditInfo) => ({
+      ...prevEditInfo,
       preferYearMax: rangeValue[1],
       preferYearMin: rangeValue[0],
     }))
