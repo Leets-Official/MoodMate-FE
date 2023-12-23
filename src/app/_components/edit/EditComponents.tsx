@@ -26,7 +26,13 @@ const EditComponents = ({
     case '1':
       return <UserKeyword pageNum={pageNum} userKeywords={userKeywords} />
     case '2':
-      return <UserMoodyAge pageNum={pageNum} />
+      return (
+        <UserMoodyAge
+          pageNum={pageNum}
+          preferYearMax={preferYearMax}
+          preferYearMin={preferYearMin}
+        />
+      )
     case '3':
       return <UserSameDept pageNum={pageNum} />
     case '4':
