@@ -34,9 +34,7 @@ const EditComponents = ({
         />
       )
     case '3':
-      return <UserSameDept pageNum={pageNum} />
-    case '4':
-      return <UserMood />
+      return <UserMood preferMood={preferMood} />
     default:
       return <NotFound />
   }

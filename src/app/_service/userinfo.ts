@@ -20,6 +20,15 @@ export const postUserData = async (
   }
 }
 
+export const editUserData = async (editinfo: EditPreferInfoData) => {
+  try {
+    const response = await api.patch('/users/update', editinfo)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
 const postUserInfo = async (userInfo: UserInfoData) => {
   try {
     const response = await api.post('/users/user-info', userInfo)
