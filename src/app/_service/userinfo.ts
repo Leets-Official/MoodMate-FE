@@ -5,7 +5,8 @@ export const postUserData = async (
   preferInfo: PreferInfoData,
 ) => {
   try {
-    let userInfoResult, preferInfoResult
+    let userInfoResult
+    let preferInfoResult
 
     try {
       userInfoResult = await postUserInfo(userInfo)
