@@ -3,6 +3,7 @@ import { RANGE_BAR_AGE, MOODIE_AGE_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
 import { preferInfoState, userInfoState } from '@/_atom/userinfo'
 import { useState } from 'react'
+import Image from 'next/image'
 import RangeBar from '../RangeBar'
 import NormalButton from '../NormalButton'
 
@@ -56,7 +57,7 @@ export default function UserMoodyage({ pageNum }: UserMoodyageProps) {
         </div>
       </div>
       <div className="relative top-[0%] mt-[-50px] mb-[20px] left-[40%] ml-[-50px] w-[149px] h-[157px]flex justify-center items-center">
-        <img src={moodyCharacter} alt="" width={149} height="auto" />
+        <Image src={moodyCharacter} alt="" width={149} />
       </div>
       <div className="font-sans `justify-items-center flex flex-col items-center">
         <RangeBar

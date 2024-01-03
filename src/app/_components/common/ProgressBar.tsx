@@ -18,7 +18,7 @@ const ProgressBar = ({ current }: ProgressBarProps) => {
   useEffect(() => {
     setInitialRender(false)
     setPercentage((parseInt(current.toString(), 10) / total) * 100)
-  }, [current])
+  }, [current, total])
 
   return (
     <div className="flex flex-col items-center justify-center">

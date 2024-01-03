@@ -18,7 +18,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
   const { sendMessage } = useWebsocket(roomId)
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
+    const { value } = e.target
 
     if (value.length > MAX) {
       setInputVal(value.slice(0, MAX))

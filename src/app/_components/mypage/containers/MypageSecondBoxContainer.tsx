@@ -33,7 +33,7 @@ const MypageSecondBoxContainer = ({
         buttonText="수정하기"
         onClick={onClick}
         buttonType="small"
-        isActive={true}
+        isActive
         className="bg-primary text-white"
       />
       <div className="ml-6">

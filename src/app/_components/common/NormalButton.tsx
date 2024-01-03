@@ -2,7 +2,7 @@
 
 interface NormalButtonProps {
   buttonText: string
-  onClick: () => void
+  onClick?: () => void
   buttonType: 'large' | 'small'
   className: string
   isActive: boolean
@@ -38,7 +38,7 @@ const NormalButton = ({
     <button
       type="button"
       className={`${buttonStyles.button}`}
-      onClick={onClick}
+      onClick={onClick && onClick}
       disabled={!isActive}
     >
       {buttonText}

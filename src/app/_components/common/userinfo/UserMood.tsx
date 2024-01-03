@@ -8,9 +8,9 @@ import { preferInfoState, userInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { postUserData } from '@/_service/userinfo'
+import Cookies from 'js-cookie'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
-import Cookies from 'js-cookie'
 
 export default function UserMood() {
   const route = useRouter()

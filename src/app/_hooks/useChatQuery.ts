@@ -1,7 +1,7 @@
 'use client'
 
 import { getMessages } from '@/_service/chat'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 
 export const useChatQuery = (roomId: number, size: number, page: number) => {
   const queryKey = ['chat', roomId, size, page]
@@ -9,7 +9,7 @@ export const useChatQuery = (roomId: number, size: number, page: number) => {
     isLoading,
     isError,
     data: chatHistory,
-  } = useQuery<ResponseChatGet, Error>({
+  } = useSuspenseQuery<ResponseChatGet, Error>({
     queryKey,
     queryFn: () => getMessages(roomId, size, page),
   })

@@ -5,7 +5,7 @@ import ErrorpageSecondContainer from '@/_components/errorpage/containers/Errorpa
 import Image from 'next/image'
 import errorImage from 'public/illustration/common/error/network.png'
 
-const Error = () => {
+export default function Error() {
   return (
     <section className="w-full h-screen flex flex-col items-center justify-center">
       <Image src={errorImage} alt="image" className="w-[296px] h-[170px]" />
@@ -14,5 +14,3 @@ const Error = () => {
     </section>
   )
 }
-
-export default Error

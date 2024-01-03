@@ -1,6 +1,11 @@
 import { QueryProvider, RecoilProvider } from '@/_context'
 import '@/_ui/globals.css'
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
+import { QueryErrorResetBoundary } from '@tanstack/react-query'
+import { ErrorBoundary } from 'react-error-boundary'
+import LoadingComponent from './loading'
+import Error from './error'
 
 export const metadata: Metadata = {
   title: '무드메이트',
@@ -19,7 +24,13 @@ export default function RootLayout({
     <html lang="en">
       <body className="h-screen desktop:w-[360px] desktop:mx-auto">
         <RecoilProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <QueryErrorResetBoundary>
+              <ErrorBoundary fallback={<Error />}>
+                <Suspense fallback={<LoadingComponent />}>{children}</Suspense>
+              </ErrorBoundary>
+            </QueryErrorResetBoundary>
+          </QueryProvider>
         </RecoilProvider>
       </body>
     </html>

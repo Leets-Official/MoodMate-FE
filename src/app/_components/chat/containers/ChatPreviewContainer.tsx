@@ -36,7 +36,7 @@ const ChatPreviewContainer = ({
     if (chatHistory && !chatHistory.user.roomActive) {
       setOpenUnmatchedModal(true)
     }
-  }, [chatHistory])
+  }, [chatHistory, setOpenUnmatchedModal])
 
   if (isLoading) {
     return <Loading />
