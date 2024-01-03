@@ -28,7 +28,6 @@ const InfoDetail = ({ titleText, component, className }: InfoDetailProps) => {
       >
         <Icons name={arrowIcon} className="mt-2.5" />
         <NormalButton
-          onClick={() => {}}
           buttonText={titleText}
           buttonType="small"
           className={className}

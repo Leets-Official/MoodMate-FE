@@ -3,6 +3,7 @@ import { RANGE_BAR_AGE, MY_AGE_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
 import { userInfoState } from '@/_atom/userinfo'
 import { useState } from 'react'
+import Image from 'next/image'
 import RangeBar from '../RangeBar'
 import NormalButton from '../NormalButton'
 
@@ -56,7 +57,7 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
         </div>
       </div>
       <div className="relative top-[0%] mt-[-60px] mb-[20px]  left-[40%] ml-[-50px] w-[149px] h-[157px] flex justify-center items-center">
-        <img src={myCharacter} alt="" width="149" height="atuo" />
+        <Image src={myCharacter} alt="myCharacter" width={149} />
       </div>
       <div className="justify-items-center flex flex-col items-center font-sans">
         <RangeBar

@@ -34,7 +34,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }
-  }, [realTimeMessages])
+  }, [realTimeMessages, scrollHeight])
 
   useEffect(() => {
     if (containerRef.current) {
@@ -43,7 +43,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     if (data?.pages[0].user && !data?.pages[0].user.roomActive) {
       setOpenUnmatchedModal(true)
     }
-  }, [data])
+  }, [data, setOpenUnmatchedModal])
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
