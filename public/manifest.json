@@ -1,0 +1,32 @@
+{
+  "theme_color": "#FFE5E7",
+  "background_color": "#FFE5E7",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "https://www.moodmate.site/",
+  "name": "무드메이트",
+  "short_name": "무드메이트",
+  "description": "하루 한번, 나와 비슷한 무드의 상대방을 매칭해보세요!",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

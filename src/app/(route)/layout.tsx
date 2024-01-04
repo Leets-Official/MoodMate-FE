@@ -17,6 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className="h-screen desktop:w-[360px] desktop:mx-auto">
         <RecoilProvider>
           <QueryProvider>{children}</QueryProvider>
