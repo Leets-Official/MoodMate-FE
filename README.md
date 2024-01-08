@@ -68,6 +68,9 @@ MoodMate 무드메이트는 매일 밤 10시에 데이트 무드 취향, 나이�
             </td>
             <td>
                 <img src="https://img.shields.io/badge/Docker-2496ED?&logo=Docker&logoColor=white">
+              <img src="https://img.shields.io/badge/Spring_Boot-%236DB33F?logo=springboot&logoColor=white">
+              <img src="https://img.shields.io/badge/Spring_Security-%236DB33F?logo=springsecurity&logoColor=white">
+              <img src="https://img.shields.io/badge/Spring_JPA-%236DB33F?logo=spring&logoColor=white">
             </td>
         </tr>
         <tr>
