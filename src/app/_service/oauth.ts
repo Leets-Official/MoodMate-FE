@@ -1,26 +1,25 @@
-import { setCookie } from 'nookies'
 import api from './axios'
+import { useMutation } from '@tanstack/react-query'
+import { AxiosResponse } from 'axios'
 
-export const getUserToken = async (code: string) => {
-  try {
-    const response = await api
-      .get('/users/login', {
-        params: {
-          kakaoAccessToken: code.toString(),
-        },
-      })
-      .then((res) => res.data)
-    const { accessToken } = response
-    const { refreshToken } = response
-    setCookie(null, 'accessToken', accessToken, {
-      maxAge: 3 * 60 * 60,
-      path: '/',
-    })
-    setCookie(null, 'refreshToken', refreshToken, {
-      maxAge: 3 * 24 * 60 * 60,
-      path: '/',
-    })
-  } catch (error) {
-    throw error
-  }
+interface PostLoginProps {
+  code: string | null
 }
+interface TokenResponse {
+  accessToken: string
+  refreshToken: string
+}
+const usePostLogin = () => {
+  const postLogin = async (
+    code: PostLoginProps,
+  ): Promise<AxiosResponse<TokenResponse>> => {
+    return await api.post<TokenResponse>('백엔드주소', null, {
+      params: code,
+    })
+  }
+
+  return useMutation({
+    mutationFn: postLogin,
+  })
+}
+export default usePostLogin
