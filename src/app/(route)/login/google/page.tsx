@@ -6,9 +6,15 @@ import { useRouter } from 'next/navigation'
 import Loading from '@/_components/common/Loading'
 import { useMainQuery } from '@/_hooks/useMainQuery'
 import ErrorPage from '@/(route)/error'
+import { useCustomQuery } from '@/_hooks/useCustomQuery'
+import { mainInfo } from '@/_service/main'
 
 const OauthPage = () => {
-  const { isLoading, isError, data } = useMainQuery()
+  const { isLoading, isError, data } = useCustomQuery<ResponseMain>(
+    ['main'],
+    mainInfo,
+  )
+  // const { isLoading, isError, data } = useMainQuery()
   const [accessToken, setAccessToken] = useState<string>('')
   const [refreshToken, setRefreshToken] = useState<string>('')
   const router = useRouter()
