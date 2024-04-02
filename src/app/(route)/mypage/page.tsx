@@ -2,14 +2,18 @@
 
 import MypageSecondBoxContainer from '@/_components/mypage/containers/MypageSecondBoxContainer'
 import MypageThirdBoxContainer from '@/_components/mypage/containers/MypageThirdBoxContainer'
-import { useMyPageQuery } from '@/_hooks/useMypageQuery'
 import Loading from '@/_components/common/Loading'
 import Profile from '@/_components/information/Profile'
 import ErrorPage from '@/(route)/error'
 import Header from '@/_components/layout/Header'
+import { useCustomQuery } from '@/_hooks/useCustomQuery'
+import { myPageInfo } from '@/_service/mypage'
 
 export default function MyPage() {
-  const { isLoading, isError, data } = useMyPageQuery()
+  const { isLoading, isError, data } = useCustomQuery<ResponseMyPage>(
+    ['myPage'],
+    myPageInfo,
+  )
   if (isLoading) {
     return <Loading />
   }

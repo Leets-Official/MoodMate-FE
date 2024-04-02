@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { realTimeMessagesState } from '@/_atom/chat'
 import { CompatClient, Stomp } from '@stomp/stompjs'
-import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
+import Cookies from 'js-cookie'
 import SockJS from 'sockjs-client'
 
 const useWebsocket = (roomId: number) => {
