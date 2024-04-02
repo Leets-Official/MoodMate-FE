@@ -9,7 +9,6 @@ import { useCustomQuery } from '@/_hooks/useCustomQuery'
 import { mainInfo } from '@/_service/main'
 
 export default function MainpagePage() {
-  // const { isLoading, isError, data } = useMainQuery()
   const { isLoading, isError, data } = useCustomQuery<ResponseMain>(
     ['main'],
     mainInfo,

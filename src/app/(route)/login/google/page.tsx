@@ -14,7 +14,6 @@ const OauthPage = () => {
     ['main'],
     mainInfo,
   )
-  // const { isLoading, isError, data } = useMainQuery()
   const [accessToken, setAccessToken] = useState<string>('')
   const [refreshToken, setRefreshToken] = useState<string>('')
   const router = useRouter()
