@@ -14,6 +14,6 @@ module.exports = withPWA({
   ...nextConfig,
   env: {
     NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL,
-    GOOGLE_LOGIN: process.env.GOOGLE_LOGIN,
+    NEXT_PUBLIC_KEY: process.env.NEXT_PUBLIC_KEY,
   },
 })
