@@ -3,11 +3,7 @@
 import Image from 'next/image'
 import loginImage from 'public/illustration/common/login/login.png'
 import google from 'public/illustration/common/login/google.png'
-import {
-  checkPermission,
-  registerSW,
-  requestNotificationPermission,
-} from '@/_pwa/pwa'
+import { checkPermission, notificationMain, registerSW } from '@/_pwa/pwa'
 import { useEffect } from 'react'
 import { LOGIN_PAGE } from '@/_constants/login'
 import NormalButton from '@/_components/common/NormalButton'
@@ -47,6 +43,13 @@ export default function Login() {
         alt="구글로그인버튼"
         onClick={handleLogin}
         className="hover:cursor-pointer mt-7 w-full mx-auto"
+      />
+      <NormalButton
+        onClick={notificationMain}
+        buttonText="알림받기"
+        buttonType="small"
+        className=""
+        isActive
       />
       <div className="text-center text-xs text-secondary ml-2 mt-4">
         <p>회원가입 시 개인정보 제공 및 대화 내용 저장에 동의합니다.</p>
