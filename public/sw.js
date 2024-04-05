@@ -103,5 +103,17 @@ define(['./workbox-e43f5367'], function (workbox) {
     }),
     'GET',
   )
+
+  /* 알림 관련 */
+  self.addEventListener('activate', async (event) => {
+    console.log('서비스 워커 활성화!')
+    const subscription = await self.registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(
+        process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+      ),
+    })
+    console.log(subscription)
+  })
 })
 //# sourceMappingURL=sw.js.map
