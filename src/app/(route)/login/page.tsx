@@ -1,14 +1,27 @@
 'use client'
 
 import Image from 'next/image'
-import { LOGIN_PAGE } from '@/_constants/login'
 import loginImage from 'public/illustration/common/login/login.png'
 import google from 'public/illustration/common/login/google.png'
+import {
+  checkPermission,
+  registerSW,
+  requestNotificationPermission,
+} from '@/_pwa/pwa'
+import { useEffect } from 'react'
+import { LOGIN_PAGE } from '@/_constants/login'
+import NormalButton from '@/_components/common/NormalButton'
 
 export default function Login() {
   const handleLogin = () => {
     window.location.href = `${process.env.GOOGLE_LOGIN}oauth/login/google`
   }
+
+  useEffect(() => {
+    checkPermission()
+    registerSW()
+  }, [])
+
   return (
     <section className="flex flex-col h-screen mx-5 scrollbar-hide">
       <div className="h-[20%]">

@@ -19,6 +19,7 @@ export default function MainpagePage() {
     data.mainPageResponse
   const mainPageType = roomActive ? 'AFTER' : 'BEFORE'
   const mainPageGender = userGender === 'MALE' ? 'MALE' : 'FEMALE'
+
   return (
     <section className="scrollbar-hide">
       {userMatchActive ? (

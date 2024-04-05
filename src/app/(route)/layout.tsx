@@ -1,4 +1,5 @@
 import { QueryProvider, RecoilProvider } from '@/_context'
+import ServiceWorkerRegistration from '@/_context/ServiceWorkerRegister'
 import '@/_ui/globals.css'
 import type { Metadata } from 'next'
 
@@ -22,7 +23,10 @@ export default function RootLayout({
       </head>
       <body className="h-screen desktop:w-[360px] desktop:mx-auto">
         <RecoilProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <ServiceWorkerRegistration />
+            {children}
+          </QueryProvider>
         </RecoilProvider>
       </body>
     </html>
