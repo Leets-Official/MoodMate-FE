@@ -24,3 +24,9 @@ interface ChatMessageFromServerFull {
   pageable: Pageable
   user: SimpleUser
 }
+
+interface NotificationPayload {
+  title: string
+  body: string
+  link: string
+}

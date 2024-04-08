@@ -1,10 +1,13 @@
-export const checkPermission = () => {
-  if (!('serviceWorker' in navigator)) {
-    throw new Error('지원되지 않음!')
-  }
-}
+// export const checkPermission = async (): Promise<ServiceWorkerRegistration> => {
+//   return await navigator.serviceWorker.register('/sw.js', {
+//     updateViaCache: 'none',
+//   })
+//   // if (!('serviceWorker' in navigator)) {
+//   //   throw new Error('지원되지 않음!')
+//   // }
+// }
 
-export const registerSW = async () => {
+export const registerSW = async (): Promise<ServiceWorkerRegistration> => {
   const registration = await navigator.serviceWorker.register('sw.js')
   return registration
 }
@@ -19,8 +22,17 @@ export const requestNotificationPermission = async (): Promise<void> => {
   }
 }
 
+export const subscribePushManager = async (
+  serviceWorkerRegistration: ServiceWorkerRegistration,
+): Promise<PushSubscription> => {
+  return await serviceWorkerRegistration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+  })
+}
+
 export const notificationMain = async () => {
-  checkPermission()
+  // checkPermission()
   await requestNotificationPermission()
   await registerSW()
 }

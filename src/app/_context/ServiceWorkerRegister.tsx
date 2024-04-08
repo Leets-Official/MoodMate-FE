@@ -5,6 +5,9 @@ import { useEffect } from 'react'
 const ServiceWorkerRegistration = () => {
   useEffect(() => {
     if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js', {
+        updateViaCache: 'none',
+      })
       window.addEventListener('load', () => {
         navigator.serviceWorker
           .register('/sw.js')
