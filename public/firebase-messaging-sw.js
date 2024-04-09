@@ -1,3 +1,22 @@
+importScripts(
+  'https://www.gstatic.com/firebasejs/10.10.0/firebase-app-compat.js',
+)
+importScripts(
+  'https://www.gstatic.com/firebasejs/10.10.0/firebase-messaging-compat.js',
+)
+
+firebase.initializeApp({
+  apiKey: 'AIzaSyDtIS6w6yIcZ6wik-X3DVmyr5a0myFK5zw',
+  authDomain: 'moodmate-70168.firebaseapp.com',
+  projectId: 'moodmate-70168',
+  storageBucket: 'moodmate-70168.appspot.com',
+  messagingSenderId: '402373130976',
+  appId: '1:402373130976:web:8300c06f1df33bf8592e85',
+  measurementId: 'G-YTDNNLMFWJ',
+})
+
+const messaging = firebase.messaging()
+
 self.addEventListener('install', function (e) {
   self.skipWaiting()
 })
@@ -7,24 +26,15 @@ self.addEventListener('activate', function (e) {})
 self.addEventListener('push', function (e) {
   if (!e.data.json()) return
 
-  //   const resultData = e.data.json().notification
-  //   const notificationTitle = resultData.title
-  const title = '무드메이트'
-  const body = '무디에게 연락이 왔습니다!! 채팅을 확인해보세용'
+  const data = e.data.json().data
 
-  //   const notificationOptions = {
-  //     body: resultData.body,
-  //     icon: resultData.image,
-  //     tag: resultData.tag,
-  //     ...resultData,
-  //   }
-  const notificationOptions = {
-    title: title,
-    body: body,
-    // icon: 'public/icon-192x192.png',
+  const notificationDataOptions = {
+    body: data.body,
+    ...data,
   }
-  self.registration.showNotification(title, notificationOptions)
-  //   self.registration.showNotification(notificationTitle, notificationOptions)
+  e.waitUntil(
+    self.registration.showNotification(data.title, notificationDataOptions),
+  )
 })
 
 self.addEventListener('notificationclick', function (event) {

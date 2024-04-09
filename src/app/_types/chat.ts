@@ -25,8 +25,8 @@ interface ChatMessageFromServerFull {
   user: SimpleUser
 }
 
-interface NotificationPayload {
+interface NotificationDataPayload {
   title: string
   body: string
-  link: string
+  image?: string
 }

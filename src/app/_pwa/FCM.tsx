@@ -28,10 +28,6 @@ const useFirebasePush = () => {
     initPush()
   }, [])
 
-  useEffect(() => {
-    console.log('isPushEnabled:', isPushEnabled)
-  }, [isPushEnabled])
-
   const requestPushPermission = async () => {
     if (
       typeof window !== 'undefined' &&
