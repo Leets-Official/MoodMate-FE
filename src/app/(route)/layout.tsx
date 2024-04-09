@@ -1,5 +1,5 @@
 import { QueryProvider, RecoilProvider } from '@/_context'
-// import 'firebase-messaging-sw.ts'
+import 'public/firebase-messaging-sw.ts'
 import '@/_ui/globals.css'
 import type { Metadata } from 'next'
 

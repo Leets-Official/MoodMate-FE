@@ -21,7 +21,7 @@ self.addEventListener('push', function (e) {
   const notificationOptions = {
     title: title,
     body: body,
-    icon: 'public/icon-192x192.png',
+    // icon: 'public/icon-192x192.png',
   }
   self.registration.showNotification(title, notificationOptions)
   //   self.registration.showNotification(notificationTitle, notificationOptions)

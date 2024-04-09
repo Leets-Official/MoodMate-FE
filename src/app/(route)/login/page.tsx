@@ -16,10 +16,6 @@ export default function Login() {
     window.location.href = `${process.env.GOOGLE_LOGIN}oauth/login/google`
   }
 
-  useEffect(() => {
-    console.log('isPushEnabled:', isPushEnabled)
-  }, [isPushEnabled])
-
   return (
     <section className="flex flex-col h-screen mx-5 scrollbar-hide">
       <div className="h-[20%]">
