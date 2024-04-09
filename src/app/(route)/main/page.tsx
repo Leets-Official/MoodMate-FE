@@ -6,7 +6,6 @@ import InactivePage from '@/_components/inactive/InActivePage'
 import Loading from '@/_components/common/Loading'
 import Error from '@/(route)/error'
 import { useEffect } from 'react'
-import { requestNotificationPermission } from '@/_pwa/pwa'
 
 export default function MainpagePage() {
   const { isLoading, isError, data } = useMainQuery()
@@ -21,10 +20,6 @@ export default function MainpagePage() {
     data.mainPageResponse
   const mainPageType = roomActive ? 'AFTER' : 'BEFORE'
   const mainPageGender = userGender === 'MALE' ? 'MALE' : 'FEMALE'
-
-  useEffect(() => {
-    requestNotificationPermission()
-  }, [])
 
   return (
     <section className="scrollbar-hide">
