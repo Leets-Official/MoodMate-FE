@@ -36,7 +36,23 @@ self.addEventListener('push', function (e) {
     },
   }
 
-  e.waitUntil(self.registration.showNotification(data.title, options))
+  e.waitUntil(self.registration.showNotification(notification.title, options))
+})
+
+messaging.onBackgroundMessage(messaging, (payload) => {
+  console.log(
+    '[firebase-messaging-sw.js] Received background message ',
+    payload,
+  )
+
+  // Customize notification here
+  const notificationTitle = 'Background Message Title'
+  const notificationOptions = {
+    body: payload,
+    icon: 'public/icon-192x192.png',
+  }
+
+  self.registration.showNotification(notificationTitle, notificationOptions)
 })
 
 self.addEventListener('notificationclick', function (event) {
