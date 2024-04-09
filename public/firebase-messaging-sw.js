@@ -12,7 +12,6 @@ firebase.initializeApp({
   storageBucket: 'moodmate-70168.appspot.com',
   messagingSenderId: '402373130976',
   appId: '1:402373130976:web:8300c06f1df33bf8592e85',
-  measurementId: 'G-YTDNNLMFWJ',
 })
 
 const messaging = firebase.messaging()
@@ -28,13 +27,16 @@ self.addEventListener('push', function (e) {
 
   const data = e.data.json().data
 
-  const notificationDataOptions = {
+  const options = {
     body: data.body,
-    ...data,
+    icon: data.image,
+    image: data.image,
+    data: {
+      click_action: data.click_action,
+    },
   }
-  e.waitUntil(
-    self.registration.showNotification(data.title, notificationDataOptions),
-  )
+
+  e.waitUntil(self.registration.showNotification(data.title, options))
 })
 
 self.addEventListener('notificationclick', function (event) {
