@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getMessaging, getToken } from 'firebase/messaging'
 import { initializeApp } from 'firebase/app'
-import axios from 'axios'
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
