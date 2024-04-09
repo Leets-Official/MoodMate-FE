@@ -1,6 +1,9 @@
+'use client'
+
 import { useState, useEffect } from 'react'
 import { getMessaging, getToken } from 'firebase/messaging'
 import { initializeApp } from 'firebase/app'
+import axios from 'axios'
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -41,7 +44,8 @@ const useFirebasePush = () => {
           vapidKey: process.env.NEXT_PUBLIC_FCM_VAPID_KEY,
         })
         if (token) {
-          localStorage.setItem('fcmToken', token)
+          console.log(token)
+          window.localStorage.setItem('fcmToken', token)
           //   await sendTokenToServer(token) // 백엔드 서버에 저장
           setIsPushEnabled(true)
         } else {
@@ -57,9 +61,37 @@ const useFirebasePush = () => {
     }
   }
 
+  const sendPush = async ({
+    title,
+    body,
+    click_action,
+    token,
+  }: {
+    title: string
+    body: string
+    click_action: string
+    token: string
+  }) => {
+    const message = {
+      data: {
+        title,
+        body,
+        image: 'public/icon-192x192.png',
+        click_action,
+        token,
+      },
+    }
+
+    axios.request({
+      method: 'POST',
+      url: window?.location?.origin + '/api/fcm',
+      data: { message },
+    })
+  }
+
   const sendTokenToServer = async (token: string) => {
     try {
-      //   await axios.post('/fcm', { token }) 서버 엔드포인트로 변경
+      //   await axios.post('/fcm', { token }) 백엔 서버 엔드포인트로 변경
       alert('푸쉬알림을 허용했습니다.')
       console.log('푸쉬알림 토큰 전송 성공')
     } catch (error) {
@@ -68,7 +100,7 @@ const useFirebasePush = () => {
     }
   }
 
-  return { isPushEnabled, requestPushPermission }
+  return { isPushEnabled, requestPushPermission, sendPush }
 }
 
 export default useFirebasePush

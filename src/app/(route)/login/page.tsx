@@ -3,14 +3,12 @@
 import Image from 'next/image'
 import loginImage from 'public/illustration/common/login/login.png'
 import google from 'public/illustration/common/login/google.png'
-// import pinkLogo from 'public/illustration/common/logo/pinklogo.png'
-import { useEffect } from 'react'
 import { LOGIN_PAGE } from '@/_constants/login'
 import NormalButton from '@/_components/common/NormalButton'
-import useFirebasePush from '@/_pwa/FCM'
+import useFirebasePush from '@/_pwa/useFirebasePush'
 
 export default function Login() {
-  const { isPushEnabled, requestPushPermission } = useFirebasePush()
+  const { isPushEnabled, requestPushPermission, sendPush } = useFirebasePush()
 
   const handleLogin = () => {
     window.location.href = `${process.env.GOOGLE_LOGIN}oauth/login/google`
@@ -44,7 +42,21 @@ export default function Login() {
       />
       <NormalButton
         onClick={requestPushPermission}
-        buttonText="알림받기"
+        buttonText="알림 요청"
+        buttonType="small"
+        className=""
+        isActive
+      />
+      <NormalButton
+        onClick={() =>
+          sendPush({
+            title: 'test',
+            body: 'testbody',
+            click_action: 'test',
+            token: localStorage.getItem('fcmToken') || '',
+          })
+        }
+        buttonText="메시지 테스트"
         buttonType="small"
         className=""
         isActive
