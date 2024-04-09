@@ -82,11 +82,15 @@ const useFirebasePush = () => {
       },
     }
 
-    axios.request({
+    const res = await fetch(window?.location?.origin + '/api/fcm', {
       method: 'POST',
-      url: window?.location?.origin + '/api/fcm',
-      data: { message },
+      body: JSON.stringify({ message }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
+
+    console.log('post res :: ', res)
   }
 
   const sendTokenToServer = async (token: string) => {
