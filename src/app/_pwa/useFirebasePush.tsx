@@ -1,9 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { getMessaging, getToken } from 'firebase/messaging'
+import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { initializeApp } from 'firebase/app'
-import axios from 'axios'
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -51,6 +50,9 @@ const useFirebasePush = () => {
         } else {
           setIsPushEnabled(false)
         }
+        onMessage(messaging, (payload) => {
+          console.log('포그라운드 받은 메시지 출력: ', payload)
+        })
       } catch (error) {
         console.error('fcm 토큰 받기 에러', error)
         setIsPushEnabled(false)

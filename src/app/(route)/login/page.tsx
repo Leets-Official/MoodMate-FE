@@ -47,7 +47,7 @@ export default function Login() {
         className=""
         isActive
       />
-      <NormalButton
+      {/* <NormalButton
         onClick={() =>
           sendPush({
             title: 'test',
@@ -60,7 +60,7 @@ export default function Login() {
         buttonType="small"
         className=""
         isActive
-      />
+      /> */}
       <div className="text-center text-xs text-secondary ml-2 mt-4">
         <p>회원가입 시 개인정보 제공 및 대화 내용 저장에 동의합니다.</p>
         <p>서비스 종료 후 모든 정보는 폐기처리 됩니다.</p>
