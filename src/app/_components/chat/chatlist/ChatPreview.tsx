@@ -21,7 +21,7 @@ const ChatPreview = ({
   gender,
 }: ChatPreviewProps) => {
   return (
-    <div className="bg-white h-[86px] w-[85%] rounded-2xl border-[1px] border-primary mx-5">
+    <div className="bg-white h-[86px] w-[85%] rounded-2xl border-[1px] border-primary mx-5 px-3">
       <Link href={`/chat/room/${userId}/${roomId}`}>
         <div className="flex justify-center items-center flex-row gap-3 h-full w-full ">
           <div className="w-[18%]">
@@ -43,7 +43,7 @@ const ChatPreview = ({
             )}
           </div>
           {!isRead && (
-            <div className="flex justify-center items-center bg-neutral-500 text-white w-[16px] h-[16px] rounded-full text-[10px] mr-2">
+            <div className="flex justify-center items-center bg-neutral-500 text-white w-[16px] h-[16px] rounded-full text-[10px] ">
               {count}
             </div>
           )}

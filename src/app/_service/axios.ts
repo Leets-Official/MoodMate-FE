@@ -28,6 +28,7 @@ api.interceptors.response.use(
     const originalRequest = error.config
     if (error.response.status === 400) {
       try {
+        Cookies.remove('refreshToken', { domain: 'leets.moodmate.site' })
         const refresh = Cookies.get('refreshToken')
         const response = await axios.post(
           `${process.env.GOOGLE_LOGIN}users/refresh`,
@@ -42,7 +43,7 @@ api.interceptors.response.use(
 
         const accessTokenExpiry = new Date()
         accessTokenExpiry.setTime(
-          accessTokenExpiry.getTime() + 3 * 60 * 60 * 1000,
+          accessTokenExpiry.getTime() + 6 * 60 * 60 * 1000,
         )
         Cookies.set('accessToken', accessToken, { expires: accessTokenExpiry })
 

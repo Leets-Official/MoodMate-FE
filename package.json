@@ -25,9 +25,12 @@
     "dotenv": "^16.3.1",
     "eslint-config-next": "14.0.1",
     "eslint-plugin-prettier": "^5.0.1",
+    "firebase": "^10.10.0",
+    "firebase-admin": "^12.0.0",
     "framer-motion": "^10.16.5",
     "js-cookie": "^3.0.5",
     "next": "14.0.1",
+    "next-pwa": "^5.6.0",
     "nookies": "^2.5.2",
     "postcss": "8.4.31",
     "react": "18.2.0",
@@ -37,10 +40,12 @@
     "react-spinners": "^0.13.8",
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
+    "sharp": "^0.33.3",
     "sockjs-client": "^1.6.1",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "3.3.5",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

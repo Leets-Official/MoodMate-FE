@@ -31,6 +31,14 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
 
   useEffect(() => {
+    const handleFocus = () => {
+      window.location.reload()
+    }
+
+    window.addEventListener('focus', handleFocus)
+  }, [])
+
+  useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight
     }

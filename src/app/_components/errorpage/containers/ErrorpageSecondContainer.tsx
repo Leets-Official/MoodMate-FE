@@ -1,6 +1,11 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
+
 const ErrorpageSecondContainer = () => {
+  const router = useRouter()
   const refreshPage = () => {
-    window.location.reload()
+    router.push('/login')
   }
   return (
     <div className="flex text-center">
@@ -9,7 +14,7 @@ const ErrorpageSecondContainer = () => {
         onClick={refreshPage}
         className="mt-12 mx-auto pt-1.5 bg-[#FFE5E7] w-[146px] h-[36px] rounded-[8px] text-[#666666]"
       >
-        새로고침
+        재로그인
       </button>
     </div>
   )

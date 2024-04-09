@@ -5,7 +5,8 @@ export const postUserData = async (
   preferInfo: PreferInfoData,
 ) => {
   try {
-    let userInfoResult, preferInfoResult
+    let userInfoResult
+    let preferInfoResult
 
     try {
       userInfoResult = await postUserInfo(userInfo)
@@ -15,15 +16,6 @@ export const postUserData = async (
     }
 
     return { userInfoResult, preferInfoResult }
-  } catch (error) {
-    throw error
-  }
-}
-
-export const editUserData = async (editinfo: EditPreferInfoData) => {
-  try {
-    const response = await api.patch('/users/update', editinfo)
-    return response.data
   } catch (error) {
     throw error
   }
