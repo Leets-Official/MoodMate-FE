@@ -3,20 +3,38 @@
 import Image from 'next/image'
 import loginImage from 'public/illustration/common/login/login.png'
 import google from 'public/illustration/common/login/google.png'
-import { checkPermission, notificationMain, registerSW } from '@/_pwa/pwa'
+// import pinkLogo from 'public/illustration/common/logo/pinklogo.png'
 import { useEffect } from 'react'
 import { LOGIN_PAGE } from '@/_constants/login'
 import NormalButton from '@/_components/common/NormalButton'
+import { initializeApp } from 'firebase/app'
+import { firebaseConfig } from '@/_pwa/FCM'
+import { getMessaging } from 'firebase/messaging'
 
 export default function Login() {
+  const app = initializeApp(firebaseConfig)
+  const messaging = getMessaging(app)
+
   const handleLogin = () => {
     window.location.href = `${process.env.GOOGLE_LOGIN}oauth/login/google`
   }
 
-  useEffect(() => {
-    checkPermission()
-    registerSW()
-  }, [])
+  const sendMessage = () => {
+    const title = '무드메이트'
+    const body = '무디에게 연락이 왔습니다!! 채팅을 확인해보세용'
+    // const icon = 'public/illustration/common/logo/pinklogo.png'
+    const content = { body }
+
+    const notif = new Notification(title, content)
+  }
+
+  const onClickTosendMsg = async () => {
+    const result = await Notification.requestPermission()
+    console.log(result)
+    if (result === 'granted') {
+      sendMessage()
+    }
+  }
 
   return (
     <section className="flex flex-col h-screen mx-5 scrollbar-hide">
@@ -45,7 +63,7 @@ export default function Login() {
         className="hover:cursor-pointer mt-7 w-full mx-auto"
       />
       <NormalButton
-        onClick={notificationMain}
+        onClick={onClickTosendMsg}
         buttonText="알림받기"
         buttonType="small"
         className=""

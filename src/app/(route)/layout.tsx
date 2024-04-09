@@ -1,5 +1,5 @@
 import { QueryProvider, RecoilProvider } from '@/_context'
-import ServiceWorkerRegistration from '@/_context/ServiceWorkerRegister'
+// import 'firebase-messaging-sw.ts'
 import '@/_ui/globals.css'
 import type { Metadata } from 'next'
 
@@ -23,10 +23,7 @@ export default function RootLayout({
       </head>
       <body className="h-screen desktop:w-[360px] desktop:mx-auto">
         <RecoilProvider>
-          <QueryProvider>
-            <ServiceWorkerRegistration />
-            {children}
-          </QueryProvider>
+          <QueryProvider>{children}</QueryProvider>
         </RecoilProvider>
       </body>
     </html>
