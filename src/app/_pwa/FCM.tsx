@@ -19,7 +19,8 @@ const useFirebasePush = () => {
   useEffect(() => {
     const initPush = async () => {
       try {
-        await requestPushPermission()
+        const result = await requestPushPermission()
+        console.log(result)
       } catch (error) {
         console.error('permission 받기 에러', error)
         setIsPushEnabled(false)
@@ -29,29 +30,37 @@ const useFirebasePush = () => {
   }, [])
 
   const requestPushPermission = async () => {
-    const app = initializeApp(firebaseConfig)
-    const messaging = getMessaging(app)
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.navigator !== 'undefined'
+    ) {
+      const app = initializeApp(firebaseConfig)
+      const messaging = getMessaging(app)
 
-    try {
-      const token = await getToken(messaging, {
-        vapidKey: process.env.NEXT_PUBLIC_FCM_VAPID_KEY,
-      })
-      if (token) {
-        localStorage.setItem('fcmToken', token)
-        await sendTokenToServer(token)
-        setIsPushEnabled(true)
-      } else {
+      try {
+        const token = await getToken(messaging, {
+          vapidKey: process.env.NEXT_PUBLIC_FCM_VAPID_KEY,
+        })
+        if (token) {
+          localStorage.setItem('fcmToken', token)
+          await sendTokenToServer(token) // 백엔드 서버에 저장
+          setIsPushEnabled(true)
+        } else {
+          setIsPushEnabled(false)
+        }
+      } catch (error) {
+        console.error('fcm 토큰 받기 에러', error)
         setIsPushEnabled(false)
       }
-    } catch (error) {
-      console.error('fcm 토큰 받기 에러', error)
+    } else {
+      console.error(' window.navigator를 찾을 수 없습니다.')
       setIsPushEnabled(false)
     }
   }
 
   const sendTokenToServer = async (token: string) => {
     try {
-      await axios.post('/fcm', { token })
+      //   await axios.post('/fcm', { token }) 서버 엔드포인트로 변경
       alert('푸쉬알림을 허용했습니다.')
       console.log('푸쉬알림 토큰 전송 성공')
     } catch (error) {
@@ -60,7 +69,7 @@ const useFirebasePush = () => {
     }
   }
 
-  return { isPushEnabled }
+  return { isPushEnabled, requestPushPermission }
 }
 
 export default useFirebasePush
