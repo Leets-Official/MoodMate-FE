@@ -1,14 +1,19 @@
 'use client'
 
 import Image from 'next/image'
-import { LOGIN_PAGE } from '@/_constants/login'
 import loginImage from 'public/illustration/common/login/login.png'
 import google from 'public/illustration/common/login/google.png'
+import { LOGIN_PAGE } from '@/_constants/login'
+import NormalButton from '@/_components/common/NormalButton'
+import useFirebasePush from '@/_pwa/useFirebasePush'
 
 export default function Login() {
+  const { isPushEnabled, requestPushPermission, sendPush } = useFirebasePush()
+
   const handleLogin = () => {
     window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KEY}&redirect_uri=http://localhost:3000/login/kakao`
   }
+
   return (
     <section className="flex flex-col h-screen mx-5 scrollbar-hide">
       <div className="h-[20%]">
@@ -34,6 +39,27 @@ export default function Login() {
         alt="구글로그인버튼"
         onClick={handleLogin}
         className="hover:cursor-pointer mt-7 w-full mx-auto"
+      />
+      <NormalButton
+        onClick={requestPushPermission}
+        buttonText="알림 요청"
+        buttonType="small"
+        className=""
+        isActive
+      />
+      <NormalButton
+        onClick={() =>
+          sendPush({
+            title: 'test',
+            body: 'testbody',
+            click_action: 'test',
+            token: localStorage.getItem('fcmToken') || '',
+          })
+        }
+        buttonText="메시지 테스트"
+        buttonType="small"
+        className=""
+        isActive
       />
       <div className="text-center text-xs text-secondary ml-2 mt-4">
         <p>회원가입 시 개인정보 제공 및 대화 내용 저장에 동의합니다.</p>

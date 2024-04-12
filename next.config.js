@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
@@ -7,8 +6,13 @@ const nextConfig = {
   reactStrictMode: false,
 }
 
+const runtimeCaching = require('next-pwa/cache')
 const withPWA = require('next-pwa')({
   dest: 'public',
+  register: true,
+  skipWaiting: true,
+  customWorkerDir: 'worker',
+  runtimeCaching,
 })
 
 module.exports = withPWA({
