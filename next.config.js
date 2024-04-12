@@ -4,6 +4,7 @@ const nextConfig = {
   async redirects() {
     return []
   },
+  reactStrictMode: false,
 }
 
 const withPWA = require('next-pwa')({
