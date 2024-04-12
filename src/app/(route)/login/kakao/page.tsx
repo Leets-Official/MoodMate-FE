@@ -7,7 +7,6 @@ import Cookies from 'js-cookie'
 
 const LoginHandler = () => {
   const router = useRouter()
-  const codeURL = new URL(window.location.href).searchParams.get('code')
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -41,7 +40,6 @@ const LoginHandler = () => {
     }
   }, [router])
 
-  return <p>{codeURL}</p>
 }
 
 export default LoginHandler

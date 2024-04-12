@@ -12,7 +12,6 @@ export default function Login() {
 
   const handleLogin = () => {
     if (typeof window !== 'undefined') {
-
       window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KEY}&redirect_uri=http://localhost:3000/login/kakao`
     }
   }
