@@ -22,6 +22,14 @@
     "prettier"
   ],
   "rules": {
+    "no-alert": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "no-console": "off",
+    "no-unsafe-optional-chaining": "off",
+    "prefer-template": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
     "no-useless-catch": "off",
