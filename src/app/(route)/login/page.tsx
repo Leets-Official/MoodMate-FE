@@ -11,8 +11,11 @@ export default function Login() {
   const { isPushEnabled, requestPushPermission, sendPush } = useFirebasePush()
 
   const handleLogin = () => {
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KEY}&redirect_uri=http://localhost:3000/login/kakao`  }
+    if (typeof window !== 'undefined') {
 
+      window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KEY}&redirect_uri=http://localhost:3000/login/kakao`
+    }
+  }
   return (
     <section className="flex flex-col h-screen mx-5 scrollbar-hide">
       <div className="h-[20%]">
