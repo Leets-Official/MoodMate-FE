@@ -2,7 +2,7 @@ import axios, { InternalAxiosRequestConfig } from 'axios'
 import Cookies from 'js-cookie'
 
 const api = axios.create({
-  baseURL: process.env.GOOGLE_LOGIN,
+  baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
   withCredentials: true,
 })
 
@@ -31,7 +31,7 @@ api.interceptors.response.use(
         Cookies.remove('refreshToken', { domain: 'leets.moodmate.site' })
         const refresh = Cookies.get('refreshToken')
         const response = await axios.post(
-          `${process.env.GOOGLE_LOGIN}users/refresh`,
+          `${process.env.NEXT_PUBLIC_SERVER_URL}users/refresh`,
           {
             refreshToken: refresh,
           },
