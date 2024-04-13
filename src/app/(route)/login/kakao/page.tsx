@@ -50,9 +50,9 @@ const LoginHandler = () => {
         data.mainPageResponse.userGender === 'MALE' ||
         data.mainPageResponse.userGender === 'FEMALE'
       ) {
-        router.push('/userinfo/1')
-      } else {
         router.push('/main')
+      } else {
+        router.push('/userinfo/1')
       }
     }
   }, [data, router])
