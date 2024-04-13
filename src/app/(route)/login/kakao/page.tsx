@@ -43,14 +43,9 @@ const LoginHandler = () => {
       }
     }
   }, [router])
-  if (isLoading) {
-    return <Loading />
-  }
-  if (isError || !data) {
-    return <Error />
-  }
+
   useEffect(() => {
-    if (data) {
+    if (data && data.mainPageResponse) {
       if (
         data.mainPageResponse.userGender === 'MALE' ||
         data.mainPageResponse.userGender === 'FEMALE'
@@ -61,6 +56,13 @@ const LoginHandler = () => {
       }
     }
   }, [data, router])
+
+  if (isLoading) {
+    return <Loading />
+  }
+  if (isError || !data) {
+    return <Error />
+  }
 }
 
 
