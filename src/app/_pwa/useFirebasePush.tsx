@@ -16,6 +16,7 @@ export const firebaseConfig = {
 
 const useFirebasePush = () => {
   const [isPushEnabled, setIsPushEnabled] = useState(false)
+  const [token, setToken] = useState<string>('')
 
   useEffect(() => {
     const initPush = async () => {
@@ -45,6 +46,7 @@ const useFirebasePush = () => {
         if (token) {
           console.log(token)
           window.localStorage.setItem('fcmToken', token)
+          setToken(token)
           //   await sendTokenToServer(token) // 백엔드 서버에 저장
           setIsPushEnabled(true)
         } else {
@@ -106,7 +108,7 @@ const useFirebasePush = () => {
     }
   }
 
-  return { isPushEnabled, requestPushPermission, sendPush }
+  return { isPushEnabled, token, requestPushPermission, sendPush }
 }
 
 export default useFirebasePush
