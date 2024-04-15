@@ -17,7 +17,7 @@ const LoginHandler = () => {
       const codeURL = new URL(window.location.href).searchParams.get('code')
       if (codeURL) {
         axios
-          .post(`${process.env.NEXT_PUBLIC_SERVER_URL}/oauth/callback/kakao`, {
+          .post(`${process.env.NEXT_PUBLIC_SERVER_URL}oauth/callback/kakao`, {
             authorizationCode: codeURL,
           })
           .then((response) => {
@@ -64,7 +64,5 @@ const LoginHandler = () => {
     return <Error />
   }
 }
-
-
 
 export default LoginHandler
