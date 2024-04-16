@@ -2,6 +2,7 @@
 import { realTimeMessagesState } from '@/_atom/chat'
 import { Client, CompatClient, Stomp } from '@stomp/stompjs'
 import Cookies from 'js-cookie'
+import { CLIENT_STATIC_FILES_RUNTIME_WEBPACK } from 'next/dist/shared/lib/constants'
 import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import SockJS from 'sockjs-client'
@@ -21,10 +22,11 @@ const useWebsocket = (roomId: number) => {
         reconnectDelay: 5000,
       })
       client.activate()
+      console.log('client:::::', client)
       client.connect(
         {},
         () => {
-          console.log('웹소켓 연결됨', stompClient)
+          console.log('웹소켓 연결됨', CLIENT_STATIC_FILES_RUNTIME_WEBPACK)
           client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
             const receivedMessage = {
               ...JSON.parse(res.body),
