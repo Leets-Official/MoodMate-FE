@@ -15,7 +15,7 @@ const Profile = ({
   userDepartment,
 }: UserInfoProps) => {
   const gender = userGender === 'MALE' ? maleImage : femaleImage
-  const age = year.toString().slice(-2)
+  const age = year?.toString().slice(-2)
   return (
     <section className="flex flex-col">
       <div className="mx-auto text-center">

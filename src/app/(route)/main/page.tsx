@@ -9,7 +9,6 @@ import { useEffect } from 'react'
 
 export default function MainpagePage() {
   const { isLoading, isError, data } = useMainQuery()
-
   if (isLoading) {
     return <Loading />
   }
