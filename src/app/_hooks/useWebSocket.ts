@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { realTimeMessagesState } from '@/_atom/chat'
-import { CompatClient, Stomp } from '@stomp/stompjs'
+import { Client, CompatClient, Stomp } from '@stomp/stompjs'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
@@ -17,7 +17,10 @@ const useWebsocket = (roomId: number) => {
     const connectWebSocket = () => {
       const socket = new SockJS(`${process.env.NEXT_PUBLIC_SERVER_URL}chat`)
       const client = Stomp.over(socket)
-
+      client.configure({
+        reconnectDelay: 5000,
+      })
+      client.activate()
       client.connect(
         {},
         () => {
