@@ -19,6 +19,7 @@ const useWebsocket = (roomId: number) => {
       client.connect(
         {},
         () => {
+          console.log('웹소켓 연결됨', stompClient)
           client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
             const receivedMessage = {
               ...JSON.parse(res.body),
@@ -31,6 +32,7 @@ const useWebsocket = (roomId: number) => {
         },
         (error: undefined) => {
           // eslint-disable-next-line @typescript-eslint/no-throw-literal
+          console.error('WebSocket connection error:', error)
           throw error
         },
       )
@@ -52,6 +54,7 @@ const useWebsocket = (roomId: number) => {
 
   const sendMessage = (message: ChatMessageFromClient) => {
     if (stompClient?.connected && message) {
+      console.log('보내는 메시지', message)
       stompClient.send(
         `/pub/chat`,
         {},
