@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { realTimeMessagesState } from '@/_atom/chat'
-import { Client, CompatClient, Stomp } from '@stomp/stompjs'
+import { CompatClient, Stomp } from '@stomp/stompjs'
 import Cookies from 'js-cookie'
-import { CLIENT_STATIC_FILES_RUNTIME_WEBPACK } from 'next/dist/shared/lib/constants'
 import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import SockJS from 'sockjs-client'
@@ -10,9 +8,7 @@ import SockJS from 'sockjs-client'
 const useWebsocket = (roomId: number) => {
   const [stompClient, setstompClient] = useState<CompatClient | null>(null)
   const setRealTimeMessages = useSetRecoilState(realTimeMessagesState)
-  // const accessToken = Cookies.get('accessToken')
-  const accessToken =
-    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTcxMzM1NjAzOX0.YJU3Y-cYPFelsD9FeGe1ACPzaGh8-8Qc-IJ9uDUZ_bOe4hlRWohvaZmcRHfGqTfMNYcsrYknC4kt_0Gl8f3j3g'
+  const accessToken = Cookies.get('accessToken')
 
   useEffect(() => {
     const connectWebSocket = () => {
@@ -21,12 +17,9 @@ const useWebsocket = (roomId: number) => {
       client.configure({
         reconnectDelay: 5000,
       })
-      client.activate()
-      console.log('client:::::', client)
       client.connect(
         {},
         () => {
-          console.log('웹소켓 연결됨', CLIENT_STATIC_FILES_RUNTIME_WEBPACK)
           client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
             const receivedMessage = {
               ...JSON.parse(res.body),
@@ -38,8 +31,7 @@ const useWebsocket = (roomId: number) => {
           })
         },
         (error: undefined) => {
-          // eslint-disable-next-line @typescript-eslint/no-throw-literal
-          console.error('WebSocket connection error:', error)
+          console.error('웹소켓 연결 에러:', error)
           throw error
         },
       )
@@ -61,7 +53,6 @@ const useWebsocket = (roomId: number) => {
 
   const sendMessage = (message: ChatMessageFromClient) => {
     if (stompClient?.connected && message) {
-      console.log('보내는 메시지', message)
       stompClient.send(
         `/pub/chat`,
         {},
