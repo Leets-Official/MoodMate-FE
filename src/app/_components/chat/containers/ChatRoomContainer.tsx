@@ -110,7 +110,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
         <div ref={topDivRef} />
         {data?.pages
           .slice()
-          .reverse()
           .map((chatData) => (
             <ChatList
               key={chatData.pageable.page}
