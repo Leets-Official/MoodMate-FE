@@ -12,7 +12,7 @@ export const useInfiniteChatQuery = (
       return getMessages(roomId, size, pageParam as number)
     },
     enabled: !!userId && !!roomId,
-    initialPageParam: 0,
+    initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => {
       if (
         lastPage.pageable.totalPages === 0 ||
