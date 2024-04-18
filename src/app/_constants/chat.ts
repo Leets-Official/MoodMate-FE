@@ -23,5 +23,5 @@ export const UNMATCHED_MODAL = {
 
 export const CHAT_SIZE = {
   PREVIEW: 1,
-  ROOM: 40,
+  ROOM: 20,
 } as const
