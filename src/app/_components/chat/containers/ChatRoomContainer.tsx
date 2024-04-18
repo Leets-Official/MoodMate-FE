@@ -38,6 +38,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
 
   useEffect(() => {
+    console.log(data?.pages)
+  }, [data])
+  useEffect(() => {
     const handleFocus = () => {
       window.location.reload()
     }
@@ -109,7 +112,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }
 
   if (data) {
-    console.log(data)
     return (
       <div className="w-full bg-white h-screen">
         <div
