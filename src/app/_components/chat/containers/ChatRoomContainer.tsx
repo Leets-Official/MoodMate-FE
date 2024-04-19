@@ -119,14 +119,17 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           ref={containerRef}
         >
           <div ref={topDivRef} />
-          {data.pages.map((chatData) => (
-            <ChatList
-              key={chatData.pageable.page}
-              userId={userId}
-              user={chatData.user}
-              chatHistory={chatData.chatList.slice().reverse()}
-            />
-          ))}
+          {data.pages
+            .slice()
+            .reverse()
+            .map((chatData) => (
+              <ChatList
+                key={chatData.pageable.page}
+                userId={userId}
+                user={chatData.user}
+                chatHistory={chatData.chatList.slice().reverse()}
+              />
+            ))}
           {data && data.pages[0].chatList.length === 0 && (
             <div className="w-full text-center mb-5 text-xs text-[#B0B0B0]">
               무디와의 설레는 채팅을 시작해보세요!

@@ -23,7 +23,7 @@ const LoginHandler = () => {
           .then((response) => {
             const accessTokenExpiry = new Date()
             accessTokenExpiry.setTime(
-              accessTokenExpiry.getTime() + 1 * 24 * 60 * 60 * 1000,
+              accessTokenExpiry.getTime() + 3 * 24 * 60 * 60 * 1000,
             )
             Cookies.set('accessToken', response.data.accessToken, {
               expires: accessTokenExpiry,
