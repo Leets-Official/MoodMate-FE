@@ -124,7 +124,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
               key={chatData.pageable.page}
               userId={userId}
               user={chatData.user}
-              chatHistory={chatData.chatList.reverse()}
+              chatHistory={chatData.chatList.slice().reverse()}
             />
           ))}
           {data && data.pages[0].chatList.length === 0 && (
