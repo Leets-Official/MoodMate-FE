@@ -19,7 +19,7 @@ const getTextStyle = (type: string) => {
       )
     case 'AFTER':
       return (
-        <p className="text-[21px] mt-5 text-[#FC4F59] font-extrabold">
+        <p className="text-[21px] mt-5 text-[#FB939A] font-extrabold">
           {AFTER_TIMER_GUIDE.SUB_TITLE}
         </p>
       )

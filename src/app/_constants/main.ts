@@ -7,7 +7,7 @@ export const BEFORE_TIMER_GUIDE = {
 export const AFTER_TIMER_GUIDE = {
   SUB_TITLE: '채팅 종료까지 남은 시간',
   DESCRIPTION: '무디와 함께',
-  DESCRIPTIONTWO: '메리크리스마스!!',
+  DESCRIPTIONTWO: '러브 ',
 } as const
 export const INACTIVE_BUTTON = {
   REMATCH: '매칭 다시 시작하기',
@@ -16,7 +16,7 @@ export const INACTIVE_BUTTON = {
 
 export const INACTIVE_MODAL = {
   TITLE: '무디를 비활성화 할까요?',
-  SUB_TITLE: '다음 매칭에서 제외됩니다 채팅은 유지돼요',
+  SUB_TITLE: '다음 번 매칭부터 제외됩니다',
   CONFIRM: '싫어요!',
   CANCEL: '좋아요!',
 } as const

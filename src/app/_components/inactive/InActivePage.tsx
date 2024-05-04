@@ -17,17 +17,17 @@ export default function InactivePage({
   gender,
 }: ChatProps) {
   return (
-    <section className="flex flex-col h-screen">
+    <section className="desktop:mt-[7%] flex flex-col h-screen">
       <Image
         src={logo}
         alt="graylogo"
-        className="w-[85px] h-[13px] mt-5 mb-12 mx-auto"
+        className="w-[85px] h-[13px] mt-7 mb-10 mx-auto"
       />
       <InactiveFirstText />
       <Image
         src={inactive}
         alt="inactive"
-        className="mx-auto w-[150px] h-[220px] mt-7 mb-5"
+        className="mx-auto w-[262px] h-[296px]"
       />
       <InactiveMiddleText
         gender={gender}

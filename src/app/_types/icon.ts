@@ -1,5 +1,3 @@
-import { SVGProps } from 'react'
-
 export interface IconPathTypes {
   path: string
   width: number

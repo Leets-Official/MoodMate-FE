@@ -28,10 +28,10 @@ const getBGStyle = (type: string, gender: string) => {
       return {
         targetHour: 22,
         logo: grayLogo,
-        background: 'mt-2',
+        background: '',
         image: beforeMatch,
         textUi: 'mb-7',
-        imageUi: 'mt-4',
+        imageUi: 'mt-1 w-[295px] ml-10 mt-10',
       }
     case 'AFTER':
       switch (gender) {
@@ -39,7 +39,7 @@ const getBGStyle = (type: string, gender: string) => {
           return {
             targetHour: 20,
             logo: pinkLogo,
-            background: 'pt-2 bg-[#FFE5E7] h-screen',
+            background: 'w-[90%] pt-2 h-screen background: bg-gradient-to-b from-[#FFFCE5] to-[#FFF7BB]',
             image: afterMatchMale,
             textUi: '',
             imageUi: '',
@@ -48,7 +48,7 @@ const getBGStyle = (type: string, gender: string) => {
           return {
             targetHour: 20,
             logo: pinkLogo,
-            background: 'pt-2 bg-[#FFE5E7] h-screen',
+            background: 'w-[90%] pt-2 h-screen background: bg-gradient-to-b from-[#FFFCE5] to-[#FFF7BB]',
             image: afterMatchFemale,
             textUi: '',
             imageUi: '',
@@ -88,15 +88,8 @@ const MainPage = ({ type, gender }: MatchProps) => {
     <div
       className={`${
         getBGStyle(type, gender).background
-      } h-screen flex flex-col relative`}
+      } h-screen pt-8 flex flex-col relative desktop:pt-16`}
     >
-      <Image
-        src={getBGStyle(type, gender).logo}
-        alt="graylogo"
-        className={`${
-          getBGStyle(type, gender).textUi
-        } w-[85px] h-[13px] mt-5 mx-auto`}
-      />
       <Icons
         name={info}
         className="mt-4 absolute top-0 right-0 mr-4 cursor-pointer"
@@ -108,7 +101,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
       <Image
         src={getBGStyle(type, gender).image}
         alt="Matching"
-        className={`-mt-5 ${getBGStyle(type, gender).imageUi}`}
+        className={`w-[95%] -mt-2 ml-[3%] ${getBGStyle(type, gender).imageUi}`}
       />
       <NavBar
         type={type}

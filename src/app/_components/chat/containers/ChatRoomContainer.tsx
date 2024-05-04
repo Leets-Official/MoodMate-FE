@@ -145,7 +145,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
           <ModalPortal nodeName="unmatchedPortal">
             <ModalOutside
               onClose={() => {}}
-              className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
+              className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[400px] px-10 rounded-[25px] shadow-sm py-10"
             >
               <ModalContentOne
                 subject={UNMATCHED_MODAL}

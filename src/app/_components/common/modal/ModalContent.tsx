@@ -23,10 +23,8 @@ const ModalContent = ({
   const { TITLE, SUB_TITLE, CONFIRM, CANCEL } = subject
   const inactive = gender === 'MALE' ? inactiveMale : inactiveFemale
   const logout = gender === 'MALE' ? logoutMale : logoutFemale
-  const inactiveUi =
-    gender === 'MALE' ? 'w-[153px] h-[172px]' : 'w-[142px] h-[197px]'
   return (
-    <section className=" w-full h-full flex flex-col justify-center items-center gap-[40px]">
+    <section className="w-full h-full flex flex-col justify-center items-center gap-6">
       <div>
         <h1 className="text-[#333] text-[18px] font-bold ">{TITLE}</h1>
         <h5 className="text-[#999] w-full text-center text-xs">
@@ -35,9 +33,9 @@ const ModalContent = ({
       </div>
       {/* 나중에 dynamic으로 가져오기?, 크기 조정 */}
       {onMyPage ? (
-        <Image src={logout} alt="logout" className="w-[180px] h-[207px]" />
+        <Image src={logout} alt="logout" className="w-[197px] h-[227px] -mt-5" />
       ) : (
-        <Image src={inactive} alt="inactive" className={inactiveUi} />
+        <Image src={inactive} alt="inactive" className="w-[187px] h-[192px]" />
       )}
       <ModalButtons
         onConfirm={onConfirm}

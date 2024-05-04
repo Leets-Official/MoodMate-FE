@@ -12,7 +12,7 @@ const ErrorpageSecondContainer = () => {
       {/* eslint-disable-next-line react/button-has-type */}
       <button
         onClick={refreshPage}
-        className="mt-12 mx-auto pt-1.5 bg-[#FFE5E7] w-[146px] h-[36px] rounded-[8px] text-[#666666]"
+        className="mt-12 px-auto bg-[#FFE5E7] w-[146px] h-[40px] rounded-[8px] text-[#666666]"
       >
         재로그인
       </button>
