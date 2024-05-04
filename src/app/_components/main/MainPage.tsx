@@ -88,7 +88,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
     <div
       className={`${
         getBGStyle(type, gender).background
-      } h-screen pt-8 flex flex-col relative desktop:pt-16`}
+      } h-screen pt-8 w-full flex flex-col relative desktop:pt-16`}
     >
       <Icons
         name={info}
