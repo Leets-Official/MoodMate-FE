@@ -6,7 +6,7 @@ export const BEFORE_TIMER_GUIDE = {
 
 export const AFTER_TIMER_GUIDE = {
   SUB_TITLE: '채팅 종료까지 남은 시간',
-  DESCRIPTION: '무디와 함께',
+  DESCRIPTION: '무디와 함께하는',
   DESCRIPTIONTWO: '설레는 캠퍼스 라이프',
 } as const
 export const INACTIVE_BUTTON = {
