@@ -8,15 +8,15 @@ const getTextStyle = (type: string) => {
   switch (type) {
     case 'BEFORE':
       return {
-        text: 'pt-6 text-[#333333] bg-[#FFE5E7]',
+        text: 'pt-[8%] text-[#333333] bg-[#FFE5E7]',
         triangle: 'border-t-[#FFE5E7]',
         match: BEFORE_TIMER_GUIDE.DESCRIPTION,
         next: '',
       }
     case 'AFTER':
       return {
-        text: 'pt-3.5 text-[#FFFFFF] bg-[#FD8188]',
-        triangle: 'border-t-[#FD8188]',
+        text: 'pt-[6%] h-[75px] text-[#FFFFFF] bg-[#FEB7B3]',
+        triangle: 'border-t-[#FEB7B3]',
         match: AFTER_TIMER_GUIDE.DESCRIPTION,
         next: AFTER_TIMER_GUIDE.DESCRIPTIONTWO,
       }
@@ -35,7 +35,7 @@ const TimerMiddleText = ({ type }: TextProps) => {
       <div
         className={`${
           getTextStyle(type).text
-        } font-bold w-[221px] h-[74px] rounded-[30px]`}
+        } font-bold  w-[221px] h-[60px] rounded-[30px]`}
       >
         {getTextStyle(type).match}
         <br />

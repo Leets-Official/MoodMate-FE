@@ -2,10 +2,10 @@
 
 import Image from 'next/image'
 import loginImage from 'public/illustration/common/login/login.png'
-import google from 'public/illustration/common/login/google.png'
 import { LOGIN_PAGE } from '@/_constants/login'
 import NormalButton from '@/_components/common/NormalButton'
 import useFirebasePush from '@/_pwa/useFirebasePush'
+import kakaoImage from "public/illustration/common/login/kakao.png"
 
 export default function Login() {
   const { isPushEnabled, token, requestPushPermission, sendPush } =
@@ -13,7 +13,7 @@ export default function Login() {
 
   const handleLogin = () => {
     if (typeof window !== 'undefined') {
-      window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KEY}&redirect_uri=https://develop.d1vm6ddjncz2cx.amplifyapp.com/login/kakao`
+      window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URL}`
     }
   }
   return (
@@ -29,26 +29,34 @@ export default function Login() {
           {LOGIN_PAGE.FIVE}
         </div>
       </div>
-      <div className="h-[50%]">
+      <div className="h-[55%]">
         <Image
           src={loginImage}
           alt="loginImage"
-          className="w-full mt-10 mb-24 desktop:mt-10 desktop:mb-14"
+          className="w-[90%] ml-[6%] mt-5"
         />
       </div>
-      <Image
-        src={google}
-        alt="구글로그인버튼"
+      <button
+        type="button"
         onClick={handleLogin}
-        className="hover:cursor-pointer mt-7 w-full mx-auto"
-      />
-      <NormalButton
-        onClick={requestPushPermission}
-        buttonText="알림 요청"
-        buttonType="small"
-        className=""
-        isActive
-      />
+        className="w-full mx-auto flex h-[45px] items-center justify-center gap-2 rounded-[7px] bg-[#FEE500]"
+      >
+        <div className="mt-1 flex">
+          <Image
+            src={kakaoImage}
+            className="mr-3 mt-0.5 h-[18px] w-[18px]"
+            alt="kakao"
+          />
+          <p>카카오계정으로 로그인</p>
+        </div>
+      </button>
+      {/* <NormalButton */}
+      {/*   onClick={requestPushPermission} */}
+      {/*   buttonText="알림 요청" */}
+      {/*   buttonType="small" */}
+      {/*   className="" */}
+      {/*   isActive */}
+      {/* /> */}
       {/* <NormalButton
         onClick={() =>
           sendPush({

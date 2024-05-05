@@ -43,21 +43,21 @@ const InactiveFirstText = ({
         buttonText={INACTIVE_BUTTON.REMATCH}
         onClick={() => inactiveMutation.mutate()}
         buttonType="large"
-        className="bg-[#FC4F59] text-white text-[14px] w-[312px] h-[48px] rounded-[8px] mt-7"
+        className="bg-[#E87775] text-white text-[14px] w-[312px] h-[48px] rounded-[24px] mt-2"
         isActive
       />
       <NormalButton
         buttonText={INACTIVE_BUTTON.GOMAIN}
         onClick={moveToMypage}
         buttonType="large"
-        className="bg-[#D6D6D6] text-[14px] w-[312px] h-[48px] rounded-[8px] mt-3"
+        className="bg-[#D6D6D6] text-[14px] w-[312px] h-[48px] rounded-[24px] mt-3"
         isActive
       />
       {chatModal && (
         <ModalPortal nodeName="mainPortal">
           <ModalOutside
             onClose={() => setChatModal(false)}
-            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-7 rounded-[25px] shadow-sm"
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[400px] px-7 rounded-[25px] shadow-sm"
           >
             <ModalContentOne
               onClose={onChatCloseModal}
