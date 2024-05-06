@@ -5,7 +5,7 @@ export const userInfoState = atom<UserInfoData>({
   default: {
     nickname: '',
     gender: '',
-    year: 1994,
+    year: 1995,
     department: '',
     keywords: [],
   },
@@ -14,8 +14,8 @@ export const userInfoState = atom<UserInfoData>({
 export const preferInfoState = atom<PreferInfoData>({
   key: 'preferInfoState',
   default: {
-    preferYearMin: 1994,
-    preferYearMax: 2004,
+    preferYearMin: 1995,
+    preferYearMax: 2005,
     preferDepartmentPossible: true,
     preferMood: '',
   },

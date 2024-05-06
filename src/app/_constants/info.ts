@@ -94,9 +94,9 @@ export const GENDER_PAGE = {
 export const MY_AGE_PAGE = {
   GREETINGS: '무디가 당신의 나이를 궁금해해요!',
   WARNINGS: '출생년도를 기준으로 골라주세요.',
-  MAX: '04',
-  MIN: '94',
-  AVG: '99',
+  MAX: '05',
+  MIN: '95',
+  AVG: '00',
 } as const
 
 export const MY_DEPARTMENT_PAGE = {
@@ -132,9 +132,9 @@ export const MY_KEYWORD_PAGE = {
 export const MOODIE_AGE_PAGE = {
   GREETINGS: '무디의 나이를 설정해주세요!',
   WARNINGS: '출생년도를 기준으로 골라주세요.',
-  MAX: '04',
-  MIN: '94',
-  AVG: '99',
+  MAX: '05',
+  MIN: '95',
+  AVG: '00',
 } as const
 
 export const MATCHING_DEPARTMENT_PAGE = {
@@ -178,7 +178,7 @@ export const BUTTON_TYPE = {
 } as const
 
 export const RANGE_BAR_AGE = {
-  MIN: 1994,
-  MAX: 2004,
+  MIN: 1995,
+  MAX: 2005,
   STEP: 1,
 } as const
