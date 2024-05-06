@@ -20,7 +20,7 @@ export default function MyPage() {
   const {
     userGender,
     userNickname,
-    year,
+    birthYear,
     userDepartment,
     userKeywords,
     preferYearMax,
@@ -37,7 +37,7 @@ export default function MyPage() {
       <Profile
         userGender={userGender}
         userNickname={userNickname}
-        year={year}
+        birthYear={birthYear}
         userDepartment={userDepartment}
       />
       <MypageSecondBoxContainer

@@ -5,17 +5,17 @@ import Image from 'next/image'
 interface UserInfoProps {
   userGender: string
   userNickname: string
-  year: number
+  birthYear: number
   userDepartment: string
 }
 const Profile = ({
   userGender,
   userNickname,
-  year,
+  birthYear,
   userDepartment,
 }: UserInfoProps) => {
   const gender = userGender === 'MALE' ? maleImage : femaleImage
-  const age = year?.toString().slice(-2)
+  const age = birthYear?.toString().slice(-2)
   return (
     <section className="flex flex-col">
       <div className="mx-auto text-center">
