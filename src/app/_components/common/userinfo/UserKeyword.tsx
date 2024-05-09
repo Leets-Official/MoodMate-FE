@@ -24,9 +24,11 @@ export default function UserKeyword({ pageNum }: UserKeywordProps) {
   }
 
   const nextRoute = () => {
+    const slicedKeywords = selectedButtons.map((keyword) => keyword.slice(3))
+    console.log(slicedKeywords)
     setUserInfoState((prevUserInfo) => ({
       ...prevUserInfo,
-      keywords: selectedButtons,
+      keywords: slicedKeywords,
     }))
     route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
   }
@@ -75,7 +77,7 @@ export default function UserKeyword({ pageNum }: UserKeywordProps) {
                 selectedButtons.includes(keyword)
                   ? 'border-[1px] border-primary text-primary'
                   : 'border-[1px] border-zeropink'
-              } bg-zeropink text-darkgray font-sans text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl`}
+              } bg-zeropink text-darkgray text-[14px] font-normal justify-end items-center gap-[10px] rounded-3xl`}
             />
           ))}
         </div>
@@ -83,7 +85,7 @@ export default function UserKeyword({ pageNum }: UserKeywordProps) {
           buttonText="다음"
           onClick={nextRoute}
           buttonType="large"
-          className={`font-sans absolute bottom-0 text-darkgray rounded-md ${
+          className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${
             selectedButtons.length === 3
               ? buttonStyles.activeStyles
               : buttonStyles.defaultStyles

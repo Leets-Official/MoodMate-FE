@@ -35,7 +35,7 @@ interface ResponseMyPage {
   myPageResponse: {
     userGender: string
     userNickname: string
-    birthYear: number
+    year: number
     userDepartment: string
     userKeywords: string[]
     preferYearMin: number

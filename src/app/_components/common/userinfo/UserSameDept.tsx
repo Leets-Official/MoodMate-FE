@@ -75,7 +75,7 @@ export default function UserSameDept({ pageNum }: UserSameDeptProps) {
           buttonType="MAJOR"
           isActive
           onClick={handleTrueButtonClick}
-          className={`ml-[7px] font-sans leading-none text-[14px] font-bold justify-end items-center rounded-3xl ${
+          className={`ml-[7px] leading-none text-[14px] font-bold justify-end items-center rounded-3xl ${
             trueButtonSelected
               ? 'border-[1px] border-primary text-primary bg-onepink'
               : 'bg-zeropink '
@@ -86,7 +86,7 @@ export default function UserSameDept({ pageNum }: UserSameDeptProps) {
           buttonType="MAJOR"
           isActive
           onClick={handleFalseButtonClick}
-          className={`ml-[7px] font-sans leading-none text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
+          className={`ml-[7px] leading-none text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
             falseButtonSelected
               ? 'border-[1px] border-primary text-primary bg-onepink'
               : 'bg-zeropink '
@@ -97,7 +97,7 @@ export default function UserSameDept({ pageNum }: UserSameDeptProps) {
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`font-sans absolute bottom-0  text-darkgray rounded-md ${
+        className={`mb-7 absolute bottom-0  text-darkgray rounded-md ${
           trueButtonSelected || falseButtonSelected
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

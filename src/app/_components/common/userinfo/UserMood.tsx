@@ -12,41 +12,58 @@ import Cookies from 'js-cookie'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
 
-export default function UserMood() {
+interface ButtonSelectedState {
+  [key: string]: {
+    selected: boolean
+    imgSrc: string
+  }
+}
+
+const UserMood = () => {
   const route = useRouter()
 
   const [usersInfo, setUsersInfoState] = useRecoilState(userInfoState)
   const [userInfo, setUserInfoState] = useRecoilState(preferInfoState)
-  const [actButtonSelected, setActButtonSelected] = useState<boolean>(
-    userInfo.preferMood === '활동적인',
-  )
-  const [emoButtonSelected, setEmoButtonSelected] = useState<boolean>(
-    userInfo.preferMood === '감성 풍부한',
-  )
-
-  const [newButtonSelected, setNewButtonSelected] = useState<boolean>(
-    userInfo.preferMood === '이색적인',
-  )
-
-  const [funButtonSelected, setFunButtonSelected] = useState<boolean>(
-    userInfo.preferMood === '유쾌한',
-  )
+  const [buttonSelected, setButtonSelected] = useState<ButtonSelectedState>({
+    뜨거운: {
+      selected: false,
+      imgSrc: '/illustration/common/datemood/active.png',
+    },
+    편안한: {
+      selected: false,
+      imgSrc: '/illustration/common/datemood/emotional.png',
+    },
+    설레는: {
+      selected: false,
+      imgSrc: '/illustration/common/datemood/unusual.png',
+    },
+    재밌는: {
+      selected: false,
+      imgSrc: '/illustration/common/datemood/funny.png',
+    },
+  })
 
   const buttonStyles = {
     defaultStyles: 'bg-secondary',
     activeStyles: 'text-white bg-primary',
   }
 
+  const handleError = () => {
+    alert('정보 저장에 실패했습니다. 재로그인 후 이용해주세요!')
+    clearCookiesAndRedirect()
+  }
+
   const postUserDataMutation = useMutation({
     mutationFn: () => postUserData(usersInfo, userInfo),
     onSuccess: () => {},
-    onError: () => {
-      alert('정보 저장에 실패했습니다. 재로그인 후 이용해주세요!')
-      Cookies.remove('accessToken')
-      Cookies.remove('refreshToken')
-      route.push('/login')
-    },
+    onError: handleError,
   })
+
+  const clearCookiesAndRedirect = () => {
+    Cookies.remove('accessToken')
+    Cookies.remove('refreshToken')
+    route.push('/login')
+  }
 
   const nextRoute = async () => {
     try {
@@ -57,174 +74,90 @@ export default function UserMood() {
         alert(
           '정보 입력이 잘못되었습니다. 로그인 페이지로 이동합니다. 재로그인 해주세요.',
         )
-        route.push('/login')
+        clearCookiesAndRedirect()
         return
       }
 
-      if (Object.values(userInfo).some((value) => value === '')) {
-        alert(
-          '선호 정보 입력이 잘못되었습니다. 로그인 페이지로 이동합니다. 재로그인 해주세요.',
-        )
-        route.push('/login')
-        return
-      }
-
+      console.log(userInfo)
+      console.log(usersInfo)
       await postUserDataMutation.mutateAsync()
       route.push('/main')
     } catch (error) {
-      alert('정보 저장에 실패했습니다. 재로그인 후 이용해주세요!')
-      Cookies.remove('accessToken')
-      Cookies.remove('refreshToken')
-      route.push('/login')
+      handleError()
       throw error
     }
   }
 
-  const handleActButtonClick = () => {
-    if (actButtonSelected) {
-      setUserInfoState((prev) => ({ ...prev, preferMood: '' }))
-      setActButtonSelected(false)
-    } else {
-      setUserInfoState((prev) => ({ ...prev, preferMood: '활동적인' }))
-      setActButtonSelected(true)
-      setEmoButtonSelected(false)
-      setFunButtonSelected(false)
-      setNewButtonSelected(false)
-    }
-  }
+  const handleButtonClick = (mood: keyof ButtonSelectedState) => {
+    setButtonSelected((prev) => {
+      const updatedState = { ...prev }
+      Object.keys(updatedState).forEach((key) => {
+        updatedState[key].selected = key === mood && !prev[key].selected
+      })
+      return updatedState
+    })
 
-  const handleEmoButtonClick = () => {
-    if (emoButtonSelected) {
-      setUserInfoState((prev) => ({ ...prev, preferMood: '' }))
-      setEmoButtonSelected(false)
-    } else {
-      setUserInfoState((prev) => ({ ...prev, preferMood: '감성 풍부한' }))
-      setEmoButtonSelected(true)
-      setActButtonSelected(false)
-      setFunButtonSelected(false)
-      setNewButtonSelected(false)
-    }
-  }
-
-  const handleNewButtonClick = () => {
-    if (newButtonSelected) {
-      setUserInfoState((prev) => ({ ...prev, preferMood: '' }))
-      setNewButtonSelected(false)
-    } else {
-      setUserInfoState((prev) => ({ ...prev, preferMood: '이색적인' }))
-      setNewButtonSelected(true)
-      setFunButtonSelected(false)
-      setActButtonSelected(false)
-      setEmoButtonSelected(false)
-    }
-  }
-
-  const handleFunButtonClick = () => {
-    if (funButtonSelected) {
-      setUserInfoState((prev) => ({ ...prev, preferMood: '' }))
-      setFunButtonSelected(false)
-    } else {
-      setUserInfoState((prev) => ({ ...prev, preferMood: '유쾌한' }))
-      setNewButtonSelected(false)
-      setFunButtonSelected(true)
-      setActButtonSelected(false)
-      setEmoButtonSelected(false)
-    }
+    setUserInfoState((prev) => ({
+      ...prev,
+      preferMood: prev.preferMood === mood.toString() ? '' : mood.toString(),
+    }))
   }
 
   useEffect(() => {
-    setActButtonSelected(userInfo.preferMood === '활동적인')
-    setEmoButtonSelected(userInfo.preferMood === '감성 풍부한')
-    setFunButtonSelected(userInfo.preferMood === '유쾌한')
-    setNewButtonSelected(userInfo.preferMood === '이색적인')
+    console.log(userInfo)
+    console.log(usersInfo)
+    setButtonSelected((prev) => {
+      const updatedState = { ...prev }
+      Object.keys(updatedState).forEach((key) => {
+        updatedState[key].selected = key === userInfo.preferMood
+      })
+      console.log(updatedState)
+      return updatedState
+    })
   }, [userInfo])
 
   return (
-    <div className="relative h-[560px] w-[312px]">
+    <div className="relative h-full w-[312px]">
       <div className="mt-[35px] mb-[88px]">
         <div className="leading-normal text-darkgray font-bold text-xl font-sans">
           <div>{DATE_MOOD_PAGE.GREETINGS}</div>
         </div>
       </div>
       <div className="absolute flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 justify-center items-center flex-wrap ">
-        <SelectedButton
-          buttonText={`${DATE_MOOD_PAGE.ACT}\n${DATE_MOOD_PAGE.DATE}`}
-          buttonType="MOOD"
-          isActive
-          onClick={handleActButtonClick}
-          imgSrc="/illustration/common/datemood/active.png"
-          imgSizeW={75}
-          imgSizeH={85}
-          className={`mx-2 my-2 font-sans text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
-            actButtonSelected
-              ? 'border-[1px]  bg-onepink border-primary text-primary'
-              : 'bg-zeropink text-darkgray'
-          }`}
-        />
-        <SelectedButton
-          buttonText={`${DATE_MOOD_PAGE.EMO}\n${DATE_MOOD_PAGE.DATE}`}
-          buttonType="MOOD"
-          isActive
-          onClick={handleEmoButtonClick}
-          imgSrc="/illustration/common/datemood/emotional.png"
-          imgSizeH={85}
-          imgSizeW={75}
-          imgClassName="h-[85px]"
-          className={`mx-2 my-2  font-sans text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
-            emoButtonSelected
-              ? 'border-[1px]  bg-onepink border-primary text-primary'
-              : 'bg-zeropink text-darkgray'
-          }`}
-        />
-        <SelectedButton
-          buttonText={`${DATE_MOOD_PAGE.NEW}\n${DATE_MOOD_PAGE.DATE}`}
-          buttonType="MOOD"
-          isActive
-          onClick={handleNewButtonClick}
-          imgSrc="/illustration/common/datemood/unusual.png"
-          imgSizeH={85}
-          imgSizeW={75}
-          imgClassName="h-[85px]"
-          className={`mx-2 my-2  font-sans text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
-            newButtonSelected
-              ? 'border-[1px] bg-onepink border-primary text-primary'
-              : 'bg-zeropink text-darkgray'
-          }`}
-        />
-        <SelectedButton
-          buttonText={`${DATE_MOOD_PAGE.FUN}\n${DATE_MOOD_PAGE.DATE}`}
-          buttonType="MOOD"
-          isActive
-          onClick={handleFunButtonClick}
-          imgSrc="/illustration/common/datemood/funny.png"
-          imgSizeH={85}
-          imgSizeW={75}
-          className={`mx-2 my-2 font-sans text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
-            funButtonSelected
-              ? 'border-[1px]  bg-onepink border-primary text-primary'
-              : 'bg-zeropink text-darkgray'
-          }`}
-        />
+        {Object.entries(buttonSelected).map(([mood, { selected, imgSrc }]) => (
+          <SelectedButton
+            key={mood}
+            buttonText={`${mood} ${DATE_MOOD_PAGE.DATE}`}
+            buttonType="MOOD"
+            isActive={true}
+            onClick={() => handleButtonClick(mood as keyof ButtonSelectedState)}
+            imgSrc={imgSrc}
+            imgSizeW={75}
+            imgSizeH={85}
+            imgClassName="mb-5"
+            className={`mx-2 my-2 text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
+              selected
+                ? 'border-[1px]  bg-onepink border-primary text-primary'
+                : 'bg-zeropink text-darkgray'
+            }`}
+          />
+        ))}
       </div>
       <NormalButton
         buttonText="매칭 시작"
         onClick={nextRoute}
         buttonType="large"
-        className={`font-sans absolute bottom-0  text-darkgray rounded-md ${
-          actButtonSelected ||
-          emoButtonSelected ||
-          newButtonSelected ||
-          funButtonSelected
+        className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${
+          Object.values(buttonSelected).some(({ selected }) => selected)
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles
         }`}
-        isActive={
-          actButtonSelected ||
-          emoButtonSelected ||
-          newButtonSelected ||
-          funButtonSelected
-        }
+        isActive={Object.values(buttonSelected).some(
+          ({ selected }) => selected,
+        )}
       />
     </div>
   )
 }
+
+export default UserMood

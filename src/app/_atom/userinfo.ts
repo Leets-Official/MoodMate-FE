@@ -5,7 +5,7 @@ export const userInfoState = atom<UserInfoData>({
   default: {
     nickname: '',
     gender: '',
-    year: 1995,
+    birthYear: 1995,
     department: '',
     keywords: [],
   },

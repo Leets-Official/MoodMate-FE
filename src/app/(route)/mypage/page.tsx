@@ -20,7 +20,7 @@ export default function MyPage() {
   const {
     userGender,
     userNickname,
-    birthYear,
+    year,
     userDepartment,
     userKeywords,
     preferYearMax,
@@ -32,12 +32,12 @@ export default function MyPage() {
   return (
     <section className="scrollbar-hide">
       <div className="mt-6">
-        <Header partner />
+        <Header mypage partner />
       </div>
       <Profile
         userGender={userGender}
         userNickname={userNickname}
-        birthYear={birthYear}
+        year={year}
         userDepartment={userDepartment}
       />
       <MypageSecondBoxContainer
