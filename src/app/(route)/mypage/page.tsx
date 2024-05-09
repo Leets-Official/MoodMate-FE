@@ -32,7 +32,7 @@ export default function MyPage() {
   return (
     <section className="scrollbar-hide">
       <div className="mt-6">
-        <Header partner />
+        <Header mypage partner />
       </div>
       <Profile
         userGender={userGender}

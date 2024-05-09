@@ -1,7 +1,7 @@
 interface UserInfoData {
   nickname: string
   gender: 'MALE' | 'FEMALE' | ''
-  year: number
+  birthYear: number
   department: string
   keywords: string[]
 }

@@ -58,7 +58,7 @@ export default function UserMoodyage({ pageNum }: UserMoodyageProps) {
       <div className="relative top-[0%] mt-[-50px] mb-[20px] left-[40%] ml-[-50px] w-[149px] h-[157px]flex justify-center items-center">
         <img src={moodyCharacter} alt="" width={149} height="auto" />
       </div>
-      <div className="font-sans `justify-items-center flex flex-col items-center">
+      <div className="justify-items-center flex flex-col items-center">
         <RangeBar
           type="range"
           values={rangeValue}
@@ -68,7 +68,7 @@ export default function UserMoodyage({ pageNum }: UserMoodyageProps) {
           buttonText="다음"
           onClick={nextRoute}
           buttonType="large"
-          className={`font-sans absolute bottom-0 text-darkgray rounded-md ${
+          className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${
             rangeValue[0] !== 0
               ? buttonStyles.activeStyles
               : buttonStyles.defaultStyles
