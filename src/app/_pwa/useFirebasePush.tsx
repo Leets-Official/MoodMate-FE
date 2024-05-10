@@ -47,7 +47,7 @@ const useFirebasePush = () => {
         if (token) {
           console.log(token)
           window.localStorage.setItem('fcmToken', token)
-          await sendTokenToServer(token) // 백엔드 서버에 저장
+          await sendTokenToServer(token)
           setToken(token)
           setIsPushEnabled(true)
         } else {

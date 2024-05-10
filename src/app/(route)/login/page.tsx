@@ -3,8 +3,6 @@
 import Image from 'next/image'
 import loginImage from 'public/illustration/common/login/login.png'
 import { LOGIN_PAGE } from '@/_constants/login'
-import NormalButton from '@/_components/common/NormalButton'
-import useFirebasePush from '@/_pwa/useFirebasePush'
 import kakaoImage from 'public/illustration/common/login/kakao.png'
 
 export default function Login() {
@@ -47,7 +45,6 @@ export default function Login() {
           <p>카카오계정으로 로그인</p>
         </div>
       </button>
-      <p>{token}</p>
       <div className="text-center text-xs text-secondary ml-2 mt-4">
         <p>회원가입 시 개인정보 제공 및 대화 내용 저장에 동의합니다.</p>
         <p>서비스 종료 후 모든 정보는 폐기처리 됩니다.</p>
