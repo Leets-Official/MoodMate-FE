@@ -68,35 +68,27 @@ const useFirebasePush = () => {
   }
 
   const sendPush = async ({
-    title,
-    body,
-    click_action,
-    token,
+    fcmToken,
+    message,
   }: {
-    title: string
-    body: string
-    click_action: string
-    token: string
+    message: string
+    fcmToken: string
   }) => {
-    const message = {
-      data: {
-        title,
-        body,
-        image: 'public/icon-192x192.png',
-        click_action,
-        token,
-      },
+    // const message = {
+    //   data: {
+    //     title,
+    //     body,
+    //     image: 'public/icon-192x192.png',
+    //     click_action,
+    //     token,
+    //   },
+    // }
+    try {
+      const res = await api.post(`send`, { fcmToken, message })
+      console.log(res)
+    } catch (e) {
+      throw e
     }
-
-    const res = await fetch(window?.location?.origin + '/api/fcm', {
-      method: 'POST',
-      body: JSON.stringify({ message }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-
-    console.log('post res :: ', res)
   }
 
   const sendTokenToServer = async (token: string) => {
@@ -104,7 +96,6 @@ const useFirebasePush = () => {
       await api.post(`register`, {
         fcmToken: token,
       })
-      alert('푸쉬알림을 허용했습니다.')
       console.log('푸쉬알림 토큰 전송 성공')
     } catch (error) {
       console.error('Error sending token to server:', error)

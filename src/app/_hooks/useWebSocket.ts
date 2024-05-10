@@ -1,4 +1,5 @@
 import { realTimeMessagesState } from '@/_atom/chat'
+import api from '@/_service/axios'
 import { CompatClient, Stomp } from '@stomp/stompjs'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
@@ -20,7 +21,6 @@ const useWebsocket = (roomId: number) => {
       client.connect(
         {},
         () => {
-          console.log('connected!!!!', client)
           client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
             const receivedMessage = {
               ...JSON.parse(res.body),
@@ -53,13 +53,23 @@ const useWebsocket = (roomId: number) => {
     }
   }, [roomId, setRealTimeMessages, stompClient])
 
-  const sendMessage = (message: ChatMessageFromClient) => {
+  const sendMessage = async (message: ChatMessageFromClient) => {
     if (stompClient?.connected && message) {
+      const pushMessage = {
+        fcmToken: localStorage.getItem('fcmToken'),
+        message: message.content,
+      }
       stompClient.send(
         `/pub/chat`,
         {},
         JSON.stringify({ ...message, token: `Bearer ${accessToken}` }),
       )
+      try {
+        await api.post('send', pushMessage)
+        console.log('Message sent to the backend successfully')
+      } catch (error) {
+        console.error('Failed to send message to the backend:', error)
+      }
     }
   }
 
