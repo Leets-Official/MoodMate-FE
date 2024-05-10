@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { initializeApp } from 'firebase/app'
 import axios from 'axios'
+import api from '@/_service/axios'
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -100,7 +101,7 @@ const useFirebasePush = () => {
 
   const sendTokenToServer = async (token: string) => {
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}register`, {
+      await api.post(`register`, {
         fcmToken: token,
       })
       alert('푸쉬알림을 허용했습니다.')
