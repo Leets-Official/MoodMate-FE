@@ -100,7 +100,9 @@ const useFirebasePush = () => {
 
   const sendTokenToServer = async (token: string) => {
     try {
-      await axios.post('/register', { fcmToken: token })
+      await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}register`, {
+        fcmToken: token,
+      })
       alert('푸쉬알림을 허용했습니다.')
       console.log('푸쉬알림 토큰 전송 성공')
     } catch (error) {
