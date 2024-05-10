@@ -6,9 +6,13 @@ import InactivePage from '@/_components/inactive/InActivePage'
 import Loading from '@/_components/common/Loading'
 import Error from '@/(route)/error'
 import { useEffect } from 'react'
+import useFirebasePush from '@/_pwa/useFirebasePush'
+import NormalButton from '@/_components/common/NormalButton'
 
 export default function MainpagePage() {
   const { isLoading, isError, data } = useMainQuery()
+  const { isPushEnabled, token, requestPushPermission, sendPush } =
+    useFirebasePush()
   if (isLoading) {
     return <Loading />
   }
@@ -23,7 +27,16 @@ export default function MainpagePage() {
   return (
     <section className="scrollbar-hide">
       {userMatchActive ? (
-        <MainPage type={mainPageType} gender={mainPageGender} />
+        <>
+          <MainPage type={mainPageType} gender={mainPageGender} />
+          <NormalButton
+            onClick={requestPushPermission}
+            buttonText="알림 요청"
+            buttonType="small"
+            className=""
+            isActive
+          />
+        </>
       ) : (
         <InactivePage
           gender={mainPageGender}
