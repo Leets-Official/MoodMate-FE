@@ -13,7 +13,7 @@ export const getUserToken = async (code: string) => {
     const { accessToken } = response
     const { refreshToken } = response
     setCookie(null, 'accessToken', accessToken, {
-      maxAge: 3 * 60 * 60,
+      maxAge: 3 * 24 * 60 * 60,
       path: '/',
     })
     setCookie(null, 'refreshToken', refreshToken, {

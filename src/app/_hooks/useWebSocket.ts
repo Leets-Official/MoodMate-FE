@@ -66,9 +66,9 @@ const useWebsocket = (roomId: number) => {
       )
       try {
         await api.post('send', pushMessage)
-        console.log('Message sent to the backend successfully')
+        console.log('fcm 메시지 send 성공 (backend api)')
       } catch (error) {
-        console.error('Failed to send message to the backend:', error)
+        console.error('fcm 메시지 send 실패 (backend api)', error)
       }
     }
   }
