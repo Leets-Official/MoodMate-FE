@@ -20,6 +20,7 @@ const useWebsocket = (roomId: number) => {
       client.connect(
         {},
         () => {
+          console.log('connected!!!!', client)
           client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
             const receivedMessage = {
               ...JSON.parse(res.body),
@@ -31,6 +32,7 @@ const useWebsocket = (roomId: number) => {
           })
         },
         (error: undefined) => {
+          console.log('웹소켓 연결 에러....')
           console.error('웹소켓 연결 에러:', error)
           throw error
         },

@@ -17,8 +17,8 @@ const config: Config = {
         desktop: '500px',
       },
       colors: {
-        primary: '#FC4F59',
-        secondary: '#B3B3B3',
+        primary: '#FFFCE5',
+        secondary: '##FFE5E7',
         zeropink: '#FFF3F4',
         onepink: '#FFE5E7',
         twopink: '#FEB3B8',

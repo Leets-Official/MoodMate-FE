@@ -38,9 +38,6 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     useInfiniteChatQuery(userId, roomId, CHAT_SIZE.ROOM)
 
   useEffect(() => {
-    console.log(data?.pages)
-  }, [data])
-  useEffect(() => {
     const handleFocus = () => {
       window.location.reload()
     }
@@ -111,53 +108,51 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
     return <ErrorPage />
   }
 
-  if (data) {
-    return (
-      <div className="w-full bg-white h-screen">
-        <div
-          className="items-center mt-[80px] w-full px-3 h-[75%] overflow-scroll scrollbar-hide"
-          ref={containerRef}
-        >
-          <div ref={topDivRef} />
-          {data.pages
-            .slice()
-            .reverse()
-            .map((chatData) => (
-              <ChatList
-                key={chatData.pageable.page}
-                userId={userId}
-                user={chatData.user}
-                chatHistory={chatData.chatList.slice().reverse()}
-              />
-            ))}
-          {data && data.pages[0].chatList.length === 0 && (
-            <div className="w-full text-center mb-5 text-xs text-[#B0B0B0]">
-              무디와의 설레는 채팅을 시작해보세요!
-            </div>
-          )}
-          <ChatList
-            userId={userId}
-            user={data.pages[0].user}
-            chatHistory={realTimeMessages}
-          />
-        </div>
-        {openUnmatchModal && data && (
-          <ModalPortal nodeName="unmatchedPortal">
-            <ModalOutside
-              onClose={() => {}}
-              className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[400px] px-10 rounded-[25px] shadow-sm py-10"
-            >
-              <ModalContentOne
-                subject={UNMATCHED_MODAL}
-                onClose={() => router.push('/main')}
-                gender={data.pages[0].user.gender}
-              />
-            </ModalOutside>
-          </ModalPortal>
+  return (
+    <div className="w-full bg-primary h-screen">
+      <div
+        className="items-center mt-[80px] w-full px-3 h-[75%] overflow-scroll scrollbar-hide"
+        ref={containerRef}
+      >
+        <div ref={topDivRef} />
+        {data.pages
+          .slice()
+          .reverse()
+          .map((chatData) => (
+            <ChatList
+              key={chatData.pageable.page}
+              userId={userId}
+              user={chatData.user}
+              chatHistory={chatData.chatList.slice().reverse()}
+            />
+          ))}
+        {data && data.pages[0].chatList.length === 0 && (
+          <div className="w-full text-center mb-5 text-xs text-[#B0B0B0]">
+            무디와의 설레는 채팅을 시작해보세요!
+          </div>
         )}
+        <ChatList
+          userId={userId}
+          user={data.pages[0].user}
+          chatHistory={realTimeMessages}
+        />
       </div>
-    )
-  }
+      {openUnmatchModal && data && (
+        <ModalPortal nodeName="unmatchedPortal">
+          <ModalOutside
+            onClose={() => {}}
+            className="max-w-md scroll overflow-hidden bg-white w-[260px] h-[467px] px-10 rounded-[25px] shadow-sm py-10"
+          >
+            <ModalContentOne
+              subject={UNMATCHED_MODAL}
+              onClose={() => router.push('/main')}
+              gender={data.pages[0].user.gender}
+            />
+          </ModalOutside>
+        </ModalPortal>
+      )}
+    </div>
+  )
 }
 
 export default ChatRoomContainer

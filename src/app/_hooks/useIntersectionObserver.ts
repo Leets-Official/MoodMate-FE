@@ -1,31 +1,40 @@
 import { useEffect, type RefObject, useRef } from 'react'
 
 export const useIntersectionObserver = <T extends HTMLElement>(
-  targetRef: RefObject<T>,
-  onIntersect: IntersectionObserverCallback,
+  containerRef: RefObject<T>,
+  topDivRef: RefObject<T>,
+  onIntersect: () => void,
   hasNextPage: boolean | undefined,
 ) => {
   const observer = useRef<IntersectionObserver>()
 
   useEffect(() => {
-    if (targetRef && targetRef.current) {
-      observer.current = new IntersectionObserver(onIntersect, {
-        root: null,
-        rootMargin: '0px',
-        threshold: 1.0,
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (
+          entry.isIntersecting &&
+          entry.target === topDivRef.current &&
+          hasNextPage
+        ) {
+          setTimeout(() => {
+            fetchNextPage()
+          }, 300)
+        }
       })
+    }
 
-      if (!hasNextPage) {
-        observer.current?.unobserve(targetRef.current)
-      } else {
-        observer.current.observe(targetRef.current)
-      }
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    })
+
+    if (containerRef.current && topDivRef.current) {
+      observer.observe(topDivRef.current)
     }
 
     return () => {
-      if (observer.current) {
-        observer.current.disconnect()
-      }
+      observer.disconnect()
     }
-  }, [targetRef, onIntersect, hasNextPage])
+  }, [hasNextPage, fetchNextPage])
 }
