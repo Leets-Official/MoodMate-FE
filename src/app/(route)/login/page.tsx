@@ -5,7 +5,7 @@ import loginImage from 'public/illustration/common/login/login.png'
 import { LOGIN_PAGE } from '@/_constants/login'
 import NormalButton from '@/_components/common/NormalButton'
 import useFirebasePush from '@/_pwa/useFirebasePush'
-import kakaoImage from "public/illustration/common/login/kakao.png"
+import kakaoImage from 'public/illustration/common/login/kakao.png'
 
 export default function Login() {
   const { isPushEnabled, token, requestPushPermission, sendPush } =
