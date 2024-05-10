@@ -45,7 +45,9 @@ function Authentication() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleLogin}>로그인</button>
+      <button onClick={handleLogin} type="button">
+        로그인
+      </button>
     </div>
   )
 }

@@ -13,15 +13,13 @@
   },
   "ignorePatterns": ["node_modules/"],
   "extends": [
-    "airbnb",
-    "airbnb-typescript",
-    "airbnb/hooks",
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier"
   ],
   "rules": {
+    "import/no-dynamic-require": "off",
     "no-alert": "off",
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/click-events-have-key-events": "off",
@@ -41,6 +39,11 @@
     "react/function-component-definition": [
       2,
       { "namedComponents": ["arrow-function", "function-declaration"] }
-    ]
+    ],
+    "no-nested-ternary": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-throw-literal": "off",
+    "@typescript-eslint/no-shadow": "off"
   }
 }
