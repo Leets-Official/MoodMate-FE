@@ -46,8 +46,11 @@ const useFirebasePush = () => {
           vapidKey: process.env.NEXT_PUBLIC_FCM_VAPID_KEY,
         })
         if (token) {
-          window.localStorage.setItem('fcmToken', token)
-          await sendTokenToServer(token)
+          const stored = window.localStorage.getItem('fcmToken')
+          if (!stored) {
+            await sendTokenToServer(token)
+            window.localStorage.setItem('fcmToken', token)
+          }
           setToken(token)
           setIsPushEnabled(true)
         } else {
