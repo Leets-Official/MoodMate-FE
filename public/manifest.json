@@ -9,8 +9,8 @@
   "description": "하루 한번, 나와 비슷한 무드의 상대방을 매칭해보세요!",
   "icons": [
     {
-      "src": "/icon-192x192.png",
-      "sizes": "192x192",
+      "src": "/icon-71x71.png",
+      "sizes": "71x71",
       "type": "image/png"
     },
     {

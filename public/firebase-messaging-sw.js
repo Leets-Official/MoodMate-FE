@@ -50,7 +50,7 @@ messaging.onBackgroundMessage(messaging, (payload) => {
   const notificationTitle = 'Background 알림 수신'
   const notificationOptions = {
     body: payload,
-    icon: 'public/icon-192x192.png',
+    icon: 'public/icon-71x71.png',
   }
 
   self.registration.showNotification(notificationTitle, notificationOptions)
