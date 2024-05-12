@@ -31,7 +31,7 @@ const getBGStyle = (type: string, gender: string) => {
         background: '',
         image: beforeMatch,
         textUi: 'mb-7',
-        imageUi: 'mt-3 w-[300px] ml-[10%] ',
+        imageUi: 'mt-3 w-[300px]',
       }
     case 'AFTER':
       switch (gender) {
@@ -103,7 +103,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
       <Image
         src={getBGStyle(type, gender).image}
         alt="Matching"
-        className={`-mt-6 ml-[11%] ${getBGStyle(type, gender).imageUi}`}
+        className={`-mt-7 ${getBGStyle(type, gender).imageUi}`}
       />
       <NavBar
         type={type}
