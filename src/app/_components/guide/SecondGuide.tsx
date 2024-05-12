@@ -68,7 +68,7 @@ const SecondGuide = () => {
           </div>
           <div className="flex">
             <p className="mr-1">추가된</p>
-            <p className="px-1 mr-1 h-5 text-[#FFFAD7] bg-[#FEB7B3]">앱 싫행</p>
+            <p className="px-1 mr-1 h-5 text-[#FFFAD7] bg-[#FEB7B3]">앱 실행</p>
           </div>
         </div>
         <Image
