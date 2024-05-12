@@ -51,7 +51,7 @@ const LoginHandler = () => {
       ) {
         router.push('/main')
       } else {
-        router.push('/userinfo/1')
+        router.push('/guide')
       }
     }
   }, [data, router])
