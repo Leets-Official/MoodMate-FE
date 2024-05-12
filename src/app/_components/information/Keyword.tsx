@@ -14,7 +14,7 @@ const Keyword = ({ keywords, partner }: KeywordProps) => {
               // eslint-disable-next-line no-nested-ternary
               partner
                 ? i % 2 === 0
-                  ? 'bg-twopink text-white'
+                  ? 'bg-[#FFCFB4] text-threepink'
                   : 'bg-threepink text-white'
                 : ' bg-onepink text-primary border border-primary'
             }`}

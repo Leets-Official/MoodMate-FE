@@ -78,8 +78,6 @@ const UserMood = () => {
         return
       }
 
-      console.log(userInfo)
-      console.log(usersInfo)
       await postUserDataMutation.mutateAsync()
       route.push('/main')
     } catch (error) {
@@ -104,14 +102,11 @@ const UserMood = () => {
   }
 
   useEffect(() => {
-    console.log(userInfo)
-    console.log(usersInfo)
     setButtonSelected((prev) => {
       const updatedState = { ...prev }
       Object.keys(updatedState).forEach((key) => {
         updatedState[key].selected = key === userInfo.preferMood
       })
-      console.log(updatedState)
       return updatedState
     })
   }, [userInfo])

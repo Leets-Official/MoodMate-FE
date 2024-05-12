@@ -13,7 +13,7 @@ const getBioStyle = (size: string) => {
     case 'MEDIUM':
       return 'w-[48px] h-[48px]'
     case 'LARGE':
-      return 'w-[137px] h-[136px]'
+      return 'w-[158px] h-[158px]'
     default:
       return 'w-[40px] h-[40px]'
   }

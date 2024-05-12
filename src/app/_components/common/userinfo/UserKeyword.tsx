@@ -25,7 +25,6 @@ export default function UserKeyword({ pageNum }: UserKeywordProps) {
 
   const nextRoute = () => {
     const slicedKeywords = selectedButtons.map((keyword) => keyword.slice(3))
-    console.log(slicedKeywords)
     setUserInfoState((prevUserInfo) => ({
       ...prevUserInfo,
       keywords: slicedKeywords,

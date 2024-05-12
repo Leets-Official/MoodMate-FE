@@ -13,7 +13,7 @@ const DateMood = ({ mood, partner }: DateMoodProps) => {
       <p
         className={` px-5 py-1.5 rounded-[18px] mr-2  ${
           partner
-            ? ' w-[80%] text-center text-white bg-threepink'
+            ? ' w-[68%] text-center text-white bg-[#FFB39C]'
             : ' text-primary border border-primary bg-onepink'
         }`}
       >

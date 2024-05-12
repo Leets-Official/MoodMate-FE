@@ -46,7 +46,7 @@ const ChatPartnerInfoContainer = ({
               type="partnerInfo"
             />
           </div>
-          <div className="flex flex-col rounded-t-[52px] bg-[#FFE5E7] h-[65%] w-full ">
+          <div className="flex flex-col rounded-t-[52px] bg-onepink h-[65%] w-full ">
             <p className="text-center font-bold text-[20px] mt-8">
               {partner.nickname}
             </p>

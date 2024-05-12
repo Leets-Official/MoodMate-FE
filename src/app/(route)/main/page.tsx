@@ -13,12 +13,18 @@ export default function MainpagePage() {
   const { isLoading, isError, data } = useMainQuery()
   const { isPushEnabled, token, requestPushPermission, sendPush } =
     useFirebasePush()
+
+  useEffect(() => {
+    requestPushPermission()
+  }, [])
+
   if (isLoading) {
     return <Loading />
   }
   if (isError || !data) {
     return <Error />
   }
+
   const { roomActive, userMatchActive, userGender, roomId, userId } =
     data.mainPageResponse
   const mainPageType = roomActive ? 'AFTER' : 'BEFORE'

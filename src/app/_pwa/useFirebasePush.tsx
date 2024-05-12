@@ -75,15 +75,6 @@ const useFirebasePush = () => {
     message: string
     fcmToken: string
   }) => {
-    // const message = {
-    //   data: {
-    //     title,
-    //     body,
-    //     image: 'public/icon-192x192.png',
-    //     click_action,
-    //     token,
-    //   },
-    // }
     try {
       const res = await api.post(`send`, { fcmToken, message })
       console.log(res)

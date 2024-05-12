@@ -101,7 +101,11 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }, [data?.pages.length])
 
   if (isLoading) {
-    return <Loading />
+    return (
+      <div className="bg-yellow w-full h-full">
+        <Loading />
+      </div>
+    )
   }
 
   if (isError || !data) {
@@ -109,9 +113,9 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
   }
 
   return (
-    <div className="w-full bg-white h-screen">
+    <div className="w-full bg-yellow h-screen">
       <div
-        className="items-center mt-[80px] w-full px-3 h-[75%] overflow-scroll scrollbar-hide"
+        className="items-center mt-[60px] w-full px-3 h-[81%] overflow-scroll scrollbar-hide"
         ref={containerRef}
       >
         <div ref={topDivRef} />
