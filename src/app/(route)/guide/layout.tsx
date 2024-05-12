@@ -1,6 +1,6 @@
 export default function MypageLayout({
-                                       children,
-                                     }: {
+  children,
+}: {
   children: React.ReactNode
 }) {
   return (
