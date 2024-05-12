@@ -103,7 +103,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
       <Image
         src={getBGStyle(type, gender).image}
         alt="Matching"
-        className={`w-[95%] desktop:-mt-2 -mt-6 ml-[3%] ${
+        className={`desktop:-mt-2 -mt-6 ml-[11%] ${
           getBGStyle(type, gender).imageUi
         }`}
       />
