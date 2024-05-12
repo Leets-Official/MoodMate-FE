@@ -103,7 +103,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
       <Image
         src={getBGStyle(type, gender).image}
         alt="Matching"
-        className={`-mt-7 ${getBGStyle(type, gender).imageUi}`}
+        className={`ml-7 ${getBGStyle(type, gender).imageUi}`}
       />
       <NavBar
         type={type}
