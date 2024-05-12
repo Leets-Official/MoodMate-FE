@@ -43,7 +43,7 @@ const SecondGuide = () => {
           alt="chat"
         />
       </div>
-      <div className="relative mb-4 flex flex-col px-6 pt-4 rounded-3xl text-[13px] w-[310px] h-[112px] bg-[#FEB7B3] text-[#A75551] font-semibold">
+      <div className="relative mb-4 flex flex-col px-6 pt-4 rounded-3xl text-[13px] w-[310px] h-[112px] bg-white text-[#A75551] font-semibold">
         <div className="flex">
           <div className="mb-2 mr-1.5 rounded-xl text-center text-white w-[28px] bg-[#FEB7B3]">
             #2
