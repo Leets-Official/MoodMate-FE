@@ -22,25 +22,6 @@ self.addEventListener('install', function (e) {
 
 self.addEventListener('activate', function (e) {})
 
-// self.addEventListener('push', function (e) {
-//   if (e.data) {
-//     const data = e.data.json().data
-
-//     const options = {
-//       body: data.body,
-//       icon: data.image,
-//       image: data.image,
-//       data: {
-//         click_action: data.click_action,
-//       },
-//     }
-
-//     e.waitUntil(self.registration.showNotification(notification.title, options))
-//   } else {
-//     console.log('push 데이터 없음')
-//   }
-// })
-
 messaging.onBackgroundMessage(messaging, (payload) => {
   console.log(
     '[firebase-messaging-sw.js] Received background message ',
@@ -50,7 +31,7 @@ messaging.onBackgroundMessage(messaging, (payload) => {
   const notificationTitle = 'Background 알림 수신'
   const notificationOptions = {
     body: payload,
-    icon: 'public/icon-192x192.png',
+    icon: 'public/illustration/common/chat/chatlist.png',
   }
 
   self.registration.showNotification(notificationTitle, notificationOptions)

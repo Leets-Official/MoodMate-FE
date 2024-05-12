@@ -24,7 +24,6 @@ const useFirebasePush = () => {
     const initPush = async () => {
       try {
         const result = await requestPushPermission()
-        console.log(result)
       } catch (error) {
         console.error('permission 받기 에러', error)
         setIsPushEnabled(false)
