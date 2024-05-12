@@ -1,18 +1,21 @@
 'use client'
 
 import MainPage from '@/_components/main/MainPage'
-import { useMainQuery } from '@/_hooks/useMainQuery'
 import InactivePage from '@/_components/inactive/InActivePage'
 import Loading from '@/_components/common/Loading'
 import Error from '@/(route)/error'
-import { useEffect } from 'react'
 import useFirebasePush from '@/_pwa/useFirebasePush'
-import NormalButton from '@/_components/common/NormalButton'
+import { useEffect } from 'react'
+import { useMainQuery } from '@/_hooks/useMainQuery'
 
 export default function MainpagePage() {
   const { isLoading, isError, data } = useMainQuery()
-  const { isPushEnabled, token, requestPushPermission, sendPush } =
-    useFirebasePush()
+  const { requestPushPermission } = useFirebasePush()
+
+  useEffect(() => {
+    requestPushPermission()
+  }, [])
+
   if (isLoading) {
     return <Loading />
   }
@@ -25,18 +28,9 @@ export default function MainpagePage() {
   const mainPageGender = userGender === 'MALE' ? 'MALE' : 'FEMALE'
 
   return (
-    <section className="scrollbar-hide">
+    <section className="h-full w-fullscrollbar-hide">
       {userMatchActive ? (
-        <>
-          <MainPage type={mainPageType} gender={mainPageGender} />
-          <NormalButton
-            onClick={requestPushPermission}
-            buttonText="알림 요청"
-            buttonType="small"
-            className=""
-            isActive
-          />
-        </>
+        <MainPage type={mainPageType} gender={mainPageGender} />
       ) : (
         <InactivePage
           gender={mainPageGender}
