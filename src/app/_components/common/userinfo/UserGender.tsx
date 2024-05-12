@@ -62,7 +62,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
   return (
     <div className="relative h-[560px] w-[312px]">
       <div className="mt-[35px] mb-[88px]">
-        <div className="leading-normal text-darkgray font-bold text-xl font-sans">
+        <div className="leading-normal text-darkgray font-bold text-xl">
           <div>{GENDER_PAGE.GREETINGS1}</div>
           <div>{GENDER_PAGE.GREETINGS2}</div>
         </div>
@@ -76,7 +76,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
           imgSrc="/illustration/common/gender/male.png"
           imgSizeW={106}
           imgSizeH={110}
-          className={`mr-[7px] bg-zeropink text-primary font-sans text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
+          className={`mr-[7px] bg-zeropink text-primary text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
             maleButtonSelected ? 'border-[1px] border-primary' : ''
           }`}
         />
@@ -88,7 +88,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
           imgSrc="/illustration/common/gender/female.png"
           imgSizeW={106}
           imgSizeH={110}
-          className={`ml-[7px] bg-zeropink text-primary font-sans text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
+          className={`ml-[7px] bg-zeropink text-primary text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
             femaleButtonSelected ? 'border-[1px] border-primary' : ''
           }`}
         />
@@ -97,7 +97,7 @@ export default function UserGender({ pageNum }: UserGenderProps) {
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`absolute bottom-0 font-sans text-darkgray rounded-md ${
+        className={`absolute mb-7 bottom-0 text-darkgray rounded-md ${
           maleButtonSelected || femaleButtonSelected
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

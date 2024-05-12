@@ -1,4 +1,5 @@
 import { realTimeMessagesState } from '@/_atom/chat'
+import api from '@/_service/axios'
 import { CompatClient, Stomp } from '@stomp/stompjs'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
@@ -31,6 +32,7 @@ const useWebsocket = (roomId: number) => {
           })
         },
         (error: undefined) => {
+          console.log('웹소켓 연결 에러....')
           console.error('웹소켓 연결 에러:', error)
           throw error
         },
@@ -51,13 +53,23 @@ const useWebsocket = (roomId: number) => {
     }
   }, [roomId, setRealTimeMessages, stompClient])
 
-  const sendMessage = (message: ChatMessageFromClient) => {
+  const sendMessage = async (message: ChatMessageFromClient) => {
     if (stompClient?.connected && message) {
+      const pushMessage = {
+        fcmToken: localStorage.getItem('fcmToken'),
+        message: message.content,
+      }
       stompClient.send(
         `/pub/chat`,
         {},
         JSON.stringify({ ...message, token: `Bearer ${accessToken}` }),
       )
+      try {
+        await api.post('send', pushMessage)
+        console.log('fcm 메시지 send 성공 (backend api)')
+      } catch (error) {
+        console.error('fcm 메시지 send 실패 (backend api)', error)
+      }
     }
   }
 

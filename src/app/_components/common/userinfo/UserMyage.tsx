@@ -20,7 +20,7 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState)
 
   const [singleValue, setSingleValue] = useState<number[]>(
-    userInfo.year !== 0 ? [userInfo.year] : [RANGE_BAR_AGE.MIN],
+    userInfo.birthYear !== 0 ? [userInfo.birthYear] : [RANGE_BAR_AGE.MIN],
   )
 
   const myCharacter =
@@ -35,7 +35,7 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
   const nextRoute = () => {
     setUserInfo((prevUserInfo) => ({
       ...prevUserInfo,
-      year: singleValue[0],
+      birthYear: singleValue[0],
     }))
 
     route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
@@ -68,7 +68,7 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
           buttonText="다음"
           onClick={nextRoute}
           buttonType="large"
-          className={`font-sans absolute bottom-0 text-darkgray rounded-md ${
+          className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${
             singleValue[0] !== 0
               ? buttonStyles.activeStyles
               : buttonStyles.defaultStyles

@@ -6,7 +6,7 @@ import { useState } from 'react'
 function Authentication() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const loginUrl = 'https://cyber.gachon.ac.kr/login/index.php';
+  const loginUrl = 'https://cyber.gachon.ac.kr/login/index.php'
 
   const handleLogin = async () => {
     const formData = new FormData()
@@ -16,9 +16,9 @@ function Authentication() {
     try {
       const response = await axios.post(loginUrl, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
         },
-        withCredentials: true
+        withCredentials: true,
       })
       console.log(response.data)
       // if (response.data.status_code === 200 && response.data.success) {
@@ -27,7 +27,7 @@ function Authentication() {
       //   console.log("Authentication failed")
       // }
     } catch (e) {
-      console.log("Authentication failed", e)
+      console.log('Authentication failed', e)
     }
   }
 
@@ -45,7 +45,9 @@ function Authentication() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleLogin}>로그인</button>
+      <button onClick={handleLogin} type="button">
+        로그인
+      </button>
     </div>
   )
 }

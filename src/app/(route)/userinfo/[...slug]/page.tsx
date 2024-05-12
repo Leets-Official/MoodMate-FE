@@ -10,7 +10,7 @@ export default function UserinfoPage({ params }: UserinfoPageProps) {
   const pageNumber = params.slug
 
   return (
-    <section className="flex items-center justify-center">
+    <section className="flex items-center justify-center h-full">
       <UserinfoPageComponents slug={pageNumber} />
     </section>
   )

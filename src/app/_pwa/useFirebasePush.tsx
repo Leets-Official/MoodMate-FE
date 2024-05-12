@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { initializeApp } from 'firebase/app'
+import axios from 'axios'
+import api from '@/_service/axios'
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -22,7 +24,6 @@ const useFirebasePush = () => {
     const initPush = async () => {
       try {
         const result = await requestPushPermission()
-        console.log(result)
       } catch (error) {
         console.error('permission 받기 에러', error)
         setIsPushEnabled(false)
@@ -44,10 +45,12 @@ const useFirebasePush = () => {
           vapidKey: process.env.NEXT_PUBLIC_FCM_VAPID_KEY,
         })
         if (token) {
-          console.log(token)
-          window.localStorage.setItem('fcmToken', token)
+          const stored = window.localStorage.getItem('fcmToken')
+          if (!stored) {
+            await sendTokenToServer(token)
+            window.localStorage.setItem('fcmToken', token)
+          }
           setToken(token)
-          //   await sendTokenToServer(token) // 백엔드 서버에 저장
           setIsPushEnabled(true)
         } else {
           setIsPushEnabled(false)
@@ -66,41 +69,34 @@ const useFirebasePush = () => {
   }
 
   const sendPush = async ({
-    title,
-    body,
-    click_action,
-    token,
+    fcmToken,
+    message,
   }: {
-    title: string
-    body: string
-    click_action: string
-    token: string
+    message: string
+    fcmToken: string
   }) => {
-    const message = {
-      data: {
-        title,
-        body,
-        image: 'public/icon-192x192.png',
-        click_action,
-        token,
-      },
+    // const message = {
+    //   data: {
+    //     title,
+    //     body,
+    //     image: 'public/icon-192x192.png',
+    //     click_action,
+    //     token,
+    //   },
+    // }
+    try {
+      const res = await api.post(`send`, { fcmToken, message })
+      console.log(res)
+    } catch (e) {
+      throw e
     }
-
-    const res = await fetch(window?.location?.origin + '/api/fcm', {
-      method: 'POST',
-      body: JSON.stringify({ message }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-
-    console.log('post res :: ', res)
   }
 
   const sendTokenToServer = async (token: string) => {
     try {
-      //   await axios.post('/fcm', { token }) 백엔 서버 엔드포인트로 변경
-      alert('푸쉬알림을 허용했습니다.')
+      await api.post(`register`, {
+        fcmToken: token,
+      })
       console.log('푸쉬알림 토큰 전송 성공')
     } catch (error) {
       console.error('Error sending token to server:', error)

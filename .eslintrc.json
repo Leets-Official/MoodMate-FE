@@ -1,7 +1,7 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": ["@typescript-eslint", "prettier", "jsx-a11y"],
   "parserOptions": {
     "project": "./tsconfig.json",
     "createDefaultProgram": true
@@ -13,15 +13,13 @@
   },
   "ignorePatterns": ["node_modules/"],
   "extends": [
-    "airbnb",
-    "airbnb-typescript",
-    "airbnb/hooks",
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier"
   ],
   "rules": {
+    "import/no-dynamic-require": "off",
     "no-alert": "off",
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/click-events-have-key-events": "off",
@@ -36,9 +34,16 @@
     "import/prefer-default-export": "off",
     "react/require-default-props": "off",
     "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "global-require": "off",
     "react/function-component-definition": [
       2,
       { "namedComponents": ["arrow-function", "function-declaration"] }
-    ]
+    ],
+    "no-nested-ternary": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-throw-literal": "off",
+    "@typescript-eslint/no-shadow": "off"
   }
 }

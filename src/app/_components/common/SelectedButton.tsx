@@ -45,10 +45,7 @@ const SelectedButton = ({
       )}
       {textLines.map((text, index) => (
         // eslint-disable-next-line react/jsx-key
-        <div className="leading-none">
-          {index > 0 && <br />}
-          {text}
-        </div>
+        <div className="leading-none mb-1">{text}</div>
       ))}
     </button>
   )

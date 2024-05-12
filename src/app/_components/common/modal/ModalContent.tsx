@@ -33,7 +33,11 @@ const ModalContent = ({
       </div>
       {/* 나중에 dynamic으로 가져오기?, 크기 조정 */}
       {onMyPage ? (
-        <Image src={logout} alt="logout" className="w-[197px] h-[227px] -mt-5" />
+        <Image
+          src={logout}
+          alt="logout"
+          className="w-[197px] h-[227px] -mt-5"
+        />
       ) : (
         <Image src={inactive} alt="inactive" className="w-[187px] h-[192px]" />
       )}

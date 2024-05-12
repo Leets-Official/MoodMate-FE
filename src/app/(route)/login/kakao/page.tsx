@@ -62,6 +62,7 @@ const LoginHandler = () => {
   if (isError || !data) {
     return <Error />
   }
+  return
 }
 
 export default LoginHandler

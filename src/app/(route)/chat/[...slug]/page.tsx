@@ -10,7 +10,6 @@ interface ChatPageProps {
 
 export default function ChatPage({ params }: ChatPageProps) {
   const [userId, roomId] = params.slug
-  // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
   const imageSrc = require(
     `/public/illustration/common/chat/chatlist.png`,
   ) as StaticImageData

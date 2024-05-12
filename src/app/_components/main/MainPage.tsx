@@ -39,7 +39,8 @@ const getBGStyle = (type: string, gender: string) => {
           return {
             targetHour: 20,
             logo: pinkLogo,
-            background: 'w-[90%] pt-2 h-screen background: bg-gradient-to-b from-[#FFFCE5] to-[#FFF7BB]',
+            background:
+              'w-[90%] pt-2 h-screen background: bg-gradient-to-b from-[#FFFCE5] to-[#FFF7BB]',
             image: afterMatchMale,
             textUi: '',
             imageUi: '',
@@ -48,7 +49,8 @@ const getBGStyle = (type: string, gender: string) => {
           return {
             targetHour: 20,
             logo: pinkLogo,
-            background: 'w-[90%] pt-2 h-screen background: bg-gradient-to-b from-[#FFFCE5] to-[#FFF7BB]',
+            background:
+              'w-[90%] pt-2 h-screen background: bg-gradient-to-b from-[#FFFCE5] to-[#FFF7BB]',
             image: afterMatchFemale,
             textUi: '',
             imageUi: '',
@@ -101,7 +103,9 @@ const MainPage = ({ type, gender }: MatchProps) => {
       <Image
         src={getBGStyle(type, gender).image}
         alt="Matching"
-        className={`w-[95%] desktop:-mt-2 -mt-6 ml-[3%] ${getBGStyle(type, gender).imageUi}`}
+        className={`w-[95%] desktop:-mt-2 -mt-6 ml-[3%] ${
+          getBGStyle(type, gender).imageUi
+        }`}
       />
       <NavBar
         type={type}

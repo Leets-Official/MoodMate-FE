@@ -11,7 +11,7 @@ interface ProgressBarProps {
 
 export default function MyinfoLayout({ children, params }: ProgressBarProps) {
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center h-screen">
       {params.slug >= '1' && params.slug <= '8' && (
         <>
           <BackHeader slug={params.slug} />

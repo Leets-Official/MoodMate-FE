@@ -38,7 +38,7 @@ export default function UserDepartment({ pageNum }: UserDepartmentProps) {
   return (
     <div className="relative h-[560px] w-[312px]">
       <div className="mt-[35px] mb-[168px]">
-        <div className="leading-normal text-darkgray font-bold text-xl font-sans">
+        <div className="leading-normal text-darkgray font-bold text-xl">
           {MY_DEPARTMENT_PAGE.GREETINGS}
         </div>
       </div>
@@ -54,7 +54,7 @@ export default function UserDepartment({ pageNum }: UserDepartmentProps) {
         buttonText="다음"
         onClick={nextRoute}
         buttonType="large"
-        className={`absolute bottom-0 font-sans text-darkgray rounded-md ${
+        className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${
           userInfo.department
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles
