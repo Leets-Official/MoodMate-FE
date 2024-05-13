@@ -20,3 +20,18 @@ export const preferInfoState = atom<PreferInfoData>({
     preferMood: '',
   },
 })
+
+export const editUserInfoState = atom<EditUserInfoData>({
+  key: 'editUserInfoState',
+  default: {
+    userGender: '',
+    userNickname: '',
+    year: 1995,
+    userDepartment: '',
+    userKeywords: [],
+    preferYearMax: 2005,
+    preferYearMin: 1995,
+    preferDepartmentPossible: true,
+    preferMood: '',
+  },
+})

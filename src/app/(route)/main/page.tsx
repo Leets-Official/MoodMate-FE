@@ -7,14 +7,24 @@ import Error from '@/(route)/error'
 import useFirebasePush from '@/_pwa/useFirebasePush'
 import { useEffect } from 'react'
 import { useMainQuery } from '@/_hooks/useMainQuery'
+import { getCookie } from '@/utils/cookieutils'
 
 export default function MainpagePage() {
   const { isLoading, isError, data } = useMainQuery()
   const { requestPushPermission } = useFirebasePush()
 
+  const accessToken = getCookie('accessToken')
+  const refreshToken = getCookie('refreshToken')
+
   useEffect(() => {
     requestPushPermission()
   }, [])
+
+  useEffect(() => {
+    if (accessToken?.length === 0 && refreshToken?.length === 0) {
+      window.location.href = '/login'
+    }
+  }, [accessToken, refreshToken])
 
   if (isLoading) {
     return <Loading />

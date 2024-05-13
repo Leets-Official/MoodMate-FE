@@ -10,9 +10,12 @@ interface ProgressBarProps {
 }
 
 export default function MyinfoLayout({ children, params }: ProgressBarProps) {
+  const pageNum = parseInt(params.slug.toString())
+  const limitedSlug = pageNum >= 1 && pageNum <= 8
+
   return (
     <main className="flex flex-col items-center h-screen">
-      {params.slug >= '1' && params.slug <= '8' && (
+      {limitedSlug && (
         <>
           <BackHeader slug={params.slug} />
           <ProgressBar current={params.slug} />

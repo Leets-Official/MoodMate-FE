@@ -1,21 +1,61 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { NICK_NAME_PAGE, INPUT_NICKNAME } from '@/_constants'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { userInfoState } from '@/_atom/userinfo'
+import { userInfoState, editUserInfoState } from '@/_atom/userinfo'
 import NormalButton from '../NormalButton'
 import Input from '../Input'
+import Loading from '../Loading'
+import ErrorPage from '@/(route)/error'
+import { useMyPageQuery } from '@/_hooks/useMypageQuery'
 
 interface UserNicknameProps {
   pageNum: string
+  isEdit?: boolean
 }
 
-const UserNickname = ({ pageNum }: UserNicknameProps) => {
+const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
+  const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserInfoState)
   const route = useRouter()
   const [nickname, setNickname] = useRecoilState(userInfoState)
   const userInfo = useRecoilValue(userInfoState)
-  const [inputValue, setInputValue] = useState(userInfo.nickname || '')
+  const [inputValue, setInputValue] = useState(
+    isEdit ? editUserInfo.userNickname : userInfo.nickname || '',
+  )
   const [inputCount, setinputCount] = useState(`${inputValue.length}/5`)
+  const { isLoading, isError, data } = useMyPageQuery()
+
+  useEffect(() => {
+    if (isEdit) fetchData()
+  }, [isEdit])
+
+  const fetchData = async () => {
+    try {
+      if (isLoading) {
+        return <Loading />
+      }
+      if (isError || !data) {
+        return <ErrorPage />
+      }
+
+      setEditUserInfoState({
+        userGender: data.myPageResponse.userGender,
+        userNickname: data.myPageResponse.userNickname,
+        year: data.myPageResponse.year,
+        userDepartment: data.myPageResponse.userDepartment,
+        userKeywords: data.myPageResponse.userKeywords,
+        preferYearMax: data.myPageResponse.preferYearMax,
+        preferYearMin: data.myPageResponse.preferYearMin,
+        preferDepartmentPossible: data.myPageResponse.preferDepartmentPossible,
+        preferMood: data.myPageResponse.preferMood,
+      })
+      setInputValue(data.myPageResponse.userNickname)
+      setinputCount(`${data.myPageResponse.userNickname.length}/5`)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+      route.push('/login')
+    }
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(0, INPUT_NICKNAME.MAX)
@@ -32,11 +72,17 @@ const UserNickname = ({ pageNum }: UserNicknameProps) => {
     if (inputValue.trim() === '') {
       alert('닉네임을 입력해주세요.')
     } else {
-      setNickname((prevNickname) => ({
-        ...prevNickname,
-        nickname: inputValue.trim(),
-      }))
-      route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+      isEdit
+        ? setEditUserInfoState((prev) => ({
+            ...prev,
+            userNickname: inputValue.trim(),
+          }))
+        : setNickname((prevNickname) => ({
+            ...prevNickname,
+            nickname: inputValue.trim(),
+          }))
+      const params = isEdit ? '?edit=true' : ''
+      route.push(`/userinfo/${parseInt(pageNum, 10) + 1}${params}`)
     }
   }
 

@@ -1,26 +1,28 @@
 import { useRouter } from 'next/navigation'
 import { RANGE_BAR_AGE, MY_AGE_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
-import { userInfoState } from '@/_atom/userinfo'
+import { editUserInfoState, userInfoState } from '@/_atom/userinfo'
 import { useState } from 'react'
 import RangeBar from '../RangeBar'
 import NormalButton from '../NormalButton'
 
 interface UserMyageProps {
   pageNum: string
+  isEdit?: boolean
 }
 
-export default function UserMyage({ pageNum }: UserMyageProps) {
+export default function UserMyage({ pageNum, isEdit }: UserMyageProps) {
   const route = useRouter()
   const buttonStyles = {
     defaultStyles: 'bg-secondary',
     activeStyles: 'text-white bg-primary',
   }
-
+  const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserInfoState)
   const [userInfo, setUserInfo] = useRecoilState(userInfoState)
 
+  const yearData = isEdit ? editUserInfo.year : userInfo.birthYear
   const [singleValue, setSingleValue] = useState<number[]>(
-    userInfo.birthYear !== 0 ? [userInfo.birthYear] : [RANGE_BAR_AGE.MIN],
+    yearData !== 0 ? [yearData] : [RANGE_BAR_AGE.MIN],
   )
 
   const myCharacter =
@@ -33,12 +35,17 @@ export default function UserMyage({ pageNum }: UserMyageProps) {
   }
 
   const nextRoute = () => {
-    setUserInfo((prevUserInfo) => ({
-      ...prevUserInfo,
-      birthYear: singleValue[0],
-    }))
-
-    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+    isEdit
+      ? setEditUserInfoState((prev) => ({
+          ...prev,
+          year: singleValue[0],
+        }))
+      : setUserInfo((prevUserInfo) => ({
+          ...prevUserInfo,
+          birthYear: singleValue[0],
+        }))
+    const params = isEdit ? '?edit=true' : ''
+    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}${params}`)
 
     setTimeout(() => {}, 0)
   }

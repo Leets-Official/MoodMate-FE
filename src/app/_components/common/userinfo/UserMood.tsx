@@ -4,10 +4,14 @@
 import { useRouter } from 'next/navigation'
 import { DATE_MOOD_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
-import { preferInfoState, userInfoState } from '@/_atom/userinfo'
+import {
+  editUserInfoState,
+  preferInfoState,
+  userInfoState,
+} from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { postUserData } from '@/_service/userinfo'
+import { postEditUserData, postUserData } from '@/_service/userinfo'
 import Cookies from 'js-cookie'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
@@ -19,26 +23,32 @@ interface ButtonSelectedState {
   }
 }
 
-const UserMood = () => {
+interface UserMoodProps {
+  isEdit?: boolean
+}
+
+const UserMood = ({ isEdit }: UserMoodProps) => {
   const route = useRouter()
 
+  const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserInfoState)
   const [usersInfo, setUsersInfoState] = useRecoilState(userInfoState)
   const [userInfo, setUserInfoState] = useRecoilState(preferInfoState)
+  const moodData = isEdit ? editUserInfo.preferMood : userInfo.preferMood
   const [buttonSelected, setButtonSelected] = useState<ButtonSelectedState>({
     뜨거운: {
-      selected: false,
+      selected: moodData === '뜨거운',
       imgSrc: '/illustration/common/datemood/active.png',
     },
     편안한: {
-      selected: false,
+      selected: moodData === '편안한',
       imgSrc: '/illustration/common/datemood/emotional.png',
     },
     설레는: {
-      selected: false,
+      selected: moodData === '설레는',
       imgSrc: '/illustration/common/datemood/unusual.png',
     },
     재밌는: {
-      selected: false,
+      selected: moodData === '재밌는',
       imgSrc: '/illustration/common/datemood/funny.png',
     },
   })
@@ -49,7 +59,10 @@ const UserMood = () => {
   }
 
   const handleError = () => {
-    alert('정보 저장에 실패했습니다. 재로그인 후 이용해주세요!')
+    const errorMsg = isEdit
+      ? '정보 수정에 실패했습니다. 처음부터 다시 입력해주세요!'
+      : '정보 저장에 실패했습니다. 재로그인 후 이용해주세요!'
+    alert(errorMsg)
     clearCookiesAndRedirect()
   }
 
@@ -59,29 +72,47 @@ const UserMood = () => {
     onError: handleError,
   })
 
+  const postEditUserDataMutation = useMutation({
+    mutationFn: () => postEditUserData(editUserInfo),
+    onSuccess: () => {},
+    onError: handleError,
+  })
+
   const clearCookiesAndRedirect = () => {
-    Cookies.remove('accessToken')
-    Cookies.remove('refreshToken')
-    route.push('/login')
+    if (isEdit) {
+      route.push('/userinfo/1?edit=true')
+    } else {
+      Cookies.remove('accessToken')
+      Cookies.remove('refreshToken')
+      route.push('/login')
+    }
   }
 
   const nextRoute = async () => {
     try {
+      const isEditUserData = isEdit ? editUserInfo : userInfo
       if (
-        Object.values(userInfo).some((value) => value === '') ||
-        usersInfo.keywords.length === 0
+        Object.values(isEditUserData).some((value) => value === '') ||
+        (isEdit
+          ? editUserInfo.userKeywords.length
+          : usersInfo.keywords.length) === 0
       ) {
-        alert(
-          '정보 입력이 잘못되었습니다. 로그인 페이지로 이동합니다. 재로그인 해주세요.',
-        )
+        const failNextRouteMsg = isEdit
+          ? '정보 입력이 잘못되었습니다. 처음부터 다시 입력해주세요.'
+          : '정보 입력이 잘못되었습니다. 로그인 페이지로 이동합니다. 재로그인 해주세요.'
+        alert(failNextRouteMsg)
         clearCookiesAndRedirect()
         return
       }
 
-      console.log(userInfo)
-      console.log(usersInfo)
-      await postUserDataMutation.mutateAsync()
-      route.push('/main')
+      if (isEdit) {
+        await postEditUserDataMutation.mutateAsync()
+      } else {
+        await postUserDataMutation.mutateAsync()
+      }
+
+      const routeUrl = isEdit ? '/mypage' : '/main'
+      route.push(routeUrl)
     } catch (error) {
       handleError()
       throw error
@@ -97,24 +128,28 @@ const UserMood = () => {
       return updatedState
     })
 
-    setUserInfoState((prev) => ({
-      ...prev,
-      preferMood: prev.preferMood === mood.toString() ? '' : mood.toString(),
-    }))
+    isEdit
+      ? setEditUserInfoState((prev) => ({
+          ...prev,
+          preferMood:
+            prev.preferMood === mood.toString() ? '' : mood.toString(),
+        }))
+      : setUserInfoState((prev) => ({
+          ...prev,
+          preferMood:
+            prev.preferMood === mood.toString() ? '' : mood.toString(),
+        }))
   }
 
   useEffect(() => {
-    console.log(userInfo)
-    console.log(usersInfo)
     setButtonSelected((prev) => {
       const updatedState = { ...prev }
       Object.keys(updatedState).forEach((key) => {
-        updatedState[key].selected = key === userInfo.preferMood
+        updatedState[key].selected = key === moodData
       })
-      console.log(updatedState)
       return updatedState
     })
-  }, [userInfo])
+  }, [userInfo, editUserInfo])
 
   return (
     <div className="relative h-full w-[312px]">
@@ -144,7 +179,7 @@ const UserMood = () => {
         ))}
       </div>
       <NormalButton
-        buttonText="매칭 시작"
+        buttonText={isEdit ? '수정하기' : '매칭 시작'}
         onClick={nextRoute}
         buttonType="large"
         className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${

@@ -1,5 +1,5 @@
 import { MY_DEPARTMENT_PAGE } from '@/_constants/info'
-import { userInfoState } from '@/_atom/userinfo'
+import { editUserInfoState, userInfoState } from '@/_atom/userinfo'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useRecoilState } from 'recoil'
@@ -8,22 +8,36 @@ import Accordion from '../Accordion'
 
 interface UserDepartmentProps {
   pageNum: string
+  isEdit?: boolean
 }
 
-export default function UserDepartment({ pageNum }: UserDepartmentProps) {
+export default function UserDepartment({
+  pageNum,
+  isEdit,
+}: UserDepartmentProps) {
   const route = useRouter()
 
+  const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserInfoState)
   const [userInfo, setUserInfoState] = useRecoilState(userInfoState)
+  const departmentData = isEdit
+    ? editUserInfo.userDepartment
+    : userInfo.department
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const handleDepartmentSelect = (department: string) => {
     setIsOpen(false)
 
-    setUserInfoState((prev) => ({ ...prev, department }))
+    isEdit
+      ? setEditUserInfoState((prev) => ({
+          ...prev,
+          userDepartment: department,
+        }))
+      : setUserInfoState((prev) => ({ ...prev, department }))
   }
 
   const nextRoute = () => {
-    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+    const params = isEdit ? '?edit=true' : ''
+    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}${params}`)
   }
 
   const handleAccordionOpen = () => {
@@ -44,7 +58,7 @@ export default function UserDepartment({ pageNum }: UserDepartmentProps) {
       </div>
       <div>
         <Accordion
-          selectedDepartment={userInfo.department}
+          selectedDepartment={departmentData}
           onDepartmentSelect={handleDepartmentSelect}
           onOpen={handleAccordionOpen}
           isOpen={isOpen}
@@ -55,11 +69,11 @@ export default function UserDepartment({ pageNum }: UserDepartmentProps) {
         onClick={nextRoute}
         buttonType="large"
         className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${
-          userInfo.department
+          departmentData
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles
         }`}
-        isActive={!!userInfo.department}
+        isActive={!!departmentData}
       />
     </div>
   )

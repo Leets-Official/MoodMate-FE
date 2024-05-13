@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 export default function Root() {
   const route = useRouter()
   useEffect(() => {
-    route.push('/login')
+    route.push('/main')
   }, [route])
   return (
     <main>
