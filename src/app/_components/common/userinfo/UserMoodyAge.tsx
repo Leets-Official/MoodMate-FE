@@ -8,9 +8,10 @@ import NormalButton from '../NormalButton'
 
 interface UserMoodyageProps {
   pageNum: string
+  isEdit?: boolean
 }
 
-export default function UserMoodyage({ pageNum }: UserMoodyageProps) {
+export default function UserMoodyage({ pageNum, isEdit }: UserMoodyageProps) {
   const route = useRouter()
   const buttonStyles = {
     defaultStyles: 'bg-secondary',

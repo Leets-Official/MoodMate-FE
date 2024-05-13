@@ -8,9 +8,13 @@ import Accordion from '../Accordion'
 
 interface UserDepartmentProps {
   pageNum: string
+  isEdit?: boolean
 }
 
-export default function UserDepartment({ pageNum }: UserDepartmentProps) {
+export default function UserDepartment({
+  pageNum,
+  isEdit,
+}: UserDepartmentProps) {
   const route = useRouter()
 
   const [userInfo, setUserInfoState] = useRecoilState(userInfoState)

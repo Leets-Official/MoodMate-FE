@@ -8,9 +8,11 @@ import Input from '../Input'
 
 interface UserNicknameProps {
   pageNum: string
+  isEdit?: boolean
 }
 
-const UserNickname = ({ pageNum }: UserNicknameProps) => {
+const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
+  console.log('isEdit? ', isEdit)
   const route = useRouter()
   const [nickname, setNickname] = useRecoilState(userInfoState)
   const userInfo = useRecoilValue(userInfoState)

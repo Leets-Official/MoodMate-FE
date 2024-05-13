@@ -8,9 +8,10 @@ import NormalButton from '../NormalButton'
 
 interface UserMyageProps {
   pageNum: string
+  isEdit?: boolean
 }
 
-export default function UserMyage({ pageNum }: UserMyageProps) {
+export default function UserMyage({ pageNum, isEdit }: UserMyageProps) {
   const route = useRouter()
   const buttonStyles = {
     defaultStyles: 'bg-secondary',

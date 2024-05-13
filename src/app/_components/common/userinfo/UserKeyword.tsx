@@ -8,9 +8,10 @@ import SelectedButton from '../SelectedButton'
 
 interface UserKeywordProps {
   pageNum: string
+  isEdit?: boolean
 }
 
-export default function UserKeyword({ pageNum }: UserKeywordProps) {
+export default function UserKeyword({ pageNum, isEdit }: UserKeywordProps) {
   const route = useRouter()
 
   const [userInfo, setUserInfoState] = useRecoilState(userInfoState)

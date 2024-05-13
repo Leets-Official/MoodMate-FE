@@ -9,6 +9,7 @@ interface HeaderProps {
   chat?: boolean
   partner?: boolean
   mypage?: boolean
+  result?: ResponseMyPage
 }
 
 const Header = ({ chat, partner, mypage }: HeaderProps) => {
@@ -24,7 +25,10 @@ const Header = ({ chat, partner, mypage }: HeaderProps) => {
             <Icons name={back} onClick={() => router.back()} />
           </div>
           <div className="flex flex-row items-center justify-center gap-3 cursor-pointer">
-            <Icons name={pencile} onClick={() => router.push('/userinfo/1')} />
+            <Icons
+              name={pencile}
+              onClick={() => router.push('/userinfo/1?edit=true')}
+            />
           </div>
         </div>
       ) : (

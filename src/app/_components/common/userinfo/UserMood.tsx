@@ -19,7 +19,11 @@ interface ButtonSelectedState {
   }
 }
 
-const UserMood = () => {
+interface UserMoodProps {
+  isEdit?: boolean
+}
+
+const UserMood = ({ isEdit }: UserMoodProps) => {
   const route = useRouter()
 
   const [usersInfo, setUsersInfoState] = useRecoilState(userInfoState)

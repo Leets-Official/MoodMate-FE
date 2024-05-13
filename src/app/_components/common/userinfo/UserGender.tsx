@@ -8,9 +8,10 @@ import SelectedButton from '../SelectedButton'
 
 interface UserGenderProps {
   pageNum: string
+  isEdit?: boolean
 }
 
-export default function UserGender({ pageNum }: UserGenderProps) {
+export default function UserGender({ pageNum, isEdit }: UserGenderProps) {
   const route = useRouter()
 
   const [userInfo, setUserInfoState] = useRecoilState(userInfoState)

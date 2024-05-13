@@ -8,9 +8,10 @@ import SelectedButton from '../SelectedButton'
 
 interface UserSameDeptProps {
   pageNum: string
+  isEdit?: boolean
 }
 
-export default function UserSameDept({ pageNum }: UserSameDeptProps) {
+export default function UserSameDept({ pageNum, isEdit }: UserSameDeptProps) {
   const route = useRouter()
 
   const [userInfo, setUserInfoState] = useRecoilState(preferInfoState)
