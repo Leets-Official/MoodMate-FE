@@ -1,6 +1,5 @@
 'use client'
 
-import NotFound from '@/(route)/not-found'
 import UserNickname from './UserNickname'
 import UserGender from './UserGender'
 import UserMyage from './UserMyage'
@@ -10,6 +9,7 @@ import UserMoodyAge from './UserMoodyAge'
 import UserSameDept from './UserSameDept'
 import UserMood from './UserMood'
 import { useSearchParams } from 'next/navigation'
+import Error from '@/(route)/error'
 
 interface UserinfoPageComponentsProps {
   slug: string
@@ -37,7 +37,7 @@ const UserinfoPageComponents = ({ slug }: UserinfoPageComponentsProps) => {
     case '8':
       return <UserMood isEdit={queryParam} />
     default:
-      return <NotFound />
+      return <Error />
   }
 }
 

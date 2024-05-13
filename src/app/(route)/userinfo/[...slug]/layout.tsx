@@ -10,6 +10,7 @@ interface ProgressBarProps {
 }
 
 export default function MyinfoLayout({ children, params }: ProgressBarProps) {
+  console.log('params dsfdkjsdjfajfkajskjfkdjfkjkjd', params.slug)
   return (
     <main className="flex flex-col items-center h-screen">
       {params.slug >= '1' && params.slug <= '8' && (
