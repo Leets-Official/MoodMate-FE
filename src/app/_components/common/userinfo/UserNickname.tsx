@@ -53,6 +53,7 @@ const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
       setinputCount(`${data.myPageResponse.userNickname.length}/5`)
     } catch (error) {
       console.error('Error fetching data:', error)
+      route.push('/login')
     }
   }
 
