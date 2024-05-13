@@ -1,11 +1,11 @@
 'use client'
 
-import { ChangeEvent, useState } from 'react'
+import Input from '../../common/Input'
+import useWebsocket from '@/_hooks/useWebSocket'
 import Icons from '@/_components/common/Icons'
 import { send } from '@/_ui/IconsPath'
-import useWebsocket from '@/_hooks/useWebSocket'
+import { ChangeEvent, useState } from 'react'
 import { CHAT_INPUT } from '@/_constants'
-import Input from '../../common/Input'
 
 interface ChatInputContainerProps {
   roomId: number
@@ -45,7 +45,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
   }
 
   return (
-    <div className="fixed bg-secondary bottom-0 flex desktop:w-[378px] justify-center h-[65px] py-3 w-full">
+    <div className="fixed w-full bottom-10 flex desktop:w-[378px] justify-center h-[45px] py-2 ">
       <Input
         sort="chat"
         onClick={() => {}}
@@ -56,7 +56,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
         textValue={inputVal || ''}
         placeholder={CHAT_INPUT.MESSAGE}
       />
-      <div className="absolute flex justify-center items-center right-[12%] top-[26%] bg-threepink h-[34px] w-[34px] rounded-full cursor-pointer">
+      <div className="absolute flex justify-center items-center right-[8%] top-[29%] bg-threepink h-[34px] w-[34px] rounded-full cursor-pointer">
         <Icons name={send} onClick={handleSendMessage} />
       </div>
     </div>

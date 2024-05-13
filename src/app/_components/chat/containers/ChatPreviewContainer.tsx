@@ -1,17 +1,19 @@
 'use client'
 
-import { useChatQuery } from '@/_hooks/useChatQuery'
-import { CHAT_SIZE, UNMATCHED_MODAL } from '@/_constants/chat'
-import Loading from '@/_components/common/Loading'
-import ErrorPage from '@/(route)/error'
-import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import { openUnmatchModalState } from '@/_atom/chat'
 import ModalPortal from '@/_components/common/modal/ModalPortal'
 import ModalOutside from '@/_components/common/modal/ModalOutside'
 import ModalContentOne from '@/_components/common/modal/ModalContentOne'
-import { useRouter } from 'next/navigation'
 import ChatPreview from '../chatlist/ChatPreview'
+import Loading from '@/_components/common/Loading'
+import ErrorPage from '@/(route)/error'
+import Error from '@/(route)/error'
+
+import { CHAT_SIZE, UNMATCHED_MODAL } from '@/_constants/chat'
+import { useChatQuery } from '@/_hooks/useChatQuery'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useRecoilState } from 'recoil'
+import { openUnmatchModalState } from '@/_atom/chat'
 
 interface ChatPreviewContainerProps {
   roomId: number
@@ -43,27 +45,30 @@ const ChatPreviewContainer = ({
   }
 
   if (isError) {
-    return <ErrorPage />
+    return (
+      <div className="w-full h-full">
+        <ErrorPage />
+      </div>
+    )
+  }
+  if (isError || !chatHistory) {
+    return <Error />
   }
 
   return (
-    <section className="w-full h-full flex justify-center pt-[34px]">
-      {chatHistory && (
-        <ChatPreview
-          roomId={roomId}
-          userId={userId}
-          nickname={chatHistory.user.nickname}
-          count={1}
-          lastMessage={
-            chatHistory.chatList[0] ? chatHistory.chatList[0].content : null
-          }
-          isRead={
-            chatHistory.chatList[0] ? chatHistory.chatList[0].isRead : null
-          }
-          gender={chatHistory.user.gender}
-        />
-      )}
-      {openUnmatchModal && chatHistory && (
+    <section className="w-full h-full flex justify-center pt-[34px] ">
+      <ChatPreview
+        roomId={roomId}
+        userId={userId}
+        nickname={chatHistory.user.nickname}
+        count={1}
+        lastMessage={
+          chatHistory.chatList[0] ? chatHistory.chatList[0].content : null
+        }
+        isRead={chatHistory.chatList[0] ? chatHistory.chatList[0].isRead : null}
+        gender={chatHistory.user.gender}
+      />
+      {openUnmatchModal && (
         <ModalPortal nodeName="unmatchedPortal">
           <ModalOutside
             onClose={() => {}}

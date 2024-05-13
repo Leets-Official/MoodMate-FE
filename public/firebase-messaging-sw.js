@@ -42,11 +42,6 @@ self.addEventListener('activate', function (e) {})
 // })
 
 messaging.onBackgroundMessage(messaging, (payload) => {
-  console.log(
-    '[firebase-messaging-sw.js] Received background message ',
-    payload,
-  )
-
   const notificationTitle = 'Background 알림 수신'
   const notificationOptions = {
     body: payload,

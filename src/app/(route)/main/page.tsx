@@ -28,7 +28,7 @@ export default function MainpagePage() {
   const mainPageGender = userGender === 'MALE' ? 'MALE' : 'FEMALE'
 
   return (
-    <section className="h-full w-fullscrollbar-hide">
+    <section className="h-full w-full scrollbar-hide">
       {userMatchActive ? (
         <MainPage type={mainPageType} gender={mainPageGender} />
       ) : (
