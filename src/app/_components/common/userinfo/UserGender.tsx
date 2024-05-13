@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { GENDER_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
-import { userInfoState } from '@/_atom/userinfo'
+import { editUserInfoState, userInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
@@ -14,12 +14,14 @@ interface UserGenderProps {
 export default function UserGender({ pageNum, isEdit }: UserGenderProps) {
   const route = useRouter()
 
+  const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserInfoState)
   const [userInfo, setUserInfoState] = useRecoilState(userInfoState)
+  const genderData = isEdit ? editUserInfo.userGender : userInfo.gender
   const [maleButtonSelected, setMaleButtonSelected] = useState<boolean>(
-    userInfo.gender === 'MALE',
+    genderData === 'MALE',
   )
   const [femaleButtonSelected, setFemaleButtonSelected] = useState<boolean>(
-    userInfo.gender === 'FEMALE',
+    genderData === 'FEMALE',
   )
 
   const buttonStyles = {
@@ -29,16 +31,32 @@ export default function UserGender({ pageNum, isEdit }: UserGenderProps) {
 
   const nextRoute = () => {
     const selectedGender = maleButtonSelected ? 'MALE' : 'FEMALE'
-    setUserInfoState((prev) => ({ ...prev, gender: selectedGender }))
-    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+    isEdit
+      ? setEditUserInfoState((prev) => ({
+          ...prev,
+          userGender: selectedGender,
+        }))
+      : setUserInfoState((prev) => ({ ...prev, gender: selectedGender }))
+    const params = isEdit ? '?edit=true' : ''
+    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}${params}`)
   }
 
   const handleMaleButtonClick = () => {
     if (maleButtonSelected) {
-      setUserInfoState((prev) => ({ ...prev, gender: '' }))
+      isEdit
+        ? setEditUserInfoState((prev) => ({
+            ...prev,
+            userGender: '',
+          }))
+        : setUserInfoState((prev) => ({ ...prev, gender: '' }))
       setMaleButtonSelected(false)
     } else {
-      setUserInfoState((prev) => ({ ...prev, gender: 'MALE' }))
+      isEdit
+        ? setEditUserInfoState((prev) => ({
+            ...prev,
+            userGender: 'MALE',
+          }))
+        : setUserInfoState((prev) => ({ ...prev, gender: 'MALE' }))
       setMaleButtonSelected(true)
       setFemaleButtonSelected(false)
     }
@@ -46,18 +64,32 @@ export default function UserGender({ pageNum, isEdit }: UserGenderProps) {
 
   const handleFemaleButtonClick = () => {
     if (femaleButtonSelected) {
-      setUserInfoState((prev) => ({ ...prev, gender: '' }))
+      isEdit
+        ? setEditUserInfoState((prev) => ({
+            ...prev,
+            userGender: '',
+          }))
+        : setUserInfoState((prev) => ({ ...prev, gender: '' }))
       setFemaleButtonSelected(false)
     } else {
-      setUserInfoState((prev) => ({ ...prev, gender: 'FEMALE' }))
+      isEdit
+        ? setEditUserInfoState((prev) => ({
+            ...prev,
+            userGender: 'FEMALE',
+          }))
+        : setUserInfoState((prev) => ({ ...prev, gender: 'FEMALE' }))
       setMaleButtonSelected(false)
       setFemaleButtonSelected(true)
     }
   }
 
   useEffect(() => {
-    setMaleButtonSelected(userInfo.gender === 'MALE')
-    setFemaleButtonSelected(userInfo.gender === 'FEMALE')
+    setMaleButtonSelected(
+      (isEdit ? editUserInfo.userGender : userInfo.gender) === 'MALE',
+    )
+    setFemaleButtonSelected(
+      (isEdit ? editUserInfo.userGender : userInfo.gender) === 'FEMALE',
+    )
   }, [userInfo])
 
   return (

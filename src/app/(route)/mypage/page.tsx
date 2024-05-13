@@ -7,13 +7,8 @@ import Loading from '@/_components/common/Loading'
 import Profile from '@/_components/information/Profile'
 import ErrorPage from '@/(route)/error'
 import Header from '@/_components/layout/Header'
-import { useSetRecoilState } from 'recoil'
-import { editUserInfoState } from '@/_atom/userinfo'
-import { use, useEffect } from 'react'
 
 export default function MyPage() {
-  const setEditUserInfoState = useSetRecoilState(editUserInfoState)
-
   const { isLoading, isError, data } = useMyPageQuery()
   if (isLoading) {
     return <Loading />

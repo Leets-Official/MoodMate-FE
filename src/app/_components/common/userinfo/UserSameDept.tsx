@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { MATCHING_DEPARTMENT_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
-import { preferInfoState } from '@/_atom/userinfo'
+import { editUserInfoState, preferInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
@@ -14,12 +14,16 @@ interface UserSameDeptProps {
 export default function UserSameDept({ pageNum, isEdit }: UserSameDeptProps) {
   const route = useRouter()
 
+  const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserInfoState)
   const [userInfo, setUserInfoState] = useRecoilState(preferInfoState)
+  const sameDeptData = isEdit
+    ? editUserInfo.preferDepartmentPossible
+    : userInfo.preferDepartmentPossible
   const [trueButtonSelected, setTrueButtonSelected] = useState<boolean>(
-    userInfo.preferDepartmentPossible === true,
+    sameDeptData === true,
   )
   const [falseButtonSelected, setFalseButtonSelected] = useState<boolean>(
-    userInfo.preferDepartmentPossible === false,
+    sameDeptData === false,
   )
 
   const buttonStyles = {
@@ -29,19 +33,42 @@ export default function UserSameDept({ pageNum, isEdit }: UserSameDeptProps) {
 
   const nextRoute = () => {
     const selectedDept = !!trueButtonSelected
-    setUserInfoState((prev) => ({
-      ...prev,
-      preferDepartmentPossible: selectedDept,
-    }))
-    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+    isEdit
+      ? setEditUserInfoState((prev) => ({
+          ...prev,
+          preferDepartmentPossible: selectedDept,
+        }))
+      : setUserInfoState((prev) => ({
+          ...prev,
+          preferDepartmentPossible: selectedDept,
+        }))
+
+    const params = isEdit ? '?edit=true' : ''
+    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}${params}`)
   }
 
   const handleTrueButtonClick = () => {
     if (trueButtonSelected) {
-      setUserInfoState((prev) => ({ ...prev, preferDepartmentPossible: false }))
+      isEdit
+        ? setEditUserInfoState((prev) => ({
+            ...prev,
+            preferDepartmentPossible: false,
+          }))
+        : setUserInfoState((prev) => ({
+            ...prev,
+            preferDepartmentPossible: false,
+          }))
       setTrueButtonSelected(false)
     } else {
-      setUserInfoState((prev) => ({ ...prev, preferDepartmentPossible: true }))
+      isEdit
+        ? setEditUserInfoState((prev) => ({
+            ...prev,
+            preferDepartmentPossible: true,
+          }))
+        : setUserInfoState((prev) => ({
+            ...prev,
+            preferDepartmentPossible: true,
+          }))
       setTrueButtonSelected(true)
       setFalseButtonSelected(false)
     }
@@ -49,18 +76,34 @@ export default function UserSameDept({ pageNum, isEdit }: UserSameDeptProps) {
 
   const handleFalseButtonClick = () => {
     if (falseButtonSelected) {
-      setUserInfoState((prev) => ({ ...prev, preferDepartmentPossible: true }))
+      isEdit
+        ? setEditUserInfoState((prev) => ({
+            ...prev,
+            preferDepartmentPossible: true,
+          }))
+        : setUserInfoState((prev) => ({
+            ...prev,
+            preferDepartmentPossible: true,
+          }))
       setFalseButtonSelected(false)
     } else {
-      setUserInfoState((prev) => ({ ...prev, preferDepartmentPossible: false }))
+      isEdit
+        ? setEditUserInfoState((prev) => ({
+            ...prev,
+            preferDepartmentPossible: false,
+          }))
+        : setUserInfoState((prev) => ({
+            ...prev,
+            preferDepartmentPossible: false,
+          }))
       setFalseButtonSelected(true)
       setTrueButtonSelected(false)
     }
   }
 
   useEffect(() => {
-    setTrueButtonSelected(userInfo.preferDepartmentPossible === true)
-    setFalseButtonSelected(userInfo.preferDepartmentPossible === false)
+    setTrueButtonSelected(sameDeptData === true)
+    setFalseButtonSelected(sameDeptData === false)
   }, [userInfo])
 
   return (

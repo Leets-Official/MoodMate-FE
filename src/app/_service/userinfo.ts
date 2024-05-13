@@ -21,6 +21,31 @@ export const postUserData = async (
   }
 }
 
+export const postEditUserData = async (editUserInfo: EditUserInfoData) => {
+  try {
+    let editUserInfoResult
+
+    try {
+      editUserInfoResult = await putEditUserInfo(editUserInfo)
+    } catch (error) {
+      throw error
+    }
+
+    return { editUserInfoResult }
+  } catch (error) {
+    throw error
+  }
+}
+
+const putEditUserInfo = async (editUserInfo: EditUserInfoData) => {
+  try {
+    const response = await api.put('/mypage', editUserInfo)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
 const postUserInfo = async (userInfo: UserInfoData) => {
   try {
     const response = await api.post('users/user-info', userInfo)

@@ -1,10 +1,11 @@
 import { useRouter } from 'next/navigation'
 import { MY_KEYWORD_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
-import { userInfoState } from '@/_atom/userinfo'
+import { editUserInfoState, userInfoState } from '@/_atom/userinfo'
 import { useEffect, useState } from 'react'
 import NormalButton from '../NormalButton'
 import SelectedButton from '../SelectedButton'
+import { mapKeywordToEmojiKeyword } from '@/utils/keywordmapping'
 
 interface UserKeywordProps {
   pageNum: string
@@ -14,10 +15,12 @@ interface UserKeywordProps {
 export default function UserKeyword({ pageNum, isEdit }: UserKeywordProps) {
   const route = useRouter()
 
+  const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserInfoState)
   const [userInfo, setUserInfoState] = useRecoilState(userInfoState)
-  const [selectedButtons, setSelectedButtons] = useState<string[]>(
-    userInfo.keywords,
-  )
+  const keywordData = isEdit
+    ? editUserInfo.userKeywords.map(mapKeywordToEmojiKeyword)
+    : userInfo.keywords.map(mapKeywordToEmojiKeyword)
+  const [selectedButtons, setSelectedButtons] = useState<string[]>(keywordData)
 
   const buttonStyles = {
     defaultStyles: 'bg-secondary',
@@ -26,12 +29,18 @@ export default function UserKeyword({ pageNum, isEdit }: UserKeywordProps) {
 
   const nextRoute = () => {
     const slicedKeywords = selectedButtons.map((keyword) => keyword.slice(3))
-    console.log(slicedKeywords)
-    setUserInfoState((prevUserInfo) => ({
-      ...prevUserInfo,
-      keywords: slicedKeywords,
-    }))
-    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+    isEdit
+      ? setEditUserInfoState((prev) => ({
+          ...prev,
+          userKeywords: slicedKeywords,
+        }))
+      : setUserInfoState((prevUserInfo) => ({
+          ...prevUserInfo,
+          keywords: slicedKeywords,
+        }))
+
+    const params = isEdit ? '?edit=true' : ''
+    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}${params}`)
   }
 
   const handlerButtonclick = (keyword: string) => {
@@ -46,8 +55,8 @@ export default function UserKeyword({ pageNum, isEdit }: UserKeywordProps) {
   }
 
   useEffect(() => {
-    setSelectedButtons(userInfo.keywords)
-  }, [userInfo.keywords])
+    setSelectedButtons(keywordData)
+  }, [])
 
   return (
     <div className="relative h-[560px] w-[312px]">

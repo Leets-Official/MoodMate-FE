@@ -1,7 +1,11 @@
 import { useRouter } from 'next/navigation'
 import { RANGE_BAR_AGE, MOODIE_AGE_PAGE } from '@/_constants'
 import { useRecoilState } from 'recoil'
-import { preferInfoState, userInfoState } from '@/_atom/userinfo'
+import {
+  editUserInfoState,
+  preferInfoState,
+  userInfoState,
+} from '@/_atom/userinfo'
 import { useState } from 'react'
 import RangeBar from '../RangeBar'
 import NormalButton from '../NormalButton'
@@ -18,16 +22,24 @@ export default function UserMoodyage({ pageNum, isEdit }: UserMoodyageProps) {
     activeStyles: 'text-white bg-primary',
   }
 
+  const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserInfoState)
   const [userInfo, setUserInfo] = useRecoilState(preferInfoState)
+  const preferYearMaxData = isEdit
+    ? editUserInfo.preferYearMax
+    : userInfo.preferYearMax
+  const preferYearMinData = isEdit
+    ? editUserInfo.preferYearMin
+    : userInfo.preferYearMin
   const [myInfo, setMyInfo] = useRecoilState(userInfoState)
-  const moodyCharacter =
-    myInfo.gender === 'FEMALE'
-      ? '/illustration/female/age/partnerage.png'
-      : '/illustration/male/age/partnerpage.png'
+  const moodyCharacter = (
+    isEdit ? editUserInfo.userGender === 'FEMALE' : myInfo.gender === 'FEMALE'
+  )
+    ? '/illustration/female/age/partnerage.png'
+    : '/illustration/male/age/partnerpage.png'
 
   const [rangeValue, setRangeValue] = useState<number[]>(
-    userInfo.preferYearMax !== 0 && userInfo.preferYearMin !== 0
-      ? [userInfo.preferYearMin, userInfo.preferYearMax]
+    preferYearMaxData !== 0 && preferYearMinData !== 0
+      ? [preferYearMinData, preferYearMaxData]
       : [RANGE_BAR_AGE.MIN, RANGE_BAR_AGE.MAX],
   )
 
@@ -36,12 +48,20 @@ export default function UserMoodyage({ pageNum, isEdit }: UserMoodyageProps) {
   }
 
   const nextRoute = () => {
-    setUserInfo((prevUserInfo) => ({
-      ...prevUserInfo,
-      preferYearMax: rangeValue[1],
-      preferYearMin: rangeValue[0],
-    }))
-    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}`)
+    isEdit
+      ? setEditUserInfoState((prev) => ({
+          ...prev,
+          preferYearMax: rangeValue[1],
+          preferYearMin: rangeValue[0],
+        }))
+      : setUserInfo((prevUserInfo) => ({
+          ...prevUserInfo,
+          preferYearMax: rangeValue[1],
+          preferYearMin: rangeValue[0],
+        }))
+
+    const params = isEdit ? '?edit=true' : ''
+    route.push(`/userinfo/${parseInt(pageNum, 10) + 1}${params}`)
   }
 
   return (
