@@ -46,7 +46,7 @@ const useFirebasePush = () => {
         })
         if (token) {
           const stored = window.localStorage.getItem('fcmToken')
-          if (!stored) {
+          if (!stored || token !== stored) {
             await sendTokenToServer(token)
             window.localStorage.setItem('fcmToken', token)
           }
