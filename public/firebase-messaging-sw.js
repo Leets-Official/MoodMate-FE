@@ -42,10 +42,10 @@ self.addEventListener('activate', function (e) {})
 // })
 
 messaging.onBackgroundMessage(messaging, (payload) => {
-  const notificationTitle = 'Background 알림 수신'
+  const notificationTitle = '무드메이트'
   const notificationOptions = {
     body: payload,
-    icon: 'public/icon-71x71.png',
+    icon: '/public/icon-71x71.png',
   }
 
   self.registration.showNotification(notificationTitle, notificationOptions)

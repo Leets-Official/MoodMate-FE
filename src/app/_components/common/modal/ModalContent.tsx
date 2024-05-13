@@ -31,7 +31,6 @@ const ModalContent = ({
           {SUB_TITLE || ''}
         </h5>
       </div>
-      {/* 나중에 dynamic으로 가져오기?, 크기 조정 */}
       {onMyPage ? (
         <Image
           src={logout}
