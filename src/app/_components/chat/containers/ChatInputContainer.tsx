@@ -4,7 +4,7 @@ import Input from '../../common/Input'
 import useWebsocket from '@/_hooks/useWebSocket'
 import Icons from '@/_components/common/Icons'
 import { send } from '@/_ui/IconsPath'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import { CHAT_INPUT } from '@/_constants'
 
 interface ChatInputContainerProps {
@@ -16,6 +16,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
   const MAX = 250
   const [inputVal, setInputVal] = useState<string>('')
   const { sendMessage } = useWebsocket(roomId)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
@@ -42,11 +43,15 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
 
     sendMessage(messageTosend)
     setInputVal('')
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
   }
 
   return (
     <div className="fixed w-full bottom-10 flex desktop:w-[378px] justify-center h-[45px] py-2 ">
       <Input
+        ref={inputRef}
         sort="chat"
         onClick={() => {}}
         className="rounded-3xl bg-onepink px-4 text-darkgray border-none outline-none"

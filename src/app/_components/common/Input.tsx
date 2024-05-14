@@ -1,9 +1,12 @@
 'use client'
 
+import { RefObject } from 'react'
+
 interface InputProps {
   sort: string
   textValue: string
   placeholder: string
+  ref?: RefObject<HTMLInputElement>
   onFocus?: () => void
   onClick?: () => void
   onEnterPress?: () => void
@@ -32,6 +35,7 @@ const Input = ({
   sort = 'default',
   textValue,
   placeholder,
+  ref,
   onFocus,
   onClick,
   onEnterPress,
@@ -46,6 +50,7 @@ const Input = ({
 
   return (
     <input
+      ref={ref}
       value={textValue}
       placeholder={placeholder}
       onFocus={onFocus}
