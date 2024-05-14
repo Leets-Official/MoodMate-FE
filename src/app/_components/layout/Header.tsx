@@ -22,7 +22,10 @@ const Header = ({ chat, partner, mypage }: HeaderProps) => {
       ) : mypage ? (
         <div className="flex h-full w-full justify-between">
           <div className="cursor-pointer">
-            <Icons name={back} onClick={() => router.back()} />
+            <Icons
+              name={back}
+              onClick={() => (mypage ? router.push('/main') : router.back())}
+            />
           </div>
           <div className="flex flex-row items-center justify-center gap-3 cursor-pointer">
             <Icons
