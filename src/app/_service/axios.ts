@@ -26,10 +26,11 @@ api.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config
-    if (error.response.status === 400) {
+    if (error.response.status == 500) {
       try {
-        Cookies.remove('refreshToken', { domain: 'leets.moodmate.site' })
+        Cookies.remove('refreshToken', { domain: 'test.moodmate.site' })
         const refresh = Cookies.get('refreshToken')
+        console.log(refresh)
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_SERVER_URL}users/refresh`,
           {
@@ -40,20 +41,9 @@ api.interceptors.response.use(
         const { accessToken, refreshToken } = response.data.tokenResponse
         Cookies.remove('accessToken')
         Cookies.remove('refreshToken')
+        Cookies.set('accessToken', accessToken)
 
-        const accessTokenExpiry = new Date()
-        accessTokenExpiry.setTime(
-          accessTokenExpiry.getTime() + 6 * 60 * 60 * 1000,
-        )
-        Cookies.set('accessToken', accessToken, { expires: accessTokenExpiry })
-
-        const refreshTokenExpiry = new Date()
-        refreshTokenExpiry.setTime(
-          refreshTokenExpiry.getTime() + 3 * 24 * 60 * 60 * 1000,
-        )
-        Cookies.set('refreshToken', refreshToken, {
-          expires: refreshTokenExpiry,
-        })
+        Cookies.set('refreshToken', refreshToken)
 
         originalRequest.headers.Authorization = `Bearer ${accessToken}`
         return await axios(originalRequest)
@@ -63,6 +53,7 @@ api.interceptors.response.use(
     } else {
       /* empty */
     }
+    error.response
     return Promise.reject(error)
   },
 )
