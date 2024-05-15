@@ -45,7 +45,7 @@ const ModalContent = ({
         <Image
           src={subject === NEW_MATCHING_MODAL ? newmatch : inactive}
           alt="inactive"
-          className="w-[187px] h-[180px]"
+          className="w-[187px] h-[192px]"
         />
       )}
       <ModalButtons
