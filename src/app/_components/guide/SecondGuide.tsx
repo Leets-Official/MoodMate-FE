@@ -5,15 +5,27 @@ import appImage from 'public/illustration/common/guide/app.png'
 import addImage from 'public/illustration/common/guide/add.png'
 import { useRouter } from 'next/navigation'
 
-const SecondGuide = () => {
+interface guideProps {
+  btn: '다음' | '닫기'
+  onClose: () => void
+}
+const SecondGuide = ({ btn, onClose }: guideProps) => {
   const route = useRouter()
+  const handleClick = () => {
+    if (btn === '다음') {
+      route.push('/userinfo/1')
+    } else {
+      onClose()
+    }
+  }
+
   return (
-    <div className="relative flex flex-col items-center pt-[14%]">
+    <div className="bg-white relative flex flex-col items-center pt-[18%]">
       <button
-        onClick={() => route.push('/userinfo/1')}
+        onClick={handleClick}
         className=" text-[14px] mr-5 mt-5 text-white text-center absolute top-0 right-0 rounded-3xl px-4 h-8 bg-[#E87775]"
       >
-        다음
+        {btn}
       </button>
       <Image className="w-[120px] h-[112px]" src={logoImage} alt="rabbit" />
       <div className="mb-7 text-[17px] text-center mt-6">

@@ -12,7 +12,7 @@ export default function MyPage() {
       {!showSecondGuide ? (
         <FirstGuide onNext={() => setShowSecondGuide(true)} />
       ) : (
-        <SecondGuide />
+        <SecondGuide btn="다음" />
       )}
     </div>
   )
