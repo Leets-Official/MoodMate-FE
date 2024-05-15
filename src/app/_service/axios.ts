@@ -33,19 +33,15 @@ api.interceptors.response.use(
         console.log(refresh)
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_SERVER_URL}users/refresh`,
-          {
-            refreshToken: refresh,
-          },
+          refresh,
         )
 
-        const { accessToken, refreshToken } = response.data.tokenResponse
-        Cookies.remove('accessToken')
-        Cookies.remove('refreshToken')
-        Cookies.set('accessToken', accessToken)
-
-        Cookies.set('refreshToken', refreshToken)
-
-        originalRequest.headers.Authorization = `Bearer ${accessToken}`
+        const accessToken = response.data.jwtToken.accessToken
+        if (accessToken) {
+          Cookies.remove('accessToken')
+          Cookies.set('accessToken', accessToken)
+          originalRequest.headers.Authorization = `Bearer ${accessToken}`
+        }
         return await axios(originalRequest)
       } catch (e) {
         throw e

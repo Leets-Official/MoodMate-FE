@@ -22,7 +22,6 @@ const LoginHandler = () => {
           })
           .then((response) => {
             Cookies.set('accessToken', response.data.accessToken)
-
             Cookies.set('refreshToken', response.data.refreshToken)
           })
           .catch((error) => {
