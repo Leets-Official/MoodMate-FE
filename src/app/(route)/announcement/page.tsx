@@ -13,7 +13,7 @@ export default function AnnouncementPage() {
   return (
     <section>
       {showSecondGuide && (
-        <div className="fixed ml-6 -mt-4">
+        <div className="fixed w-full -mt-6">
           <SecondGuide btn="닫기" onClose={() => setShowSecondGuide(false)} />
         </div>
       )}
