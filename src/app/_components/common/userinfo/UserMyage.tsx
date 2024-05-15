@@ -5,6 +5,7 @@ import { editUserInfoState, userInfoState } from '@/_atom/userinfo'
 import { useState } from 'react'
 import RangeBar from '../RangeBar'
 import NormalButton from '../NormalButton'
+import Image from 'next/image'
 
 interface UserMyageProps {
   pageNum: string
@@ -63,7 +64,7 @@ export default function UserMyage({ pageNum, isEdit }: UserMyageProps) {
         </div>
       </div>
       <div className="relative top-[0%] mt-[-60px] mb-[20px]  left-[40%] ml-[-50px] w-[149px] h-[157px] flex justify-center items-center">
-        <img src={myCharacter} alt="" width="149" height="atuo" />
+        <Image src={myCharacter} alt="" width={149} height={190} />
       </div>
       <div className="justify-items-center flex flex-col items-center font-sans">
         <RangeBar

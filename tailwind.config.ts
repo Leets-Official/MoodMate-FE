@@ -20,6 +20,7 @@ const config: Config = {
         primary: '#FC4F59',
         secondary: '#B3B3B3',
         yellow: '#FFFCE5',
+        zeroyellow: '#FFF5ED',
         zeropink: '#FFF3F4',
         onepink: '#FFE5E7',
         twopink: '#FEB3B8',

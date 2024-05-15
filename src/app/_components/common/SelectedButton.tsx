@@ -37,9 +37,7 @@ const SelectedButton = ({
       disabled={!isActive}
     >
       {imgSrc && (
-        <div
-          className={`${imgClassName} flex justify-center items-center mb-2`}
-        >
+        <div className={`${imgClassName} flex justify-center items-center`}>
           <Image src={imgSrc} alt="" width={imgSizeW} height={imgSizeH} />
         </div>
       )}

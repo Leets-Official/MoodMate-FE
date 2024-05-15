@@ -159,24 +159,34 @@ const UserMood = ({ isEdit }: UserMoodProps) => {
         </div>
       </div>
       <div className="absolute flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 justify-center items-center flex-wrap ">
-        {Object.entries(buttonSelected).map(([mood, { selected, imgSrc }]) => (
-          <SelectedButton
-            key={mood}
-            buttonText={`${mood} ${DATE_MOOD_PAGE.DATE}`}
-            buttonType="MOOD"
-            isActive={true}
-            onClick={() => handleButtonClick(mood as keyof ButtonSelectedState)}
-            imgSrc={imgSrc}
-            imgSizeW={75}
-            imgSizeH={85}
-            imgClassName="mb-5"
-            className={`mx-2 my-2 text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
-              selected
-                ? 'border-[1px]  bg-onepink border-primary text-primary'
-                : 'bg-zeropink text-darkgray'
-            }`}
-          />
-        ))}
+        {Object.entries(buttonSelected).map(
+          ([mood, { selected, imgSrc }], index) => (
+            <SelectedButton
+              key={mood}
+              buttonText={`${mood} ${DATE_MOOD_PAGE.DATE}`}
+              buttonType="MOOD"
+              isActive={true}
+              onClick={() =>
+                handleButtonClick(mood as keyof ButtonSelectedState)
+              }
+              imgSrc={imgSrc}
+              imgSizeW={75}
+              imgSizeH={85}
+              imgClassName="mb-5"
+              className={`mx-2 my-2 text-[14px] font-bold leading-none justify-end items-center rounded-3xl ${
+                selected
+                  ? `border-[1px] ${
+                      index === 0 || index === 3 ? 'bg-yellow' : 'bg-onepink'
+                    } border-primary text-primary`
+                  : `${
+                      index === 0 || index === 3
+                        ? 'bg-zeroyellow'
+                        : 'bg-zeropink'
+                    } text-darkgray`
+              }`}
+            />
+          ),
+        )}
       </div>
       <NormalButton
         buttonText={isEdit ? '수정하기' : '매칭 시작'}

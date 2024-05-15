@@ -9,6 +9,7 @@ import {
 import { useState } from 'react'
 import RangeBar from '../RangeBar'
 import NormalButton from '../NormalButton'
+import Image from 'next/image'
 
 interface UserMoodyageProps {
   pageNum: string
@@ -77,7 +78,7 @@ export default function UserMoodyage({ pageNum, isEdit }: UserMoodyageProps) {
         </div>
       </div>
       <div className="relative top-[0%] mt-[-50px] mb-[20px] left-[40%] ml-[-50px] w-[149px] h-[157px]flex justify-center items-center">
-        <img src={moodyCharacter} alt="" width={149} height="auto" />
+        <Image src={moodyCharacter} alt="" width={149} height={190} />
       </div>
       <div className="justify-items-center flex flex-col items-center">
         <RangeBar
