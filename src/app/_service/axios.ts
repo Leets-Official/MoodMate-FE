@@ -26,7 +26,7 @@ api.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config
-    if (error.response.status == 400) {
+    if (error.response.status == 400 || error.response.status == 500) {
       try {
         const refresh = Cookies.get('refreshToken')
         const response = await axios.post(
