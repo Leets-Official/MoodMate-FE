@@ -1,9 +1,10 @@
 'use client'
 
-import { back } from '@/_ui/IconsPath'
+import { back, home } from '@/_ui/IconsPath'
 import { useRouter } from 'next/navigation'
 import { PROGRESS_BAR } from '@/_constants'
 import Icons from '../common/Icons'
+import Link from 'next/link'
 
 interface BackHeaderProps {
   slug: keyof typeof PROGRESS_BAR
@@ -20,6 +21,11 @@ const BackHeader = ({ slug }: BackHeaderProps) => {
       ) : (
         <div className="h-[16px]" />
       )}
+      <div className="flex flex-row items-center justify-center gap-3 cursor-pointer">
+        <Link href="/main">
+          <Icons name={home} />
+        </Link>
+      </div>
     </section>
   )
 }

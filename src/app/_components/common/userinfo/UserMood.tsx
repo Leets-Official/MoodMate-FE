@@ -152,7 +152,7 @@ const UserMood = ({ isEdit }: UserMoodProps) => {
   }, [userInfo, editUserInfo])
 
   return (
-    <div className="relative h-full w-[312px]">
+    <div className="relative h-[560px] w-[312px]">
       <div className="mt-[35px] mb-[88px]">
         <div className="leading-normal text-darkgray font-bold text-xl font-sans">
           <div>{DATE_MOOD_PAGE.GREETINGS}</div>

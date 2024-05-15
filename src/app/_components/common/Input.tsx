@@ -12,6 +12,7 @@ interface InputProps {
   onEnterPress?: () => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   className: string
+  readOnly?: boolean
 }
 
 const getInputSort = (sort: string) => {
@@ -41,6 +42,7 @@ const Input = ({
   onEnterPress,
   onChange,
   className,
+  readOnly,
 }: InputProps) => {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && onEnterPress) {
@@ -57,6 +59,7 @@ const Input = ({
       onClick={onClick}
       onKeyPress={handleKeyPress}
       onChange={onChange}
+      readOnly={readOnly}
       className={`${className} ${getInputSort(sort).input}`}
     />
   )
