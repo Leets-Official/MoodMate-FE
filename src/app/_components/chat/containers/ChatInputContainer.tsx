@@ -49,7 +49,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
   }
 
   return (
-    <div className="fixed w-full bottom-10 flex desktop:w-[378px] justify-center h-[65px] py-3  ">
+    <div className="fixed w-full bottom-0 flex desktop:w-[378px] justify-center h-[10%] mt-3 py-3  ">
       <Input
         ref={inputRef}
         sort="chat"
@@ -61,7 +61,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
         textValue={inputVal || ''}
         placeholder={CHAT_INPUT.MESSAGE}
       />
-      <div className="absolute flex justify-center items-center right-[8%] top-[26%] bg-threepink h-[34px] w-[34px] rounded-full cursor-pointer">
+      <div className="absolute flex justify-center items-center right-[8%] top-[30%] bg-threepink h-[34px] w-[34px] rounded-full cursor-pointer">
         <Icons name={send} onClick={handleSendMessage} />
       </div>
     </div>
