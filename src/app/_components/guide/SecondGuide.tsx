@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 
 interface guideProps {
   btn: '다음' | '닫기'
-  onClose: () => void
+  onClose?: () => void
 }
 const SecondGuide = ({ btn, onClose }: guideProps) => {
   const route = useRouter()
@@ -15,7 +15,9 @@ const SecondGuide = ({ btn, onClose }: guideProps) => {
     if (btn === '다음') {
       route.push('/userinfo/1')
     } else {
-      onClose()
+      if (onClose) {
+        onClose()
+      }
     }
   }
 
