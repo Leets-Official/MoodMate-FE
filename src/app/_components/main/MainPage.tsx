@@ -78,21 +78,6 @@ const getBGStyle = (type: string, gender: string) => {
   }
 }
 const MainPage = ({ type, gender }: MatchProps) => {
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight)
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowHeight(window.innerHeight)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-  const mainStyles = {
-    height: `${windowHeight - 243}px`,
-  }
   const route = useRouter()
   const { isLoading, isError, data } = useMainQuery()
   if (isLoading) {
@@ -106,8 +91,7 @@ const MainPage = ({ type, gender }: MatchProps) => {
     <div
       className={`${
         getBGStyle(type, gender).background
-      }  pt-8 w-full flex flex-col relative desktop:pt-16`}
-      style={mainStyles}
+      }h-full justify-center pt-8 w-full flex flex-col relative desktop:pt-16`}
     >
       <Icons
         name={info}
