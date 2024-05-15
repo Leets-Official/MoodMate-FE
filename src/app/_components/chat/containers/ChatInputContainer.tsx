@@ -49,7 +49,7 @@ const ChatInputContainer = ({ roomId, userId }: ChatInputContainerProps) => {
   }
 
   return (
-    <div className="fixed w-full bottom-0 flex desktop:w-[378px] justify-center h-[10%] mt-3 py-3  ">
+    <div className="fixed w-full bottom-0 flex desktop:w-[378px] justify-center h-[65px] py-3  ">
       <Input
         ref={inputRef}
         sort="chat"
