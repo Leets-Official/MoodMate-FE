@@ -36,7 +36,6 @@ const config: Config = {
       },
     },
   },
-  // eslint-disable-next-line global-require
   plugins: [require('tailwind-scrollbar-hide')],
 }
 export default config
