@@ -1,9 +1,12 @@
 import Image from 'next/image'
+import newMatchFemale from 'public/illustration/female/modal/newmatch.png'
+import newMatchMale from 'public/illustration/male/modal/newmatch.png'
 import inactiveFemale from 'public/illustration/female/modal/inactive.png'
 import inactiveMale from 'public/illustration/male/modal/inactive.png'
 import logoutFemale from 'public/illustration/female/modal/logout.png'
 import logoutMale from 'public/illustration/male/modal/logout.png'
 import ModalButtons from './ModalButtons'
+import { NEW_MATCHING_MODAL } from '@/_constants'
 
 interface ModalContentProps {
   subject: ModalContent
@@ -22,6 +25,7 @@ const ModalContent = ({
 }: ModalContentProps) => {
   const { TITLE, SUB_TITLE, CONFIRM, CANCEL } = subject
   const inactive = gender === 'MALE' ? inactiveMale : inactiveFemale
+  const newmatch = gender === 'MALE' ? newMatchMale : newMatchFemale
   const logout = gender === 'MALE' ? logoutMale : logoutFemale
   return (
     <section className="w-full h-full flex flex-col justify-center items-center gap-6">
@@ -38,7 +42,11 @@ const ModalContent = ({
           className="w-[197px] h-[227px] -mt-5"
         />
       ) : (
-        <Image src={inactive} alt="inactive" className="w-[187px] h-[192px]" />
+        <Image
+          src={subject === NEW_MATCHING_MODAL ? newmatch : inactive}
+          alt="inactive"
+          className="w-[187px] h-[180px]"
+        />
       )}
       <ModalButtons
         onConfirm={onConfirm}

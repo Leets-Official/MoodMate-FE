@@ -57,11 +57,11 @@ const ChatHeader = ({ userId }: ChatHeaderProps) => {
 
   return (
     <section
-      className={`desktop:w-[378px] w-full fixed top-0 flex items-center bg-white justify-between h-[60px] px-[26px] ${
+      className={`desktop:w-[378px] w-full fixed top-0 flex items-center bg-white justify-between h-[8%] px-[26px] ${
         openMatchModal || openExitModal || openUnmatchModal ? 'z-[-10]' : 'z-10'
       }`}
     >
-      <div className="cursor-pointer">
+      <div className="cursor-pointer h-full w-7 flex  items-center justify-center">
         <Icons name={back} onClick={() => router.back()} />
       </div>
       <div className="flex flex-row items-center justify-center gap-3 cursor-pointer">
