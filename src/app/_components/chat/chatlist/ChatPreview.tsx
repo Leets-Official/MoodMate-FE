@@ -16,8 +16,6 @@ const ChatPreview = ({
   userId,
   nickname,
   lastMessage,
-  isRead,
-  count,
   gender,
 }: ChatPreviewProps) => {
   return (
@@ -42,11 +40,6 @@ const ChatPreview = ({
               </p>
             )}
           </div>
-          {!isRead && (
-            <div className="flex justify-center items-center bg-neutral-500 text-white w-[16px] h-[16px] rounded-full text-[10px] ">
-              {count}
-            </div>
-          )}
         </div>
       </Link>
     </div>
