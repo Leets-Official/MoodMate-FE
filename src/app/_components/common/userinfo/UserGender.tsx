@@ -109,6 +109,7 @@ export default function UserGender({ pageNum, isEdit }: UserGenderProps) {
           imgSrc="/illustration/common/gender/male.png"
           imgSizeW={106}
           imgSizeH={110}
+          imgClassName="mb-2"
           className={`mr-[7px] bg-zeroyellow text-primary text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
             maleButtonSelected ? 'border-[1px] border-primary' : ''
           }`}
@@ -121,6 +122,7 @@ export default function UserGender({ pageNum, isEdit }: UserGenderProps) {
           imgSrc="/illustration/common/gender/female.png"
           imgSizeW={106}
           imgSizeH={110}
+          imgClassName="mb-2"
           className={`ml-[7px] bg-zeroyellow text-primary text-[14px] font-bold justify-end items-center gap-[10px] rounded-3xl ${
             femaleButtonSelected ? 'border-[1px] border-primary' : ''
           }`}

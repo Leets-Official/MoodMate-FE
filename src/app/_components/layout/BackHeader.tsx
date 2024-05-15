@@ -18,9 +18,13 @@ const BackHeader = ({ slug }: BackHeaderProps) => {
   return (
     <section className="flex items-center justify-between w-full px-[10%] mt-[35px] mb-[20px]">
       {pageNumber !== 1 ? (
-        <div className="flex flex-row w-5 h-5 items-center justify-center gap-3 cursor-pointer">
-          <Icons name={back} onClick={() => router.back()} />
-        </div>
+        <Link
+          href="#"
+          onClick={() => router.back()}
+          className="flex flex-row w-5 h-5 items-center justify-center gap-3 cursor-pointer"
+        >
+          <Icons name={back} />
+        </Link>
       ) : (
         <div className="h-[16px]" />
       )}

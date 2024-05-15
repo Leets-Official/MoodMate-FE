@@ -36,7 +36,7 @@ export default function UserMoodyage({ pageNum, isEdit }: UserMoodyageProps) {
     isEdit ? editUserInfo.userGender === 'FEMALE' : myInfo.gender === 'FEMALE'
   )
     ? '/illustration/female/age/partnerage.png'
-    : '/illustration/male/age/partnerpage.png'
+    : '/illustration/male/age/partnerage.png'
 
   const [rangeValue, setRangeValue] = useState<number[]>(
     preferYearMaxData !== 0 && preferYearMinData !== 0

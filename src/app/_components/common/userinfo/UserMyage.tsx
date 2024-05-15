@@ -26,10 +26,11 @@ export default function UserMyage({ pageNum, isEdit }: UserMyageProps) {
     yearData !== 0 ? [yearData] : [RANGE_BAR_AGE.MIN],
   )
 
-  const myCharacter =
-    userInfo.gender === 'FEMALE'
-      ? '/illustration/female/age/myage.png'
-      : '/illustration/male/age/myage.png'
+  const myCharacter = (
+    isEdit ? editUserInfo.userGender === 'FEMALE' : userInfo.gender === 'FEMALE'
+  )
+    ? '/illustration/female/age/myage.png'
+    : '/illustration/male/age/myage.png'
 
   const handleSingleChange = (newValues: number[]) => {
     setSingleValue(newValues)
