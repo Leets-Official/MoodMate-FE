@@ -21,20 +21,9 @@ const LoginHandler = () => {
             authorizationCode: codeURL,
           })
           .then((response) => {
-            const accessTokenExpiry = new Date()
-            accessTokenExpiry.setTime(
-              accessTokenExpiry.getTime() + 3 * 24 * 60 * 60 * 1000,
-            )
-            Cookies.set('accessToken', response.data.accessToken, {
-              expires: accessTokenExpiry,
-            })
-            const refreshTokenExpiry = new Date()
-            refreshTokenExpiry.setTime(
-              refreshTokenExpiry.getTime() + 3 * 24 * 60 * 60 * 1000,
-            )
-            Cookies.set('refreshToken', response.data.refreshToken, {
-              expires: refreshTokenExpiry,
-            })
+            Cookies.set('accessToken', response.data.accessToken)
+
+            Cookies.set('refreshToken', response.data.refreshToken)
           })
           .catch((error) => {
             console.error('Error fetching token:', error)
