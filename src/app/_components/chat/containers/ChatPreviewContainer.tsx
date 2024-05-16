@@ -56,7 +56,7 @@ const ChatPreviewContainer = ({
   }
 
   return (
-    <section className="w-full h-full flex justify-center pt-[34px] ">
+    <section className="w-full h-screen bg-yellow flex justify-center pt-[34px] ">
       <ChatPreview
         roomId={roomId}
         userId={userId}
