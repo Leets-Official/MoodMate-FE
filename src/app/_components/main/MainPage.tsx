@@ -41,7 +41,7 @@ const getBGStyle = (type: string, gender: string) => {
             targetHour: 20,
             logo: pinkLogo,
             background:
-              'w-[90%] pt-2 h-screen background: bg-gradient-to-b from-[#FFFCE5] to-[#FFF7BB]',
+              'w-[85%] pt-2 h-screen background: bg-gradient-to-b from-[#FFFCE5] to-[#FFF7BB]',
             image: afterMatchMale,
             textUi: '',
             imageUi: '',
@@ -51,7 +51,7 @@ const getBGStyle = (type: string, gender: string) => {
             targetHour: 20,
             logo: pinkLogo,
             background:
-              'w-[90%] pt-2 h-screen background: bg-gradient-to-b from-[#FFFCE5] to-[#FFF7BB]',
+              'w-[85%] pt-2 h-screen background: bg-gradient-to-b from-[#FFFCE5] to-[#FFF7BB]',
             image: afterMatchFemale,
             textUi: '',
             imageUi: '',
