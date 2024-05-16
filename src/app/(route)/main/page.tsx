@@ -16,22 +16,36 @@ export default function MainPagePage() {
   const accessToken = getCookie('accessToken')
   const refreshToken = getCookie('refreshToken')
 
+  const [redirectToLogin, setRedirectToLogin] = useState(false)
+
   useEffect(() => {
     requestPushPermission()
   }, [])
 
-  if (
-    data &&
-    Object.values(data?.mainPageResponse).some((item) => item === null)
-  ) {
-    window.location.href = '/login'
-  }
+  useEffect(() => {
+    if (
+      data &&
+      Object.values(data?.mainPageResponse).some((item) => item === null)
+    ) {
+      setRedirectToLogin(true)
+    }
+  }, [data])
 
   useEffect(() => {
     if (accessToken?.length === 0 && refreshToken?.length === 0) {
-      window.location.href = '/login'
+      setRedirectToLogin(true)
     }
   }, [accessToken, refreshToken])
+
+  useEffect(() => {
+    if (redirectToLogin) {
+      window.location.href = '/login'
+    }
+  }, [redirectToLogin])
+
+  if (redirectToLogin) {
+    return <Loading />
+  }
 
   if (isLoading) {
     return <Loading />
