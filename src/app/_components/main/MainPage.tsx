@@ -32,7 +32,7 @@ const getBGStyle = (type: string, gender: string) => {
         background: '',
         image: beforeMatch,
         textUi: 'mb-7',
-        imageUi: 'ml-7 mt-3 w-[300px]',
+        imageUi: 'mx-auto mt-3 w-[300px]',
       }
     case 'AFTER':
       switch (gender) {
