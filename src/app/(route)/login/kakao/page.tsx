@@ -21,8 +21,16 @@ const LoginHandler = () => {
             authorizationCode: codeURL,
           })
           .then((response) => {
-            Cookies.set('accessToken', response.data.accessToken)
-            Cookies.set('refreshToken', response.data.refreshToken)
+            Cookies.set('accessToken', response.data.accessToken, {
+              expires: 3,
+              secure: true,
+              sameSite: 'None',
+            })
+            Cookies.set('refreshToken', response.data.refreshToken, {
+              expires: 7,
+              secure: true,
+              sameSite: 'None',
+            })
           })
           .catch((error) => {
             console.error('Error fetching token:', error)
