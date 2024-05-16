@@ -20,6 +20,13 @@ export default function MainPagePage() {
     requestPushPermission()
   }, [])
 
+  if (
+    data &&
+    Object.values(data?.mainPageResponse).some((item) => item === null)
+  ) {
+    window.location.href = '/login'
+  }
+
   useEffect(() => {
     if (accessToken?.length === 0 && refreshToken?.length === 0) {
       window.location.href = '/login'
