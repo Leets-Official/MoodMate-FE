@@ -1,7 +1,7 @@
 export const BEFORE_TIMER_GUIDE = {
   TITLE: '매일 밤 10시 매칭이 완료됩니다',
   SUB_TITLE: '매칭 완료까지 남은 시간',
-  DESCRIPTION: '금일만 11시에 매칭됩니다. 조금만 기다려주세요!',
+  DESCRIPTION: '18일부터 매칭이 시작됩니다!',
 } as const
 
 export const AFTER_TIMER_GUIDE = {
