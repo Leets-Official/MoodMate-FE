@@ -131,7 +131,7 @@ const ChatRoomContainer = ({ userId, roomId }: ChatRoomContainerProps) => {
             />
           ))}
         {data && data.pages[0].chatList.length === 0 && (
-          <div className="w-full text-center mb-5 text-xs text-[#B0B0B0]">
+          <div className="w-full text-center mb-5 text-xs text-[#B0B0B0] mt-[40px]">
             무디와의 설레는 채팅을 시작해보세요!
           </div>
         )}
