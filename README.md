@@ -14,13 +14,6 @@
 
 <br/>
 
-<p align=center>
-  <a href="https://plum-lightyear-dd5.notion.site/MoodMate-328ba219563f46118193cd5d7a5acf8f?pvs=4">팀 노션</a>
-  &nbsp; | &nbsp; 
-  <a href="https://github.com/orgs/Leets-Official/projects/2">백로그</a>
-  &nbsp; | &nbsp;
-  <a href="https://www.figma.com/file/Pf9BoSgENbbP5DgxTFz7sg/MM-Design?node-id=1%3A2&mode=dev">figma</a> 
-  <br />
 
 <div align=center>
     <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLeets-Official%2FMoodMate-FE&count_bg=%23333333&title_bg=%23FC4F59&icon=&icon_color=%23FC4F59&title=hits&edge_flat=false)](https://hits.seeyoufarm.com"/></a>
