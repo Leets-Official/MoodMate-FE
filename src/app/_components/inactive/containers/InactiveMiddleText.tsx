@@ -35,7 +35,7 @@ const InactiveFirstText = ({
   }
   const moveToMypage = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    // roomActive ? route.push(`/chat/${userId}/${roomId}`) : setChatModal(true)
+    roomActive ? route.push(`/chat/${userId}/${roomId}`) : setChatModal(true)
   }
   return (
     <div className="flex flex-col items-center">
