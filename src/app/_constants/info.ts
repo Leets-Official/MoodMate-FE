@@ -148,7 +148,7 @@ export const MATCHING_DEPARTMENT_PAGE = {
 export const DATE_MOOD_PAGE = {
   GREETINGS: '어떤 연애를 하고 싶나요?',
   DATE: '연애',
-  ACT: '뜨거운',
+  ACT: '잔잔한',
   EMO: '편안한',
   NEW: '설레는',
   FUN: '재밌는',

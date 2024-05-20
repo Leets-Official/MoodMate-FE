@@ -35,8 +35,8 @@ const UserMood = ({ isEdit }: UserMoodProps) => {
   const [userInfo, setUserInfoState] = useRecoilState(preferInfoState)
   const moodData = isEdit ? editUserInfo.preferMood : userInfo.preferMood
   const [buttonSelected, setButtonSelected] = useState<ButtonSelectedState>({
-    뜨거운: {
-      selected: moodData === '뜨거운',
+    잔잔한: {
+      selected: moodData === '잔잔한',
       imgSrc: '/illustration/common/datemood/active.png',
     },
     편안한: {
