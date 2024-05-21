@@ -129,7 +129,7 @@ export const MY_KEYWORD_PAGE = {
     '🎨 애니',
     '👷 워커홀릭',
     '🏠 집순돌이',
-    '🪩 춤',
+    '🪩 댄스',
     '🍺 애주가',
   ],
 } as const
