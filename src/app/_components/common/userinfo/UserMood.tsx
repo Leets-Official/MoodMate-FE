@@ -152,13 +152,13 @@ const UserMood = ({ isEdit }: UserMoodProps) => {
   }, [userInfo, editUserInfo])
 
   return (
-    <div className="relative h-[560px] w-[312px]">
-      <div className="mt-[35px] mb-[88px]">
+    <div className="relative w-full h-full flex flex-col items-center justify-between">
+      <div className="relative w-full flex flex-col items-start mt-[35px] mb-7">
         <div className="leading-normal text-darkgray font-bold text-xl font-sans">
           <div>{DATE_MOOD_PAGE.GREETINGS}</div>
         </div>
       </div>
-      <div className="absolute flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 justify-center items-center flex-wrap ">
+      <div className="relative flex w-96 justify-center items-center flex-wrap ">
         {Object.entries(buttonSelected).map(
           ([mood, { selected, imgSrc }], index) => (
             <SelectedButton
@@ -191,8 +191,8 @@ const UserMood = ({ isEdit }: UserMoodProps) => {
       <NormalButton
         buttonText={isEdit ? '수정하기' : '매칭 시작'}
         onClick={nextRoute}
-        buttonType="large"
-        className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${
+        buttonType="userinfo"
+        className={`relative mb-7 rounded-md text-darkgray ${
           Object.values(buttonSelected).some(({ selected }) => selected)
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

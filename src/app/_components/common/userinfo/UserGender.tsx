@@ -93,14 +93,14 @@ export default function UserGender({ pageNum, isEdit }: UserGenderProps) {
   }, [userInfo])
 
   return (
-    <div className="relative h-[560px] w-[312px]">
-      <div className="mt-[35px] mb-[88px]">
+    <div className="relative w-full h-full flex flex-col items-center justify-between">
+      <div className="relative w-full flex flex-col items-start mt-[35px] mb-[88px]">
         <div className="leading-normal text-darkgray font-bold text-xl">
           <div>{GENDER_PAGE.GREETINGS1}</div>
           <div>{GENDER_PAGE.GREETINGS2}</div>
         </div>
       </div>
-      <div>
+      <div className="w-full flex">
         <SelectedButton
           buttonText={GENDER_PAGE.MALE}
           buttonType="GENDER"
@@ -131,8 +131,8 @@ export default function UserGender({ pageNum, isEdit }: UserGenderProps) {
       <NormalButton
         buttonText="다음"
         onClick={nextRoute}
-        buttonType="large"
-        className={`absolute mb-7 bottom-0 text-darkgray rounded-md ${
+        buttonType="userinfo"
+        className={`relative mb-7 rounded-md text-darkgray ${
           maleButtonSelected || femaleButtonSelected
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

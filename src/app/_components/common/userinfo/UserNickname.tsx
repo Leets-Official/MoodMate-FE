@@ -98,8 +98,8 @@ const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
   }
 
   return (
-    <div className="relative h-[560px] w-[312px]">
-      <div className="mt-[35px] mb-[168px]">
+    <div className="relative w-full h-full flex flex-col items-center justify-between">
+      <div className="relative w-full flex flex-col items-start mt-[35px] mb-[168px]">
         <div className="text-darkgray font-bold text-xl font-sans">
           <div>{NICK_NAME_PAGE.GREETINGS1}</div>
           <div>{NICK_NAME_PAGE.GREETINGS2}</div>
@@ -108,14 +108,14 @@ const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
           {NICK_NAME_PAGE.WARNINGS}
         </div>
       </div>
-      <div className="w-[312px] h-[55px]">
+      <div className="w-full">
         <Input
           sort="info"
           textValue={inputValue}
           placeholder={NICK_NAME_PAGE.INPUTBOX}
           onChange={handleInputChange}
           readOnly={isEdit}
-          className="w-[230px] placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[30px]"
+          className="w-[73%] placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[30px]"
         />
         <span className="text-[12px] text-secondary">{inputCount}</span>
         <div
@@ -133,8 +133,8 @@ const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
       <NormalButton
         buttonText="다음"
         onClick={nextRoute}
-        buttonType="large"
-        className={`mb-7 absolute bottom-0 rounded-md text-darkgray ${
+        buttonType="userinfo"
+        className={`relative mb-7 rounded-md text-darkgray ${
           inputValue.length > 0
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

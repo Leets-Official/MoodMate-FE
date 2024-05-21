@@ -59,20 +59,18 @@ export default function UserKeyword({ pageNum, isEdit }: UserKeywordProps) {
   }, [])
 
   return (
-    <div className="relative h-[560px] w-[312px]">
-      <div className="mt-[35px] mb-[88px]">
-        <div>
-          <div className="leading-normal text-darkgray font-bold text-xl font-sans">
-            {MY_KEYWORD_PAGE.GREETINGS}
-          </div>
-          <div className="mt-[10px] text-secondary font-normal text-base font-sans">
-            <div>{MY_KEYWORD_PAGE.WARNINGS1}</div>
-            <div>{MY_KEYWORD_PAGE.WARNINGS2}</div>
-          </div>
+    <div className="relative w-full h-full flex flex-col items-center justify-between">
+      <div className="relative w-full flex flex-col items-start mt-[35px] mb-7">
+        <div className="leading-normal text-darkgray font-bold text-xl font-sans">
+          {MY_KEYWORD_PAGE.GREETINGS}
+        </div>
+        <div className="mt-[10px] text-secondary font-normal text-base font-sans">
+          <div>{MY_KEYWORD_PAGE.WARNINGS1}</div>
+          <div>{MY_KEYWORD_PAGE.WARNINGS2}</div>
         </div>
       </div>
-      <div>
-        <div className="absolute bottom-[100px]">
+      <div className="w-full h-full flex flex-col justify-between items-center ">
+        <div className="relative w-full mb-2">
           {MY_KEYWORD_PAGE.KEYWORD_LIST.map((keyword) => (
             // eslint-disable-next-line react/jsx-key
             <SelectedButton
@@ -94,8 +92,8 @@ export default function UserKeyword({ pageNum, isEdit }: UserKeywordProps) {
         <NormalButton
           buttonText="다음"
           onClick={nextRoute}
-          buttonType="large"
-          className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${
+          buttonType="userinfo"
+          className={`relative mb-7 rounded-md text-darkgray ${
             selectedButtons.length === 3
               ? buttonStyles.activeStyles
               : buttonStyles.defaultStyles

@@ -21,8 +21,8 @@ const ProgressBar = ({ current }: ProgressBarProps) => {
   }, [current])
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="w-[312px] bg-lightgray h-[10px] mb-[9px] rounded-full relative overflow-hidden">
+    <div className="flex flex-col w-full px-[10%] items-center justify-center">
+      <div className="w-full bg-lightgray h-[10px] mb-[9px] rounded-full relative overflow-hidden">
         <div
           className={`h-full bg-primary rounded-full absolute left-0 top-0 ${
             initialRender ? 'transition-none' : ''
@@ -35,8 +35,8 @@ const ProgressBar = ({ current }: ProgressBarProps) => {
           }}
         />
       </div>
-      <div className="w-[312px] text-secondary text-[10px] flex items-center">
-        <span className="w-[159px] ml-[10px] mr-[117px]">{currentText}</span>
+      <div className="w-full text-secondary text-[10px] flex items-center justify-between">
+        <span>{currentText}</span>
         <span>
           {current}/{PROGRESS_BAR.MAX}
         </span>
