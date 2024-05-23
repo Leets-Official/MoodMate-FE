@@ -4,8 +4,16 @@ import Image from 'next/image'
 import loginImage from 'public/illustration/common/login/login.png'
 import { LOGIN_PAGE } from '@/_constants/login'
 import kakaoImage from 'public/illustration/common/login/kakao.png'
+import { useEffect } from 'react'
+import useFirebasePush from '@/_pwa/useFirebasePush'
 
 export default function Login() {
+  const { requestPushPermission } = useFirebasePush()
+
+  useEffect(() => {
+    requestPushPermission()
+  }, [])
+
   const handleLogin = () => {
     if (typeof window !== 'undefined') {
       window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URL}`
