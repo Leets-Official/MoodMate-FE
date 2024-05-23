@@ -51,6 +51,7 @@ const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
       })
       setInputValue(data.myPageResponse.userNickname)
       setinputCount(`${data.myPageResponse.userNickname.length}/5`)
+      route.push(`/userinfo/${parseInt(pageNum, 10) + 1}?edit=true`)
     } catch (error) {
       console.error('Error fetching data:', error)
       route.push('/login')
@@ -113,6 +114,7 @@ const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
           textValue={inputValue}
           placeholder={NICK_NAME_PAGE.INPUTBOX}
           onChange={handleInputChange}
+          readOnly={isEdit}
           className="w-[73%] placeholder:text-secondary placeholder:text-base placeholder:leading-[174%] focus:outline-none ml-[22px] mr-[30px]"
         />
         <span className="text-[12px] text-secondary">{inputCount}</span>
