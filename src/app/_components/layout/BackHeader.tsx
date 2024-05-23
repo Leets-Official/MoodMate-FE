@@ -15,9 +15,7 @@ const BackHeader = ({ slug }: BackHeaderProps) => {
   const pageNumber = slug
   const params = useSearchParams().get('edit') === 'true'
 
-  const shouldShowBackIcon = params
-    ? pageNumber.toString() !== '1' && pageNumber.toString() !== '2'
-    : pageNumber.toString() !== '1'
+  const shouldShowBackIcon = params && pageNumber.toString() !== '1'
 
   return (
     <section className="flex items-center justify-between w-full px-[10%] mt-[35px] mb-[20px]">
