@@ -1,32 +1,37 @@
 import femaleImage from 'public/illustration/female/mypage/myprofile.png'
 import maleImage from 'public/illustration/male/mypage/myprofile.png'
 import Image from 'next/image'
+import UserNickname from './UserNickname'
+import YearDept from './YearDept'
 
 interface UserInfoProps {
   userGender: string
   userNickname: string
   year: number
   userDepartment: string
+  preferMood: string
 }
 const Profile = ({
   userGender,
   userNickname,
   year,
   userDepartment,
+  preferMood,
 }: UserInfoProps) => {
   const gender = userGender === 'MALE' ? maleImage : femaleImage
   const age = year?.toString().slice(-2)
+
   return (
     <section className="flex flex-col">
-      <div className="mx-auto text-center">
+      <div className="mx-auto text-center flex flex-col items-center justify-center">
         <Image src={gender} alt="gender" className="mt-4 w-[70px] h-[72px]" />
-        <p className="mt-4 text-[18px] font-bold">{userNickname}</p>
+        <UserNickname
+          userNickname={userNickname}
+          preferMood={preferMood}
+          userGender={userGender}
+        />
       </div>
-      <div className="mt-3 justify-center px-4 pt-[4px] h-[30px] text-[14px] text-[#4D4D4D] flex mx-auto border border-[#4D4D4D] rounded-[25px]">
-        <p className="mr-3">{age}년생</p>
-        <p className="mr-3 ">|</p>
-        <p>{userDepartment}</p>
-      </div>
+      <YearDept age={age} userDepartment={userDepartment} />
       <div className="w-auto h-2 bg-lightgray mt-6" />
     </section>
   )

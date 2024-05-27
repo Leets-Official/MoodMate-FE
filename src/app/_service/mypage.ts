@@ -7,3 +7,21 @@ export const myPageInfo = async () => {
     throw error
   }
 }
+
+export const postCheckNickname = async (
+  nickname: string,
+  preferMood: string,
+  userGender: string,
+) => {
+  try {
+    const requestBody = {
+      userNickname: nickname,
+      preferMood: preferMood,
+      userGender: userGender,
+    }
+    const response = await api.post('/mypage/nickname/check', requestBody)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}

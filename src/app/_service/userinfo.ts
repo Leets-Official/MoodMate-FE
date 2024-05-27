@@ -46,6 +46,15 @@ const putEditUserInfo = async (editUserInfo: EditUserInfoData) => {
   }
 }
 
+export const putUserNickname = async (userNickname: string) => {
+  try {
+    const response = await api.put('/mypage/nickname/change', userNickname)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
 const postUserInfo = async (userInfo: UserInfoData) => {
   try {
     const response = await api.post('users/user-info', userInfo)

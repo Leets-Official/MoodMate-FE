@@ -35,3 +35,11 @@ export const editUserInfoState = atom<EditUserInfoData>({
     preferMood: '',
   },
 })
+
+export const editUserNickname = atom({
+  key: 'editUserNickname',
+  default: {
+    isNicknameEdit: false,
+    userNickname: '',
+  },
+})
