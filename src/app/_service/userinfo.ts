@@ -48,7 +48,9 @@ const putEditUserInfo = async (editUserInfo: EditUserInfoData) => {
 
 export const putUserNickname = async (userNickname: string) => {
   try {
-    const response = await api.put('/mypage/nickname/change', userNickname)
+    const response = await api.put('/mypage/nickname/change', {
+      newNickname: userNickname,
+    })
     return response.data
   } catch (error) {
     throw error

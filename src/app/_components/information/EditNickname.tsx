@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Input from '../common/Input'
 import { INPUT_NICKNAME, NICK_NAME_PAGE } from '@/_constants/info'
 import { useRecoilState } from 'recoil'
@@ -27,12 +27,18 @@ const EditNickname = ({
   const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserNickname)
   const [canUseNickname, setCanUseNickname] = useState(false)
 
+  useEffect(() => {
+    setInputValue(userNickname)
+    setEditUserInfoState({ ...editUserInfo, userNickname: userNickname })
+  }, [])
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(0, INPUT_NICKNAME.MAX)
     const koeranOnly = /^[ㄱ-ㅎㅏ-ㅣ가-힣]*$/g
     if (!koeranOnly.test(newValue)) {
       alert('한글만 입력 가능합니다.')
     } else {
+      setCanUseNickname(false)
       setInputValue(newValue)
       setEditUserInfoState({ ...editUserInfo, userNickname: newValue })
       setinputCount(`${newValue.length}/${INPUT_NICKNAME.MAX}`)
@@ -47,29 +53,34 @@ const EditNickname = ({
   const postUserDataMutation = useMutation({
     mutationFn: () =>
       postCheckNickname(editUserInfo.userNickname, preferMood, userGender),
-    onSuccess: () => {},
-    onError: () => alert('다시 시도해 주세요.'),
+    onSuccess: (data) => {
+      if (data.isDuplicate) {
+        setCanUseNickname(false)
+        alert('이미 사용중인 닉네임입니다.')
+      } else {
+        setCanUseNickname(true)
+      }
+    },
+    onError: () => {
+      setCanUseNickname(false)
+      alert('다시 시도해 주세요.')
+    },
   })
 
   const putUserNicknameMutation = useMutation({
     mutationFn: () => putUserNickname(editUserInfo.userNickname),
-    onSuccess: () => {
-      //window.location.href = '/mypage'
+    onSuccess: (data) => {
+      window.location.reload()
     },
     onError: () => alert('다시 시도해 주세요.'),
   })
 
   const checkCanUseNickname = () => {
-    console.log(editUserInfo.userNickname, preferMood, userGender)
-    const response = postUserDataMutation.mutate()
-    console.log(response)
-    setCanUseNickname(true)
+    postUserDataMutation.mutate()
   }
 
   const changeNickname = () => {
-    console.log(editUserInfo.userNickname)
-    const response = putUserNicknameMutation.mutate()
-    console.log(response)
+    putUserNicknameMutation.mutate()
   }
 
   return (
