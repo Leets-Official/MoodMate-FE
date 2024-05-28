@@ -41,3 +41,10 @@ export const MY_MODAL = {
   CONFIRM: '로그아웃',
   CANCEL: '취소',
 } as const
+
+export const DELETE_MODAL = {
+  TITLE: '회원탈퇴를 하시겠어요?',
+  SUB_TITLE: '신중하게 결정해주세요!',
+  CONFIRM: '회원탈퇴',
+  CANCEL: '취소',
+}

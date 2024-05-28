@@ -8,6 +8,8 @@ import Input from '../Input'
 import Loading from '../Loading'
 import ErrorPage from '@/(route)/error'
 import { useMyPageQuery } from '@/_hooks/useMypageQuery'
+import { useMutation } from '@tanstack/react-query'
+import { postCheckNickname } from '@/_service/mypage'
 
 interface UserNicknameProps {
   pageNum: string
@@ -17,6 +19,7 @@ interface UserNicknameProps {
 const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
   const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserInfoState)
   const route = useRouter()
+  const [canUseNickname, setCanUseNickname] = useState(false)
   const [nickname, setNickname] = useRecoilState(userInfoState)
   const userInfo = useRecoilValue(userInfoState)
   const [inputValue, setInputValue] = useState(
@@ -87,6 +90,27 @@ const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
     }
   }
 
+  // const postUserDataMutation = useMutation({
+  //   mutationFn: () =>
+  //     postCheckNickname(editUserInfo.userNickname, preferMood, userGender),
+  //   onSuccess: (data) => {
+  //     if (data.isDuplicate) {
+  //       setCanUseNickname(false)
+  //       alert('이미 사용중인 닉네임입니다.')
+  //     } else {
+  //       setCanUseNickname(true)
+  //     }
+  //   },
+  //   onError: () => {
+  //     setCanUseNickname(false)
+  //     alert('다시 시도해 주세요.')
+  //   },
+  // })
+
+  // const checkCanUseNickname = () => {
+  //   postUserDataMutation.mutate()
+  // }
+
   const inputStyles = {
     defaultStyles: 'bg-lightgray',
     activeStyles: 'bg-primary',
@@ -125,6 +149,13 @@ const UserNickname = ({ pageNum, isEdit }: UserNicknameProps) => {
               : inputStyles.defaultStyles
           }`}
         />
+        {/* <button
+          type="button"
+          className="w-[40%] py-1 rounded-md bg-gray-200"
+          onClick={() => checkCanUseNickname()}
+        >
+          중복확인
+        </button> */}
         <div className="text-secondary font-normal text-xs font-notosans mt-[8px] text-right">
           {NICK_NAME_PAGE.GUIDE}
         </div>

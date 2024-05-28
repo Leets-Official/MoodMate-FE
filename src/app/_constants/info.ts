@@ -79,7 +79,7 @@ export const DEPARTMENT_LIST = [
 export const NICK_NAME_PAGE = {
   GREETINGS1: '가입을 축하드려요!',
   GREETINGS2: '어떻게 불러드리면 될까요?',
-  WARNINGS: '닉네임은 한번 정하면 수정할 수 없어요!',
+  WARNINGS: '무디가 당신의 이름을 궁금해해요!',
   INPUTBOX: '닉네임을 입력하세요.',
   GUIDE: '5글자 이내로 한글만 입력해주세요.',
 } as const

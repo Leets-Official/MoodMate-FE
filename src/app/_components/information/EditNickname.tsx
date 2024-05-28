@@ -59,6 +59,7 @@ const EditNickname = ({
         alert('이미 사용중인 닉네임입니다.')
       } else {
         setCanUseNickname(true)
+        alert('사용 가능한 닉네임입니다!')
       }
     },
     onError: () => {
