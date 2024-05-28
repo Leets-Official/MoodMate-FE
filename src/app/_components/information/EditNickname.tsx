@@ -102,7 +102,7 @@ const EditNickname = ({ userNickname }: EditNicknameProps) => {
         <button
           type="button"
           className="w-[40%] py-1 rounded-md bg-gray-200"
-          onClick={() => checkCanUseNickname()}
+          onClick={checkCanUseNickname}
         >
           중복확인
         </button>
@@ -111,7 +111,7 @@ const EditNickname = ({ userNickname }: EditNicknameProps) => {
           className={`w-[40%] py-1 rounded-md ${
             canUseNickname ? 'text-primary bg-onepink' : 'bg-gray-200'
           }`}
-          onClick={() => changeNickname()}
+          onClick={changeNickname}
           disabled={!canUseNickname}
         >
           수정하기
