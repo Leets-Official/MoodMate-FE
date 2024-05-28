@@ -9,14 +9,12 @@ interface UserInfoProps {
   userNickname: string
   year: number
   userDepartment: string
-  preferMood: string
 }
 const Profile = ({
   userGender,
   userNickname,
   year,
   userDepartment,
-  preferMood,
 }: UserInfoProps) => {
   const gender = userGender === 'MALE' ? maleImage : femaleImage
   const age = year?.toString().slice(-2)
@@ -25,11 +23,7 @@ const Profile = ({
     <section className="flex flex-col">
       <div className="mx-auto text-center flex flex-col items-center justify-center">
         <Image src={gender} alt="gender" className="mt-4 w-[70px] h-[72px]" />
-        <UserNickname
-          userNickname={userNickname}
-          preferMood={preferMood}
-          userGender={userGender}
-        />
+        <UserNickname userNickname={userNickname} />
       </div>
       <YearDept age={age} userDepartment={userDepartment} />
       <div className="w-auto h-2 bg-lightgray mt-6" />

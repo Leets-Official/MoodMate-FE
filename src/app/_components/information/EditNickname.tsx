@@ -13,15 +13,9 @@ import { exit } from '@/_ui/IconsPath'
 
 interface EditNicknameProps {
   userNickname: string
-  preferMood: string
-  userGender: string
 }
 
-const EditNickname = ({
-  userNickname,
-  preferMood,
-  userGender,
-}: EditNicknameProps) => {
+const EditNickname = ({ userNickname }: EditNicknameProps) => {
   const [inputValue, setInputValue] = useState(userNickname)
   const [inputCount, setinputCount] = useState(`${userNickname.length}/5`)
   const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserNickname)
@@ -51,8 +45,7 @@ const EditNickname = ({
   }
 
   const postUserDataMutation = useMutation({
-    mutationFn: () =>
-      postCheckNickname(editUserInfo.userNickname, preferMood, userGender),
+    mutationFn: () => postCheckNickname(editUserInfo.userNickname),
     onSuccess: (data) => {
       if (data.isDuplicate) {
         setCanUseNickname(false)

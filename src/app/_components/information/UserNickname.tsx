@@ -9,15 +9,9 @@ import { useEffect } from 'react'
 
 interface UserNicknameProps {
   userNickname: string
-  preferMood: string
-  userGender: string
 }
 
-const UserNickname = ({
-  userNickname,
-  preferMood,
-  userGender,
-}: UserNicknameProps) => {
+const UserNickname = ({ userNickname }: UserNicknameProps) => {
   const [editUserInfo, setEditUserInfoState] = useRecoilState(editUserNickname)
   useEffect(() => {
     setEditUserInfoState({ ...editUserInfo, isNicknameEdit: false })
@@ -38,11 +32,7 @@ const UserNickname = ({
           </div>
         </div>
       ) : (
-        <EditNickname
-          userNickname={userNickname}
-          preferMood={preferMood}
-          userGender={userGender}
-        />
+        <EditNickname userNickname={userNickname} />
       )}
     </>
   )

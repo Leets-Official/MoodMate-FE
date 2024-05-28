@@ -8,16 +8,10 @@ export const myPageInfo = async () => {
   }
 }
 
-export const postCheckNickname = async (
-  nickname: string,
-  preferMood: string,
-  userGender: string,
-) => {
+export const postCheckNickname = async (nickname: string) => {
   try {
     const requestBody = {
       userNickname: nickname,
-      preferMood: preferMood,
-      userGender: userGender,
     }
     const response = await api.post('mypage/nickname/check', requestBody)
     return response.data

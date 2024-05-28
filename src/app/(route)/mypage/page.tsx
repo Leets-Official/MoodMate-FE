@@ -39,7 +39,6 @@ export default function MyPage() {
         userNickname={userNickname}
         year={year}
         userDepartment={userDepartment}
-        preferMood={preferMood}
       />
       <MypageSecondBoxContainer
         userKeywords={userKeywords}
