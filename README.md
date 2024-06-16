@@ -7,13 +7,7 @@
 <br />
 
 
-
-## [💗💗💗 서비스 바로가기 💗💗💗](https://www.moodmate.site/main)
-
-
-
-<br/>
-
+> 서비스가 종료되었습니다!
 
 <div align=center>
     <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLeets-Official%2FMoodMate-FE&count_bg=%23333333&title_bg=%23FC4F59&icon=&icon_color=%23FC4F59&title=hits&edge_flat=false)](https://hits.seeyoufarm.com"/></a>
