@@ -6,13 +6,7 @@
 
 <br />
 
-
-
-## [💗💗💗 서비스 바로가기 💗💗💗](https://www.moodmate.site/main)
-
-
-
-<br/>
+> 서비스가 종료되었습니다!
 
 
 <div align=center>
