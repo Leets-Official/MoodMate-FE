@@ -20,7 +20,7 @@ const useWebsocket = (roomId: number) => {
         reconnectDelay: 5000,
       })
       client.connect(
-        {},
+        { Authorization: `Bearer ${accessToken}` },
         () => {
           client.subscribe(`/sub/chat/${roomId}`, (res: any) => {
             const receivedMessage = {
