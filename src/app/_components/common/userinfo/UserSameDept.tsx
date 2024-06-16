@@ -107,13 +107,13 @@ export default function UserSameDept({ pageNum, isEdit }: UserSameDeptProps) {
   }, [userInfo])
 
   return (
-    <div className="relative h-[560px] w-[312px]">
-      <div className="mt-[35px] mb-[88px]">
+    <div className="relative w-full h-full flex flex-col items-center justify-between">
+      <div className="relative w-full flex flex-col items-start mt-[35px] mb-[88px]">
         <div className="leading-normal text-darkgray font-bold text-xl font-sans">
           <div>{MATCHING_DEPARTMENT_PAGE.GREETINGS}</div>
         </div>
       </div>
-      <div>
+      <div className="w-full flex">
         <SelectedButton
           buttonText={`${MATCHING_DEPARTMENT_PAGE.SAME_DEPT}\n${MATCHING_DEPARTMENT_PAGE.LIKE}`}
           buttonType="MAJOR"
@@ -140,8 +140,8 @@ export default function UserSameDept({ pageNum, isEdit }: UserSameDeptProps) {
       <NormalButton
         buttonText="다음"
         onClick={nextRoute}
-        buttonType="large"
-        className={`mb-7 absolute bottom-0  text-darkgray rounded-md ${
+        buttonType="userinfo"
+        className={`relative mb-7 rounded-md text-darkgray ${
           trueButtonSelected || falseButtonSelected
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

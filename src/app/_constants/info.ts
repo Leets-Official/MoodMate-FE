@@ -79,7 +79,7 @@ export const DEPARTMENT_LIST = [
 export const NICK_NAME_PAGE = {
   GREETINGS1: '가입을 축하드려요!',
   GREETINGS2: '어떻게 불러드리면 될까요?',
-  WARNINGS: '닉네임은 한번 정하면 수정할 수 없어요!',
+  WARNINGS: '무디가 당신의 이름을 궁금해해요!',
   INPUTBOX: '닉네임을 입력하세요.',
   GUIDE: '5글자 이내로 한글만 입력해주세요.',
 } as const
@@ -127,6 +127,10 @@ export const MY_KEYWORD_PAGE = {
     '🏋️ 헬스',
     '✈️ 여행',
     '🎨 애니',
+    '👷 워커홀릭',
+    '🏠 집순돌이',
+    '🪩 댄스',
+    '🍺 애주가',
   ],
 } as const
 
@@ -148,7 +152,7 @@ export const MATCHING_DEPARTMENT_PAGE = {
 export const DATE_MOOD_PAGE = {
   GREETINGS: '어떤 연애를 하고 싶나요?',
   DATE: '연애',
-  ACT: '뜨거운',
+  ACT: '잔잔한',
   EMO: '편안한',
   NEW: '설레는',
   FUN: '재밌는',

@@ -13,11 +13,15 @@ interface BackHeaderProps {
 const BackHeader = ({ slug }: BackHeaderProps) => {
   const router = useRouter()
   const pageNumber = slug
-  const params = useSearchParams().get('edit') === 'true' ? true : false
+  const params = useSearchParams().get('edit') === 'true'
+
+  const shouldShowBackIcon = params
+    ? pageNumber.toString() !== '1' && pageNumber.toString() !== '2'
+    : pageNumber.toString() !== '1'
 
   return (
     <section className="flex items-center justify-between w-full px-[10%] mt-[35px] mb-[20px]">
-      {pageNumber !== 1 ? (
+      {shouldShowBackIcon ? (
         <Link
           href="#"
           onClick={() => router.back()}
@@ -26,7 +30,7 @@ const BackHeader = ({ slug }: BackHeaderProps) => {
           <Icons name={back} />
         </Link>
       ) : (
-        <div className="h-[16px]" />
+        <div className="h-5" />
       )}
       {params && (
         <div className="flex flex-row items-center justify-center gap-3 cursor-pointer">

@@ -14,7 +14,7 @@ export default function MyinfoLayout({ children, params }: ProgressBarProps) {
   const limitedSlug = pageNum >= 1 && pageNum <= 8
 
   return (
-    <main className="flex flex-col items-center h-screen">
+    <main className="flex flex-col w-full items-center h-screen">
       {limitedSlug && (
         <>
           <BackHeader slug={params.slug} />

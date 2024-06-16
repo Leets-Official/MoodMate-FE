@@ -81,7 +81,7 @@ const NavBar = ({ type, userId, roomId, roomActive, gender }: TextProps) => {
             roomActive
               ? route.push(`/chat/${userId}/${roomId}`)
               : setChatModal(true)
-            // setChatModal(true)
+            setChatModal(true)
           }}
         >
           <Icons name={getTextStyle(type).chating} className="ml-6 mt-6" />

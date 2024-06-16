@@ -66,38 +66,36 @@ export default function UserMoodyage({ pageNum, isEdit }: UserMoodyageProps) {
   }
 
   return (
-    <div className="relative h-[560px] w-[312px]">
-      <div className="mt-[35px] mb-[88px]">
-        <div>
-          <div className="leading-normal text-darkgray font-bold text-xl font-sans">
-            {MOODIE_AGE_PAGE.GREETINGS}
-          </div>
-          <div className="mt-[10px] text-secondary font-normal text-base font-sans">
-            <div>{MOODIE_AGE_PAGE.WARNINGS}</div>
-          </div>
+    <div className="relative w-full h-full flex flex-col items-center justify-between">
+      <div className="relative w-full flex flex-col items-start mt-[35px] mb-[88px]">
+        <div className="leading-normal text-darkgray font-bold text-xl font-sans">
+          {MOODIE_AGE_PAGE.GREETINGS}
+        </div>
+        <div className="mt-[10px] text-secondary font-normal text-base font-sans">
+          <div>{MOODIE_AGE_PAGE.WARNINGS}</div>
         </div>
       </div>
-      <div className="relative top-[0%] mt-[-50px] mb-[20px] left-[40%] ml-[-50px] w-[149px] h-[157px] flex justify-center items-center">
-        <Image src={moodyCharacter} alt="" width={149} height={190} />
-      </div>
-      <div className="justify-items-center flex flex-col items-center">
+      <div className="relative justify-center w-full flex flex-col items-center font-sans mb-[10%]">
+        <div className="relative w-full h-[157px] flex justify-center items-center">
+          <Image src={moodyCharacter} alt="" width={149} height={190} />
+        </div>
         <RangeBar
           type="range"
           values={rangeValue}
           onChange={handleRangeChange}
         />
-        <NormalButton
-          buttonText="다음"
-          onClick={nextRoute}
-          buttonType="large"
-          className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${
-            rangeValue[0] !== 0
-              ? buttonStyles.activeStyles
-              : buttonStyles.defaultStyles
-          }`}
-          isActive={rangeValue[0] !== 0}
-        />
       </div>
+      <NormalButton
+        buttonText="다음"
+        onClick={nextRoute}
+        buttonType="userinfo"
+        className={`relative mb-7 rounded-md text-darkgray ${
+          rangeValue[0] !== 0
+            ? buttonStyles.activeStyles
+            : buttonStyles.defaultStyles
+        }`}
+        isActive={rangeValue[0] !== 0}
+      />
     </div>
   )
 }

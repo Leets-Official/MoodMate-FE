@@ -50,13 +50,13 @@ export default function UserDepartment({
   }
 
   return (
-    <div className="relative h-[560px] w-[312px]">
-      <div className="mt-[35px] mb-[168px]">
+    <div className="relative w-full h-full flex flex-col items-center justify-between">
+      <div className="relative w-full flex flex-col items-start mt-[35px] mb-8">
         <div className="leading-normal text-darkgray font-bold text-xl">
           {MY_DEPARTMENT_PAGE.GREETINGS}
         </div>
       </div>
-      <div>
+      <div className="relative w-full">
         <Accordion
           selectedDepartment={departmentData}
           onDepartmentSelect={handleDepartmentSelect}
@@ -67,8 +67,8 @@ export default function UserDepartment({
       <NormalButton
         buttonText="다음"
         onClick={nextRoute}
-        buttonType="large"
-        className={`absolute bottom-0 mb-7 text-darkgray rounded-md ${
+        buttonType="userinfo"
+        className={`relative mb-7 rounded-md text-darkgray ${
           departmentData
             ? buttonStyles.activeStyles
             : buttonStyles.defaultStyles

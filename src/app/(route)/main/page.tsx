@@ -5,7 +5,7 @@ import InactivePage from '@/_components/inactive/InActivePage'
 import Loading from '@/_components/common/Loading'
 import ErrorPage from '@/(route)/error'
 import useFirebasePush from '@/_pwa/useFirebasePush'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useMainQuery } from '@/_hooks/useMainQuery'
 import { getCookie } from '@/utils/cookieutils'
 
@@ -16,36 +16,24 @@ export default function MainPagePage() {
   const accessToken = getCookie('accessToken')
   const refreshToken = getCookie('refreshToken')
 
-  const [redirectToLogin, setRedirectToLogin] = useState(false)
-
   useEffect(() => {
-    requestPushPermission()
-  }, [])
+    if ((accessToken || refreshToken) === undefined) {
+      window.location.href = '/login'
+    }
+  }, [accessToken, refreshToken])
 
   useEffect(() => {
     if (
       data &&
       Object.values(data?.mainPageResponse).some((item) => item === null)
     ) {
-      setRedirectToLogin(true)
+      window.location.href = '/login'
     }
   }, [data])
 
   useEffect(() => {
-    if (accessToken?.length === 0 && refreshToken?.length === 0) {
-      setRedirectToLogin(true)
-    }
-  }, [accessToken, refreshToken])
-
-  useEffect(() => {
-    if (redirectToLogin) {
-      window.location.href = '/login'
-    }
-  }, [redirectToLogin])
-
-  if (redirectToLogin) {
-    return <Loading />
-  }
+    requestPushPermission()
+  }, [])
 
   if (isLoading) {
     return <Loading />

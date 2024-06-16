@@ -23,9 +23,30 @@ const Accordion = ({
 
   return (
     <>
+      {isOpen ? (
+        <div className="relatvie w-full max-h-48 rounded-[16px] overflow-y-scroll scrollbar-hide bg-onepink">
+          {getSortedDepartmentList().map((department) => (
+            <button
+              key={department}
+              className={`w-full h-12 ${
+                selectedDepartment === department
+                  ? 'bg-FFF3F4 text-primary'
+                  : 'bg-FFF3F4 text-darkgray'
+              } hover:text-primary hover:bg-zeropink font-sans font-medium leading-normal`}
+              onClick={() => handleSelect(department)}
+              type="button"
+            >
+              {department}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="w-full h-48" />
+      )}
+
       <button
         type="button"
-        className={`w-[312px] h-[48px] rounded-[16px] bg-onepink flex justify-between items-center px-4 absolute bottom-[169px] ${
+        className={`w-full h-[48px] rounded-[16px] mt-2 bg-onepink flex justify-between items-center px-4 relative ${
           selectedDepartment && 'border-[1px] border-primary'
         }`}
         onClick={onOpen}
@@ -52,25 +73,6 @@ const Accordion = ({
           </svg>
         </span>
       </button>
-
-      {isOpen && (
-        <div className="absolute bottom-[230px] left-0 w-[312px] max-h-48 rounded-[16px] overflow-y-scroll scrollbar-hide bg-onepink">
-          {getSortedDepartmentList().map((department) => (
-            <button
-              key={department}
-              className={`w-full h-12 ${
-                selectedDepartment === department
-                  ? 'bg-FFF3F4 text-primary'
-                  : 'bg-FFF3F4 text-darkgray'
-              } hover:text-primary hover:bg-zeropink font-sans font-medium leading-normal`}
-              onClick={() => handleSelect(department)}
-              type="button"
-            >
-              {department}
-            </button>
-          ))}
-        </div>
-      )}
     </>
   )
 }

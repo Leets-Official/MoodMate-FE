@@ -3,12 +3,15 @@
 interface NormalButtonProps {
   buttonText: string
   onClick: () => void
-  buttonType: 'large' | 'small'
+  buttonType: 'large' | 'small' | 'userinfo'
   className: string
   isActive: boolean
 }
 
-const getButtonStyles = (buttonType: 'large' | 'small', className: string) => {
+const getButtonStyles = (
+  buttonType: 'large' | 'small' | 'userinfo',
+  className: string,
+) => {
   switch (buttonType) {
     case 'large':
       return {
@@ -18,9 +21,13 @@ const getButtonStyles = (buttonType: 'large' | 'small', className: string) => {
       return {
         button: `w-[96px] h-[36px] ${className}`,
       }
+    case 'userinfo':
+      return {
+        button: `w-full h-[48px] max-w-[312px] ${className}`,
+      }
     default:
       return {
-        button: 'w-full h-full',
+        button: ' w-full h-full',
       }
   }
 }
